@@ -11,12 +11,15 @@
       --link-color: #0645AD;
       --border-color: #333333;
       --link-color-dark: #89b4f8;
+      --section-title-color: #3d3d3d;
     }
 
     body.dark-mode {
       --bg-color: #1e1e1e;
       --text-color: #dddddd;
       --border-color: #555555;
+      --section-title-color: #eeeeee;
+
     }
 
     body {
@@ -77,13 +80,13 @@
     }
 
     section {
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      border-radius: 8px;
-      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.04);
+      padding: 1rem;
+      margin-bottom: 0rem;
+      border-radius: 1px;
+      box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
     }
 
-    section:nth-of-type(odd) {
+    <!-- section:nth-of-type(odd) {
       background-color: #ffffff;
     }
 
@@ -97,16 +100,16 @@
 
     body.dark-mode section:nth-of-type(even) {
       background-color: #2a2a2a;
-    }
+    } -->
 
     section h2 {
       border-bottom: 1px solid var(--border-color);
       padding-bottom: 4px;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.5rem;
     }
 
     .item {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
 
     .item .left {
@@ -142,33 +145,37 @@
   <div class="controls">
     <button id="themeButton" onclick="toggleTheme()">🌞 Light</button>
     <button id="langButton" onclick="toggleLanguage()">🇰🇷 KO</button>
+    <button id="versionButton" onclick="toggleVersion()">📄 CV1</button>
   </div>
 
-<header>
-  <h1>Chaeyoon Kim</h1>
-  <div class="contact-info">
-    <div class="email">
-      <a href="mailto:kcyoun689@gmail.com">kcyoun689@gmail.com</a>
-    </div>
+  <header>
+    <h1 data-lang="en">Chaeyoon Kim</h1>
+    <h1 data-lang="ko">김 채 윤</h1>
+    <span data-lang="ko" style="margin-left: 0.5rem; font-size: 1.2em; color: #3D3C3A;">(Kim Chaeyoon)</span>
+    <div class="contact-info">
+      <div class="email">
+        <a href="mailto:kcyoun689@gmail.com">kcyoun689@gmail.com</a>
+      </div>
 
-    <div class="icons" style="margin-top: 0.5rem;">
-      <a href="https://www.linkedin.com/in/chaeyoon-kim689/" target="_blank" title="LinkedIn" style="margin-right: 10px; text-decoration: none;">
-        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20" height="20" style="vertical-align: middle; filter: invert(15%) sepia(81%) saturate(622%) hue-rotate(179deg) brightness(94%) contrast(90%);" />
-      </a>
-      <a href="https://github.com/kcyoon689" target="_blank" title="GitHub" style="margin-right: 10px; text-decoration: none;">
-        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="20" height="20" style="vertical-align: middle;" />
-      </a>
-      <a href="https://scholar.google.com/citations?user=ZWitB3wAAAAJ&hl=ko" target="_blank" title="Google Scholar" style="margin-right: 10px; text-decoration: none;">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlescholar.svg" alt="Google Scholar" width="20" height="20" style="vertical-align: middle;" />
-      </a>
-      <a href="https://tinyurl.com/yoonk-archive" target="_blank" title="Notion Archive" style="margin-right: 10px; text-decoration: none;">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" width="20" height="20" style="vertical-align: middle;" />
-      </a>
+      <div class="icons" style="margin-top: 0.5rem;">
+        <a href="https://www.linkedin.com/in/chaeyoon-kim689/" target="_blank" title="LinkedIn" style="margin-right: 10px; text-decoration: none;">
+          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" width="20" height="20" style="vertical-align: middle; filter: invert(15%) sepia(81%) saturate(622%) hue-rotate(179deg) brightness(94%) contrast(90%);" />
+        </a>
+        <a href="https://github.com/kcyoon689" target="_blank" title="GitHub" style="margin-right: 10px; text-decoration: none;">
+          <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="20" height="20" style="vertical-align: middle;" />
+        </a>
+        <a href="https://scholar.google.com/citations?user=ZWitB3wAAAAJ&hl=ko" target="_blank" title="Google Scholar" style="margin-right: 10px; text-decoration: none;">
+          <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlescholar.svg" alt="Google Scholar" width="20" height="20" style="vertical-align: middle;" />
+        </a>
+        <a href="https://tinyurl.com/yoonk-archive" target="_blank" title="Notion Archive" style="margin-right: 10px; text-decoration: none;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="Notion" width="20" height="20" style="vertical-align: middle;" />
+        </a>
+      </div>
     </div>
-</header>
+  </header>
 
-<!-- section placeholder -->
-<section id="education"></section>
+  <!-- section placeholder -->
+  <section id="education"></section>
   <section id="work_experience"></section>
   <section id="paper"></section>
   <section id="patent"></section>
@@ -179,28 +186,46 @@
   <section id="projects"></section>
 
   <script>
-    const sections = [
+    const staticSections = [
       "education",
-      "work_experience",
       "paper",
       "patent",
       "awards",
       "projects",
-      "certification",
-      // "skills",
-      // "lang",
+      "certification"
     ];
 
-    sections.forEach(id => {
-      fetch(`sections/${id}.html`)
+    let currentVersion = localStorage.getItem("cv_version") || "cv1";
+
+    function loadStaticSections() {
+      staticSections.forEach(id => {
+        fetch(`sections/${id}.html`)
+          .then(res => res.text())
+          .then(html => {
+            document.getElementById(id).outerHTML = html;
+          })
+          .catch(err => console.error(`Failed to load section: ${id}`, err));
+      });
+    }
+
+    function loadWorkExperience() {
+      const file = currentVersion === "cv1" ? "work_experience.html" : "work_experience_section.html";
+      fetch(`sections/${file}`)
         .then(res => res.text())
         .then(html => {
-          document.getElementById(id).outerHTML = html;
+          const target = document.getElementById("work_experience");
+          if (target) target.outerHTML = html;
         })
-        .catch(err => {
-          console.error(`Failed to load section: ${id}`, err);
-        });
-    });
+        .catch(err => console.error("Failed to load work experience section", err));
+
+      document.getElementById("versionButton").innerText = currentVersion === "cv1" ? "📄 CV1" : "📄 CV2";
+    }
+
+    function toggleVersion() {
+      currentVersion = currentVersion === "cv1" ? "cv2" : "cv1";
+      localStorage.setItem("cv_version", currentVersion);
+      loadWorkExperience();
+    }
 
     function setTheme(mode) {
       document.body.classList.toggle('dark-mode', mode === 'dark');
@@ -228,8 +253,13 @@
     (function () {
       const savedTheme = localStorage.getItem('theme') || 'light';
       const savedLang = localStorage.getItem('language') || 'en';
+      const savedVersion = localStorage.getItem('cv_version') || 'cv1';
+      currentVersion = savedVersion;
+
       setTheme(savedTheme);
       setLanguage(savedLang);
+      loadStaticSections();
+      loadWorkExperience();
     })();
   </script>
 </body>
