@@ -3,7 +3,9 @@
 (function () {
   "use strict";
 
-  var PROJECTS = (window.PROJECTS || []).filter(function (p) { return !p.hidden; });
+  // hidden: not published at all; draft: has a page but is not listed in the archive yet
+  var ALL = (window.PROJECTS || []).filter(function (p) { return !p.hidden; });
+  var PROJECTS = ALL.filter(function (p) { return !p.draft; });
   var BASE = document.body.getAttribute("data-base") || "";
 
   var CATEGORIES = [
@@ -68,7 +70,15 @@
     next: { en: "Next", ko: "다음" },
     notFound: { en: "This project could not be found.", ko: "프로젝트를 찾을 수 없습니다." },
     showAll: { en: "Show all tags", ko: "모든 태그 보기" },
-    empty: { en: "No projects in this category yet.", ko: "이 분야의 프로젝트가 아직 없습니다." }
+    empty: { en: "No projects in this category yet.", ko: "이 분야의 프로젝트가 아직 없습니다." },
+    draft: { en: "Preview – this page is not listed in the archive yet.", ko: "미리보기 – 아직 아카이브 목록에는 표시되지 않는 페이지입니다." },
+    roadmap: { en: "Research roadmap", ko: "연구 로드맵" },
+    tracks: { en: "Research tracks", ko: "연구 주제" },
+    hypothesis: { en: "Hypothesis", ko: "가설" },
+    design: { en: "Experiment design", ko: "실험 설계" },
+    planned: { en: "Planned", ko: "계획" },
+    scrollHint: { en: "Swipe sideways to see the whole timeline →", ko: "좌우로 밀어 전체 일정을 볼 수 있습니다 →" },
+    planNote: { en: "Hatched: planned after 2024", ko: "빗금: 2025년 이후 계획" }
   };
 
   // Korean labels for topic pills (anything missing stays as written)
@@ -249,12 +259,12 @@
     var root = document.getElementById("detail");
     if (!root) return;
     var idx = -1;
-    for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].slug === slug) idx = i;
+    for (var i = 0; i < ALL.length; i++) if (ALL[i].slug === slug) idx = i;
     if (idx < 0) {
       root.innerHTML = '<p class="empty">' + bi(UI.notFound) + ' <a href="' + BASE + '">' + bi(UI.allProjects) + "</a></p>";
       return;
     }
-    var p = PROJECTS[idx];
+    var p = ALL[idx];
     window.__titleFor = function (lang) { return plain(p.title, lang) + (lang === "ko" ? " – 김채윤" : " – Chaeyoon Kim"); };
     document.title = window.__titleFor(document.body.classList.contains("lang-ko") ? "ko" : "en");
 
@@ -271,6 +281,7 @@
     if (has(p.role)) meta.push("<span>" + bi(p.role) + "</span>");
 
     var html = "";
+    if (p.draft) html += '<p class="draft-note">' + bi(UI.draft) + "</p>";
     html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + BASE + '../cv/">' + bi(UI.cv) + '</a><span>/</span><a href="' + BASE + '">' + bi(UI.projects) +
       '</a><span class="current-sep">/</span><span class="current">' + bi(p.title) + "</span></nav>";
     html += '<header class="hero"><span class="eyebrow">' + bi(catLabel(p)) + (p.year ? " · " + esc(p.year) : "") + "</span>" +
@@ -304,8 +315,10 @@
     html += '<div class="detail-top' + (gallery ? "" : " no-gallery") + '">' + gallery + info + "</div>";
 
     // text blocks, in reading order: [Summary | Problem], Solution, Approach, [Results | My contributions]
-    var list = function (items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; };
+    function list(items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; }
     html += pair(has(p.summary) && block(UI.summary, "<p>" + bi(p.summary) + "</p>"), has(p.problem) && block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
+    if (p.roadmap) html += block(UI.roadmap, roadmap(p.roadmap));
+    if (has(p.tracks)) html += '<section class="tracks"><h3 class="tracks-title">' + bi(UI.tracks) + "</h3>" + p.tracks.map(track).join("") + "</section>";
     if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
     if (has(p.approach)) html += block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
       return "<li>" + (has(s.title) ? "<strong>" + bi(s.title) + ":</strong> " : "") + bi(s.body) + "</li>";
@@ -320,7 +333,8 @@
     }
 
     // prev / next
-    var prev = PROJECTS[idx - 1], next = PROJECTS[idx + 1];
+    var li = PROJECTS.indexOf(p);
+    var prev = li > 0 ? PROJECTS[li - 1] : null, next = li >= 0 ? PROJECTS[li + 1] : null;
     html += '<nav class="pager" aria-label="More projects">' +
       (prev ? '<a class="prev" href="' + BASE + prev.slug + '/"><span class="dir">← ' + bi(UI.prev) + "</span>" + bi(prev.title) + "</a>" : "") +
       (next ? '<a class="next" href="' + BASE + next.slug + '/"><span class="dir">' + bi(UI.next) + " →</span>" + bi(next.title) + "</a>" : "") +
@@ -347,6 +361,47 @@
       return '<div class="info-row"><div class="info-label">' + bi(label) + '</div><div class="info-value' + (cls ? " " + cls : "") + '">' + value + "</div></div>";
     }
     function block(title, body) { return '<section class="block"><h3>' + bi(title) + "</h3>" + body + "</section>"; }
+    function roadmap(r) {
+      var ym = function (s) { var a = s.split("-"); return (+a[0]) * 12 + (+a[1] - 1); };
+      var s0 = ym(r.start), n = ym(r.end) - s0 + 1, split = r.split ? ym(r.split) - s0 : n;
+      var years = [], months = "";
+      for (var m = 0; m < n; m++) {
+        var y = Math.floor((s0 + m) / 12), mo = (s0 + m) % 12 + 1;
+        if (!years.length || years[years.length - 1].y !== y) years.push({ y: y, from: m, len: 0 });
+        years[years.length - 1].len++;
+        months += '<span class="rm-m" style="grid-column:' + (m + 2) + '">' + mo + "</span>";
+      }
+      var head = '<div class="rm-head">' + years.map(function (yr) {
+        return '<span class="rm-y" style="grid-column:' + (yr.from + 2) + " / span " + yr.len + '">' + yr.y + "</span>";
+      }).join("") + months + "</div>";
+      var order = ["design", "exp", "write"];
+      var rows = r.rows.map(function (row) {
+        var bars = row.bars.map(function (b) {
+          var a = ym(b.from) - s0, z = ym(b.to) - s0, line = order.indexOf(b.phase) + 1, out = "";
+          var seg = function (x0, x1, planned) {
+            return '<span class="rm-bar ' + b.phase + (planned ? " planned" : "") + '" style="grid-column:' + (x0 + 2) + " / " + (x1 + 3) + ";grid-row:" + line + '"></span>';
+          };
+          if (z < split) out = seg(a, z, false);
+          else if (a >= split) out = seg(a, z, true);
+          else out = seg(a, split - 1, false) + seg(split, z, true);
+          return out;
+        }).join("");
+        return '<div class="rm-row"><div class="rm-label"><span class="rm-id">' + esc(row.id) + "</span>" + bi(row.title) + "</div>" + bars + "</div>";
+      }).join("");
+      var marker = split < n ? '<div class="rm-split" style="--at:' + split + '"><span>' + bi(r.splitLabel || UI.planned) + "</span></div>" : "";
+      var legend = '<div class="rm-legend">' + order.map(function (k) {
+        return '<span><i class="rm-sw ' + k + '"></i>' + bi(r.phases[k]) + "</span>";
+      }).join("") + '<span><i class="rm-sw exp planned"></i>' + bi(UI.planNote) + "</span></div>";
+      return '<p class="rm-hint">' + bi(UI.scrollHint) + '</p><div class="rm-scroll"><div class="rm" style="--n:' + n + '">' + head + rows + marker + "</div></div>" + legend;
+    }
+    function track(t) {
+      var lists = (has(t.hypothesis) ? '<div class="tr-col"><h4>' + bi(UI.hypothesis) + "</h4>" + list(t.hypothesis) + "</div>" : "") +
+        (has(t.design) ? '<div class="tr-col"><h4>' + bi(UI.design) + "</h4>" + list(t.design) + "</div>" : "");
+      var dg = t.diagram && window.DIAGRAMS && window.DIAGRAMS[t.diagram] ? window.DIAGRAMS[t.diagram](bi) : "";
+      return '<article class="block track"><div class="tr-head"><span class="rm-id">' + esc(t.id) + '</span><span class="eyebrow">' + bi(t.group) + "</span>" +
+        (t.planned ? '<span class="pill">' + bi(UI.planned) + "</span>" : "") + "</div>" +
+        '<h4 class="tr-title">' + bi(t.title) + "</h4>" + (lists ? '<div class="tr-cols">' + lists + "</div>" : "") + dg + "</article>";
+    }
     function pair(a, b) {
       if (a && b) return '<div class="blocks">' + a + b + "</div>";
       return a || b || "";
