@@ -3,7 +3,9 @@
 (function () {
   "use strict";
 
-  var PROJECTS = (window.PROJECTS || []).filter(function (p) { return !p.hidden; });
+  // hidden: not published at all; draft: has a page but is not listed in the archive yet
+  var ALL = (window.PROJECTS || []).filter(function (p) { return !p.hidden; });
+  var PROJECTS = ALL.filter(function (p) { return !p.draft; });
   var BASE = document.body.getAttribute("data-base") || "";
 
   var CATEGORIES = [
@@ -68,7 +70,18 @@
     next: { en: "Next", ko: "다음" },
     notFound: { en: "This project could not be found.", ko: "프로젝트를 찾을 수 없습니다." },
     showAll: { en: "Show all tags", ko: "모든 태그 보기" },
-    empty: { en: "No projects in this category yet.", ko: "이 분야의 프로젝트가 아직 없습니다." }
+    empty: { en: "No projects in this category yet.", ko: "이 분야의 프로젝트가 아직 없습니다." },
+    draft: { en: "Preview – this page is not listed in the archive yet.", ko: "미리보기 – 아직 아카이브 목록에는 표시되지 않는 페이지입니다." },
+    roadmap: { en: "Research roadmap", ko: "연구 로드맵" },
+    tracks: { en: "Research tracks", ko: "연구 주제" },
+    pipeline: { en: "Pipeline", ko: "파이프라인" },
+    equations: { en: "Loss functions", ko: "손실 함수" },
+    pubs: { en: "Publications & presentations", ko: "논문 · 발표" },
+    hypothesis: { en: "Hypothesis", ko: "가설" },
+    design: { en: "Experiment design", ko: "실험 설계" },
+    planned: { en: "Planned", ko: "계획" },
+    scrollHint: { en: "Swipe sideways to see the whole timeline →", ko: "좌우로 밀어 전체 일정을 볼 수 있습니다 →" },
+    planNote: { en: "Hatched: planned after 2024", ko: "빗금: 2025년 이후 계획" }
   };
 
   // Korean labels for topic pills (anything missing stays as written)
@@ -173,7 +186,8 @@
     });
   }
   function placeholder(p) {
-    return '<div class="ph"><span class="ph-cat">' + bi(catLabel(p)) + '</span><span class="ph-year">' + esc(p.year) + "</span></div>";
+    var mono = p.monogram || plain(p.title, "en").split(/[\s–-]+/).filter(Boolean).slice(0, 3).map(function (w) { return w.charAt(0); }).join("").toUpperCase();
+    return '<div class="ph" aria-hidden="true"><span class="ph-mono">' + esc(mono) + "</span></div>";
   }
 
   /* ---------- archive (list) ---------- */
@@ -199,7 +213,7 @@
         ? '<img src="' + src(c) + '" alt="" loading="lazy" decoding="async">'
         : placeholder(p);
       var seen = {};
-      var links = (p.links || []).filter(function (l) { var k = l.type; if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
+      var links = (p.links || []).filter(function (l) { var k = l.type; if (l.ref || seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
         return '<a class="icon-link" href="' + esc(l.url) + '"' + extAttrs() + ' title="' + esc(plain(linkLabel(l), "en")) + '" aria-label="' + esc(plain(linkLabel(l), "en")) + '">' + icon(l.type) + "</a>";
       }).join("");
       var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : ""].filter(Boolean).join(" · ");
@@ -211,7 +225,7 @@
         '<div class="card-cat">' + bi(catLabel(p)) + "</div>" +
         '<h3 class="card-title"><a href="' + href + '">' + bi(p.title) + "</a></h3>" +
         (meta ? '<p class="card-meta">' + meta + "</p>" : "") +
-        (has(p.tagline) ? '<p class="card-tagline">' + bi(p.tagline) + "</p>" : "") +
+        (has(p.cardTagline || p.tagline) ? '<p class="card-tagline">' + bi(p.cardTagline || p.tagline) + "</p>" : "") +
         tagsHtml(p.tech, 3) +
         '<div class="card-actions"><a class="btn xs primary" href="' + href + '">' + bi(UI.details) + " →</a>" + links + "</div>" +
         "</div></article>";
@@ -249,34 +263,30 @@
     var root = document.getElementById("detail");
     if (!root) return;
     var idx = -1;
-    for (var i = 0; i < PROJECTS.length; i++) if (PROJECTS[i].slug === slug) idx = i;
+    for (var i = 0; i < ALL.length; i++) if (ALL[i].slug === slug) idx = i;
     if (idx < 0) {
       root.innerHTML = '<p class="empty">' + bi(UI.notFound) + ' <a href="' + BASE + '">' + bi(UI.allProjects) + "</a></p>";
       return;
     }
-    var p = PROJECTS[idx];
+    var p = ALL[idx];
     window.__titleFor = function (lang) { return plain(p.title, lang) + (lang === "ko" ? " – 김채윤" : " – Chaeyoon Kim"); };
     document.title = window.__titleFor(document.body.classList.contains("lang-ko") ? "ko" : "en");
 
     var images = (p.images || []).slice();
     var links = p.links || [];
 
-    var linkBtns = links.slice(0, 3).map(function (l, n) {
+    // reference links (ref: true) only appear in the info card, not as hero buttons
+    var linkBtns = links.filter(function (l) { return !l.ref; }).slice(0, 3).map(function (l, n) {
       return '<a class="btn' + (n === 0 ? " primary" : "") + '" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join("");
 
-    var meta = [];
-    if (p.period || p.year) meta.push("<span><strong>" + bi(p.period || p.year) + "</strong></span>");
-    if (has(p.team)) meta.push("<span>" + bi(p.team) + "</span>");
-    if (has(p.role)) meta.push("<span>" + bi(p.role) + "</span>");
-
     var html = "";
+    if (p.draft) html += '<p class="draft-note">' + bi(UI.draft) + "</p>";
     html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + BASE + '../cv/">' + bi(UI.cv) + '</a><span>/</span><a href="' + BASE + '">' + bi(UI.projects) +
       '</a><span class="current-sep">/</span><span class="current">' + bi(p.title) + "</span></nav>";
     html += '<header class="hero"><span class="eyebrow">' + bi(catLabel(p)) + (p.year ? " · " + esc(p.year) : "") + "</span>" +
       '<h1 class="hero-title">' + bi(p.title) + "</h1>" +
       (has(p.tagline) ? '<p class="hero-tagline">' + bi(p.tagline) + "</p>" : "") +
-      (meta.length ? '<div class="hero-meta">' + meta.join("") + "</div>" : "") +
       '<div class="cta-row">' + linkBtns + '<a class="btn" href="' + BASE + '">← ' + bi(UI.allProjects) + "</a></div></header>";
 
     // gallery + info card
@@ -294,33 +304,57 @@
 
     var gallery = "";
     if (images.length) {
-      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" alt="">' +
-        (images.length > 1 ? '<button type="button" class="gallery-nav prev" id="galPrev" aria-label="Previous image">&#8249;</button><button type="button" class="gallery-nav next" id="galNext" aria-label="Next image">&#8250;</button>' : "") +
-        '<span class="gallery-counter" id="galCounter"></span></div><div class="gallery-caption" id="galCaption"></div>' +
+      // arrows and counter sit under the image so they never cover figure labels
+      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" alt=""></div>' +
+        '<div class="gallery-bar"><div class="gallery-caption" id="galCaption"></div><div class="gallery-ctrl">' +
+        (images.length > 1 ? '<button type="button" class="gallery-nav prev" id="galPrev" aria-label="Previous image">&#8249;</button>' : "") +
+        '<span class="gallery-counter" id="galCounter"></span>' +
+        (images.length > 1 ? '<button type="button" class="gallery-nav next" id="galNext" aria-label="Next image">&#8250;</button>' : "") +
+        "</div></div>" +
         (images.length > 1 ? '<div class="gallery-thumbs" id="galThumbs">' + images.map(function (im, n) {
           return '<button type="button" data-i="' + n + '" aria-label="Image ' + (n + 1) + '"><img src="' + src(im.thumb || im.src) + '" alt="" loading="lazy"></button>';
         }).join("") + "</div>" : "") + "</div>";
     }
-    html += '<div class="detail-top' + (gallery ? "" : " no-gallery") + '">' + gallery + info + "</div>";
+    var summary = has(p.summary) ? block(UI.summary, "<p>" + bi(p.summary) + "</p>") : "";
+    var problem = has(p.problem) ? block(UI.problem, "<p>" + bi(p.problem) + "</p>") : "";
+    if (gallery) {
+      html += '<div class="detail-top"><div class="detail-left">' + gallery + summary + "</div>" + info + "</div>" + problem;
+    } else {
+      html += '<div class="detail-top no-gallery">' + info + "</div>" + pair(summary, problem);
+    }
 
-    // text blocks, in reading order: [Summary | Problem], Solution, Approach, [Results | My contributions]
-    var list = function (items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; };
-    html += pair(has(p.summary) && block(UI.summary, "<p>" + bi(p.summary) + "</p>"), has(p.problem) && block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
+    // remaining blocks in reading order: Solution, Approach, [Results | My contributions]
+    function list(items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; }
+    if (p.roadmap) html += block(UI.roadmap, roadmap(p.roadmap));
+    if (has(p.tracks)) html += '<section class="tracks"><h3 class="tracks-title">' + bi(UI.tracks) + "</h3>" + p.tracks.map(track).join("") + "</section>";
     if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
+    if (has(p.pipeline)) html += block(UI.pipeline, '<figure class="dg dg-flow pipeline">' + p.pipeline.map(function (st, i) {
+      return '<div class="dg-node"><span class="rm-id">' + (i + 1) + "</span> " + bi(st) + "</div>" + (i < p.pipeline.length - 1 ? '<span class="dg-arrow" aria-hidden="true">→</span>' : "");
+    }).join("") + "</figure>");
+    if (has(p.equations)) html += block(UI.equations, p.equations.map(function (q) {
+      return '<div class="eq-row">' + (has(q.label) ? '<div class="eq-label">' + bi(q.label) + "</div>" : "") +
+        '<div class="eq" data-tex="' + esc(q.tex) + '">' + esc(q.tex) + "</div></div>";
+    }).join(""));
     if (has(p.approach)) html += block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
       return "<li>" + (has(s.title) ? "<strong>" + bi(s.title) + ":</strong> " : "") + bi(s.body) + "</li>";
     }).join("") + "</ol>");
     html += pair(has(p.results) && block(UI.results, list(p.results)), has(p.contributions) && block(UI.contrib, list(p.contributions)));
+    if (has(p.tables)) p.tables.forEach(function (t) { html += block(t.title, table(t)); });
+    if (has(p.publications)) html += block(UI.pubs, list(p.publications));
 
     if (has(p.youtube)) {
-      html += block(UI.videos, '<div class="videos">' + p.youtube.map(function (id) {
-        return '<div class="video"><button type="button" class="video-poster" data-yt="' + esc(id) + '" aria-label="Play video">' +
-          '<img src="https://i.ytimg.com/vi/' + esc(id) + '/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span></button></div>';
+      var vids = p.youtube.map(function (v) { return typeof v === "string" ? { id: v } : v; });
+      var allVertical = vids.every(function (v) { return v.vertical; });
+      html += block(UI.videos, '<div class="videos' + (allVertical ? " vertical" : "") + '">' + vids.map(function (v) {
+        return '<figure class="video-item"><div class="video' + (v.vertical ? " vertical" : "") + '"><button type="button" class="video-poster" data-yt="' + esc(v.id) + '" data-vertical="' + (v.vertical ? 1 : 0) + '" aria-label="Play video">' +
+          '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span></button></div>' +
+          (has(v.caption) ? "<figcaption>" + bi(v.caption) + "</figcaption>" : "") + "</figure>";
       }).join("") + "</div>");
     }
 
     // prev / next
-    var prev = PROJECTS[idx - 1], next = PROJECTS[idx + 1];
+    var li = PROJECTS.indexOf(p);
+    var prev = li > 0 ? PROJECTS[li - 1] : null, next = li >= 0 ? PROJECTS[li + 1] : null;
     html += '<nav class="pager" aria-label="More projects">' +
       (prev ? '<a class="prev" href="' + BASE + prev.slug + '/"><span class="dir">← ' + bi(UI.prev) + "</span>" + bi(prev.title) + "</a>" : "") +
       (next ? '<a class="next" href="' + BASE + next.slug + '/"><span class="dir">' + bi(UI.next) + " →</span>" + bi(next.title) + "</a>" : "") +
@@ -342,15 +376,83 @@
     });
 
     if (images.length) initGallery(images);
+    if (has(p.equations)) renderMath(root);
 
     function row(label, value, cls) {
       return '<div class="info-row"><div class="info-label">' + bi(label) + '</div><div class="info-value' + (cls ? " " + cls : "") + '">' + value + "</div></div>";
     }
     function block(title, body) { return '<section class="block"><h3>' + bi(title) + "</h3>" + body + "</section>"; }
+    function roadmap(r) {
+      var ym = function (s) { var a = s.split("-"); return (+a[0]) * 12 + (+a[1] - 1); };
+      var s0 = ym(r.start), n = ym(r.end) - s0 + 1, split = r.split ? ym(r.split) - s0 : n;
+      var years = [], months = "";
+      for (var m = 0; m < n; m++) {
+        var y = Math.floor((s0 + m) / 12), mo = (s0 + m) % 12 + 1;
+        if (!years.length || years[years.length - 1].y !== y) years.push({ y: y, from: m, len: 0 });
+        years[years.length - 1].len++;
+        months += '<span class="rm-m" style="grid-column:' + (m + 2) + '">' + mo + "</span>";
+      }
+      var head = '<div class="rm-head">' + years.map(function (yr) {
+        return '<span class="rm-y" style="grid-column:' + (yr.from + 2) + " / span " + yr.len + '">' + yr.y + "</span>";
+      }).join("") + months + "</div>";
+      var order = ["design", "exp", "write"];
+      var rows = r.rows.map(function (row) {
+        var bars = row.bars.map(function (b) {
+          var a = ym(b.from) - s0, z = ym(b.to) - s0, line = order.indexOf(b.phase) + 1, out = "";
+          var seg = function (x0, x1, planned) {
+            return '<span class="rm-bar ' + b.phase + (planned ? " planned" : "") + '" style="grid-column:' + (x0 + 2) + " / " + (x1 + 3) + ";grid-row:" + line + '"></span>';
+          };
+          if (z < split) out = seg(a, z, false);
+          else if (a >= split) out = seg(a, z, true);
+          else out = seg(a, split - 1, false) + seg(split, z, true);
+          return out;
+        }).join("");
+        return '<div class="rm-row"><div class="rm-label"><span class="rm-id">' + esc(row.id) + "</span>" + bi(row.title) + "</div>" + bars + "</div>";
+      }).join("");
+      var marker = split < n ? '<div class="rm-split" style="--at:' + split + '"><span>' + bi(r.splitLabel || UI.planned) + "</span></div>" : "";
+      var legend = '<div class="rm-legend">' + order.map(function (k) {
+        return '<span><i class="rm-sw ' + k + '"></i>' + bi(r.phases[k]) + "</span>";
+      }).join("") + '<span><i class="rm-sw exp planned"></i>' + bi(UI.planNote) + "</span></div>";
+      return '<p class="rm-hint">' + bi(UI.scrollHint) + '</p><div class="rm-scroll"><div class="rm" style="--n:' + n + '">' + head + rows + marker + "</div></div>" + legend;
+    }
+    function track(t) {
+      var lists = (has(t.hypothesis) ? '<div class="tr-col"><h4>' + bi(UI.hypothesis) + "</h4>" + list(t.hypothesis) + "</div>" : "") +
+        (has(t.design) ? '<div class="tr-col"><h4>' + bi(UI.design) + "</h4>" + list(t.design) + "</div>" : "");
+      var dg = t.diagram && window.DIAGRAMS && window.DIAGRAMS[t.diagram] ? window.DIAGRAMS[t.diagram](bi) : "";
+      return '<article class="block track"><div class="tr-head"><span class="rm-id">' + esc(t.id) + '</span><span class="eyebrow">' + bi(t.group) + "</span>" +
+        (t.planned ? '<span class="pill">' + bi(UI.planned) + "</span>" : "") + "</div>" +
+        '<h4 class="tr-title">' + bi(t.title) + "</h4>" + (lists ? '<div class="tr-cols">' + lists + "</div>" : "") + dg + "</article>";
+    }
+    function table(t) {
+      var best = t.best || {};
+      return (has(t.note) ? '<p class="tbl-note">' + bi(t.note) + "</p>" : "") + '<div class="tbl-scroll"><table class="tbl"><thead><tr>' +
+        t.columns.map(function (c) { return "<th>" + bi(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+        t.rows.map(function (r, ri) {
+          return '<tr' + (r.highlight ? ' class="hl"' : "") + ">" + r.cells.map(function (c, ci) {
+            return "<td" + (best[ci] === ri ? ' class="best"' : "") + ">" + bi(c) + "</td>";
+          }).join("") + "</tr>";
+        }).join("") + "</tbody></table></div>";
+    }
     function pair(a, b) {
       if (a && b) return '<div class="blocks">' + a + b + "</div>";
       return a || b || "";
     }
+  }
+
+  // KaTeX is loaded only on pages that have equations; the raw TeX stays visible if it fails to load
+  function renderMath(root) {
+    var V = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/";
+    var css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = V + "katex.min.css";
+    document.head.appendChild(css);
+    var js = document.createElement("script");
+    js.src = V + "katex.min.js";
+    js.onload = function () {
+      [].forEach.call(root.querySelectorAll(".eq[data-tex]"), function (el) {
+        try { window.katex.render(el.getAttribute("data-tex"), el, { displayMode: true, throwOnError: false }); } catch (e) { /* keep raw TeX */ }
+      });
+    };
+    document.head.appendChild(js);
   }
 
   function initGallery(images) {
@@ -371,11 +473,30 @@
       caption.innerHTML = bi(im.caption);
       if (thumbs) [].forEach.call(thumbs.children, function (b, i) { b.classList.toggle("active", i === cur); });
       if (lb && lb.classList.contains("open")) { lbImg.src = img.src; lbImg.alt = img.alt; }
+      if (lbCap) lbCap.innerHTML = bi(im.caption);
     }
     var opener = null;
+    var lbCap = null;
+    if (lb) {
+      lbCap = document.createElement("p");
+      lbCap.className = "lb-caption";
+      lb.appendChild(lbCap);
+      if (images.length > 1) {
+        ["prev", "next"].forEach(function (dir) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "lb-nav " + dir;
+          b.setAttribute("aria-label", dir === "prev" ? "Previous image" : "Next image");
+          b.innerHTML = dir === "prev" ? "&#8249;" : "&#8250;";
+          b.addEventListener("click", function (e) { e.stopPropagation(); show(cur + (dir === "prev" ? -1 : 1)); });
+          lb.appendChild(b);
+        });
+      }
+    }
     function closeLb() {
       if (!lb || !lb.classList.contains("open")) return;
       lb.classList.remove("open");
+      document.body.classList.remove("lb-open");
       if (opener) opener.focus();
     }
     var prev = document.getElementById("galPrev"), next = document.getElementById("galNext");
@@ -398,11 +519,23 @@
       img.addEventListener("click", function () {
         opener = document.activeElement;
         lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open");
+        document.body.classList.add("lb-open");
         var c = lb.querySelector(".lightbox-close"); if (c) c.focus();
       });
-      lb.addEventListener("click", closeLb);
+      lb.addEventListener("click", function (e) { if (e.target === lbImg) return; closeLb(); });
     }
+    // very wide or tall images (figures, plots, side-by-side comparisons): fit the stage to them instead of letterboxing
+    var stage = document.getElementById("galStage");
+    img.addEventListener("load", function () {
+      var r = img.naturalWidth / img.naturalHeight;
+      stage.style.aspectRatio = r > 1.9 ? String(Math.min(r, 4)) : r < 1.45 ? String(Math.max(r, 1)) : "";
+    });
     show(0);
+    if (thumbs) {
+      var fit = function () { thumbs.classList.toggle("overflowing", thumbs.scrollWidth > thumbs.clientWidth + 1); };
+      fit();
+      window.addEventListener("resize", fit);
+    }
   }
 
   /* ---------- boot ---------- */
