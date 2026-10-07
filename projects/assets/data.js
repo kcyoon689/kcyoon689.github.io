@@ -557,7 +557,8 @@ window.PROJECTS = [
       "PatchCore",
       "PCB"
     ],
-    "links": []
+    "links": [],
+    "monogram": "PCB"
   },
   {
     "slug": "cnn-mlops",
@@ -1029,6 +1030,595 @@ window.PROJECTS = [
         "thumb": "img/medicine-guidance/thumbs/06-confusion-matrix.jpg"
       }
     ]
+  },
+  {
+    "slug": "wsi-3d-registration",
+    "year": "2023",
+    "period": {
+      "en": "2023 · M.S. research (follow-up manuscript in preparation)",
+      "ko": "2023 · 석사 연구 (후속 논문 준비 중)"
+    },
+    "category": "ai",
+    "categoryLabel": {
+      "en": "AI · Medical Imaging",
+      "ko": "AI · 의료 영상"
+    },
+    "title": {
+      "en": "3D WSI Registration via Feature Matching",
+      "ko": "Feature Matching 기반 3D 병리 영상(WSI) 정합"
+    },
+    "team": {
+      "en": "AIaaS Lab, Kwangwoon University",
+      "ko": "광운대학교 AIaaS 연구실"
+    },
+    "role": {
+      "en": "First author · pipeline design and implementation",
+      "ko": "제1저자 · 파이프라인 설계 및 구현"
+    },
+    "tagline": {
+      "en": "Aligns serial whole-slide images (WSIs) of prostate tissue with deep feature matching and a closed-form rigid transform, then stacks them into a 3D volume.",
+      "ko": "전립선 조직의 연속 Whole Slide Image(WSI)를 딥러닝 feature matching과 closed-form rigid 변환으로 정렬하고, 이를 쌓아 3D로 재구성합니다."
+    },
+    "summary": {
+      "en": "WSIs are 2D, so reading a lesion's 3D structure means mentally stacking consecutive slides. This project builds a registration pipeline that matches features between adjacent slides, estimates the rotation and translation in closed form, and stacks the aligned slides into a 3D volume. It compares classical keypoint methods (SIFT, ORB, BRIEF) with learned, attention-based matchers (LoFTR, LightGlue, GlueStick); a follow-up manuscript adds multi-scale (pyramid) matching to make the correspondences denser.",
+      "ko": "WSI는 2D 영상이라 병변의 3D 구조를 파악하려면 연속 슬라이드를 머릿속으로 쌓아야 합니다. 이 프로젝트는 인접 슬라이드 사이의 특징점을 매칭하고, 회전·이동을 closed-form으로 추정한 뒤, 정렬된 슬라이드를 쌓아 3D 볼륨으로 만드는 정합 파이프라인을 구축했습니다. 고전적 keypoint 기법(SIFT, ORB, BRIEF)과 학습 기반 attention matcher(LoFTR, LightGlue, GlueStick)를 비교했으며, 후속 논문 원고에서는 multi-scale(pyramid) 매칭으로 대응점을 더 조밀하게 만들었습니다."
+    },
+    "problem": {
+      "en": "Slicing tissue introduces missing parts, tears, deformation, rotation and translation between serial sections, and pathologists often align them by hand. Keypoint methods such as SIFT and ORB are unreliable on WSIs: high-frequency detail sits mostly on tissue boundaries and nuclei, and repetitive textures and staining differences produce unstable matches.",
+      "ko": "조직을 절편하는 과정에서 연속 슬라이드 사이에 결손, 찢어짐, 변형, 회전, 이동이 생기며, 병리 전문의가 이를 수작업으로 정렬하는 경우가 많습니다. SIFT·ORB 같은 keypoint 기법은 WSI에서 불안정합니다. 고주파 정보가 주로 조직 경계와 핵 주변에 몰려 있고, 반복적인 텍스처와 염색 차이 때문에 매칭이 흔들리기 때문입니다."
+    },
+    "solution": {
+      "en": "Each slide pair is matched with a learned matcher; in the follow-up work the pair is also resized to several scales (e.g. 1/3, 1/5, 1/7), matched at every scale, and the correspondences are rescaled to the original resolution and merged. A rigid transform (R, t) is then solved in closed form by SVD (orthogonal Procrustes), the image is rotated about its centre on a padded canvas so no tissue is clipped, and the aligned slides are stacked along z.",
+      "ko": "각 슬라이드 쌍을 학습 기반 matcher로 매칭합니다. 후속 연구에서는 쌍을 여러 해상도(예: 1/3, 1/5, 1/7)로 줄여 해상도마다 매칭하고, 대응점을 원본 해상도로 리스케일링해 합쳤습니다. 이후 SVD(orthogonal Procrustes)로 rigid 변환(R, t)을 closed-form으로 구하고, 조직이 잘리지 않도록 padding한 canvas에서 이미지 중심 기준으로 회전시킨 뒤, 정렬된 슬라이드를 z축으로 쌓습니다."
+    },
+    "approach": [
+      {
+        "title": {
+          "en": "Frequency analysis",
+          "ko": "주파수 분석"
+        },
+        "body": {
+          "en": "Gaussian low-/high-pass filtering and FFT spectra over increasing kernel sizes showed that high-frequency detail is concentrated along tissue boundaries and nuclei; the manuscript argues this is why keypoint detectors become unstable on WSIs.",
+          "ko": "Gaussian 커널 크기를 키워 가며 low/high-pass 필터링과 FFT 스펙트럼을 분석해, 고주파 정보가 조직 경계와 핵 주변에 집중되어 있음을 확인했습니다. 논문 원고는 이를 WSI에서 keypoint 검출이 불안정한 이유로 설명합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Modular matching pipeline",
+          "ko": "모듈형 매칭 파이프라인"
+        },
+        "body": {
+          "en": "Built a pipeline with swappable extractors, descriptors, matchers and a transformation step: SIFT, ORB and BRIEF with brute-force/FLANN matching, and LoFTR (via Kornia), LightGlue and GlueStick as learned matchers.",
+          "ko": "추출기·디스크립터·matcher·변환 단계를 교체할 수 있는 파이프라인을 만들었습니다. SIFT, ORB, BRIEF는 Brute-force/FLANN 매칭으로, LoFTR(Kornia), LightGlue, GlueStick은 학습 기반 matcher로 연결했습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Multi-scale matching",
+          "ko": "Multi-scale 매칭"
+        },
+        "body": {
+          "en": "Matched each pair at several resolutions and merged the rescaled correspondences, so features missed at one scale are picked up at another (follow-up manuscript; the public repository runs a single scale).",
+          "ko": "슬라이드 쌍을 여러 해상도에서 매칭하고 리스케일링한 대응점을 합쳐, 한 해상도에서 놓친 특징을 다른 해상도에서 보완했습니다(후속 논문 원고 기준이며, 공개 저장소는 단일 해상도로 동작합니다)."
+        }
+      },
+      {
+        "title": {
+          "en": "Closed-form rigid alignment",
+          "ko": "Closed-form rigid 정렬"
+        },
+        "body": {
+          "en": "Solved R and t in closed form by SVD on the centred point sets, rotated about the image centre and padded the canvas before warping; the manuscript formalizes the reflection and rotation-centre corrections.",
+          "ko": "중심화한 점 집합에 SVD를 적용해 R과 t를 closed-form으로 구하고, 이미지 중심 기준으로 회전하며 변환 전에 canvas를 padding했습니다. 논문 원고에서는 reflection 보정과 회전 중심 보정을 수식으로 정리했습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Synthetic ground truth",
+          "ko": "합성 Ground Truth"
+        },
+        "body": {
+          "en": "Generated test pairs by rotating real slides by 30°, 45° and 60° and translating them, so the estimated R and t can be compared with the known transform.",
+          "ko": "실제 슬라이드를 30°, 45°, 60° 회전하고 이동시켜 테스트 쌍을 만들어, 추정한 R·t를 알려진 변환과 비교할 수 있게 했습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Evaluation & 3D stacking",
+          "ko": "평가 및 3D 적층"
+        },
+        "body": {
+          "en": "Scored alignment with SSIM, PSNR and rotation/translation error, and visualized the registered slides as a 3D stack.",
+          "ko": "SSIM, PSNR, 회전·이동 오차로 정렬을 평가하고, 정합된 슬라이드를 3D로 쌓아 시각화했습니다."
+        }
+      }
+    ],
+    "results": [
+      {
+        "en": "Alignment raised SSIM and PSNR on all three adjacent WSI pairs tested, e.g. SSIM 0.572 → 0.611 and PSNR 31.60 → 32.35 dB.",
+        "ko": "실험한 인접 WSI 3쌍 모두에서 정렬 후 SSIM과 PSNR이 올랐습니다(예: SSIM 0.572 → 0.611, PSNR 31.60 → 32.35 dB)."
+      },
+      {
+        "en": "On SSIM, every learned matcher beat every keypoint method, and the keypoint methods all scored below the unaligned baseline. On PSNR only the pyramid variants beat that baseline. Pyramid LightGlue scored highest, narrowly ahead of pyramid LoFTR on SSIM (0.6705 vs 0.6700) and with the top PSNR (33.71 dB).",
+        "ko": "SSIM에서는 모든 학습 기반 matcher가 모든 keypoint 기법보다 높았고, keypoint 기법은 모두 정렬하지 않은 baseline보다 낮았습니다. PSNR에서는 pyramid 변형만 baseline을 넘었습니다. pyramid LightGlue가 가장 높았으며, SSIM은 pyramid LoFTR와 근소한 차이(0.6705 vs 0.6700), PSNR은 33.71 dB로 최고였습니다."
+      },
+      {
+        "en": "On synthetic 30° rotations, LightGlue and GlueStick kept the rotation error under 1°, while the keypoint methods recovered almost none of the rotation (about 30° error; ORB+FLANN missed by 172°). At 45° and 60°, GlueStick kept the lowest rotation error (about 3.7–3.8° and 6.2°) but its translation error grew large at 60°; LoFTR already drifted at 45° (27.5°) and LightGlue broke down at 60° (45.1°).",
+        "ko": "합성 30° 회전에서 LightGlue와 GlueStick은 회전 오차를 1° 미만으로 유지했지만, keypoint 기법은 회전을 거의 복원하지 못했습니다(오차 약 30°, ORB+FLANN은 172°). 45°·60°에서는 GlueStick의 회전 오차가 가장 낮았지만(약 3.7–3.8°, 6.2°) 60°에서 이동 오차가 크게 늘었습니다. LoFTR는 45°에서 이미 크게 빗나갔고(27.5°), LightGlue는 60°에서 무너졌습니다(45.1°)."
+      }
+    ],
+    "tables": [
+      {
+        "title": {
+          "en": "Matcher comparison",
+          "ko": "Matcher 비교"
+        },
+        "note": {
+          "en": "SSIM / PSNR from Table 2 of the follow-up manuscript (in preparation), reported 'after data augmentation'. 'No feature matching' is the unaligned baseline; '(pyramid)' marks the manuscript's SPA variants.",
+          "ko": "후속 논문 원고(준비 중) Table 2의 SSIM / PSNR('after data augmentation' 기준)입니다. 'Feature matching 없음'은 정렬하지 않은 baseline이며, '(pyramid)'는 원고의 SPA 변형입니다."
+        },
+        "columns": [
+          {
+            "en": "Method",
+            "ko": "기법"
+          },
+          {
+            "en": "SSIM",
+            "ko": "SSIM"
+          },
+          {
+            "en": "PSNR (dB)",
+            "ko": "PSNR (dB)"
+          }
+        ],
+        "best": {
+          "1": 11,
+          "2": 11
+        },
+        "rows": [
+          {
+            "cells": [
+              {
+                "en": "No feature matching",
+                "ko": "Feature matching 없음"
+              },
+              "0.6370",
+              "33.06"
+            ]
+          },
+          {
+            "cells": [
+              "ORB + BFMatcher",
+              "0.6037",
+              "31.90"
+            ]
+          },
+          {
+            "cells": [
+              "ORB + FLANN",
+              "0.6162",
+              "32.53"
+            ]
+          },
+          {
+            "cells": [
+              "BRIEF + BFMatcher",
+              "0.6297",
+              "32.81"
+            ]
+          },
+          {
+            "cells": [
+              "BRIEF + FLANN",
+              "0.6297",
+              "32.81"
+            ]
+          },
+          {
+            "cells": [
+              "SIFT",
+              "0.6242",
+              "32.76"
+            ]
+          },
+          {
+            "cells": [
+              "GlueStick",
+              "0.6490",
+              "32.71"
+            ]
+          },
+          {
+            "cells": [
+              "GlueStick (pyramid)",
+              "0.6496",
+              "33.59"
+            ],
+            "highlight": true
+          },
+          {
+            "cells": [
+              "LoFTR",
+              "0.6632",
+              "32.89"
+            ]
+          },
+          {
+            "cells": [
+              "LoFTR (pyramid)",
+              "0.6700",
+              "33.18"
+            ],
+            "highlight": true
+          },
+          {
+            "cells": [
+              "LightGlue",
+              "0.6526",
+              "32.98"
+            ]
+          },
+          {
+            "cells": [
+              "LightGlue (pyramid)",
+              "0.6705",
+              "33.71"
+            ],
+            "highlight": true
+          }
+        ]
+      }
+    ],
+    "publications": [
+      {
+        "en": "2D to 3D Pathological Image Registration Framework Using Deep Learning-based Feature Matching — KDMS Fall Conference, Nov 2023",
+        "ko": "딥러닝에 기반 된 이미지 특징점 매칭 방법을 이용한 2D to 3D 병리 이미지 정합 프레임워크 — 한국데이터마이닝학회 추계학술대회, 2023.11"
+      },
+      {
+        "en": "Detector-free Feature Matching-Based Robust 3D Reconstruction of Vertical and Horizontal Histopathology for Prostate Cancer Mapping — Korean Society of Pathology Fall Conference, Oct 2023",
+        "ko": "Detector-free Feature Matching-Based Robust 3D Reconstruction of Vertical and Horizontal Histopathology for Prostate Cancer Mapping — 대한병리학회 추계학술대회, 2023.10"
+      },
+      {
+        "en": "3D Whole Slide Image (WSI) Registration via Pairwise Feature Matching for Prostate Cancer Detection and Diagnosis — KDMS Summer Conference, Jun 2023",
+        "ko": "3D Whole Slide Image (WSI) Registration via Pairwise Feature Matching for Prostate Cancer Detection and Diagnosis — 한국데이터마이닝학회 하계학술대회, 2023.06"
+      },
+      {
+        "en": "Patent: 3D image registration apparatus and method for biological tissue slide images",
+        "ko": "특허: 생체 조직 슬라이드 이미지의 3차원 영상 등록 장치 및 방법"
+      },
+      {
+        "en": "M.S. thesis: Deep Learning-Based Digital Pathology: Feature Matching for WSI Registration Problem and Active Pseudo Label Learning for Small Data Problem (Feb 2024)",
+        "ko": "석사 학위논문: Deep Learning-Based Digital Pathology: Feature Matching for WSI Registration Problem and Active Pseudo Label Learning for Small Data Problem (2024.02)"
+      }
+    ],
+    "contributions": [
+      {
+        "en": "First author of the conference papers; designed the registration pipeline and its evaluation.",
+        "ko": "학회 논문 제1저자로 정합 파이프라인과 평가 방법을 설계했습니다."
+      },
+      {
+        "en": "Implemented the matching and transformation modules, synthetic ground-truth generation and SSIM/PSNR scoring in the public Feature-Matching-Pipeline repository.",
+        "ko": "공개 저장소 Feature-Matching-Pipeline에 매칭·변환 모듈, 합성 Ground Truth 생성, SSIM/PSNR 평가 코드를 구현했습니다."
+      }
+    ],
+    "tech": [
+      "Python",
+      "PyTorch",
+      "LoFTR (Kornia)",
+      "LightGlue",
+      "GlueStick",
+      "OpenCV",
+      "SIFT / ORB / BRIEF",
+      "NumPy / SciPy (SVD)",
+      "scikit-image (SSIM)",
+      "Docker"
+    ],
+    "topics": [
+      "Image Registration",
+      "Feature Matching",
+      "Digital Pathology",
+      "3D Reconstruction",
+      "Whole Slide Image"
+    ],
+    "links": [
+      {
+        "type": "github",
+        "label": {
+          "en": "GitHub",
+          "ko": "GitHub"
+        },
+        "url": "https://github.com/kcyoon689/Feature-Matching-Pipeline"
+      }
+    ],
+    "cover": "img/wsi-3d-registration/cover.jpg",
+    "images": [
+      {
+        "src": "img/wsi-3d-registration/01-pipeline-overview.png",
+        "thumb": "img/wsi-3d-registration/thumbs/01-pipeline-overview.jpg",
+        "caption": {
+          "en": "Overview of the 3D WSI registration pipeline: transformer-based feature matching on pyramid inputs, feature aggregation (resolution sync, coordinate normalization), a rigid transformation by SVD (R | t), and applying R | t to the target WSI to align the stack.",
+          "ko": "3D WSI 정합 파이프라인 개요: pyramid 입력에 대한 Transformer 기반 feature matching, feature aggregation(해상도 동기화, 좌표 정규화), SVD로 구한 rigid 변환(R | t), 그리고 target WSI에 R | t를 적용해 스택을 정렬하는 과정입니다."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/02-hpf-analysis.png",
+        "thumb": "img/wsi-3d-registration/thumbs/02-hpf-analysis.jpg",
+        "caption": {
+          "en": "High-pass filtering (HPF) with Gaussian kernels of increasing size, to check how well fine structural detail is preserved. The bottom two rows show the residual high-frequency (HF) components (original minus blurred) and their spatial heatmaps: HF signals are not uniform but concentrate along tissue boundaries and internal microstructures, which are prone to deformation and loss across slices.",
+          "ko": "Gaussian 커널 크기를 바꿔 가며 high-pass filtering(HPF)을 적용해 미세 구조가 얼마나 보존되는지 확인했습니다. 아래 두 행은 원본에서 블러 영상을 뺀 잔차 고주파(HF) 성분과 그 공간 히트맵입니다. HF 신호는 고르게 분포하지 않고, 슬라이드 사이에서 변형·손실되기 쉬운 조직 경계와 내부 미세 구조에 집중되어 있습니다."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/03-fft-surface.png",
+        "thumb": "img/wsi-3d-registration/thumbs/03-fft-surface.jpg",
+        "caption": {
+          "en": "3D FFT surface plots of pathology images blurred with Gaussian kernels of increasing size. As the kernel grows, the high-frequency peaks fade quickly, fine structural detail is lost, and low-frequency (LF) components dominate the spectrum.",
+          "ko": "Gaussian 커널 크기를 키워 블러 처리한 병리 영상의 3D FFT surface plot입니다. 커널이 커질수록 고주파 피크가 빠르게 약해져 미세 구조 정보가 사라지고, 스펙트럼에서 저주파(LF) 성분이 지배적이 됩니다."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/04-multiscale-matching.png",
+        "thumb": "img/wsi-3d-registration/thumbs/04-multiscale-matching.jpg",
+        "caption": {
+          "en": "Adaptive multi-scale feature matching: each pair of serial WSIs is matched at several pyramid levels (original, 1/n, 1/k), and the correspondences are rescaled to the original resolution and aggregated into one set.",
+          "ko": "Adaptive multi-scale feature matching: 연속 WSI 쌍을 여러 pyramid 해상도(원본, 1/n, 1/k)에서 매칭하고, 대응점을 원본 해상도로 리스케일링해 하나의 집합으로 통합합니다."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/05-rigid-transform.png",
+        "thumb": "img/wsi-3d-registration/thumbs/05-rigid-transform.jpg",
+        "caption": {
+          "en": "Rigid transformation module: starting from R = I, t = 0, the rotation and translation that minimize the alignment error are estimated in closed form and applied to realign adjacent slices.",
+          "ko": "Rigid 변환 모듈: R = I, t = 0에서 시작해 정렬 오차를 최소화하는 회전과 이동을 closed-form으로 추정하고, 이를 적용해 인접 슬라이드를 다시 정렬합니다."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/06-matched-points-2d.png",
+        "thumb": "img/wsi-3d-registration/thumbs/06-matched-points-2d.jpg",
+        "caption": {
+          "en": "Matched points between adjacent slides: target (red), source (black), and the target after the estimated rigid transform (blue).",
+          "ko": "인접 슬라이드의 매칭점: target(빨강), source(검정), 추정한 rigid 변환을 적용한 target(파랑)."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/07-rigid-steps.png",
+        "thumb": "img/wsi-3d-registration/thumbs/07-rigid-steps.jpg",
+        "caption": {
+          "en": "The rigid transform step by step: centred source points (red), after rotation R (green), after R and t (blue), next to the target points (black).",
+          "ko": "Rigid 변환 단계별 시각화: 중심화한 source 점(빨강), 회전 R 적용 후(초록), R과 t 적용 후(파랑), target 점(검정)."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/08-aligned-points-3d.png",
+        "thumb": "img/wsi-3d-registration/thumbs/08-aligned-points-3d.jpg",
+        "caption": {
+          "en": "Rigidly aligned feature points in 3D: green lines connect matched points on adjacent slides.",
+          "ko": "Rigid 정렬된 특징점의 3D 시각화: 초록 선이 인접 슬라이드의 매칭점을 잇습니다."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/09-loftr-result.jpg",
+        "thumb": "img/wsi-3d-registration/thumbs/09-loftr-result.jpg",
+        "caption": {
+          "en": "LoFTR (learned, detector-free) on a serial pair: the moving slice (middle) is rotated and translated onto the fixed slice (left). Left to right: fixed · moving · moving after alignment.",
+          "ko": "연속 슬라이드 쌍에 LoFTR(학습 기반, detector-free)를 적용한 결과: 움직이는 슬라이드(가운데)가 회전·이동되어 고정 슬라이드(왼쪽)에 정렬됩니다. 왼쪽부터 고정 · 이동 대상 · 정렬 결과."
+        }
+      },
+      {
+        "src": "img/wsi-3d-registration/10-orb-flann-result.jpg",
+        "thumb": "img/wsi-3d-registration/thumbs/10-orb-flann-result.jpg",
+        "caption": {
+          "en": "ORB + FLANN on the same pair: the estimated transform turns the moving slice roughly 90° away from the fixed slice. Left to right: fixed · moving · moving after alignment.",
+          "ko": "같은 쌍에 ORB + FLANN을 적용한 결과: 추정된 변환이 움직이는 슬라이드를 고정 슬라이드와 약 90° 어긋나게 돌려 놓습니다. 왼쪽부터 고정 · 이동 대상 · 정렬 결과."
+        }
+      }
+    ],
+    "cardTagline": {
+      "en": "Aligns serial pathology slides with deep feature matching and stacks them into 3D.",
+      "ko": "딥러닝 feature matching으로 연속 병리 슬라이드를 정렬해 3D로 쌓습니다."
+    }
+  },
+  {
+    "slug": "active-learning-pseudo-labeling",
+    "year": "2023",
+    "period": {
+      "en": "Sep 2023 – Mar 2024 · M.S. research",
+      "ko": "2023.09 – 2024.03 · 석사 연구"
+    },
+    "category": "ai",
+    "categoryLabel": {
+      "en": "AI · Active Learning",
+      "ko": "AI · 액티브 러닝"
+    },
+    "title": {
+      "en": "Active Learning with Pseudo Labeling for Robust Object Detection",
+      "ko": "강건한 객체탐지 구축을 위해 Pseudo Labeling을 활용한 Active Learning"
+    },
+    "team": {
+      "en": "AIaaS Lab, Kwangwoon University",
+      "ko": "광운대학교 AIaaS 연구실"
+    },
+    "role": {
+      "en": "First author · method design and implementation",
+      "ko": "제1저자 · 방법 설계 및 구현"
+    },
+    "tagline": {
+      "en": "An active-learning strategy for object detection that combines pseudo-labeling, a flip-consistency score and a learned loss predictor to choose which images are worth a human label.",
+      "ko": "Pseudo-labeling, 좌우 반전 일관성 점수, 학습된 손실 예측기를 결합해 사람이 라벨링할 가치가 있는 이미지를 고르는 객체 탐지용 액티브 러닝 전략."
+    },
+    "summary": {
+      "en": "Labeling object-detection data is expensive, especially in fields such as medical imaging that need expert annotators. Active learning asks people to label only the images that help the model most. This work uses an SSD300 detector (VGG16 backbone) and combines semi-supervised pseudo-labeling and a consistency score, following AL-SSL (Elezi et al., CVPR 2022), with a loss prediction module (Yoo & Kweon, CVPR 2019) that estimates each image's training loss, so the selection also covers objects of low-confidence or poorly learned classes.",
+      "ko": "객체 탐지 데이터 라벨링은 비용이 크며, 의료 영상처럼 전문가가 필요한 분야에서는 더욱 그렇습니다. 액티브 러닝은 모델에 가장 도움이 되는 이미지만 사람이 라벨링하도록 합니다. 이 연구는 SSD300 검출기(VGG16 backbone)를 기반으로, AL-SSL(Elezi et al., CVPR 2022)의 준지도학습 pseudo-labeling·일관성 점수와 각 이미지의 학습 손실을 예측하는 loss prediction module(Yoo & Kweon, CVPR 2019)을 결합해, 신뢰도가 낮거나 학습이 덜 된 클래스의 객체까지 선택에 반영합니다."
+    },
+    "problem": {
+      "en": "Typical active learning scores every class with the same confidence. When the dataset is imbalanced or classes behave differently, some classes are under-sampled, which leads to low accuracy or a distribution shift for those classes. Pseudo-labeling reduces this class bias, but early in training the many uncertain images make labeling inefficient.",
+      "ko": "일반적인 액티브 러닝은 모든 클래스를 같은 confidence로 평가합니다. 데이터셋이 클래스 간에 불균형하거나 클래스마다 양상이 다르면 일부 클래스가 덜 선택되어, 해당 클래스의 정확도가 낮아지거나 distribution shift가 생길 수 있습니다. Pseudo-labeling은 이런 클래스 편향을 줄이지만, 학습 초기에는 불확실한 데이터가 많아 라벨링 효율이 떨어질 수 있습니다."
+    },
+    "solution": {
+      "en": "An unlabeled image and its horizontally flipped copy go through the same detector; disagreement between the two predictions (class distributions and boxes) gives a consistency score, and confident predictions become pseudo-labels. A loss prediction module attached to three SSD feature maps learns to predict each image's loss. Candidates chosen by entropy and inconsistency are re-ranked by predicted loss, and the top-K are sent for human annotation.",
+      "ko": "라벨이 없는 이미지와 좌우 반전한 이미지를 같은 검출기에 넣어, 두 예측(클래스 분포와 박스)의 불일치로 일관성 점수를 구하고, 신뢰도가 높은 예측은 pseudo-label로 사용합니다. SSD의 세 feature map에 붙인 loss prediction module이 각 이미지의 손실을 예측하도록 학습합니다. Entropy와 불일치로 고른 후보를 예측 손실로 다시 정렬해, 상위 K개를 사람이 라벨링합니다."
+    },
+    "equations": [
+      {
+        "label": {
+          "en": "Consistency loss between an image and its flipped copy",
+          "ko": "원본과 반전 이미지 사이의 consistency loss"
+        },
+        "tex": "\\mathcal{L}_{con} = \\mathbb{E}\\big[\\mathcal{L}_{con_c}(c', \\hat{c})\\big] + \\mathbb{E}\\big[\\mathcal{L}_{con_L}(b', \\hat{b})\\big]"
+      },
+      {
+        "label": {
+          "en": "Class consistency: symmetric KL divergence",
+          "ko": "클래스 일관성: 대칭 KL divergence"
+        },
+        "tex": "\\mathcal{L}_{con_c}(c'_i, \\hat{c}_i) = \\tfrac{1}{2}\\big[\\mathrm{KL}(c'_i \\,\\|\\, \\hat{c}_i) + \\mathrm{KL}(\\hat{c}_i \\,\\|\\, c'_i)\\big]"
+      },
+      {
+        "label": {
+          "en": "Localization consistency (x-centre negated for the flip)",
+          "ko": "위치 일관성 (반전 이미지는 x 중심 좌표를 부호 반전)"
+        },
+        "tex": "\\mathcal{L}_{con_L}(b'_i, \\hat{b}_i) = \\tfrac{1}{4}\\big(\\lVert x'_{0,i} - (-\\hat{x}_{0,i})\\rVert^2 + \\lVert y'_{0,i} - \\hat{y}_{0,i}\\rVert^2 + \\lVert w'_i - \\hat{w}_i\\rVert^2 + \\lVert h'_i - \\hat{h}_i\\rVert^2\\big)"
+      },
+      {
+        "label": {
+          "en": "Total loss with the loss-prediction term",
+          "ko": "손실 예측 항을 포함한 전체 손실"
+        },
+        "tex": "\\mathcal{L}_{total} = \\mathcal{L}_{con}(\\hat{y}, y) + \\lambda \\cdot \\mathcal{L}_{loss}(\\hat{l}, l)"
+      }
+    ],
+    "approach": [
+      {
+        "title": {
+          "en": "Code base",
+          "ko": "코드 기반"
+        },
+        "body": {
+          "en": "Started from the AL-SSL and Learning Loss for Active Learning code bases with an SSD300 detector on a VGG16 backbone, and logged every run to Weights & Biases.",
+          "ko": "AL-SSL과 Learning Loss for Active Learning 코드를 기반으로 VGG16 backbone의 SSD300 검출기를 사용했고, 모든 실험을 Weights & Biases로 기록했습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Flip consistency",
+          "ko": "반전 일관성"
+        },
+        "body": {
+          "en": "For each unlabeled image and its horizontal flip, matched detections are compared with a symmetric KL divergence for the class distributions and a squared difference of box centre and size, with the x-centre negated.",
+          "ko": "라벨이 없는 이미지와 좌우 반전 이미지의 매칭된 검출 결과를, 클래스 분포는 대칭 KL divergence로, 박스는 x 중심을 부호 반전한 뒤 중심·크기의 제곱 차이로 비교합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Pseudo-labels",
+          "ko": "Pseudo-label"
+        },
+        "body": {
+          "en": "Detections above a confidence threshold (0.75 for COCO) are used as pseudo-labels in training.",
+          "ko": "신뢰도 임계값(COCO 기준 0.75)을 넘는 검출 결과는 학습에서 pseudo-label로 사용합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Loss prediction module",
+          "ko": "Loss prediction module"
+        },
+        "body": {
+          "en": "Added a module that taps Conv4_3, FC7 and the last extra layer of SSD, reduces each with GAP → FC(128) → ReLU, concatenates them and predicts the image's loss. It is trained against the actual loss with a margin ranking loss (λ = 1).",
+          "ko": "SSD의 Conv4_3, FC7, 마지막 extra layer에서 특징을 받아 각각 GAP → FC(128) → ReLU로 줄이고, 이를 이어 붙여 이미지의 손실을 예측하는 모듈을 추가했습니다. 실제 손실과의 margin ranking loss로 학습합니다(λ = 1)."
+        }
+      },
+      {
+        "title": {
+          "en": "Two-stage acquisition",
+          "ko": "2단계 샘플 선택"
+        },
+        "body": {
+          "en": "Each cycle keeps the 3,000 most uncertain unlabeled images by entropy, takes the 2,000 most inconsistent among them, and lets the loss prediction module pick the 1,000 with the highest predicted loss for human annotation.",
+          "ko": "각 cycle마다 entropy가 높은 3,000장을 남기고, 그중 불일치가 큰 2,000장을 후보로 고른 뒤, loss prediction module이 예측 손실이 가장 큰 1,000장을 골라 사람이 라벨링합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Training setup",
+          "ko": "학습 설정"
+        },
+        "body": {
+          "en": "Configured for COCO: 82,081 training images, 5,000 labeled at the start and 1,000 added in each of 5 cycles.",
+          "ko": "COCO 기준으로 설정했습니다. 학습 이미지 82,081장 중 5,000장을 초기 라벨로 두고, 5번의 cycle마다 1,000장씩 추가합니다."
+        }
+      }
+    ],
+    "results": [
+      {
+        "en": "The model's performance improved as the active-learning iterations progressed, as shown by the training curves in the KIPS 2023 paper.",
+        "ko": "KIPS 2023 논문의 학습 곡선에서, 액티브 러닝 반복이 진행될수록 모델 성능이 향상되는 것을 확인했습니다."
+      },
+      {
+        "en": "Whether the method actually reduces the number of labels and iterations still needs to be verified; the planned next step was to compare sampling a different K% of data at each iteration.",
+        "ko": "이 방법이 실제로 라벨 수와 반복 횟수를 줄이는지는 추가 검증이 필요하며, 다음 단계로 iteration마다 K%의 데이터를 다르게 샘플링해 비교하는 실험을 계획했습니다."
+      }
+    ],
+    "contributions": [
+      {
+        "en": "First author of the KIPS 2023 paper; designed the combination of pseudo-labeling, flip consistency and loss prediction.",
+        "ko": "KIPS 2023 논문 제1저자로, pseudo-labeling·반전 일관성·손실 예측의 결합 방식을 설계했습니다."
+      },
+      {
+        "en": "Integrated the loss prediction module and the two-stage acquisition into the AL-SSL training loop, and added W&B logging and COCO evaluation (Oct 2023 – Mar 2024).",
+        "ko": "AL-SSL 학습 루프에 loss prediction module과 2단계 샘플 선택을 통합하고, W&B 로깅과 COCO 평가 코드를 추가했습니다(2023.10 – 2024.03)."
+      }
+    ],
+    "publications": [
+      {
+        "en": "Active Learning with Pseudo Labeling for Robust Object Detection — KIPS Annual Conference, Nov 2023",
+        "ko": "강건한 객체탐지 구축을 위해 Pseudo Labeling을 활용한 Active Learning — 한국정보처리학회 추계학술발표대회, 2023.11"
+      }
+    ],
+    "tech": [
+      "PyTorch",
+      "Python",
+      "SSD300 (VGG16)",
+      "AL-SSL",
+      "Learning Loss for Active Learning",
+      "Weights & Biases",
+      "COCO",
+      "pycocotools"
+    ],
+    "topics": [
+      "Active Learning",
+      "Semi-supervised Learning",
+      "Pseudo-labeling",
+      "Object Detection",
+      "Uncertainty Estimation"
+    ],
+    "links": [
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: AL-SSL (CVPR 2022)",
+          "ko": "참고 논문: AL-SSL (CVPR 2022)"
+        },
+        "url": "https://arxiv.org/abs/2106.11921",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: Learning Loss for Active Learning (CVPR 2019)",
+          "ko": "참고 논문: Learning Loss for Active Learning (CVPR 2019)"
+        },
+        "url": "https://arxiv.org/abs/1905.03677",
+        "ref": true
+      }
+    ],
+    "images": [],
+    "cardTagline": {
+      "en": "Active learning for detection: pseudo-labels, flip consistency and a loss predictor.",
+      "ko": "Pseudo-label·반전 일관성·손실 예측을 결합한 객체 탐지 액티브 러닝."
+    },
+    "monogram": "AL"
   },
   {
     "slug": "kaggle-great-barrier-reef",
