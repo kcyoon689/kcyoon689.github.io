@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects – Chaeyoon Kim</title>
+  <meta name="description" content="All projects by Chaeyoon Kim, end to end: AI/ML, robotics & perception, and embedded hardware." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body class="lang-en" data-base="">
+  <div class="controls">
+    <button id="themeButton" type="button" onclick="toggleTheme()">🌞 Light</button>
+    <button id="langButton" type="button" onclick="toggleLanguage()">🇰🇷 KO</button>
+  </div>
+
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="../cv/"><span data-lang="en">Chaeyoon Kim</span><span data-lang="ko">김채윤</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="../cv/">CV</a>
+        <a class="active" href="./" aria-current="page"><span data-lang="en">Projects</span><span data-lang="ko">프로젝트</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <header class="archive-head">
+      <div>
+        <span class="eyebrow"><span data-lang="en">Projects / The archive</span><span data-lang="ko">Projects / 아카이브</span></span>
+        <h1 class="archive-title"><span data-lang="en">All projects, end to end.</span><span data-lang="ko">모든 프로젝트, 처음부터 끝까지.</span></h1>
+        <p class="archive-sub">
+          <span data-lang="en"><em>From circuits to LLMs.</em> Every project from the CV with the full story – the problem, the approach, what was built and the results.</span>
+          <span data-lang="ko"><em>회로 설계부터 LLM까지.</em> CV에 정리한 프로젝트들의 문제 정의, 진행 과정, 구현 내용과 결과를 한곳에 모았습니다.</span>
+        </p>
+      </div>
+      <div class="filter-tabs" id="filterTabs" role="tablist" aria-label="Project filters"></div>
+    </header>
+
+    <div class="grid" id="projectsGrid"></div>
+    <p class="empty" id="emptyState" hidden><span data-lang="en">No projects in this category yet.</span><span data-lang="ko">이 분야의 프로젝트가 아직 없습니다.</span></p>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <span>© Chaeyoon Kim · <a href="mailto:kcyoun689@gmail.com">kcyoun689@gmail.com</a></span>
+      <span class="social">
+        <a class="icon-link" href="https://www.linkedin.com/in/chaeyoon-kim689/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><img class="ico" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="" width="15" height="15" style="filter: invert(15%) sepia(81%) saturate(622%) hue-rotate(179deg) brightness(94%) contrast(90%);" /></a>
+        <a class="icon-link" href="https://github.com/kcyoon689" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><img class="ico mono" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" width="15" height="15" /></a>
+        <a class="icon-link" href="https://scholar.google.com/citations?user=ZWitB3wAAAAJ&hl=ko" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><img class="ico mono" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlescholar.svg" alt="" width="15" height="15" /></a>
+        <a class="icon-link" href="https://tinyurl.com/yoonk-archive" target="_blank" rel="noopener" title="Notion Archive" aria-label="Notion Archive"><img class="ico" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="" width="15" height="15" /></a>
+      </span>
+    </div>
+  </footer>
+
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
