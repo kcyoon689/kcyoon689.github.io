@@ -20,11 +20,11 @@ window.PROJECTS = [
     },
     "team": {
       "en": "Team of 5 · Upstage AI Ambassador 1st cohort, Team 2",
-      "ko": "5인 팀 · Upstage AI Ambassador 1기 Team 2"
+      "ko": "5인 팀 · Upstage AI Ambassador 1기 2팀"
     },
     "role": {
       "en": "Team Lead (PM) · Backend · Infra (Docker)",
-      "ko": "팀장(PM) · Backend · Infra(Docker)"
+      "ko": "팀장(PM) · 백엔드 · 인프라(Docker)"
     },
     "tagline": {
       "en": "A research-paper reading assistant that parses PDFs with Upstage Document AI, then summarizes, translates, answers questions and highlights key passages directly on the page.",
@@ -32,15 +32,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "ScholarLensAI is a web-based reading assistant for research papers, built by a five-person team in the first cohort of the Upstage AI Ambassador Program. Uploaded PDFs are parsed with Upstage Document Parse into layout-aware sections with element coordinates. Solar Pro2 then generates section-wise summaries, document-grounded Q&A, translation and three-level semantic highlights overlaid on the PDF. The Next.js frontend and FastAPI backend are kept as separate submodules and run together with Docker Compose.",
-      "ko": "ScholarLensAI는 Upstage AI Ambassador 1기 5인 팀이 개발한 웹 기반 논문 리딩 어시스턴트입니다. 업로드된 PDF를 Upstage Document Parse로 요소 좌표가 포함된 레이아웃 기반 섹션으로 구조화합니다. 이후 Solar Pro2로 섹션별 요약, 논문 기반 Q&A, 번역, PDF 위에 오버레이되는 3단계 시맨틱 하이라이트를 생성합니다. Next.js 프론트엔드와 FastAPI 백엔드는 별도 submodule로 관리되며 Docker Compose로 함께 실행됩니다."
+      "ko": "ScholarLensAI는 Upstage AI Ambassador 1기 5인 팀이 개발한 웹 기반 논문 리딩 어시스턴트입니다. 업로드한 PDF는 Upstage Document Parse로 파싱해 요소 좌표를 포함한 레이아웃 기반 섹션으로 구조화합니다. 이후 Solar Pro2로 섹션별 요약, 논문 기반 Q&A, 번역, PDF 위에 오버레이되는 3단계 시맨틱 하이라이트를 생성합니다. Next.js 프론트엔드와 FastAPI 백엔드는 별도 submodule로 관리되며 Docker Compose로 함께 실행됩니다."
     },
     "problem": {
       "en": "Researchers face an overwhelming volume of papers, and the real bottleneck is not reading speed but judging which information matters. Multi-column layouts, tables and equations break context when text is extracted. Reading, translation, summarization and search are also scattered across separate tools, which fragments focus and adds repetitive work.",
-      "ko": "연구자는 폭발적으로 늘어나는 논문 속에서 읽는 속도보다 '무엇이 중요한가'를 판단하는 단계에서 막힙니다. 다단 편집·표·수식이 섞인 PDF는 텍스트 추출 시 맥락이 무너집니다. 또한 읽기·번역·요약·검색 도구가 분산되어 있어 몰입이 깨지고 반복 작업이 늘어납니다."
+      "ko": "연구자가 읽어야 할 논문은 감당하기 어려울 만큼 많고, 실제 병목은 읽는 속도가 아니라 어떤 정보가 중요한지 판단하는 데 있습니다. 다단 레이아웃·표·수식이 섞인 PDF는 텍스트를 추출하면 맥락이 끊깁니다. 또한 읽기·번역·요약·검색이 서로 다른 도구에 흩어져 있어 집중이 끊기고 반복 작업이 늘어납니다."
     },
     "solution": {
       "en": "A single reader keeps the PDF on the left and an AI panel (Summary · Chat · Translation) on the right. Document Parse restores reading order, section structure and element coordinates. The backend injects this structured context into Solar LLM prompts, and highlights are anchored to the original coordinates so each highlighted passage can be checked against the source text.",
-      "ko": "하나의 리더 화면에서 왼쪽에는 PDF, 오른쪽에는 AI 패널(요약 · Chat · 번역)을 제공합니다. Document Parse로 읽기 순서, 섹션 구조, 요소 좌표를 복원합니다. 백엔드는 이 구조화 데이터를 Solar LLM 프롬프트에 컨텍스트로 주입하며, 하이라이트는 원문 좌표에 고정되어 강조된 구간을 원문에서 바로 확인할 수 있습니다."
+      "ko": "하나의 리더 화면에서 왼쪽에는 PDF, 오른쪽에는 AI 패널(요약 · 채팅 · 번역)을 제공합니다. Document Parse로 읽기 순서, 섹션 구조, 요소 좌표를 복원합니다. 백엔드는 이 구조화된 정보를 Solar LLM 프롬프트에 컨텍스트로 주입하고, 하이라이트는 원본 좌표에 고정해 강조된 구간을 원문과 바로 대조할 수 있게 했습니다."
     },
     "approach": [
       {
@@ -50,7 +50,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Chose research papers as the domain that best showcases Upstage's document QA and key-information extraction, referencing similar services (Moonlight, ChatPDF). Wrote a feature spec with endpoint-level inputs and outputs, and a four-phase schedule: foundation → core analysis → user interaction → test & deploy.",
-          "ko": "Upstage의 문서 QA·핵심 정보 추출 강점이 가장 잘 드러나는 대상으로 논문을 선정하고, 유사 서비스(Moonlight, ChatPDF)를 참고했습니다. 엔드포인트 단위 입·출력을 정의한 기능 명세서와 4단계 일정(기반 구축 → 핵심 분석 → 사용자 인터랙션 → 테스트·배포)을 수립했습니다."
+          "ko": "Upstage의 문서 QA·핵심 정보 추출 기능을 가장 잘 보여 줄 수 있는 분야로 논문을 선정하고, 유사 서비스(Moonlight, ChatPDF)를 참고했습니다. 엔드포인트별 입출력을 정의한 기능 명세서를 작성하고, 4단계 일정(기반 구축 → 핵심 분석 → 사용자 인터랙션 → 테스트·배포)을 수립했습니다."
         }
       },
       {
@@ -60,7 +60,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "PDFs up to 50MB are sent to Upstage Document Parse, with both the sync (up to 100 pages) and async (up to 1,000 pages) APIs wrapped and async used by default. OCR is forced only when a file looks scanned. Misclassified headings are corrected, sections are mapped to canonical names (Abstract → References), and two-column papers are supported.",
-          "ko": "최대 50MB PDF를 Upstage Document Parse로 처리하며, 동기(최대 100페이지)·비동기(최대 1,000페이지) API를 모두 지원하며 기본값으로 비동기 API를 사용합니다. 스캔본으로 판단될 때만 OCR을 강제합니다. 잘못 분류된 heading을 보정해 섹션을 표준 이름(Abstract → References)으로 매핑하고, 2단 편집 논문도 지원합니다."
+          "ko": "최대 50MB의 PDF를 Upstage Document Parse로 처리합니다. 동기(최대 100페이지)·비동기(최대 1,000페이지) API를 모두 래핑했으며, 기본으로 비동기 API를 사용합니다. 스캔본으로 보이는 파일에만 OCR을 강제 적용합니다. 잘못 분류된 heading을 보정하고, 섹션을 표준 이름(Abstract → References)으로 매핑하며, 2단 편집 논문도 지원합니다."
         }
       },
       {
@@ -70,7 +70,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Parsed sections are injected as context into Solar Pro2 to generate section-wise summaries with page references and document-grounded chat answers. Translation auto-detects the source language, caches repeated requests, and prompts the model to keep an academic register.",
-          "ko": "파싱된 섹션을 Solar Pro2에 컨텍스트로 주입해 페이지 정보가 포함된 섹션별 요약과 논문 기반 Chat 답변을 생성합니다. 번역은 원문 언어를 자동 감지하고 중복 요청을 캐싱하며, 학술적인 표현을 유지하도록 프롬프트를 구성했습니다."
+          "ko": "파싱된 섹션을 Solar Pro2에 컨텍스트로 주입해 페이지 정보가 포함된 섹션별 요약과 논문 기반 채팅 답변을 생성합니다. 번역은 원문 언어를 자동 감지하고 중복 요청을 캐싱하며, 학술적인 표현을 유지하도록 프롬프트를 구성했습니다."
         }
       },
       {
@@ -80,7 +80,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Replaced a hard-coded highlight rule with Solar LLM scoring. Each paragraph is rated High / Medium / Low (purple / green / blue) with section-specific prompts, using up to 5 concurrent calls. The results are drawn as translucent overlays on the PDF using Document Parse coordinates.",
-          "ko": "하드코딩된 하이라이트 규칙을 Solar LLM 기반 점수화로 교체했습니다. 섹션별 프롬프트로 문단마다 High / Medium / Low(보라 / 초록 / 파랑) 중요도를 판정하며, 최대 5개 호출을 동시 처리합니다. 결과는 Document Parse 좌표를 이용해 PDF 위에 반투명 오버레이로 표시합니다."
+          "ko": "하드코딩된 하이라이트 규칙을 Solar LLM 기반 점수화로 교체했습니다. 섹션별 프롬프트로 문단마다 중요도를 High / Medium / Low(보라 / 초록 / 파랑)로 판정하고, 최대 5개 호출을 동시에 처리합니다. 결과는 Document Parse 좌표를 이용해 PDF 위에 반투명 오버레이로 표시합니다."
         }
       },
       {
@@ -90,7 +90,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "A Next.js (App Router, TypeScript, Tailwind CSS, shadcn/ui, PDF.js) frontend talks to a FastAPI/Uvicorn backend over a REST API documented in Swagger UI. Both are kept as Git submodules in a monorepo and launched with Docker Compose. Backend calls were moved from sync to async to improve response speed.",
-          "ko": "Next.js(App Router, TypeScript, Tailwind CSS, shadcn/ui, PDF.js) 프론트엔드와 FastAPI/Uvicorn 백엔드가 Swagger UI로 문서화된 REST API로 통신합니다. 두 서비스는 monorepo의 Git submodule로 관리되며 Docker Compose로 함께 실행됩니다. 백엔드 호출을 sync에서 async로 전환해 응답 속도를 개선했습니다."
+          "ko": "Next.js(App Router, TypeScript, Tailwind CSS, shadcn/ui, PDF.js) 프론트엔드와 FastAPI/Uvicorn 백엔드는 Swagger UI로 문서화한 REST API를 통해 통신합니다. 두 서비스는 monorepo의 Git submodule로 관리되며 Docker Compose로 함께 실행됩니다. 백엔드 호출을 sync에서 async로 전환해 응답 속도를 개선했습니다."
         }
       },
       {
@@ -107,7 +107,7 @@ window.PROJECTS = [
     "results": [
       {
         "en": "Delivered a working end-to-end MVP (PDF upload → parsing → summary, chat, translation and highlights), shown in a 5-minute demo video (Dec 2025).",
-        "ko": "PDF 업로드 → 파싱 → 요약·Chat·번역·하이라이트로 이어지는 end-to-end MVP를 완성하고 5분 데모 영상으로 시연했습니다(2025년 12월)."
+        "ko": "PDF 업로드 → 파싱 → 요약·채팅·번역·하이라이트로 이어지는 end-to-end MVP를 완성하고 5분 데모 영상으로 시연했습니다(2025년 12월)."
       },
       {
         "en": "Open-sourced under the ScholarLensAI GitHub organization as a monorepo with Next.js / FastAPI submodules, a Docker Compose QuickStart and a Swagger-documented REST API.",
@@ -115,7 +115,7 @@ window.PROJECTS = [
       },
       {
         "en": "Completed as the Team 2 project of the Upstage AI Ambassador Program (1st cohort); recognized as an Outstanding Ambassador of the cohort.",
-        "ko": "Upstage AI Ambassador 프로그램 1기 Team 2 프로젝트로 수행했으며, 본인은 1기 우수 Ambassador로 선정되었습니다."
+        "ko": "Upstage AI Ambassador 프로그램 1기 2팀 프로젝트로 수행했으며, 1기 우수 Ambassador로 선정되었습니다."
       }
     ],
     "contributions": [
@@ -125,19 +125,19 @@ window.PROJECTS = [
       },
       {
         "en": "Main backend author (22 of 26 commits): Upstage client wrapper, Document Parse pipeline with heading detection and two-column support, LLM-based auto highlighting, chat prompts, and the sync-to-async switch.",
-        "ko": "백엔드 주 개발(26개 커밋 중 22개): Upstage client wrapper, heading 검출·2단 논문 지원을 포함한 Document Parse 파이프라인, LLM 기반 자동 하이라이트, Chat 프롬프트, sync→async 전환을 구현했습니다."
+        "ko": "백엔드 주 개발자로(커밋 26개 중 22개) Upstage client wrapper, heading 검출·2단 논문 지원을 포함한 Document Parse 파이프라인, LLM 기반 자동 하이라이트, 채팅 프롬프트, sync→async 전환을 구현했습니다."
       },
       {
         "en": "Frontend work (29 of 37 commits): PDF viewer and canvas fixes, upload flow, section summary/translation API integration, and highlight rendering.",
-        "ko": "프론트엔드 작업(37개 커밋 중 29개): PDF 뷰어·canvas 오류 수정, 업로드 흐름, 섹션 요약·번역 API 연동, 하이라이트 렌더링을 담당했습니다."
+        "ko": "프론트엔드에서는(커밋 37개 중 29개) PDF 뷰어·canvas 오류 수정, 업로드 흐름, 섹션 요약·번역 API 연동, 하이라이트 렌더링을 담당했습니다."
       },
       {
         "en": "Infra/DevOps: Docker and Docker Compose setup, monorepo submodule management, and English README/QUICKSTART documentation.",
-        "ko": "Infra/DevOps: Docker·Docker Compose 구성, monorepo submodule 관리, 영문 README·QUICKSTART 문서화를 맡았습니다."
+        "ko": "인프라/DevOps 분야에서는 Docker·Docker Compose 구성, monorepo submodule 관리, 영문 README·QUICKSTART 문서화를 맡았습니다."
       },
       {
         "en": "Built the HTML presentation site (all commits) and published the demo video.",
-        "ko": "HTML 발표 사이트를 제작(전체 커밋)하고 데모 영상을 공개했습니다."
+        "ko": "HTML 발표 사이트를 제작하고(커밋 전체 작성) 데모 영상을 공개했습니다."
       }
     ],
     "tech": [
@@ -233,7 +233,7 @@ window.PROJECTS = [
         "src": "img/scholarlensai/02-viewer-section-summary.jpg",
         "caption": {
           "en": "Section-wise summaries generated by Solar LLM, shown beside the parsed PDF with page references for each section.",
-          "ko": "파싱된 PDF 옆에 표시되는 Solar LLM 섹션별 요약과 섹션별 페이지 정보."
+          "ko": "Solar LLM이 생성한 섹션별 요약을 파싱된 PDF 옆에 섹션별 페이지 정보와 함께 표시한 화면."
         },
         "thumb": "img/scholarlensai/thumbs/02-viewer-section-summary.jpg"
       },
@@ -297,15 +297,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "A ROS2 sensor-fusion pipeline that reprojects 2D LiDAR points into the camera image and matches them with YOLO tracking results to estimate the centroid and velocity of each detected person. Scans are converted to PointCloud2, moved into the camera frame with the camera–LiDAR extrinsic T_cam_laser, and projected onto the image with the intrinsics K and distortion D via cv2.projectPoints. Each person's centroid and low-pass-filtered velocity vector are published as RViz Markers. The system was demonstrated on a mobile robot in an indoor office, including dynamic-obstacle test runs.",
-      "ko": "2D LiDAR 포인트를 카메라 영상에 리프로젝션하고 YOLO 트래킹 결과와 매칭해, 검출된 사람마다 중심점과 속도를 추정하는 ROS2 센서 퓨전 파이프라인. LiDAR 스캔을 PointCloud2로 변환하고 카메라–LiDAR extrinsic(T_cam_laser)으로 카메라 좌표계로 옮긴 뒤, intrinsic K와 왜곡 계수 D를 사용해 cv2.projectPoints로 이미지 평면에 투영. 사람별 중심점과 LPF를 적용한 속도 벡터는 RViz Marker로 퍼블리시. 실내 사무 공간의 모바일 로봇에서 동적 장애물 테스트를 포함해 시연."
+      "ko": "2D LiDAR 포인트를 카메라 영상에 리프로젝션하고 YOLO 트래킹 결과와 매칭해, 검출된 사람마다 중심점과 속도를 추정하는 ROS2 센서 퓨전 파이프라인입니다. LiDAR 스캔을 PointCloud2로 변환하고 카메라–LiDAR extrinsic(T_cam_laser)을 이용해 카메라 좌표계로 옮긴 뒤, intrinsic K와 왜곡 계수 D를 사용해 cv2.projectPoints로 이미지 평면에 투영합니다. 사람별 중심점과 저역통과 필터(LPF)를 적용한 속도 벡터는 RViz Marker로 퍼블리시합니다. 실내 사무 공간의 모바일 로봇에서 동적 장애물 테스트를 포함해 시연했습니다."
     },
     "problem": {
       "en": "To handle dynamic obstacles, a mobile robot needs the position and motion of nearby people. Camera-based YOLO detections give class labels in pixel space but no metric position, and a 2D LiDAR scan gives range but no object identity.",
-      "ko": "동적 장애물에 대응하려면 모바일 로봇이 주변 사람의 위치와 움직임을 알아야 함. 카메라 기반 YOLO 검출은 픽셀 공간의 클래스 정보만 제공하고 실제 거리 위치는 알 수 없으며, 2D LiDAR 스캔은 거리 정보는 있지만 어떤 객체인지 알 수 없음."
+      "ko": "동적 장애물에 대응하려면 모바일 로봇이 주변 사람의 위치와 움직임을 알아야 합니다. 카메라 기반 YOLO 검출은 픽셀 공간의 클래스 정보만 제공할 뿐 실제(미터 단위) 위치는 알 수 없고, 2D LiDAR 스캔은 거리 정보는 있지만 어떤 객체인지 알 수 없습니다."
     },
     "solution": {
       "en": "Calibrated camera–LiDAR geometry (T_cam_laser, K, D) projects the LiDAR points in front of the camera onto the image. Points that fall inside YOLO 'person' boxes are grouped and filtered for outliers by distance, then reduced to a centroid. The centroid's frame-to-frame displacement gives a smoothed velocity, which is published over ROS2 together with a reprojection image for debugging.",
-      "ko": "캘리브레이션된 카메라–LiDAR 기하 정보(T_cam_laser, K, D)로 카메라 전방(z > 0)의 LiDAR 포인트를 이미지에 투영. YOLO 'person' 박스 안에 들어온 포인트를 묶고 거리 기준으로 아웃라이어를 제거해 중심점을 산출. 프레임 간 중심점 이동량으로 속도를 계산해 평활화한 뒤, 디버깅용 리프로젝션 이미지와 함께 ROS2로 퍼블리시."
+      "ko": "캘리브레이션된 카메라–LiDAR 기하 정보(T_cam_laser, K, D)로 카메라 전방(z > 0)의 LiDAR 포인트를 이미지에 투영합니다. YOLO 'person' 박스 안에 들어온 포인트를 묶고 거리 기준으로 아웃라이어를 제거한 뒤 중심점을 산출합니다. 프레임 간 중심점 이동량으로 속도를 계산해 평활화하고, 디버깅용 리프로젝션 이미지와 함께 ROS2로 퍼블리시합니다."
     },
     "approach": [
       {
@@ -315,7 +315,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The node subscribes to /scan, /camera/camera/color/image_raw, /camera/camera/color/camera_info and /yolo/tracking. An ApproximateTimeSynchronizer aligns LiDAR and camera frames in time so that fusion uses data from the same moment.",
-          "ko": "/scan, /camera/camera/color/image_raw, /camera/camera/color/camera_info, /yolo/tracking을 구독. ApproximateTimeSynchronizer로 LiDAR와 카메라 프레임을 시간 동기화해 같은 시점의 데이터로 융합."
+          "ko": "노드는 /scan, /camera/camera/color/image_raw, /camera/camera/color/camera_info, /yolo/tracking을 구독합니다. ApproximateTimeSynchronizer로 LiDAR와 카메라 프레임의 시간을 맞춰 같은 시점의 데이터로 융합합니다."
         }
       },
       {
@@ -325,7 +325,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "projectLaser converts each 2D scan into a sensor_msgs/PointCloud2, and pc2.read_points() extracts it as an (N, 3) NumPy array.",
-          "ko": "projectLaser로 2D 스캔을 sensor_msgs/PointCloud2로 변환하고, pc2.read_points()로 (N, 3) NumPy 배열을 추출."
+          "ko": "projectLaser로 각 2D 스캔을 sensor_msgs/PointCloud2로 변환하고, pc2.read_points()로 (N, 3) NumPy 배열을 추출합니다."
         }
       },
       {
@@ -335,7 +335,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The extrinsic T_cam_laser transforms the points into the camera frame, and only forward points (z > 0) are kept. cv2.projectPoints then projects them onto the image plane using the intrinsics K and distortion D.",
-          "ko": "Extrinsic 행렬 T_cam_laser로 포인트를 카메라 좌표계로 변환하고 전방(z > 0) 포인트만 사용. 이후 intrinsic K와 왜곡 계수 D로 cv2.projectPoints를 호출해 이미지 평면에 투영."
+          "ko": "Extrinsic 행렬 T_cam_laser로 포인트를 카메라 좌표계로 변환하고 전방(z > 0) 포인트만 남깁니다. 이후 intrinsic K와 왜곡 계수 D를 사용해 cv2.projectPoints로 이미지 평면에 투영합니다."
         }
       },
       {
@@ -345,7 +345,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Only 'person' detections (class_id 0) are kept from the latest /yolo/tracking result. The 3D points whose image projections fall inside each bounding box are collected for that person.",
-          "ko": "최신 /yolo/tracking 결과에서 'person'(class_id 0) 객체만 선택. 각 바운딩 박스 안에 투영된 이미지 포인트의 인덱스로 해당 3D 포인트를 추출."
+          "ko": "최신 /yolo/tracking 결과에서 'person'(class_id 0) 검출만 남깁니다. 이미지에 투영된 위치가 각 바운딩 박스 안에 들어오는 3D 포인트를 해당 사람의 포인트로 모읍니다."
         }
       },
       {
@@ -355,7 +355,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "filter_points_by_distance() removes outliers inside each box. The centroid is taken from the mean position or the nearest points, and its displacement from the previous frame gives a velocity that is smoothed with a low-pass filter.",
-          "ko": "filter_points_by_distance()로 박스 내부 아웃라이어를 제거하고, 평균 위치 또는 최소 거리 기준으로 centroid를 산출. 이전 프레임 centroid와 비교해 속도를 계산하고 저역통과 필터(LPF)로 노이즈를 저감."
+          "ko": "filter_points_by_distance()로 박스 내부 아웃라이어를 제거합니다. 중심점(centroid)은 평균 위치 또는 가장 가까운 포인트를 기준으로 구하고, 이전 프레임 대비 이동량으로 계산한 속도에 저역통과 필터(LPF)를 적용해 평활화합니다."
         }
       },
       {
@@ -365,40 +365,40 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Centroids and velocity vectors are published as Markers on /bbox_centroids, and the reprojection result on /reprojection. Intermediate detection, reprojection and matching images can be saved for debugging, and runs are reviewed in RViz2 on the robot's map.",
-          "ko": "centroid와 속도 벡터를 /bbox_centroids Marker로, 리프로젝션 결과를 /reprojection 이미지로 퍼블리시. Detection·Reprojection·Matching 중간 결과는 디버깅용 이미지로 저장할 수 있으며, 로봇 맵 위에서 RViz2로 결과를 확인."
+          "ko": "중심점과 속도 벡터는 /bbox_centroids에 Marker로, 리프로젝션 결과는 /reprojection에 퍼블리시합니다. 검출·리프로젝션·매칭 중간 결과는 디버깅용 이미지로 저장할 수 있으며, 실행 결과는 로봇 맵 위에서 RViz2로 확인합니다."
         }
       }
     ],
     "results": [
       {
         "en": "End-to-end ROS2 node that outputs per-person centroid and velocity Markers (/bbox_centroids) and a LiDAR-to-image reprojection stream (/reprojection).",
-        "ko": "사람별 중심점·속도 Marker(/bbox_centroids)와 LiDAR→이미지 리프로젝션 영상(/reprojection)을 출력하는 end-to-end ROS2 노드 구현."
+        "ko": "사람별 중심점·속도 Marker(/bbox_centroids)와 LiDAR→이미지 리프로젝션 영상(/reprojection)을 출력하는 end-to-end ROS2 노드를 구현했습니다."
       },
       {
         "en": "Demonstrated on a mobile robot in an indoor office; a 10-video playlist (Sep–Oct 2025 recordings) covers dynamic-obstacle tests and RViz2 runs of the lidar-camera-sensor-fusion demo.",
-        "ko": "실내 사무 공간의 모바일 로봇에서 시연. 2025년 9–10월에 녹화한 10개 영상 플레이리스트에 동적 장애물 테스트와 lidar-camera-sensor-fusion 데모의 RViz2 실행 화면을 수록."
+        "ko": "실내 사무 공간의 모바일 로봇에서 시연했습니다. 2025년 9–10월에 녹화한 영상 10개로 구성된 플레이리스트에 동적 장애물 테스트와 lidar-camera-sensor-fusion 데모의 RViz2 실행 화면이 담겨 있습니다."
       },
       {
         "en": "2026 follow-up: a depth-camera person-tracking prototype that shows a depth colormap, a color–depth overlay and center/mean distance of the tracked person.",
-        "ko": "2026년 후속 작업: depth colormap, 컬러–depth 오버레이, 추적 대상의 중심·평균 거리를 표시하는 depth 카메라 기반 사람 추적 프로토타입."
+        "ko": "2026년 후속 작업으로 depth colormap, 컬러–depth 오버레이, 추적 대상의 중심·평균 거리를 표시하는 depth 카메라 기반 사람 추적 프로토타입을 구현했습니다."
       }
     ],
     "contributions": [
       {
         "en": "Designed and implemented the full ROS2 fusion node: synchronization, LiDAR-to-point-cloud conversion, reprojection, detection matching, and centroid and velocity estimation.",
-        "ko": "동기화, LiDAR→포인트 클라우드 변환, 리프로젝션, 검출 매칭, 중심점·속도 추정까지 ROS2 퓨전 노드 전체를 설계하고 구현."
+        "ko": "동기화, LiDAR→포인트 클라우드 변환, 리프로젝션, 검출 매칭, 중심점·속도 추정까지 ROS2 퓨전 노드 전체를 설계하고 구현했습니다."
       },
       {
         "en": "Used camera–LiDAR calibration parameters (T_cam_laser, K, D) to align 2D LiDAR points with the camera image.",
-        "ko": "카메라–LiDAR 캘리브레이션 파라미터(T_cam_laser, K, D)로 2D LiDAR 포인트를 카메라 영상에 정합."
+        "ko": "카메라–LiDAR 캘리브레이션 파라미터(T_cam_laser, K, D)로 2D LiDAR 포인트를 카메라 영상에 정합했습니다."
       },
       {
         "en": "Integrated YOLO-based person tracking (/yolo/tracking) with LiDAR geometry to recover a metric position and velocity for each person.",
-        "ko": "YOLO 기반 사람 트래킹(/yolo/tracking)을 LiDAR 기하 정보와 결합해 사람별 실제 위치와 속도를 산출."
+        "ko": "YOLO 기반 사람 트래킹(/yolo/tracking)을 LiDAR 기하 정보와 결합해 사람별 실제 위치와 속도를 산출했습니다."
       },
       {
         "en": "Built the RViz2 visualization and debug outputs, and recorded demo runs on the mobile robot.",
-        "ko": "RViz2 시각화와 디버깅 출력을 구성하고, 모바일 로봇에서 데모 영상을 녹화."
+        "ko": "RViz2 시각화와 디버깅 출력을 구성하고, 모바일 로봇에서 데모 영상을 녹화했습니다."
       }
     ],
     "tech": [
@@ -467,7 +467,7 @@ window.PROJECTS = [
         "src": "img/moving-object-detection/02-cover-dynamic-obstacle-demo.jpg",
         "caption": {
           "en": "'251015 Dynamic Obstacle' demo: the robot on the RViz map (left) shown alongside the real scene of a person walking toward the robot (right).",
-          "ko": "'251015 Dynamic Obstacle' 데모: RViz 맵 위의 로봇(왼쪽)과 로봇 쪽으로 걸어오는 사람의 실제 장면(오른쪽)을 나란히 표시."
+          "ko": "'251015 Dynamic Obstacle' 데모: RViz 맵 위의 로봇(왼쪽)과 로봇 쪽으로 걸어오는 사람의 실제 장면(오른쪽)."
         },
         "thumb": "img/moving-object-detection/thumbs/02-cover-dynamic-obstacle-demo.jpg"
       },
@@ -531,16 +531,16 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "An industrial anomaly detection project at XIILAB's AI Model Research Team in 2024. The PCB defect detection model is based on PatchCore and adds a backbone ensemble and mask prediction. It was developed individually on Ubuntu with PyTorch, Git and Docker.",
-      "ko": "2024년 씨이랩 AI 모델 연구팀에서 수행한 산업용 anomaly detection 과제입니다. PCB 결함 탐지 모델은 PatchCore를 기반으로 하며 backbone ensemble과 mask prediction을 더했습니다. Ubuntu 환경에서 PyTorch, Git, Docker를 사용해 단독으로 개발했습니다."
+      "ko": "2024년 씨이랩 AI 모델 연구팀에서 수행한 산업용 이상 탐지(anomaly detection) 과제입니다. PCB 결함 탐지 모델은 PatchCore를 기반으로 하며 backbone ensemble과 mask prediction을 더했습니다. Ubuntu 환경에서 PyTorch, Git, Docker를 사용해 단독으로 개발했습니다."
     },
     "solution": {
       "en": "A PatchCore anomaly detection model with a backbone ensemble and mask prediction.",
-      "ko": "Backbone ensemble과 mask prediction을 적용한 PatchCore anomaly detection 모델."
+      "ko": "PatchCore 기반 이상 탐지 모델에 backbone ensemble과 mask prediction을 적용했습니다."
     },
     "contributions": [
       {
         "en": "Implemented the PatchCore backbone ensemble with mask prediction as an individual project.",
-        "ko": "개인 프로젝트로 mask prediction을 포함한 PatchCore backbone ensemble을 구현."
+        "ko": "개인 프로젝트로 mask prediction을 포함한 PatchCore backbone ensemble을 구현했습니다."
       }
     ],
     "tech": [
@@ -581,7 +581,7 @@ window.PROJECTS = [
     },
     "role": {
       "en": "Solo developer (model, API, MLOps, deployment)",
-      "ko": "개인 프로젝트 (모델·API·MLOps·배포 전담)"
+      "ko": "단독 개발 (모델·API·MLOps·배포)"
     },
     "tagline": {
       "en": "A FastAPI service that trains an MNIST classifier, exports it to ONNX and registers it in the MLflow Model Registry, and serves predictions from the latest registered model.",
@@ -593,7 +593,7 @@ window.PROJECTS = [
     },
     "problem": {
       "en": "Training a model is only one step toward serving it. Experiments need tracking, trained models need a governed hand-off to a registry in a portable format, and inference has to use the right model version. The goal was one API service for training and serving an MNIST classifier, integrated with a model registry and experiment tracking.",
-      "ko": "모델 학습은 서비스로 가는 과정의 한 단계일 뿐입니다. 실험은 추적되어야 하고, 학습된 모델은 이식 가능한 형식으로 변환·검증을 거쳐 레지스트리에 등록되어야 하며, 추론은 올바른 모델 버전을 사용해야 합니다. 목표는 Model Registry와 실험 추적이 통합된, MNIST 분류 모델의 학습·서빙용 단일 API 서비스였습니다."
+      "ko": "모델 학습은 서비스로 가는 과정의 한 단계일 뿐입니다. 실험을 추적해야 하고, 학습된 모델은 이식 가능한 형식으로 관리된 절차를 거쳐 레지스트리에 등록해야 하며, 추론에는 올바른 모델 버전을 사용해야 합니다. 이에 Model Registry·실험 추적과 통합된, MNIST 분류 모델 학습·서빙용 단일 API 서비스를 목표로 했습니다."
     },
     "solution": {
       "en": "FastAPI exposes /train, /register and /predict. Training runs a PyTorch Lightning module with MLflow autologging and returns the run ID. Registration loads that run's model, exports it to ONNX, validates it and logs it to the registry as mnist_model. Prediction preprocesses the uploaded image, loads the latest registered ONNX model through MLflow, and returns the digit with a confidence score.",
@@ -676,7 +676,7 @@ window.PROJECTS = [
       },
       {
         "en": "Containerized the API and MLflow server with Docker Compose and documented usage (sole author of all 61 commits).",
-        "ko": "API와 MLflow 서버를 Docker Compose로 컨테이너화하고 사용법을 문서화했습니다 (전체 61개 커밋 본인 작성)."
+        "ko": "API와 MLflow 서버를 Docker Compose로 컨테이너화하고 사용법을 문서화했습니다(커밋 61개 모두 단독 작성)."
       }
     ],
     "tech": [
@@ -751,7 +751,7 @@ window.PROJECTS = [
         "src": "img/cnn-mlops/05-swagger-predict-response.jpg",
         "caption": {
           "en": "/predict response: the latest registered model returns label \"5\" with 92.68% confidence.",
-          "ko": "/predict 응답: 최신 등록 모델이 label \"5\", confidence 92.68%를 반환."
+          "ko": "/predict 응답: 최신 등록 모델이 반환한 label \"5\", confidence 92.68%."
         },
         "thumb": "img/cnn-mlops/thumbs/05-swagger-predict-response.jpg"
       },
@@ -800,15 +800,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "A-EYE (A.I + Additional Eye) is a medicine-information service for people who cannot read the dosage and usage text printed on medicine packaging. A YOLOv5 detector trained on Roboflow-annotated package images identifies the product, and a Dockerized FastAPI server returns its name, usage/dosage, efficacy and bounding box as JSON to a mobile client. The model reached 0.985 mAP@0.5 across three product classes, and the app was released on Google Play alongside an API documented for developers.",
-      "ko": "A-EYE(A.I + Additional Eye)는 의약품 포장에 인쇄된 복용 방법·용량 정보를 읽기 어려운 사용자를 위한 의약품 정보 서비스입니다. Roboflow로 annotation한 패키지 이미지로 학습한 YOLOv5 모델이 제품을 인식하고, Docker로 배포한 FastAPI 서버가 약품명·용법 및 용량·효능·bounding box를 JSON으로 모바일 앱에 반환합니다. 3개 제품 클래스에서 mAP@0.5 0.985를 기록했으며, 앱은 Google Play에 출시되었고 개발자용 API 사용법도 함께 제공했습니다."
+      "ko": "A-EYE(A.I + Additional Eye)는 의약품 포장에 인쇄된 복용 방법·용량 정보를 읽기 어려운 사용자를 위한 의약품 정보 서비스입니다. Roboflow로 라벨링한 패키지 이미지로 학습한 YOLOv5 모델이 제품을 인식하고, Docker로 배포한 FastAPI 서버가 약품명·용법 및 용량·효능·bounding box를 JSON으로 모바일 앱에 반환합니다. 3개 제품 클래스 전체에서 mAP@0.5 0.985를 기록했고, 앱은 Google Play에 출시했으며 개발자용 API 문서도 함께 제공했습니다."
     },
     "problem": {
       "en": "Medicine packaging often carries no braille, and regulation on braille labeling of medicines was judged insufficient. When people cannot read or recognize the dosage and usage printed on a medicine container, the risk of accidentally taking the wrong medicine rises sharply — a problem for blind users and for people with presbyopia or amblyopia.",
-      "ko": "의약품 포장에는 점자 표기가 없는 경우가 많고, 의약품 점자 표시 관련 법안도 미흡합니다. 약병에 적힌 복용 방법과 용량을 읽거나 인식하기 어려우면 실수로 잘못된 약을 복용할 위험이 크게 높아지며, 이는 시각 장애인뿐 아니라 노안·약시가 있는 사람에게도 해당하는 문제입니다."
+      "ko": "의약품 포장에는 점자 표기가 없는 경우가 많고, 의약품 점자 표기에 관한 규정도 미흡하다고 판단했습니다. 약병에 적힌 복용 방법과 용량을 읽거나 인식하기 어려우면 실수로 잘못된 약을 복용할 위험이 크게 높아지며, 이는 시각 장애인뿐 아니라 노안·약시가 있는 사람에게도 해당하는 문제입니다."
     },
     "solution": {
       "en": "The user photographs medicine with the app (several products in one photo are supported). The image goes to a Back-End/AI server where YOLOv5 detects the package, and the server returns the product name, usage/dosage and efficacy together with the bounding box as JSON. The same endpoint is documented as an API so developers can add medicine recognition to their own projects; voice (TTS) delivery was planned as a key feature and left as follow-up work.",
-      "ko": "사용자가 앱으로 의약품을 촬영하면(한 장에 여러 약품 포함 가능) 이미지가 Back-End/AI 서버로 전송되고, YOLOv5가 패키지를 검출한 뒤 서버가 약품명·용법 및 용량·효능을 bounding box와 함께 JSON으로 반환합니다. 같은 endpoint를 API로 문서화해 개발자가 자신의 프로젝트에 의약품 인식 기능을 통합할 수 있도록 했으며, 음성(TTS) 안내는 핵심 기능으로 기획했으며 후속 과제로 남겼습니다."
+      "ko": "사용자가 앱으로 의약품을 촬영하면(한 장에 여러 약품 포함 가능) 이미지가 Back-End/AI 서버로 전송되고, YOLOv5가 패키지를 검출한 뒤 서버가 약품명·용법 및 용량·효능을 bounding box와 함께 JSON으로 반환합니다. 같은 엔드포인트를 API로 문서화해 개발자가 자신의 프로젝트에 의약품 인식 기능을 통합할 수 있도록 했습니다. 음성(TTS) 안내는 핵심 기능으로 기획했지만 후속 과제로 남겼습니다."
     },
     "approach": [
       {
@@ -818,17 +818,17 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Framed the problem with a why–how–what pitch and a business model canvas: target users (blind, presbyopic and low-vision people), key metrics (mAP, F1), an Android app-store channel and a learning loop driven by user feedback. Named the service A-EYE — A.I plus an Additional Eye. Early plans considered OCR with TTS; the delivered pipeline centers on package detection.",
-          "ko": "why–how–what 흐름의 발표 구성과 비즈니스 모델 캔버스로 문제를 정의했습니다. 대상 사용자(시각 장애인, 노안·약시가 있는 사람), 핵심 지표(mAP, F1), Android 앱스토어 채널, 사용자 피드백 기반 학습 루프를 설계하고, 서비스 이름을 A.I와 Additional Eye를 합친 A-EYE로 정했습니다. 초기에는 OCR + TTS 방식을 검토했으며, 최종 파이프라인은 패키지 객체 검출 중심으로 구성했습니다."
+          "ko": "why–how–what 흐름의 피치와 비즈니스 모델 캔버스로 문제를 정의하고, 대상 사용자(시각 장애인, 노안·약시가 있는 사람), 핵심 지표(mAP, F1), Android 앱스토어 채널, 사용자 피드백 기반 학습 루프를 정리했습니다. 서비스 이름은 A.I와 Additional Eye를 합쳐 A-EYE로 지었습니다. 초기에는 OCR과 TTS를 결합하는 방식도 검토했지만, 최종 파이프라인은 패키지 검출 중심으로 구성했습니다."
         }
       },
       {
         "title": {
           "en": "Data collection & annotation",
-          "ko": "데이터 수집 및 annotation"
+          "ko": "데이터 수집 및 라벨링"
         },
         "body": {
           "en": "Crawled medicine-package images and built bounding-box annotations in Roboflow (777 images in the project dataset), then split the data into train/validation/test at 8:1:1.",
-          "ko": "의약품 패키지 이미지를 크롤링하고 Roboflow로 bounding box annotation을 구축했습니다(프로젝트 데이터셋 777장). 데이터는 train/validation/test 8:1:1로 분할했습니다."
+          "ko": "의약품 패키지 이미지를 크롤링하고 Roboflow로 bounding box를 라벨링했습니다(프로젝트 데이터셋 777장). 데이터는 train/validation/test를 8:1:1 비율로 분할했습니다."
         }
       },
       {
@@ -848,7 +848,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Built a Python FastAPI back end whose /upload-image endpoint accepts a JPG as form-data, runs YOLOv5 and returns JSON with the category, product title, usage/dosage, efficacy and bounding box (x, y, w, h). Documented the endpoint so developers can integrate it into their own projects.",
-          "ko": "Python FastAPI 백엔드를 구축해 /upload-image endpoint가 form-data로 받은 JPG에 YOLOv5를 실행하고 category, 약품명(title), 용법 및 용량(usage), 효능(efficacy), bounding box(x, y, w, h)를 JSON으로 반환하도록 했습니다. 개발자가 자신의 프로젝트에 통합할 수 있도록 API 사용법도 정리했습니다."
+          "ko": "Python FastAPI로 백엔드를 구축했습니다. /upload-image 엔드포인트는 form-data로 받은 JPG에 YOLOv5를 실행하고 category, 약품명(title), 용법 및 용량(usage), 효능(efficacy), bounding box(x, y, w, h)를 JSON으로 반환합니다. 개발자가 자신의 프로젝트에 통합할 수 있도록 API 사용법도 정리했습니다."
         }
       },
       {
@@ -868,56 +868,56 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The mobile client photographs medicine and shows its name, usage and efficacy. V1.0 exposed a server-address field and Get Image / Upload / Crop Image controls; V2.0 shows a camera screen that prompts a retake when no medicine is recognized. Released on Google Play (com.aistudio.a_eye) with a published privacy policy.",
-          "ko": "모바일 클라이언트는 의약품을 촬영하면 약품명·용법·효능을 보여줍니다. V1.0은 서버 주소 입력과 Get Image / Upload / Crop Image 버튼을 제공했고, V2.0은 카메라 화면에서 인식되는 의약품이 없으면 재촬영을 안내합니다. 개인정보 처리방침을 공개하고 Google Play(com.aistudio.a_eye)에 출시했습니다."
+          "ko": "모바일 클라이언트로 의약품을 촬영하면 약품명·용법·효능을 보여 줍니다. V1.0은 서버 주소 입력과 Get Image / Upload / Crop Image 버튼을 제공했고, V2.0은 카메라 화면에서 인식되는 의약품이 없으면 재촬영을 안내합니다. 개인정보 처리방침을 공개하고 Google Play(com.aistudio.a_eye)에 출시했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "0.985 mAP@0.5 across all classes on the precision–recall curve (Tylenol 0.972, Easyn6 0.988, Hwalmyungsu 0.995).",
-        "ko": "Precision–recall 곡선 기준 전체 클래스 mAP@0.5 0.985 (타이레놀 0.972, 이지엔6 0.988, 활명수 0.995)."
+        "ko": "Precision–recall 곡선 기준 전체 클래스 mAP@0.5 0.985를 기록했습니다(타이레놀 0.972, 이지엔6 0.988, 활명수 0.995)."
       },
       {
         "en": "Peak F1 of 0.96 at a confidence threshold of 0.560.",
-        "ko": "confidence 0.560에서 최고 F1 0.96."
+        "ko": "confidence threshold 0.560에서 최고 F1 0.96을 기록했습니다."
       },
       {
         "en": "Normalized confusion-matrix scores of 0.93 (Tylenol), 0.94 (Easyn6) and 1.00 (Hwalmyungsu).",
-        "ko": "정규화 confusion matrix 기준 타이레놀 0.93, 이지엔6 0.94, 활명수 1.00."
+        "ko": "정규화 confusion matrix에서 타이레놀 0.93, 이지엔6 0.94, 활명수 1.00을 기록했습니다."
       },
       {
         "en": "Android app released on Google Play; inference server published as a public Docker Hub image (June 2023).",
-        "ko": "Android 앱을 Google Play에 출시하고, 추론 서버를 공개 Docker Hub 이미지로 배포(2023년 6월)."
+        "ko": "Android 앱을 Google Play에 출시하고, 추론 서버를 공개 Docker Hub 이미지로 배포했습니다(2023년 6월)."
       },
       {
         "en": "App V1.0 and V2.0 demo videos published on YouTube (June 2023).",
-        "ko": "앱 V1.0 및 V2.0 시연 영상을 YouTube에 공개(2023년 6월)."
+        "ko": "앱 V1.0 및 V2.0 시연 영상을 YouTube에 공개했습니다(2023년 6월)."
       }
     ],
     "contributions": [
       {
         "en": "Led the 3-person A-EYE team; proposed the idea and designed the overall system.",
-        "ko": "3인 A-EYE 팀을 이끌며 아이디어를 제안하고 전체 시스템을 설계."
+        "ko": "3인 A-EYE 팀을 이끌며 아이디어를 제안하고 전체 시스템을 설계했습니다."
       },
       {
         "en": "Labeled and preprocessed the medicine-package dataset.",
-        "ko": "의약품 패키지 데이터셋 라벨링 및 전처리."
+        "ko": "의약품 패키지 데이터셋을 라벨링하고 전처리했습니다."
       },
       {
         "en": "Trained and optimized the YOLOv5 detection model.",
-        "ko": "YOLOv5 검출 모델 학습 및 최적화."
+        "ko": "YOLOv5 검출 모델을 학습하고 최적화했습니다."
       },
       {
         "en": "Developed the FastAPI backend / inference server.",
-        "ko": "FastAPI 백엔드(추론 서버) 개발."
+        "ko": "FastAPI 백엔드(추론 서버)를 개발했습니다."
       },
       {
         "en": "Containerized and deployed the server with Docker.",
-        "ko": "Docker로 서버 컨테이너화 및 배포."
+        "ko": "Docker로 서버를 컨테이너화하고 배포했습니다."
       },
       {
         "en": "Released the app on the Google Play Store.",
-        "ko": "Google Play 스토어에 앱 출시."
+        "ko": "Google Play 스토어에 앱을 출시했습니다."
       }
     ],
     "tech": [
@@ -984,7 +984,7 @@ window.PROJECTS = [
         "src": "img/medicine-guidance/01-yolov5-predictions.jpg",
         "caption": {
           "en": "Sample YOLOv5 detections: Tylenol, Easyn6 ('easyn') and Hwalmyungsu ('su') packages boxed with confidence scores.",
-          "ko": "YOLOv5 검출 예시: 타이레놀, 이지엔6(easyn), 활명수(su) 패키지를 confidence와 함께 검출."
+          "ko": "YOLOv5 검출 예시: confidence와 함께 박스로 표시된 타이레놀, 이지엔6(easyn), 활명수(su) 패키지."
         },
         "thumb": "img/medicine-guidance/thumbs/01-yolov5-predictions.jpg"
       },
@@ -1056,49 +1056,49 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "A 4-person team Kaggle entry that detects crown-of-thorns starfish in underwater reef video with YOLOv5; the team finished 353rd of 2,026.",
-      "ko": "YOLOv5로 산호초 수중 영상 속 crown-of-thorns starfish(COTS)를 탐지한 4인 팀 Kaggle 프로젝트로, 2,026팀 중 353위를 기록."
+      "ko": "YOLOv5로 산호초 수중 영상 속 왕관가시불가사리(crown-of-thorns starfish, COTS)를 탐지한 4인 팀 Kaggle 프로젝트, 2,026팀 중 353위."
     },
     "summary": {
       "en": "TensorFlow – Help Protect the Great Barrier Reef was a Kaggle code competition to detect coral-eating crown-of-thorns starfish (COTS) in underwater video. It was scored by F2 averaged over IoU thresholds from 0.3 to 0.8. As a member of the 4-person team Under The Sea, worked on a YOLOv5 pipeline with sequence-aware stratified group k-fold splits, background-image mixing and recall-oriented tuning. The team finished 353 / 2026 on the private leaderboard with a score of 0.635.",
-      "ko": "TensorFlow – Help Protect the Great Barrier Reef는 수중 영상에서 산호를 먹는 crown-of-thorns starfish(COTS)를 탐지하는 Kaggle code competition입니다. 평가는 IoU 0.3~0.8 구간에서 평균한 F2 score로 이루어졌습니다. 4인 팀 Under The Sea의 일원으로 sequence 기반 stratified group k-fold 분할, background 이미지 혼합, recall 중심 튜닝을 적용한 YOLOv5 파이프라인 작업에 참여했습니다. 팀은 private leaderboard에서 0.635점으로 2026팀 중 353위를 기록했습니다."
+      "ko": "TensorFlow – Help Protect the Great Barrier Reef는 수중 영상에서 산호를 먹는 왕관가시불가사리(crown-of-thorns starfish, COTS)를 탐지하는 Kaggle code competition입니다. 평가 지표는 IoU 임계값 0.3~0.8에 걸쳐 평균한 F2 score입니다. 4인 팀 Under The Sea의 일원으로 시퀀스 단위 stratified group k-fold 분할, 배경 이미지 혼합, recall 중심 튜닝을 적용한 YOLOv5 파이프라인 작업에 참여했습니다. 팀은 private leaderboard에서 0.635점으로 2,026팀 중 353위를 기록했습니다."
     },
     "problem": {
       "en": "The F2 metric weights recall over precision, so a missed starfish costs more than a false alarm. Images are frames from continuous video sequences, so a random train/validation split leaks highly correlated frames and makes validation scores look better than they are. Fewer than 5,000 labeled images were available, far below the 10,000+ recommended for YOLOv5. Some starfish visible in consecutive frames were left unlabeled, and local validation diverged from the leaderboard.",
-      "ko": "F2 metric은 precision보다 recall에 가중치를 두므로 starfish를 놓치는 비용이 오탐보다 큽니다. 이미지가 연속된 영상 sequence의 frame이라서 train/validation을 random하게 나누면 상관관계가 큰 frame이 섞여 validation 점수가 실제보다 좋게 나옵니다. Label된 이미지는 5,000장이 채 되지 않아 YOLOv5 권장치(10,000장 이상)에 크게 못 미쳤습니다. 연속 frame에서 육안으로 보이는 starfish에 label이 빠진 경우도 있었고, 로컬 validation과 leaderboard 점수도 크게 달랐습니다."
+      "ko": "F2 지표는 precision보다 recall에 더 큰 가중치를 두므로, 불가사리를 놓치는 비용이 오탐보다 큽니다. 이미지는 연속된 영상 시퀀스의 프레임이므로 train/validation을 무작위로 나누면 상관관계가 높은 프레임이 양쪽에 섞여 validation 점수가 실제보다 높게 나옵니다. 라벨이 있는 이미지는 5,000장이 채 되지 않아 YOLOv5 권장치(10,000장 이상)에 크게 못 미쳤습니다. 연속 프레임에 보이는 불가사리 일부에는 라벨이 빠져 있었고, 로컬 validation 점수와 leaderboard 점수도 서로 어긋났습니다."
     },
     "solution": {
       "en": "A YOLOv5 detector, starting from a yolov5m baseline, with a sequence-aware Stratified Group 5-fold split. Validation folds mimic the assumed test mix of about 80% background and 20% annotated images. Training adds a small share of background images to reduce false positives, plus Albumentations augmentation, a tuned learning-rate schedule and objectness-loss gain. A lowered confidence threshold favors recall.",
-      "ko": "yolov5m baseline에서 출발해 sequence 기반 Stratified Group 5-fold 분할을 적용한 YOLOv5 detector입니다. Validation fold는 test 분포로 가정한 background 약 80%, annotated 약 20% 구성을 따르도록 했습니다. 학습에는 오탐을 줄이기 위한 소량의 background 이미지와 Albumentations augmentation, 조정한 learning-rate schedule과 objectness loss gain을 적용했습니다. Recall을 높이도록 confidence threshold를 낮췄습니다."
+      "ko": "yolov5m 베이스라인에서 출발해 시퀀스 단위 Stratified Group 5-fold 분할을 적용한 YOLOv5 검출 모델입니다. Validation fold는 test set의 구성으로 가정한 배경 이미지 약 80%, 라벨 이미지 약 20% 비율을 따르도록 했습니다. 학습에는 오탐을 줄이기 위해 소량의 배경 이미지를 추가하고, Albumentations 데이터 증강과 조정한 learning-rate schedule, objectness loss gain을 적용했습니다. 또한 recall을 높이기 위해 confidence threshold를 낮췄습니다."
     },
     "approach": [
       {
         "title": {
           "en": "Baseline pipeline",
-          "ko": "Baseline 파이프라인"
+          "ko": "베이스라인 파이프라인"
         },
         "body": {
           "en": "Started from public YOLOv5 and YOLOX training notebooks. Modules were implemented locally and merged in Kaggle notebooks for training and submission. The yolov5m baseline (20 epochs, random 5-fold) scored 0.389 on the leaderboard. A model trained on multiple GPUs was confirmed to run in the single-GPU Kaggle inference notebook.",
-          "ko": "공개된 YOLOv5·YOLOX 학습 notebook에서 출발했습니다. 각자 로컬에서 모듈 단위로 구현한 뒤 Kaggle notebook에서 합쳐 학습과 submission을 진행했습니다. yolov5m baseline(20 epoch, random 5-fold)의 LB 점수는 0.389였습니다. Multi-GPU로 학습한 모델이 single-GPU Kaggle 인퍼런스 notebook에서 정상 동작하는 것도 확인했습니다."
+          "ko": "공개된 YOLOv5·YOLOX 학습 노트북에서 출발했습니다. 모듈은 로컬에서 구현한 뒤 Kaggle 노트북에서 합쳐 학습과 제출을 진행했습니다. yolov5m 베이스라인(20 epoch, random 5-fold)의 LB 점수는 0.389였습니다. 여러 GPU로 학습한 모델이 단일 GPU Kaggle 추론 노트북에서도 정상 동작하는 것을 확인했습니다."
         }
       },
       {
         "title": {
           "en": "Sequence-aware data split",
-          "ko": "Sequence 기반 데이터 분할"
+          "ko": "시퀀스 단위 데이터 분할"
         },
         "body": {
           "en": "Frames were grouped by video sequence (GroupKFold) so that no sequence appears in both train and validation. This became a Stratified Group 5-fold split: train folds hold about 95% annotated and 5% background images, and validation folds about 20% annotated and 80% background, to match the assumed test distribution.",
-          "ko": "Video sequence 단위로 group을 나눠(GroupKFold) 같은 sequence가 train과 validation에 동시에 들어가지 않게 했습니다. 이를 Stratified Group 5-fold로 정리해 train fold는 annotated 약 95%와 background 약 5%, validation fold는 annotated 약 20%와 background 약 80%로 구성해 가정한 test 분포에 맞췄습니다."
+          "ko": "프레임을 영상 시퀀스 단위로 묶어(GroupKFold) 같은 시퀀스가 train과 validation에 동시에 들어가지 않도록 했습니다. 이를 Stratified Group 5-fold 분할로 발전시켜, 가정한 test 분포에 맞게 train fold는 라벨 이미지 약 95%·배경 이미지 약 5%, validation fold는 라벨 이미지 약 20%·배경 이미지 약 80%로 구성했습니다."
         }
       },
       {
         "title": {
           "en": "Background images & recall",
-          "ko": "Background 이미지와 recall"
+          "ko": "배경 이미지와 recall"
         },
         "body": {
           "en": "Unannotated background images were mixed into training. Adding 300 background images with a 0.15 confidence threshold raised the leaderboard score from 0.389 to 0.443. Under F2, false negatives matter more than false positives, so lower confidence thresholds were preferred.",
-          "ko": "Annotation이 없는 background 이미지를 학습에 섞었습니다. Background 이미지 300장 추가와 confidence threshold 0.15 설정으로 LB 점수가 0.389에서 0.443으로 올랐습니다. F2에서는 FP보다 FN이 중요하므로 낮은 confidence threshold를 사용했습니다."
+          "ko": "라벨이 없는 배경 이미지를 학습 데이터에 섞었습니다. 배경 이미지 300장을 추가하고 confidence threshold를 0.15로 설정하자 LB 점수가 0.389에서 0.443으로 올랐습니다. F2에서는 false positive보다 false negative가 더 중요하므로 낮은 confidence threshold를 택했습니다."
         }
       },
       {
@@ -1108,38 +1108,38 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Overfitting appeared around epoch 10 of 20. Setting the final learning-rate ratio to 1.0 improved performance, with some added noise. Lowering the objectness loss gain from 1.0 to 0.7 removed objectness overfitting but shifted it toward the box loss, so the next step was to find a balance between 0.7 and 1.0.",
-          "ko": "20 epoch 중 10 epoch 무렵부터 overfitting이 나타났습니다. Final learning-rate 비율을 1.0으로 두자 노이즈는 있었지만 성능이 좋아졌습니다. Obj loss gain을 1.0에서 0.7로 낮추자 objectness overfitting은 사라졌지만 box loss 쪽으로 옮겨가, 0.7~1.0 사이에서 균형점을 찾기로 했습니다."
+          "ko": "20 epoch 중 10 epoch 무렵부터 과적합이 나타났습니다. 최종 learning-rate 비율을 1.0으로 설정하자 노이즈는 다소 생겼지만 성능이 좋아졌습니다. Objectness loss gain을 1.0에서 0.7로 낮추자 objectness 과적합은 사라졌지만 과적합이 box loss 쪽으로 옮겨 가, 다음 단계로 0.7~1.0 사이에서 균형점을 찾기로 했습니다."
         }
       },
       {
         "title": {
           "en": "Augmentation, resolution & labels",
-          "ko": "Augmentation·해상도·label"
+          "ko": "데이터 증강·해상도·라벨"
         },
         "body": {
           "en": "Albumentations augmentation used up/down and left/right flips, RandomBrightnessContrast, GaussNoise and random scaling. A larger inference image size improved the score because the public test set contained mostly small starfish. Roboflow was used to inspect sequences and clean labels.",
-          "ko": "Albumentations로 상하·좌우 flip, RandomBrightnessContrast, GaussNoise, random scale을 적용했습니다. Public test set에 작은 starfish가 많아 inference 이미지 크기를 키우자 점수가 올랐습니다. Roboflow로 sequence를 확인하고 label을 정제했습니다."
+          "ko": "Albumentations로 상하·좌우 반전, RandomBrightnessContrast, GaussNoise, 무작위 스케일링을 적용했습니다. Public test set에는 작은 불가사리가 많아, 추론 이미지 크기를 키우자 점수가 올랐습니다. Roboflow로 시퀀스를 확인하고 라벨을 정제했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Private leaderboard: rank 353 / 2026, score 0.635 (public LB 0.614).",
-        "ko": "Private leaderboard 353 / 2026위, 점수 0.635 (public LB 0.614)."
+        "ko": "Private leaderboard에서 2,026팀 중 353위(점수 0.635, public LB 0.614)를 기록했습니다."
       },
       {
         "en": "Experiment log: yolov5m baseline LB 0.389, raised to 0.443 with 300 background images and a 0.15 confidence threshold.",
-        "ko": "실험 기록: yolov5m baseline LB 0.389에서 background 이미지 300장 추가와 confidence threshold 0.15 적용으로 0.443까지 향상."
+        "ko": "실험 기록상 yolov5m 베이스라인의 LB 0.389를 배경 이미지 300장 추가와 confidence threshold 0.15 적용으로 0.443까지 끌어올렸습니다."
       }
     ],
     "contributions": [
       {
         "en": "Member of the 4-person team Under The Sea; took part in the team's experiments and discussions on data splitting, background-image mixing and hyperparameter tuning.",
-        "ko": "4인 팀 Under The Sea의 팀원으로 데이터 분할, background 이미지 혼합, 하이퍼파라미터 튜닝에 관한 팀 실험과 논의에 참여."
+        "ko": "4인 팀 Under The Sea의 팀원으로 데이터 분할, 배경 이미지 혼합, 하이퍼파라미터 튜닝에 관한 팀 실험과 논의에 참여했습니다."
       },
       {
         "en": "Assigned to upload a video sequence to Roboflow and analyze it for label review.",
-        "ko": "Video sequence 하나를 Roboflow에 올려 label 상태를 분석하는 작업을 담당."
+        "ko": "영상 시퀀스 하나를 Roboflow에 업로드하고 라벨 검토를 위해 분석하는 작업을 맡았습니다."
       }
     ],
     "tech": [
@@ -1199,7 +1199,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/01-train-image-annotated.jpg",
         "caption": {
           "en": "Training-set example: a reef frame with annotated crown-of-thorns starfish boxes",
-          "ko": "학습 데이터 예시: crown-of-thorns starfish bounding box가 표시된 산호초 frame"
+          "ko": "학습 데이터 예시: 왕관가시불가사리 bounding box가 표시된 산호초 프레임"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/01-train-image-annotated.jpg"
       },
@@ -1207,7 +1207,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/02-stratified-group-5fold.jpg",
         "caption": {
           "en": "Data split design: 5 folds, with train folds about 95% annotated / 5% background and validation folds about 20% annotated / 80% background to mirror the assumed test set",
-          "ko": "데이터 분할 설계: 5-fold 중 train fold는 annotated 약 95%와 background 약 5%, validation fold는 가정한 test set에 맞춰 annotated 약 20%와 background 약 80%로 구성"
+          "ko": "데이터 분할 설계: 5-fold 구성에서 train fold는 라벨 이미지 약 95%·배경 이미지 약 5%, validation fold는 가정한 test set에 맞춰 라벨 이미지 약 20%·배경 이미지 약 80%"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/02-stratified-group-5fold.jpg"
       },
@@ -1215,7 +1215,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/03-background-sampling-formula.jpg",
         "caption": {
           "en": "Stratified Group k-Fold: deriving how many background images to drop so each train fold keeps about 5% background",
-          "ko": "Stratified Group k-Fold: 각 train fold의 background 비율을 약 5%로 맞추기 위해 제거할 background 이미지 수를 계산한 과정"
+          "ko": "Stratified Group k-Fold: 각 train fold의 배경 이미지 비율을 약 5%로 맞추기 위해 제거할 배경 이미지 수를 계산한 과정"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/03-background-sampling-formula.jpg"
       },
@@ -1223,7 +1223,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/04-unannotated-starfish-frames.jpg",
         "caption": {
           "en": "Consecutive video frames: a starfish labeled in one frame is unlabeled in the neighboring frame, which motivated label cleaning and pseudo-labeling ideas",
-          "ko": "연속된 video frame: 한 frame에서 label된 starfish가 인접 frame에서는 label되지 않아 label 정제와 pseudo-labeling 아이디어로 이어짐"
+          "ko": "연속된 영상 프레임: 한 프레임에서 라벨이 있는 불가사리가 인접 프레임에서는 라벨이 빠져 있어, 라벨 정제와 pseudo-labeling 아이디어의 계기가 된 사례"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/04-unannotated-starfish-frames.jpg"
       },
@@ -1231,7 +1231,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/05-test-image-example.jpg",
         "caption": {
           "en": "Test-image example, used to compare visual differences between the training and test frames",
-          "ko": "Test 이미지 예시로, training frame과 test frame의 시각적 차이를 비교하는 데 사용"
+          "ko": "Test 이미지 예시: 학습 프레임과 test 프레임의 시각적 차이를 비교하는 데 사용한 이미지"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/05-test-image-example.jpg"
       }
@@ -1259,15 +1259,15 @@ window.PROJECTS = [
     },
     "role": {
       "en": "Sole researcher (M.S. course term project, KNU)",
-      "ko": "단독 수행 (경북대 석사과정 term project)"
+      "ko": "단독 수행 (경북대 석사과정 기말 프로젝트)"
     },
     "tagline": {
       "en": "A term project that measures how much a YOLOv5 detector relies on image backgrounds, using ImageNet-9 variants with separated and swapped foregrounds and backgrounds.",
-      "ko": "전경·배경을 분리하거나 교체한 ImageNet-9 변형 데이터셋으로 YOLOv5 탐지 모델이 배경 이미지에 얼마나 의존하는지 측정한 term project."
+      "ko": "전경·배경을 분리하거나 교체한 ImageNet-9 변형 데이터셋으로 YOLOv5 탐지 모델이 배경 이미지에 얼마나 의존하는지 측정한 기말 프로젝트."
     },
     "summary": {
       "en": "Final term project for the Deep Learning Applications course (심화학습 응용) at Kyungpook National University, 2021-2. It builds on the ICLR 2021 paper 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'. YOLOv5 labels were built for the IN-9L dataset variants, YOLOv5s was trained on foreground-only, background-only and mixed-background data, and accuracy was compared across test sets. YOLOv5 showed measurable background dependence, though less than the paper reports for ResNet, and further training on mixed backgrounds narrowed the background gap.",
-      "ko": "경북대학교 2021-2학기 심화학습 응용 과목의 기말 term project입니다. ICLR 2021 논문 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'을 바탕으로 했습니다. IN-9L 변형 데이터셋의 YOLOv5 label을 구축하고, 전경만·배경만·배경 혼합 데이터로 YOLOv5s를 학습해 test set별 정확도를 비교했습니다. YOLOv5에도 배경 의존도가 분명히 있었지만 논문의 ResNet 결과보다는 낮았고, 다양한 배경으로 추가 학습하자 배경에 따른 정확도 차이가 줄었습니다."
+      "ko": "경북대학교 2021-2학기 심화학습 응용 과목의 기말 프로젝트입니다. ICLR 2021 논문 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'을 바탕으로 했습니다. IN-9L 변형 데이터셋에 맞는 YOLOv5 라벨을 구축하고, 전경만 있는 데이터·배경만 있는 데이터·배경을 섞은 데이터로 YOLOv5s를 학습해 test set별 정확도를 비교했습니다. YOLOv5에서도 측정 가능한 수준의 배경 의존도가 나타났지만 논문의 ResNet 결과보다는 낮았고, 배경을 섞은 데이터로 추가 학습하자 배경에 따른 정확도 차이가 줄었습니다."
     },
     "problem": {
       "en": "An earlier experiment exposed the issue. YOLOv5s was trained on about 3,000 images of roughly 300 3D-modeled chairs rendered on plain backgrounds. It then boxed the entire image instead of the object and recognized any object on a plain background as a chair. The question was how strongly a detector's predictions depend on the training images' backgrounds rather than on the object itself.",
@@ -1275,7 +1275,7 @@ window.PROJECTS = [
     },
     "solution": {
       "en": "Reproduce the background-dependence analysis of Xiao et al. (ICLR 2021) with an object detector. The IN-9L variants (Original, Only-FG, No-FG, Mixed-Same, Mixed-Rand, Mixed-Next) were converted to YOLOv5 format, and YOLOv5s models trained on different variants were tested across them. Dependence was measured with cross-dataset test accuracy and the BG-Gap, the accuracy difference between Mixed-Same and Mixed-Rand.",
-      "ko": "Xiao et al.(ICLR 2021)의 배경 의존도 분석을 object detector로 재현했습니다. IN-9L 변형(Original, Only-FG, No-FG, Mixed-Same, Mixed-Rand, Mixed-Next)을 YOLOv5 형식으로 변환하고 서로 다른 변형으로 학습한 YOLOv5s 모델을 여러 변형에서 교차 테스트했습니다. 의존도는 데이터셋 간 test accuracy와 BG-Gap(Mixed-Same과 Mixed-Rand의 정확도 차이)으로 측정했습니다."
+      "ko": "Xiao et al.(ICLR 2021)의 배경 의존도 분석을 객체 탐지 모델로 재현했습니다. IN-9L 변형(Original, Only-FG, No-FG, Mixed-Same, Mixed-Rand, Mixed-Next)을 YOLOv5 형식으로 변환하고 서로 다른 변형으로 학습한 YOLOv5s 모델을 여러 변형에서 교차 테스트했습니다. 의존도는 데이터셋 간 교차 test 정확도와 BG-Gap(Mixed-Same과 Mixed-Rand의 정확도 차이)으로 측정했습니다."
     },
     "approach": [
       {
@@ -1285,7 +1285,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "A first attempt that treated the whole image as the bounding box performed poorly. IN-9L images were instead matched by filename to ImageNet bounding-box annotations and converted from Pascal VOC XML to YOLOv5 format with Roboflow. className.py extracted per-class annotations, and resetClass.py removed unannotated files and remapped ImageNet synset IDs to IN-9L class names. Five classes were used: dog, bird, reptile, insect and fish.",
-          "ko": "이미지 전체를 bounding box로 본 첫 시도는 결과가 좋지 않았습니다. 대신 IN-9L 이미지를 파일명 기준으로 ImageNet bounding-box annotation과 매칭하고, Roboflow로 Pascal VOC XML을 YOLOv5 형식으로 변환했습니다. className.py로 클래스별 annotation을 추출하고, resetClass.py로 annotation 없는 파일을 제거하고 ImageNet synset ID를 IN-9L 클래스 이름으로 바꿨습니다. 사용한 클래스는 dog, bird, reptile, insect, fish 5개입니다."
+          "ko": "이미지 전체를 bounding box로 본 첫 시도는 결과가 좋지 않았습니다. 대신 IN-9L 이미지를 파일명 기준으로 ImageNet bounding-box annotation과 매칭하고, Roboflow로 Pascal VOC XML을 YOLOv5 형식으로 변환했습니다. className.py로 클래스별 annotation을 추출했고, resetClass.py로는 annotation이 없는 파일을 제거하고 ImageNet synset ID를 IN-9L 클래스 이름으로 다시 매핑했습니다. 사용한 클래스는 dog, bird, reptile, insect, fish 5개입니다."
         }
       },
       {
@@ -1305,7 +1305,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Models trained on No-FG and on Only-FG data were tested on Original images. The No-FG model scored about 8.5%p higher, which shows the detector uses background features around the object.",
-          "ko": "No-FG와 Only-FG 데이터로 각각 학습한 모델을 Original 이미지로 테스트했습니다. No-FG 모델이 약 8.5%p 높게 나와, 탐지 모델이 물체 주변의 배경 feature를 활용한다는 것을 확인했습니다."
+          "ko": "No-FG와 Only-FG 데이터로 각각 학습한 모델을 Original 이미지로 테스트했습니다. No-FG 모델이 약 8.5%p 높았으며, 이를 통해 탐지 모델이 물체 주변의 배경 특징을 활용한다는 것을 확인했습니다."
         }
       },
       {
@@ -1315,7 +1315,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "A model trained on Original data was further trained on Mixed-Same and Mixed-Rand data. All three models were evaluated on the Next, Only-FG, Original, Same and Rand test sets, and BG-Gaps were computed.",
-          "ko": "Original로 학습한 모델에 Mixed-Same과 Mixed-Rand 데이터로 추가 학습을 진행했습니다. 세 모델을 Next, Only-FG, Original, Same, Rand test set으로 평가하고 BG-Gap을 계산했습니다."
+          "ko": "Original로 학습한 모델을 Mixed-Same과 Mixed-Rand 데이터로 추가 학습했습니다. 세 모델을 Next, Only-FG, Original, Same, Rand test set으로 평가하고 BG-Gap을 계산했습니다."
         }
       },
       {
@@ -1325,14 +1325,14 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The results were compared with the ICLR 2021 findings. Whole-image classification reproduced the paper's results most closely, while detection showed weaker background dependence.",
-          "ko": "결과를 ICLR 2021 논문과 비교했습니다. 이미지 전체를 학습해 분류만 하는 설정이 논문 결과와 가장 비슷했고, object detection에서는 배경 의존도가 상대적으로 약했습니다."
+          "ko": "결과를 ICLR 2021 논문과 비교했습니다. 이미지 전체를 대상으로 한 분류 설정이 논문 결과를 가장 가깝게 재현했고, 객체 탐지에서는 배경 의존도가 상대적으로 약했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "The model trained on Original data reached 0.90 accuracy on Original test images but only 0.64 on Mixed-Rand and 0.61 on Mixed-Next (Original vs Mixed-Rand BG-Gap: 0.26).",
-        "ko": "Original로 학습한 모델은 Original test에서 0.90이었지만 Mixed-Rand에서 0.64, Mixed-Next에서 0.61에 그쳤습니다(Original–Mixed-Rand BG-Gap 0.26)."
+        "ko": "Original로 학습한 모델은 Original test에서 정확도 0.90을 기록했지만 Mixed-Rand에서 0.64, Mixed-Next에서 0.61에 그쳤습니다(Original–Mixed-Rand BG-Gap 0.26)."
       },
       {
         "en": "After further training on Mixed-Rand, accuracy rose to 0.86 on Mixed-Rand and 0.87 on Mixed-Next, and the Mixed-Rand vs Mixed-Same BG-Gap narrowed from 0.08 to 0.03; Original-test accuracy fell from 0.90 to 0.81.",
@@ -1344,17 +1344,17 @@ window.PROJECTS = [
       },
       {
         "en": "YOLOv5 showed background dependence, but less than the ResNet results in the reference paper, and frequent misclassification from background noise was not observed.",
-        "ko": "YOLOv5에도 배경 의존도가 있었지만 참고 논문의 ResNet 결과보다 낮았고, background noise로 인한 오분류는 자주 나타나지 않았습니다."
+        "ko": "YOLOv5에도 배경 의존도가 있었지만 참고 논문의 ResNet 결과보다 낮았고, 배경 노이즈로 인한 오분류는 자주 나타나지 않았습니다."
       }
     ],
     "contributions": [
       {
         "en": "Carried out the whole study individually: experiment design, dataset conversion, YOLOv5s training, evaluation, report and final presentation.",
-        "ko": "실험 설계, 데이터셋 변환, YOLOv5s 학습, 평가, 보고서와 최종 발표까지 전 과정을 개인으로 수행."
+        "ko": "실험 설계, 데이터셋 변환, YOLOv5s 학습, 평가, 보고서와 최종 발표까지 전 과정을 혼자 수행했습니다."
       },
       {
         "en": "Wrote the preprocessing scripts (className.py, resetClass.py) that build YOLOv5 labels for IN-9L from ImageNet annotations.",
-        "ko": "ImageNet annotation으로 IN-9L의 YOLOv5 label을 만드는 전처리 스크립트(className.py, resetClass.py)를 작성."
+        "ko": "ImageNet annotation으로 IN-9L의 YOLOv5 라벨을 만드는 전처리 스크립트(className.py, resetClass.py)를 작성했습니다."
       }
     ],
     "tech": [
@@ -1411,7 +1411,7 @@ window.PROJECTS = [
         "src": "img/background-dependency/01-only-fg-train-set.jpg",
         "caption": {
           "en": "Only-FG training set: foreground objects on black backgrounds with YOLOv5 labels (dog, bird, reptile, insect, fish)",
-          "ko": "Only-FG 학습 데이터: 검은 배경 위 전경 물체와 YOLOv5 label(dog, bird, reptile, insect, fish)"
+          "ko": "Only-FG 학습 데이터: 검은 배경 위 전경 물체와 YOLOv5 라벨(dog, bird, reptile, insect, fish)"
         },
         "thumb": "img/background-dependency/thumbs/01-only-fg-train-set.jpg"
       },
@@ -1427,7 +1427,7 @@ window.PROJECTS = [
         "src": "img/background-dependency/03-chair-plain-background-failure.jpg",
         "caption": {
           "en": "Motivating case: YOLOv5s trained on plain-background chair renders boxes whole images and labels an umbrella as a chair",
-          "ko": "문제 제기: 단색 배경 의자 렌더링으로 학습한 YOLOv5s가 이미지 전체를 검출하고 우산까지 의자로 인식"
+          "ko": "문제의 출발점: 단색 배경 의자 렌더링 이미지로 학습한 YOLOv5s가 이미지 전체에 박스를 치고 우산을 의자로 인식한 사례"
         },
         "thumb": "img/background-dependency/thumbs/03-chair-plain-background-failure.jpg"
       },
@@ -1435,7 +1435,7 @@ window.PROJECTS = [
         "src": "img/background-dependency/04-only-fg-model-on-original.jpg",
         "caption": {
           "en": "Only-FG-trained model tested on Original images: predicted boxes cover the whole image instead of the object",
-          "ko": "Only-FG로 학습한 모델을 Original 이미지로 테스트한 결과: 물체가 아닌 이미지 전체를 검출"
+          "ko": "Only-FG로 학습한 모델의 Original 이미지 테스트 결과: 물체가 아닌 이미지 전체를 덮는 예측 박스"
         },
         "thumb": "img/background-dependency/thumbs/04-only-fg-model-on-original.jpg"
       },
@@ -1443,7 +1443,7 @@ window.PROJECTS = [
         "src": "img/background-dependency/05-nofg-vs-onlyfg.jpg",
         "caption": {
           "en": "Original-test results of No-FG- vs Only-FG-trained models, plotted as a background-dependency ratio; No-FG is about 8.5%p higher",
-          "ko": "No-FG와 Only-FG로 학습한 모델의 Original test 결과 비교(background dependency ratio): No-FG가 약 8.5%p 높음"
+          "ko": "No-FG와 Only-FG로 학습한 모델의 Original test 결과를 background dependency ratio로 나타낸 그래프로, No-FG 모델이 약 8.5%p 높습니다."
         },
         "thumb": "img/background-dependency/thumbs/05-nofg-vs-onlyfg.jpg"
       },
@@ -1471,31 +1471,31 @@ window.PROJECTS = [
     },
     "title": {
       "en": "3D Object Tracking Using Kalman Filter",
-      "ko": "3차원 공간에서 칼만 필터를 이용한 Object Tracking"
+      "ko": "칼만 필터를 이용한 3차원 객체 추적"
     },
     "team": {
       "en": "Individual (KNU 'Advanced Topics in Robot Sensors' term project)",
-      "ko": "개인 (경북대 로봇센서특론 기말 term project)"
+      "ko": "개인 (경북대 로봇센서특론 기말 프로젝트)"
     },
     "role": {
       "en": "Sole developer: detector training, camera calibration, depth estimation, image-to-world transform, Kalman filter, ROS integration",
-      "ko": "단독 개발: 검출기 학습, 카메라 캘리브레이션, depth 추정, 이미지→월드 좌표 변환, 칼만 필터, ROS 통합"
+      "ko": "단독 개발: 검출기 학습, 카메라 캘리브레이션, 깊이 추정, 이미지→월드 좌표 변환, 칼만 필터, ROS 통합"
     },
     "tagline": {
       "en": "Tracks a YOLOv5-detected ball in 3D world coordinates with a constant-velocity Kalman filter on ROS.",
-      "ko": "YOLOv5로 검출한 공을 ROS 상에서 등속 모델 칼만 필터로 3차원 월드 좌표에서 추적."
+      "ko": "YOLOv5로 검출한 공을 ROS 기반 등속 모델 칼만 필터로 3차원 월드 좌표계에서 추적."
     },
     "summary": {
       "en": "A ROS package that turns monocular camera detections into 3D position and velocity estimates. A custom-trained YOLOv5s detects a blue ball, and its distance is estimated from bounding-box size with a fitted curve. The pixel position is back-projected into 3D using calibrated intrinsics, and a constant-velocity Kalman filter estimates 3D position and velocity. The filter was built step by step (1D image, 2D image, 3D world), and results are visualized in RViz and as a velocity arrow drawn on the camera image.",
-      "ko": "단안 카메라의 검출 결과를 3차원 위치·속도 추정으로 확장하는 ROS 패키지. 직접 학습한 YOLOv5s로 파란 공을 검출하고, 커브 피팅한 함수로 바운딩 박스 크기에서 거리를 추정. 캘리브레이션한 intrinsic으로 픽셀 위치를 3D로 역투영하고, 등속 모델 칼만 필터로 3D 위치와 속도를 추정. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했으며, 결과는 RViz와 카메라 영상 위 속도 화살표로 시각화."
+      "ko": "단안 카메라의 검출 결과를 3차원 위치·속도 추정값으로 변환하는 ROS 패키지입니다. 직접 학습한 YOLOv5s로 파란 공을 검출하고, 커브 피팅한 함수로 바운딩 박스 크기에서 거리를 추정합니다. 캘리브레이션으로 구한 내부 파라미터로 픽셀 위치를 3D로 역투영하고, 등속 모델 칼만 필터로 3D 위치와 속도를 추정합니다. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했으며, 결과는 RViz와 카메라 영상 위의 속도 화살표로 시각화했습니다."
     },
     "problem": {
       "en": "Deep-learning detectors can miss an object (false negatives) or lose it behind obstacles (occlusion), which interrupts tracking. A detection also gives only a pixel position, with no velocity and no metric 3D location.",
-      "ko": "딥러닝 기반 검출기는 물체를 놓치거나(False Negative) 장애물에 가려지는(Occlusion) 경우가 있어 추적이 끊길 수 있음. 또한 검출 결과는 픽셀 위치만 제공하므로 속도와 실제 3차원 위치를 알 수 없음."
+      "ko": "딥러닝 기반 검출기는 물체를 놓치거나(false negative) 장애물에 가려진 물체를 잃는(occlusion) 경우가 있어 추적이 끊길 수 있습니다. 또한 검출 결과는 픽셀 위치만 제공하므로 속도와 실제 3차원 위치는 알 수 없습니다."
     },
     "solution": {
       "en": "Detection, calibrated geometry and filtering are chained in ROS. YOLOv5s gives the ball's pixel position, a bbox-size-to-distance curve gives depth, the camera intrinsics K lift the detection into 3D, and a constant-velocity Kalman filter filters the measured position and estimates the velocity that a detection alone does not provide. The estimated velocity is projected back onto the image plane for display.",
-      "ko": "ROS 상에서 검출, 캘리브레이션 기반 기하 변환, 필터링을 연결. YOLOv5s로 공의 픽셀 위치를, bbox 크기–거리 커브로 depth를 구하고, 카메라 intrinsic K로 3D 위치를 계산. 등속 모델 칼만 필터는 측정 위치를 필터링하고 검출만으로는 알 수 없는 속도까지 추정하며, 추정한 속도는 다시 이미지 평면에 투영해 표시."
+      "ko": "ROS에서 검출, 캘리브레이션 기반 기하 변환, 필터링을 연결했습니다. YOLOv5s로 공의 픽셀 위치를, 바운딩 박스 크기–거리 커브로 깊이를 구하고, 카메라 내부 파라미터 K로 3D 위치를 계산합니다. 등속 모델 칼만 필터는 측정 위치를 필터링하고 검출만으로는 알 수 없는 속도까지 추정하며, 추정한 속도는 다시 이미지 평면에 투영해 표시합니다."
     },
     "approach": [
       {
@@ -1505,7 +1505,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "A sphere was chosen as the target because its bounding box looks the same from any direction. A YOLOv5s model was trained on augmented blue-ball images (a training folder of 690 images) and run in ROS through yolov5_pytorch_ros (/yolov5/bounding_boxes).",
-          "ko": "어느 방향에서 봐도 바운딩 박스 크기가 같은 구 형태를 대상으로 선정. Data augmentation을 적용한 파란 공 이미지(train 폴더 690장)로 YOLOv5s를 학습하고, yolov5_pytorch_ros로 ROS에서 실행(/yolov5/bounding_boxes)."
+          "ko": "어느 방향에서 봐도 바운딩 박스가 같게 나오는 구를 대상으로 정했습니다. 데이터 증강을 적용한 파란 공 이미지(학습 폴더 690장)로 YOLOv5s를 학습하고, yolov5_pytorch_ros로 ROS에서 실행했습니다(/yolov5/bounding_boxes)."
         }
       },
       {
@@ -1515,17 +1515,17 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Checkerboard calibration in ROS gave the intrinsics for the 640×480 camera: fx ≈ 639.0, fy ≈ 643.0, principal point ≈ (337.5, 222.9), skew 0, plus distortion coefficients.",
-          "ko": "ROS에서 체커보드로 캘리브레이션해 640×480 카메라의 intrinsic을 획득: fx ≈ 639.0, fy ≈ 643.0, 주점 ≈ (337.5, 222.9), skew 0, 그리고 왜곡 계수."
+          "ko": "ROS에서 체커보드로 캘리브레이션해 640×480 카메라의 내부 파라미터를 구했습니다. fx ≈ 639.0, fy ≈ 643.0, 주점 ≈ (337.5, 222.9), skew 0이며, 왜곡 계수도 함께 얻었습니다."
         }
       },
       {
         "title": {
           "en": "Depth from bounding-box size",
-          "ko": "바운딩 박스 크기 기반 depth 추정"
+          "ko": "바운딩 박스 크기 기반 깊이 추정"
         },
         "body": {
           "en": "Bounding-box sizes were collected at known distances. The longer box side was used so that partial occlusion has less effect, and a 4-parameter logistic curve was fitted (R² = 0.9971). depth_estimator.py publishes the result on /kcy/depth.",
-          "ko": "실제 거리별 바운딩 박스 크기 데이터를 수집. Occlusion을 고려해 가로·세로 중 긴 변을 사용하고 4PL 커브로 피팅(R² = 0.9971). depth_estimator.py가 결과를 /kcy/depth로 퍼블리시."
+          "ko": "실제 거리별로 바운딩 박스 크기 데이터를 수집했습니다. 부분 가림(occlusion)의 영향을 줄이기 위해 가로·세로 중 긴 변을 사용하고, 4PL(4-parameter logistic) 커브로 피팅했습니다(R² = 0.9971). depth_estimator.py가 결과를 /kcy/depth로 퍼블리시합니다."
         }
       },
       {
@@ -1535,7 +1535,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The box center (u, v) and the depth are back-projected as X = depth · K⁻¹[u, v, 1]ᵀ, with R = I and t = 0 because the camera sits at the origin. The result is rotated into a forward-left-up frame and published as a PoseStamped on /kcy/pose.",
-          "ko": "카메라가 원점에 있으므로 R = I, t = 0으로 두고, 박스 중심 (u, v)와 depth를 X = depth · K⁻¹[u, v, 1]ᵀ로 역투영. 결과를 forward-left-up 좌표계로 회전해 /kcy/pose PoseStamped로 퍼블리시."
+          "ko": "카메라가 원점에 있으므로 R = I, t = 0으로 두고, 박스 중심 (u, v)와 깊이(depth)를 X = depth · K⁻¹[u, v, 1]ᵀ로 역투영했습니다. 결과는 forward-left-up 좌표계로 회전해 /kcy/pose에 PoseStamped로 퍼블리시합니다."
         }
       },
       {
@@ -1545,7 +1545,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The 6-D state [x, ẋ, y, ẏ, z, ż] uses P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50) and R = I, and dt is updated from message timing. The filter was developed step by step: 1D image, 2D image, then 3D world.",
-          "ko": "6차원 상태 [x, ẋ, y, ẏ, z, ż]에 P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50), R = I를 적용하고, dt는 메시지 수신 시간으로 갱신. 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현."
+          "ko": "6차원 상태 [x, ẋ, y, ẏ, z, ż]에 P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50), R = I를 적용하고, dt는 메시지 수신 시간으로 갱신합니다. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했습니다."
         }
       },
       {
@@ -1555,40 +1555,40 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The filtered position, velocity and trajectory are published as Pose, Twist and Marker messages for RViz. The 3D velocity is projected back through K and drawn on the camera image as an OpenCV arrow.",
-          "ko": "필터링한 위치·속도·궤적을 Pose, Twist, Marker 메시지로 퍼블리시해 RViz에 표시. 3D 속도는 K로 다시 투영해 카메라 영상 위에 OpenCV 화살표로 그림."
+          "ko": "필터링한 위치·속도·궤적을 Pose, Twist, Marker 메시지로 퍼블리시해 RViz에 표시했습니다. 3D 속도는 K로 다시 투영해 카메라 영상 위에 OpenCV 화살표로 그렸습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Working ROS package (kcy_sensor_fusion) with depth-estimation, image-to-world and 1D/2D/3D Kalman filter nodes, launch files and an RViz config, published on GitHub.",
-        "ko": "depth 추정, 이미지→월드 변환, 1D/2D/3D 칼만 필터 노드와 launch 파일, RViz 설정을 포함한 ROS 패키지(kcy_sensor_fusion)를 GitHub에 공개."
+        "ko": "깊이 추정, 이미지→월드 변환, 1D/2D/3D 칼만 필터 노드와 launch 파일, RViz 설정을 포함해 실제로 동작하는 ROS 패키지(kcy_sensor_fusion)를 GitHub에 공개했습니다."
       },
       {
         "en": "Bounding-box-to-distance model fitted with R² = 0.9971.",
-        "ko": "바운딩 박스 크기–거리 모델 피팅 결과 R² = 0.9971."
+        "ko": "바운딩 박스 크기–거리 모델을 R² = 0.9971로 피팅했습니다."
       },
       {
         "en": "Demo videos of tracking in 1D, in the 2D image and in the 3D world.",
-        "ko": "1D, 2D 이미지, 3D 월드에서의 추적 데모 영상 공개."
+        "ko": "1D, 2D 이미지, 3D 월드에서의 추적 데모 영상을 공개했습니다."
       }
     ],
     "contributions": [
       {
         "en": "Trained a YOLOv5s detector for the target ball using augmented training data.",
-        "ko": "Data augmentation을 적용한 학습 데이터로 대상 공 검출용 YOLOv5s를 학습."
+        "ko": "데이터 증강을 적용한 학습 데이터로 대상 공 검출용 YOLOv5s를 학습했습니다."
       },
       {
         "en": "Calibrated the camera and built a bounding-box-size-to-distance model by curve fitting.",
-        "ko": "카메라를 캘리브레이션하고 커브 피팅으로 바운딩 박스 크기–거리 모델을 구축."
+        "ko": "카메라를 캘리브레이션하고 커브 피팅으로 바운딩 박스 크기–거리 모델을 구축했습니다."
       },
       {
         "en": "Implemented ROS nodes for depth estimation, image-to-world transform, and 1D/2D/3D Kalman filtering.",
-        "ko": "depth 추정, 이미지→월드 좌표 변환, 1D/2D/3D 칼만 필터 ROS 노드를 구현."
+        "ko": "깊이 추정, 이미지→월드 좌표 변환, 1D/2D/3D 칼만 필터링 ROS 노드를 구현했습니다."
       },
       {
         "en": "Visualized trajectories and velocities in RViz and on the camera image, and wrote the proposal and the final report.",
-        "ko": "RViz와 카메라 영상 위에 궤적과 속도를 시각화하고, 제안서와 최종 보고서를 작성."
+        "ko": "RViz와 카메라 영상 위에 궤적과 속도를 시각화하고, 제안서와 최종 보고서를 작성했습니다."
       }
     ],
     "tech": [
@@ -1649,7 +1649,7 @@ window.PROJECTS = [
         "src": "img/kalman-3d-tracking/01-cover-3d-world-tracking.jpg",
         "caption": {
           "en": "Tracking in the 3D world: RViz shows the Kalman-filtered 3D trajectory and pose of the ball, next to camera views with the YOLOv5 detection and the projected velocity arrow.",
-          "ko": "3D 월드 추적: RViz에 칼만 필터로 추정한 공의 3D 궤적과 pose를 표시하고, YOLOv5 검출 결과와 투영된 속도 화살표가 있는 카메라 영상을 함께 표시."
+          "ko": "3D 월드 추적: RViz에 칼만 필터로 추정한 공의 3D 궤적과 pose가 표시되고, 옆에는 YOLOv5 검출 결과와 투영한 속도 화살표가 그려진 카메라 영상이 있습니다."
         },
         "thumb": "img/kalman-3d-tracking/thumbs/01-cover-3d-world-tracking.jpg"
       },
@@ -1681,7 +1681,7 @@ window.PROJECTS = [
         "src": "img/kalman-3d-tracking/05-depth-curve-fit.jpg",
         "caption": {
           "en": "Depth estimation: distance vs. bounding-box size fitted with a 4-parameter logistic curve (R² = 0.9971).",
-          "ko": "Depth 추정: 거리와 바운딩 박스 크기의 관계를 4PL 커브로 피팅(R² = 0.9971)."
+          "ko": "깊이 추정: 거리와 바운딩 박스 크기의 관계를 4PL 커브로 피팅한 결과(R² = 0.9971)."
         },
         "thumb": "img/kalman-3d-tracking/thumbs/05-depth-curve-fit.jpg"
       },
@@ -1721,15 +1721,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "A Python rock–paper–scissors game that runs on a Raspberry Pi. A small Keras CNN is trained on a self-collected dataset of rock, paper and scissors hand photos. The game loop, adapted from the open-source rps-cv project, reads the camera, classifies the gesture with a pickled model, draws a random computer move and keeps a running score. Code, dataset and a demo video are published on GitHub and YouTube.",
-      "ko": "Raspberry Pi에서 동작하는 Python 가위바위보 게임입니다. 직접 수집한 가위·바위·보 손 사진 데이터셋으로 소형 Keras CNN을 학습했습니다. 오픈소스 rps-cv 프로젝트를 바탕으로 한 게임 루프는 카메라 영상을 읽어 pickle로 저장된 모델로 손 모양을 분류하고, 컴퓨터의 수를 무작위로 정한 뒤 점수를 기록합니다. 코드, 데이터셋, 시연 영상은 GitHub과 YouTube에 공개되어 있습니다."
+      "ko": "Raspberry Pi에서 동작하는 Python 가위바위보 게임입니다. 직접 수집한 가위·바위·보 손 사진 데이터셋으로 소형 Keras CNN을 학습했습니다. 오픈소스 rps-cv 프로젝트를 바탕으로 한 게임 루프는 카메라 영상을 읽어 pickle로 저장된 모델로 손 모양을 분류하고, 컴퓨터의 수를 무작위로 정한 뒤 점수를 기록합니다. 코드, 데이터셋, 시연 영상은 GitHub와 YouTube에 공개되어 있습니다."
     },
     "problem": {
       "en": "Build an interactive game in which a computer recognizes a player's rock, paper or scissors hand gesture from a live camera feed on low-cost hardware.",
-      "ko": "저가형 하드웨어에서 실시간 카메라 영상으로 플레이어의 가위·바위·보 손 모양을 인식하는 인터랙티브 게임을 구현합니다."
+      "ko": "저가형 하드웨어에서 컴퓨터가 실시간 카메라 영상으로 플레이어의 가위·바위·보 손 모양을 인식하는 인터랙티브 게임을 만드는 것이 목표였습니다."
     },
     "solution": {
       "en": "train.py trains a CNN (two Conv2D layers with 32 and 64 filters, max pooling, a 128-unit dense layer and a 3-way softmax) on 150×150 inputs. main.py, adapted from the open-source rps-cv game script, loads a pickled model and crops and thresholds each camera frame. A frame counts as a hand when it has enough foreground pixels, and a gesture is accepted once the same prediction appears on three consecutive frames. The computer's move is random, the winner is decided from the gesture difference, and the first player to three wins ends the game.",
-      "ko": "train.py는 150×150 입력에 대해 CNN(32·64 필터 Conv2D 2층, max pooling, 128-unit dense, 3-class softmax)을 학습합니다. 오픈소스 rps-cv 게임 스크립트를 바탕으로 한 main.py는 pickle로 저장된 모델을 불러와 카메라 프레임마다 crop과 threshold를 적용합니다. 전경 픽셀이 충분하면 손으로 판단하고, 같은 예측이 3프레임 연속 나오면 해당 손 모양을 확정합니다. 컴퓨터의 수는 무작위로 정하고 두 손 모양의 차이로 승패를 판정하며, 먼저 3승한 쪽이 나오면 게임이 끝납니다."
+      "ko": "train.py는 150×150 입력에 대해 CNN(32·64 필터 Conv2D 2층, max pooling, 128-unit dense, 3-class softmax)을 학습합니다. 오픈소스 rps-cv 게임 스크립트를 바탕으로 한 main.py는 pickle로 저장된 모델을 불러와 카메라 프레임마다 crop과 threshold를 적용합니다. 전경 픽셀이 충분하면 손으로 판단하고, 같은 예측이 3프레임 연속 나오면 해당 손 모양을 확정합니다. 컴퓨터의 수는 무작위로 정하고 두 손 모양의 차이로 승패를 판정하며, 어느 한쪽이 먼저 3승하면 게임이 끝납니다."
     },
     "approach": [
       {
@@ -1769,7 +1769,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "As in the rps-cv game loop, a move is confirmed only after three consecutive identical predictions. The computer then picks a random gesture, the winner is computed from the gesture difference, and the score is printed each round until the player or the computer reaches three wins.",
-          "ko": "rps-cv 게임 루프와 마찬가지로 같은 예측이 3번 연속 나와야 플레이어의 수로 확정합니다. 이후 컴퓨터가 무작위로 손 모양을 고르고, 두 손 모양의 차이로 승패를 계산해 매 라운드 점수를 출력하며, 플레이어나 컴퓨터가 3승하면 종료합니다."
+          "ko": "rps-cv 게임 루프와 마찬가지로 같은 예측이 3번 연속 나와야 플레이어의 수로 확정합니다. 이후 컴퓨터가 무작위로 손 모양을 고르고, 두 손 모양의 차이로 승패를 계산해 매 라운드 점수를 출력합니다. 플레이어나 컴퓨터 중 한쪽이 3승하면 게임이 끝납니다."
         }
       },
       {
@@ -1786,25 +1786,25 @@ window.PROJECTS = [
     "results": [
       {
         "en": "Working game demonstrated live on a Raspberry Pi in a 41-second demo video (camera view at 6–8 fps, terminal logging moves, winners and scores).",
-        "ko": "41초 분량의 시연 영상에서 Raspberry Pi로 실제 게임을 시연(카메라 화면 6–8 fps, 터미널에 수·승패·점수 기록)."
+        "ko": "41초 분량의 시연 영상에서 Raspberry Pi로 실제 동작하는 게임을 시연했습니다(카메라 화면 6–8 fps, 터미널에 수·승패·점수 기록)."
       },
       {
         "en": "Code, the 253-image dataset and demo media published on GitHub.",
-        "ko": "코드, 253장 데이터셋, 시연 미디어를 GitHub에 공개."
+        "ko": "코드, 253장 규모의 데이터셋, 시연 미디어를 GitHub에 공개했습니다."
       }
     ],
     "contributions": [
       {
         "en": "Collected and labeled the rock/paper/scissors hand-gesture dataset.",
-        "ko": "가위·바위·보 손 모양 데이터셋 수집 및 라벨링."
+        "ko": "가위·바위·보 손 모양 데이터셋을 수집하고 라벨링했습니다."
       },
       {
         "en": "Trained a Keras CNN classifier, adapted from a tutorial example, on the collected dataset.",
-        "ko": "튜토리얼 예제를 바탕으로 수집한 데이터셋에 Keras CNN 분류 모델 학습."
+        "ko": "튜토리얼 예제를 바탕으로 한 Keras CNN 분류 모델을 수집한 데이터셋으로 학습했습니다."
       },
       {
         "en": "Adapted the open-source rps-cv camera pipeline and game loop and ran the game on Raspberry Pi.",
-        "ko": "오픈소스 rps-cv의 카메라 파이프라인과 게임 루프를 수정해 Raspberry Pi에서 게임 구동."
+        "ko": "오픈소스 rps-cv의 카메라 파이프라인과 게임 루프를 수정해 Raspberry Pi에서 게임을 구동했습니다."
       }
     ],
     "tech": [
@@ -1864,7 +1864,7 @@ window.PROJECTS = [
         "src": "img/rock-paper-scissors/02-demo-frame.jpg",
         "caption": {
           "en": "Paper gesture in the 6 fps camera window; the terminal shows rounds such as 'Player: paper / Computer: rock / Player wins!'.",
-          "ko": "6 fps 카메라 창에 잡힌 보 손 모양. 터미널에는 'Player: paper / Computer: rock / Player wins!' 같은 라운드 결과가 표시됩니다."
+          "ko": "6 fps 카메라 창에 보 손 모양이 잡혀 있고, 터미널에는 'Player: paper / Computer: rock / Player wins!' 같은 라운드 결과가 표시됩니다."
         },
         "thumb": "img/rock-paper-scissors/thumbs/02-demo-frame.jpg"
       },
@@ -1904,19 +1904,19 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "A 3D-printed master–slave robotic arm that mirrors an operator's motion and records and replays motion sequences on an ATmega328P controller.",
-      "ko": "ATmega328P 제어기로 조작자의 동작을 실시간으로 따라 하고, 동작 시퀀스를 녹화·재생하는 3D 프린팅 마스터–슬레이브 로봇 팔."
+      "ko": "ATmega328P 제어기로 조작자의 동작을 따라 하고 동작 시퀀스를 녹화·재생하는 3D 프린팅 마스터–슬레이브 로봇 팔."
     },
     "summary": {
       "en": "Individual capstone design project at Baekseok University (2018): a remote-control system for a multi-joint robotic arm. A potentiometer-based master arm drives a 5-axis, 3D-printed slave arm, and a Record/Play mode stores and replays motion sequences. The work spans control-system modeling, circuit design, 3D modeling and printing, controller fabrication, Arduino firmware and oscilloscope verification.",
-      "ko": "백석대학교 캡스톤디자인(2018) 개인 프로젝트로, 다관절 로봇 팔의 원격 제어 시스템을 설계했다. 포텐쇼미터 기반 마스터 암으로 3D 프린팅한 5축 슬레이브 암을 조작하며, 녹화/재생 모드로 동작 시퀀스를 저장하고 다시 실행한다. 제어 시스템 모델링, 회로 설계, 3D 모델링·출력, 제어기 제작, Arduino 펌웨어, 오실로스코프 검증까지 전 과정을 수행했다."
+      "ko": "백석대학교 캡스톤디자인(2018) 개인 프로젝트로, 다관절 로봇 팔의 원격 제어 시스템을 설계했습니다. 포텐쇼미터 기반 마스터 암으로 3D 프린팅한 5축 슬레이브 암을 조작하며, 녹화/재생 모드로 동작 시퀀스를 저장하고 다시 실행합니다. 제어 시스템 모델링, 회로 설계, 3D 모델링·출력, 제어기 제작, Arduino 펌웨어, 오실로스코프 검증까지 전 과정을 수행했습니다."
     },
     "problem": {
       "en": "Robot arms combine dynamics, motor and sensor control, and electro-mechanical design. The goal was an arm that does more than PID position control: one that can be teleoperated by a master arm and can record and replay motion sequences, running on a portable, battery-powered controller.",
-      "ko": "로봇 팔 개발에는 동역학, 모터·센서 제어, 전기전자·기계 설계가 복합적으로 요구된다. 단순히 PID로 위치만 제어하는 로봇 팔이 아니라, 마스터 암으로 원격 조작하고 동작 시퀀스를 저장·재생할 수 있는 로봇 팔을 휴대 가능한 배터리 구동 제어기로 구현하는 것이 목표였다."
+      "ko": "로봇 팔 개발에는 동역학, 모터·센서 제어, 전기전자·기계 설계가 복합적으로 요구됩니다. PID로 위치만 제어하는 데 그치지 않고, 마스터 암으로 원격 조작하며 동작 시퀀스를 저장·재생할 수 있는 로봇 팔을 휴대 가능한 배터리 구동 제어기로 구현하는 것이 목표였습니다."
     },
     "solution": {
       "en": "A master–slave system built around an ATmega328P: five potentiometers on the master arm are sampled by the ADC and mapped to five servos (base, hip, shoulder, neck, gripper) on the slave arm under PID-based control. A toggle switch enables Record mode and a push button triggers Play mode, both wired with 10 kΩ pull-down resistors, and the controller runs from a Li-Po battery with a rocker power switch.",
-      "ko": "ATmega328P 중심의 마스터–슬레이브 시스템이다. 마스터 암의 포텐쇼미터 5개를 ADC로 읽어 슬레이브 암의 서보모터 5개(Base, Hip, Shoulder, Neck, Gripper)에 매핑하고 PID 기반으로 제어한다. 토글 스위치로 녹화 모드, 푸시 버튼으로 재생 모드를 실행하며 두 입력 모두 10kΩ 풀다운 저항으로 구성했고, 제어기는 로커 스위치가 달린 Li-Po 배터리로 구동된다."
+      "ko": "ATmega328P를 중심으로 한 마스터–슬레이브 시스템입니다. 마스터 암의 포텐쇼미터 5개를 ADC로 읽어 슬레이브 암의 서보모터 5개(Base, Hip, Shoulder, Neck, Gripper)에 매핑하고 PID 기반으로 제어합니다. 토글 스위치로 녹화 모드를, 푸시 버튼으로 재생 모드를 실행하며, 두 입력 모두 10kΩ 풀다운 저항으로 구성했습니다. 제어기는 Li-Po 배터리로 구동되며 로커 전원 스위치를 갖췄습니다."
     },
     "approach": [
       {
@@ -1926,7 +1926,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Modeled a loop in which the MCU converts potentiometer inputs via ADC and sets servo angles through PID control, with separate inputs for Record and Play modes.",
-          "ko": "MCU가 포텐쇼미터 입력을 ADC로 변환하고 PID 제어로 서보모터 각도를 설정하는 제어 루프를 모델링하고, 녹화·재생 모드용 입력을 별도로 두었다."
+          "ko": "MCU가 포텐쇼미터 입력을 ADC로 변환하고 PID 제어로 서보모터 각도를 설정하는 제어 루프를 모델링했으며, 녹화·재생 모드용 입력을 별도로 두었습니다."
         }
       },
       {
@@ -1936,7 +1936,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Designed the full schematic around an ATmega328P-PU: five potentiometers, five servos, Record/Play switches with 10 kΩ pull-downs to prevent floating inputs, and a Li-Po supply with a rocker switch.",
-          "ko": "ATmega328P-PU를 중심으로 포텐쇼미터 5개, 서보모터 5개, 플로팅 방지를 위한 10kΩ 풀다운 녹화/재생 스위치, 로커 스위치가 달린 Li-Po 전원부까지 전체 회로도를 설계했다."
+          "ko": "ATmega328P-PU를 중심으로 포텐쇼미터 5개, 서보모터 5개, 입력 플로팅을 막는 10kΩ 풀다운 저항을 단 녹화/재생 스위치, 로커 스위치가 달린 Li-Po 전원부까지 전체 회로도를 설계했습니다."
         }
       },
       {
@@ -1946,7 +1946,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Modeled the potentiometer master arm and adapted the 5-axis slave arm (about 15 parts) from an open-source 3D-printable design in roughly two weeks; printing took two days for the master arm and four days for the slave arm.",
-          "ko": "포텐쇼미터 마스터 암을 모델링하고 공개 3D 프린팅 설계를 바탕으로 약 15개 부품의 5축 슬레이브 암을 수정하는 데 약 2주가 걸렸으며, 3D 프린터 출력에 마스터 암 2일, 슬레이브 암 4일이 소요되었다."
+          "ko": "포텐쇼미터 마스터 암을 모델링하고, 오픈소스 3D 프린팅 설계를 바탕으로 약 15개 부품으로 된 5축 슬레이브 암을 수정하는 데 약 2주가 걸렸습니다. 출력에는 마스터 암 2일, 슬레이브 암 4일이 소요되었습니다."
         }
       },
       {
@@ -1956,7 +1956,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Built a two-tier controller board with the battery on the lower tier and Molex connectors for servos and potentiometers; fixed the arm's forward tipping with a wooden base and replaced epoxy-glued potentiometer joints, which blocked conduction, with soldered connections.",
-          "ko": "아래층에 배터리를 넣은 2층 구조의 제어 기판을 제작하고 서보모터·포텐쇼미터를 몰렉스 커넥터로 연결했다. 로봇 팔이 앞으로 쏠리는 문제는 나무 원목으로 고정해 해결했고, 에폭시로 접착해 신호가 통하지 않던 포텐쇼미터 핀은 납땜으로 다시 결선했다."
+          "ko": "아래층에 배터리를 넣은 2층 구조의 제어 기판을 제작하고, 서보모터·포텐쇼미터는 몰렉스 커넥터로 연결했습니다. 로봇 팔이 앞으로 쏠리는 문제는 나무 받침으로 고정해 해결했고, 에폭시로 접착해 전기가 통하지 않던 포텐쇼미터 연결부는 납땜으로 다시 결선했습니다."
         }
       },
       {
@@ -1966,7 +1966,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Adapted an open-source record-and-play Arduino sketch, replacing its serial commands with hardware Record/Play switches: Remote mode maps master potentiometer readings to slave servo angles, Record mode stores changed servo angles in a 700-entry array, and Play mode replays the stored sequence.",
-          "ko": "공개된 녹화·재생 Arduino 예제 코드를 바탕으로, 시리얼 명령 대신 하드웨어 녹화/재생 스위치로 동작하도록 수정했다. 원격 모드는 마스터 포텐쇼미터 값을 슬레이브 서보 각도로 매핑하고, 녹화 모드는 변화한 서보 각도를 700개 크기의 배열에 저장하며, 재생 모드는 저장된 시퀀스를 순서대로 실행한다."
+          "ko": "오픈소스 녹화·재생 Arduino 예제 코드를 바탕으로, 시리얼 명령 대신 하드웨어 녹화/재생 스위치로 동작하도록 수정했습니다. 원격 모드는 마스터 포텐쇼미터 값을 슬레이브 서보 각도로 매핑하고, 녹화 모드는 바뀐 서보 각도를 크기 700의 배열에 저장하며, 재생 모드는 저장된 시퀀스를 순서대로 재생합니다."
         }
       },
       {
@@ -1976,44 +1976,44 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Compared servo PWM waveforms with and without PID control on an oscilloscope, and evaluated arm behavior on the 3.7 V Li-Po supply versus 5 V.",
-          "ko": "오실로스코프로 PID 적용 전후의 서보 PWM 파형을 비교하고, 3.7V Li-Po 전원과 5V 전원에서의 동작을 비교 평가했다."
+          "ko": "오실로스코프로 PID 적용 전후의 서보 PWM 파형을 비교하고, 3.7V Li-Po 전원과 5V 전원에서 로봇 팔의 동작을 비교 평가했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Working master–slave arm demonstrated in Remote, Record and Play modes (three demo videos).",
-        "ko": "원격·녹화·재생 모드로 동작하는 마스터–슬레이브 로봇 팔 시연 (데모 영상 3편)."
+        "ko": "원격·녹화·재생 모드로 동작하는 마스터–슬레이브 로봇 팔을 시연했습니다(데모 영상 3편)."
       },
       {
-        "en": "Oscilloscope check: servo PWM driven by PWM alone was heavily noisy, while the PID-controlled waveform was clean; visible overshoot and a fairly long settling time showed room for further tuning.",
-        "ko": "오실로스코프 검증: PWM만으로 제어한 서보 파형은 노이즈가 심했던 반면 PID 제어 파형은 깨끗했으며, 오버슈트와 다소 긴 목표값 도달 시간을 통해 추가 튜닝 여지를 확인."
+        "en": "Oscilloscope check: the servo waveform driven by plain PWM was heavily noisy, while the PID-controlled waveform was clean; visible overshoot and a fairly long settling time showed room for further tuning.",
+        "ko": "오실로스코프 검증 결과, PWM만으로 구동한 서보 파형은 노이즈가 심했던 반면 PID 제어 파형은 깨끗했습니다. 다만 오버슈트가 보이고 정착 시간이 다소 길어 추가 튜닝의 여지를 확인했습니다."
       },
       {
         "en": "Identified the 3.7 V Li-Po output as a torque bottleneck: at 5 V the arm no longer tipped forward, and under PID control it returned from unstable states to a stable one.",
-        "ko": "3.7V Li-Po 출력이 토크 부족의 원인임을 확인: 5V 인가 시 앞으로 쏠리는 현상이 사라졌고, PID 제어로 불안정 상태에서도 안정 상태로 복원됨을 확인."
+        "ko": "3.7V Li-Po 출력이 토크 부족의 원인임을 확인했습니다. 5V를 인가하자 앞으로 쏠리는 현상이 사라졌고, PID 제어로 불안정한 상태에서도 안정 상태로 복귀했습니다."
       }
     ],
     "contributions": [
       {
         "en": "Modeled the control system and designed the complete circuit, including pull-down mode switches and the Li-Po power stage.",
-        "ko": "제어 시스템 모델링 및 풀다운 모드 스위치와 Li-Po 전원부를 포함한 전체 회로 설계."
+        "ko": "제어 시스템을 모델링하고, 풀다운 모드 스위치와 Li-Po 전원부를 포함한 전체 회로를 설계했습니다."
       },
       {
         "en": "3D-modeled the master arm, adapted an open-source slave-arm design and 3D-printed all parts.",
-        "ko": "마스터 암 3D 모델링, 공개 설계 기반 슬레이브 암 수정 및 전 부품 3D 프린팅."
+        "ko": "마스터 암을 3D 모델링하고, 오픈소스 설계를 바탕으로 슬레이브 암을 수정했으며, 전 부품을 3D 프린팅했습니다."
       },
       {
         "en": "Fabricated the controller board and assembled the arms, resolving tipping and connector issues.",
-        "ko": "제어 기판 제작 및 로봇 팔 조립, 쏠림·결선 문제 해결."
+        "ko": "제어 기판을 제작하고 로봇 팔을 조립하면서 쏠림·결선 문제를 해결했습니다."
       },
       {
         "en": "Adapted the Arduino firmware for Remote, Record and Play modes with hardware mode switches.",
-        "ko": "하드웨어 모드 스위치로 동작하는 원격·녹화·재생 모드 Arduino 펌웨어 수정·적용."
+        "ko": "하드웨어 모드 스위치로 원격·녹화·재생 모드가 동작하도록 Arduino 펌웨어를 수정했습니다."
       },
       {
         "en": "Verified servo PWM with an oscilloscope and wrote the capstone final report.",
-        "ko": "오실로스코프로 서보 PWM 검증 및 캡스톤디자인 최종보고서 작성."
+        "ko": "오실로스코프로 서보 PWM을 검증하고 캡스톤디자인 최종 보고서를 작성했습니다."
       }
     ],
     "tech": [
@@ -2089,7 +2089,7 @@ window.PROJECTS = [
         "src": "img/robotic-arm-pid/01-remote-mode-demo.jpg",
         "caption": {
           "en": "Remote mode: the 3D-printed slave arm follows the hand-operated master arm, driven by the custom controller board.",
-          "ko": "원격 모드: 손으로 조작하는 마스터 암을 3D 프린팅 슬레이브 암이 따라 움직이며, 자체 제작 제어 기판이 이를 구동한다."
+          "ko": "원격 모드: 손으로 조작하는 마스터 암을 3D 프린팅 슬레이브 암이 따라 움직이며, 자체 제작한 제어 기판이 이를 구동합니다."
         },
         "thumb": "img/robotic-arm-pid/thumbs/01-remote-mode-demo.jpg"
       },
@@ -2113,7 +2113,7 @@ window.PROJECTS = [
         "src": "img/robotic-arm-pid/04-circuit-schematic.jpg",
         "caption": {
           "en": "Full schematic: ATmega328P-PU, five potentiometers, five servos, battery switch and Record/Play switches with 10 kΩ pull-downs.",
-          "ko": "전체 회로도: ATmega328P-PU, 포텐쇼미터 5개, 서보모터 5개, 전원 스위치, 10kΩ 풀다운 녹화/재생 스위치."
+          "ko": "전체 회로도: ATmega328P-PU, 포텐쇼미터 5개, 서보모터 5개, 전원 스위치, 10kΩ 풀다운 저항을 단 녹화/재생 스위치."
         },
         "thumb": "img/robotic-arm-pid/thumbs/04-circuit-schematic.jpg"
       },
@@ -2165,15 +2165,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Developed during a UST research internship at the Korea Institute of Geoscience and Mineral Resources (KIGAM) in 2018. The device converts water pressure into a 4–20 mA current-loop signal, digitizes it on an Arduino Uno, displays live readings on an OLED and logs them to a micro-SD card. A Pascal's-principle test rig was built to validate the relationship between measured voltage and water level.",
-      "ko": "2018년 한국지질자원연구원(KIGAM)에서 진행한 UST 연구인턴십 과제다. 수압을 4–20mA 전류 루프 신호로 받아 Arduino Uno에서 디지털로 변환하고, 측정값을 OLED에 실시간 표시하며 micro-SD 카드에 기록한다. 파스칼의 원리를 이용한 실험 장치를 제작해 측정 전압과 수위의 관계를 검증했다."
+      "ko": "2018년 한국지질자원연구원(KIGAM)에서 진행한 UST 연구인턴십 과제입니다. 이 장비는 수압을 4–20mA 전류 루프 신호로 변환한 뒤 Arduino Uno에서 디지털화하고, 측정값을 OLED에 실시간으로 표시하며 micro-SD 카드에 기록합니다. 파스칼의 원리를 이용한 실험 장치를 제작해 측정 전압과 수위의 관계를 검증했습니다."
     },
     "problem": {
       "en": "Korea relies heavily on groundwater, especially volcanic islands such as Jeju that lack water-management facilities like dams, yet groundwater levels fluctuate with earthquakes, atmospheric pressure and tidal forces, which makes precise monitoring difficult. The aim was an easy-to-carry instrument for checking these fluctuating levels.",
-      "ko": "우리나라는 지하수 의존도가 높고, 특히 제주도 같은 화산섬은 댐 등 물 관리 시설이 부족하다. 그러나 지하수위는 지진, 대기압, 기조력 등 외부 요인으로 변동이 커 정밀하게 파악하기 어렵다. 이처럼 변동성이 높은 지하수위를 손쉽게 확인할 수 있는 휴대용 측정 장비를 개발하는 것이 목표였다."
+      "ko": "우리나라는 지하수 의존도가 높으며, 특히 댐 등 물 관리 시설이 부족한 제주도 같은 화산섬은 의존도가 더 높습니다. 그러나 지하수위는 지진, 대기압, 기조력에 따라 변동하므로 정밀하게 모니터링하기 어렵습니다. 이렇게 변동하는 지하수위를 손쉽게 확인할 수 있는 휴대용 측정 장비를 만드는 것이 목표였습니다."
     },
     "solution": {
       "en": "Pressure-type level sensors (up to 2 bar, about 20 m of water) output a 4–20 mA current that is converted to voltage across a 250 Ω resistor and read on four Arduino Uno ADC channels. Readings appear on an SSD1306 OLED over I2C and are logged to a stacked micro-SD shield, in a 3D-modeled two-tier assembly with power/reset switches, Molex sensor connectors and a 12 V sensor-supply clip.",
-      "ko": "최대 2bar(수심 약 20m)까지 측정 가능한 압력식 수위 센서의 4–20mA 전류 출력을 250Ω 저항으로 전압으로 변환해 Arduino Uno의 ADC 4채널로 읽는다. 측정값은 I2C로 연결한 SSD1306 OLED에 표시하고 적층한 micro-SD 쉴드에 기록하며, 전원·리셋 스위치, 몰렉스 센서 커넥터, 12V 센서 전원용 클립을 갖춘 2층 구조로 3D 모델링해 제작했다."
+      "ko": "최대 2bar(수심 약 20m)까지 측정할 수 있는 압력식 수위 센서의 4–20mA 전류 출력을 250Ω 저항을 거쳐 전압으로 변환하고, Arduino Uno의 ADC 4채널로 읽습니다. 측정값은 I2C로 연결한 SSD1306 OLED에 표시하고 적층한 micro-SD 쉴드에 기록합니다. 장비는 전원·리셋 스위치, 몰렉스 센서 커넥터, 12V 센서 전원용 클립을 갖춘 2층 구조로 3D 모델링해 제작했습니다."
     },
     "approach": [
       {
@@ -2183,7 +2183,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Measured water level indirectly from water pressure using Pascal's principle; the sensor's maximum range is 2 bar, equivalent to about 20 m of water.",
-          "ko": "파스칼의 원리를 이용해 수압으로 수위를 간접 측정했다. 센서의 최대 측정치는 2bar로 수심 20m의 압력에 해당한다."
+          "ko": "파스칼의 원리를 이용해 수압으로 수위를 간접 측정했습니다. 센서의 최대 측정 범위는 2bar로, 수심 약 20m의 압력에 해당합니다."
         }
       },
       {
@@ -2193,7 +2193,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Chose a current-loop output over voltage because it avoids voltage drop over long cables, is less sensitive to noise, and shows a broken wire as 0 mA instead of 4 mA; each loop uses a 12 V sensor supply and a 250 Ω sense resistor.",
-          "ko": "전압 신호 대신 전류 루프를 택했다. 전송 거리에 따른 전압 강하가 없고 노이즈에 강하며, 단선 시 4mA가 아닌 0mA가 출력되어 결선 오류를 빠르게 판단할 수 있기 때문이다. 각 루프는 12V 센서 전원과 250Ω 저항으로 구성했다."
+          "ko": "전압 신호 대신 전류 루프 출력을 택했습니다. 긴 케이블에서도 전압 강하가 생기지 않고 노이즈에 강하며, 단선되면 4mA가 아닌 0mA로 나타나기 때문입니다. 각 루프는 12V 센서 전원과 250Ω 감지 저항으로 구성했습니다."
         }
       },
       {
@@ -2203,7 +2203,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Designed an Arduino Uno system with four sensor channels on A0–A3, an OLED on the I2C pins (A4/A5), a stacked micro-SD shield and a switch-controlled power stage.",
-          "ko": "센서 4채널(A0–A3), I2C 핀(A4/A5)에 연결한 OLED, 적층형 micro-SD 쉴드, 스위치로 제어하는 전원부로 Arduino Uno 시스템을 설계했다."
+          "ko": "Arduino Uno를 중심으로 센서 4채널(A0–A3), I2C 핀(A4/A5)에 연결한 OLED, 적층형 micro-SD 쉴드, 스위치로 제어하는 전원부를 갖춘 시스템을 설계했습니다."
         }
       },
       {
@@ -2213,7 +2213,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Modeled and built the instrument with the OLED at the upper left for readout without a computer, Molex connectors for the sensors, power/reset switches and a clip for the 12 V sensor supply.",
-          "ko": "컴퓨터 없이도 수위를 확인할 수 있도록 왼쪽 상단에 OLED를 배치하고, 센서용 몰렉스 커넥터, 전원·리셋 스위치, 12V 센서 전원 클립을 갖춘 장비를 모델링하고 제작했다."
+          "ko": "컴퓨터 없이도 측정값을 확인할 수 있도록 왼쪽 상단에 OLED를 배치하고, 센서용 몰렉스 커넥터, 전원·리셋 스위치, 12V 센서 전원 클립을 갖춘 장비를 모델링해 제작했습니다."
         }
       },
       {
@@ -2223,7 +2223,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Main loop reads each ADC channel, converts it to voltage, prints the four values to the OLED and appends them to a log file on the SD card.",
-          "ko": "메인 루프에서 각 ADC 채널을 읽어 전압으로 변환하고, 4개 값을 OLED에 출력한 뒤 SD 카드의 로그 파일에 저장한다."
+          "ko": "메인 루프에서 각 ADC 채널을 읽어 전압으로 변환하고, 4개 값을 OLED에 출력한 뒤 SD 카드의 로그 파일에 이어서 기록합니다."
         }
       },
       {
@@ -2233,40 +2233,40 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Built a hose-based test rig with the sensor at one end and moved the sensor to emulate water levels from 62 cm down to 5 cm, comparing measured voltage with the pressure–level relationship.",
-          "ko": "호스 한쪽 끝에 센서를 단 실험 장치를 제작해 센서 위치를 옮겨 62cm에서 5cm까지의 수위 변화를 모사하며, 측정 전압을 압력–수위 관계와 비교했다."
+          "ko": "호스 한쪽 끝에 센서를 단 실험 장치를 제작하고, 센서 위치를 옮겨 가며 62cm에서 5cm까지의 수위를 모사해 측정 전압을 압력–수위 관계와 비교했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "OLED display and micro-SD data logging verified during the water-level experiment.",
-        "ko": "수위 측정 실험에서 OLED 출력과 micro-SD 데이터 저장 동작을 확인."
+        "ko": "수위 측정 실험에서 OLED 표시와 micro-SD 데이터 기록 동작을 확인했습니다."
       },
       {
         "en": "Over a 62 → 5 cm water-level sweep, the measured voltage varied in proportion to the pressure–water-level relationship.",
-        "ko": "62cm → 5cm 수위 변화 구간에서 측정 전압이 압력–수위 관계에 비례함을 확인."
+        "ko": "62cm → 5cm 수위 변화 구간에서 측정 전압이 압력–수위 관계에 비례해 변하는 것을 확인했습니다."
       },
       {
         "en": "With only a ~62–67 cm water column (about 0.5 V of change), readings were scaled at 8-bit resolution to amplify the change, which reduced accuracy; higher ADC resolution and an improved test setup were identified as next steps.",
-        "ko": "약 62–67cm 수주(약 0.5V 변화)만으로 실험해 변화량을 키우려 8bit 분해능으로 환산했고, 그 결과 정확도가 떨어짐을 확인. ADC 분해능 향상과 실험 환경 개선을 후속 과제로 도출."
+        "ko": "수주가 약 62–67cm(전압 변화 약 0.5V)에 불과해 변화량을 키우려고 측정값을 8bit 분해능으로 환산했고, 그 결과 정확도가 떨어졌습니다. ADC 분해능 향상과 실험 환경 개선을 후속 과제로 도출했습니다."
       }
     ],
     "contributions": [
       {
         "en": "Designed the control system and circuits: 4–20 mA sensor loops, OLED/SD interface and power stage.",
-        "ko": "제어 시스템 및 회로 설계: 4–20mA 센서 루프, OLED/SD 인터페이스, 전원부."
+        "ko": "4–20mA 센서 루프, OLED/SD 인터페이스, 전원부를 포함한 제어 시스템과 회로를 설계했습니다."
       },
       {
         "en": "3D-modeled and built the measuring instrument.",
-        "ko": "측정 장비 3D 모델링 및 제작."
+        "ko": "측정 장비를 3D 모델링하고 제작했습니다."
       },
       {
         "en": "Wrote the Arduino firmware for ADC sampling, OLED display and SD logging.",
-        "ko": "ADC 측정, OLED 출력, SD 로깅용 Arduino 펌웨어 작성."
+        "ko": "ADC 샘플링, OLED 출력, SD 로깅을 위한 Arduino 펌웨어를 작성했습니다."
       },
       {
         "en": "Built the test rig, ran the water-level experiment and wrote the internship report.",
-        "ko": "실험 장치 제작, 수위 측정 실험 수행 및 인턴십 보고서 작성."
+        "ko": "실험 장치를 제작해 수위 측정 실험을 수행하고 인턴십 보고서를 작성했습니다."
       }
     ],
     "tech": [
@@ -2303,7 +2303,7 @@ window.PROJECTS = [
         "src": "img/groundwater-monitoring/01-oled-live-readings.jpg",
         "caption": {
           "en": "Finished instrument: the OLED shows live voltage readings from four sensor channels.",
-          "ko": "완성된 계측 장비: OLED에 센서 4채널의 전압 측정값이 실시간으로 표시된다."
+          "ko": "완성된 계측 장비: OLED에 센서 4채널의 전압 측정값이 실시간으로 표시됩니다."
         },
         "thumb": "img/groundwater-monitoring/thumbs/01-oled-live-readings.jpg"
       },
@@ -2319,7 +2319,7 @@ window.PROJECTS = [
         "src": "img/groundwater-monitoring/03-current-loop-sensor-circuit.jpg",
         "caption": {
           "en": "Sensor circuits: each 4–20 mA sensor runs on 12 V and is read across a 250 Ω resistor on A0–A3.",
-          "ko": "센서 회로: 4–20mA 센서마다 12V 전원을 인가하고 250Ω 저항 양단 전압을 A0–A3로 읽는다."
+          "ko": "센서 회로: 4–20mA 센서마다 12V 전원을 인가하고 250Ω 저항 양단 전압을 A0–A3로 읽습니다."
         },
         "thumb": "img/groundwater-monitoring/thumbs/03-current-loop-sensor-circuit.jpg"
       },
@@ -2335,7 +2335,7 @@ window.PROJECTS = [
         "src": "img/groundwater-monitoring/05-pressure-test-rig.jpg",
         "caption": {
           "en": "Water-level test rig based on Pascal's principle, with the sensor at the end of a water-filled hose.",
-          "ko": "파스칼의 원리를 이용한 수위 측정 실험 장치: 물을 채운 호스 끝에 센서를 연결했다."
+          "ko": "파스칼의 원리를 이용한 수위 측정 실험 장치: 물을 채운 호스 끝에 센서를 연결했습니다."
         },
         "thumb": "img/groundwater-monitoring/thumbs/05-pressure-test-rig.jpg"
       },
@@ -2379,15 +2379,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Two-person digital system design project (2018) built to understand PWM control and MCU design hands-on. An ATmega328P moves the car between three floors with a stepper motor, while a Xilinx XC3S200 FPGA drives the servo that opens and closes the door. The elevator body was 3D-modeled and printed, the ATmega328P controller was built on perfboard with a Li-Po supply, and the work was written up as a short paper.",
-      "ko": "PWM 제어와 MCU 설계를 직접 익히기 위해 2인 팀으로 진행한 디지털시스템설계 프로젝트(2018)다. ATmega328P가 스테핑 모터로 카를 3개 층 사이에서 이동시키고, Xilinx XC3S200 FPGA가 문을 여닫는 서보모터를 구동한다. 엘리베이터 외관은 3D 모델링 후 출력했고, ATmega328P 제어기는 Li-Po 전원을 갖춘 만능기판으로 제작했으며, 결과를 짧은 논문으로 정리했다."
+      "ko": "PWM 제어와 MCU 설계를 직접 익히기 위해 2인 팀으로 진행한 디지털시스템설계 프로젝트(2018)입니다. ATmega328P가 스테핑 모터로 카를 3개 층 사이에서 이동시키고, Xilinx XC3S200 FPGA가 문을 여닫는 서보모터를 구동합니다. 엘리베이터 본체는 3D 모델링 후 출력했고, ATmega328P 제어기는 Li-Po 전원을 갖춘 만능기판으로 제작했습니다. 결과는 짧은 논문으로 정리했습니다."
     },
     "problem": {
       "en": "Learn PWM control hands-on by driving a servo from an FPGA, and deepen MCU understanding by designing a complete elevator rather than controlling a motor in isolation.",
-      "ko": "FPGA로 서보모터를 제어하며 PWM 제어 방식을 직접 이해하고, 단순한 모터 제어가 아닌 엘리베이터 전체를 설계하며 MCU에 대한 이해를 높이는 것이 목표였다."
+      "ko": "FPGA로 서보모터를 구동하며 PWM 제어를 직접 익히고, 모터 하나만 따로 제어하는 데 그치지 않고 엘리베이터 전체를 설계하며 MCU에 대한 이해를 넓히는 것이 목표였습니다."
     },
     "solution": {
       "en": "Control is split across two devices. The ATmega328P handles car motion with a stepper motor through a ULN2003A driver and three pull-down floor buttons, tracking the current floor and rotating CW/CCW to the requested one. The FPGA generates a 20 ms-period PWM for the door servo (90° at rest, 180° to open). A cylindrical lock in front of the door removes the need for gears to turn the servo's rotation into linear motion.",
-      "ko": "제어를 두 장치로 나눴다. ATmega328P는 ULN2003A 드라이버와 풀다운으로 구성한 1·2·3층 버튼으로 스테핑 모터를 제어해, 현재 층을 파악하고 CW/CCW 회전으로 요청된 층까지 카를 이동시킨다. FPGA는 주기 20ms의 PWM을 생성해 도어 서보모터를 제어한다(초기 90°, 열림 180°). 서보의 원운동을 직선 운동으로 바꾸는 기어 대신 문 앞에 원기둥 모양의 lock을 설계했다."
+      "ko": "제어를 두 장치로 나눴습니다. ATmega328P는 ULN2003A 드라이버와 풀다운으로 구성한 1·2·3층 버튼으로 스테핑 모터를 제어하며, 현재 층을 추적해 CW/CCW 회전으로 요청된 층까지 카를 이동시킵니다. FPGA는 주기 20ms의 PWM을 생성해 도어 서보모터를 구동합니다(평상시 90°, 열림 180°). 문 앞에 원기둥형 잠금장치를 두어 서보의 회전 운동을 직선 운동으로 바꾸는 기어가 필요 없도록 했습니다."
     },
     "approach": [
       {
@@ -2397,7 +2397,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Assigned a stepper motor to vertical car motion (ATmega328P) and a servo motor to the door (FPGA).",
-          "ko": "카의 상하 운동은 스테핑 모터(ATmega328P), 문 개폐는 서보모터(FPGA)가 담당하도록 구성했다."
+          "ko": "카의 상하 운동은 스테핑 모터(ATmega328P)가, 문 개폐는 서보모터(FPGA)가 담당하도록 나눴습니다."
         }
       },
       {
@@ -2407,7 +2407,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Designed the ATmega328P stepper circuit with a ULN2003A driver and pull-down floor buttons, and the FPGA servo circuit with pull-down door switches; built the ATmega328P controller on perfboard with a toggle power switch and Li-Po battery.",
-          "ko": "ULN2003A 드라이버와 풀다운 층 버튼을 갖춘 ATmega328P 스테핑 모터 회로, 풀다운 도어 스위치를 갖춘 FPGA 서보 회로를 설계하고, ATmega328P 회로는 토글 전원 스위치와 Li-Po 배터리를 연결한 만능기판으로 구현했다."
+          "ko": "ULN2003A 드라이버와 풀다운 층 버튼을 갖춘 ATmega328P 스테핑 모터 회로와, 풀다운 도어 스위치를 갖춘 FPGA 서보 회로를 설계했습니다. ATmega328P 제어기는 토글 전원 스위치와 Li-Po 배터리를 연결해 만능기판으로 제작했습니다."
         }
       },
       {
@@ -2417,7 +2417,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "3D-modeled the shaft, cart, front panel, door and a cylindrical servo lock for 3D printing, with revised versions of the cart and door.",
-          "ko": "3D 프린팅을 위해 승강로, 카, 전면부, 도어, 원기둥형 서보 lock을 모델링했으며, 카와 도어는 수정 버전도 제작했다."
+          "ko": "3D 프린팅을 위해 승강로, 카, 전면부, 도어, 원기둥형 서보 잠금장치를 모델링했으며, 카와 도어는 수정 버전도 만들었습니다."
         }
       },
       {
@@ -2427,7 +2427,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "On a floor-button press, the firmware checks the current floor, steps the motor CW or CCW (2048 steps per floor) to the target, then stores the new floor.",
-          "ko": "층 버튼이 눌리면 현재 위치를 확인하고, 층당 2048 스텝씩 CW/CCW로 회전해 목표 층으로 이동한 뒤 현재 층을 새로 저장한다."
+          "ko": "층 버튼이 눌리면 현재 층을 확인하고, 모터를 층당 2048 스텝씩 CW 또는 CCW로 회전시켜 목표 층으로 이동한 뒤 새 층 정보를 저장합니다."
         }
       },
       {
@@ -2437,7 +2437,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Implemented servo PWM on a Xilinx Spartan-3 XC3S200 in a Xilinx ISE project: 20 ms period, 90° initial position and a 90° swing to 180° when the open button is pressed.",
-          "ko": "Xilinx ISE 프로젝트로 Spartan-3 XC3S200에 서보 PWM을 구현했다. 주기는 20ms, 초기 각도 90°, 열림 버튼 입력 시 90° 차이인 180°로 회전한다."
+          "ko": "Xilinx ISE 프로젝트로 Spartan-3 XC3S200에 서보 PWM을 구현했습니다. 주기는 20ms, 초기 각도는 90°이며, 열림 버튼을 누르면 90°만큼 회전해 180°가 됩니다."
         }
       },
       {
@@ -2447,40 +2447,40 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Connected the elevator to both controllers and verified operation; corrected the cart's sideways and forward lean by adding weights to rebalance its center of gravity.",
-          "ko": "엘리베이터와 두 제어기를 연결해 동작을 확인하고, 카가 옆·앞으로 쏠리는 문제를 무게 추로 무게 중심을 맞춰 해결했다."
+          "ko": "엘리베이터에 두 제어기를 연결해 동작을 확인했습니다. 카가 옆과 앞으로 기우는 문제는 무게 추를 달아 무게 중심을 맞춰 바로잡았습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Verified that the integrated elevator operated without errors.",
-        "ko": "통합한 엘리베이터가 오류 없이 동작함을 확인."
+        "ko": "통합한 엘리베이터가 오류 없이 동작함을 확인했습니다."
       },
       {
         "en": "The cart leaned sideways and forward because the center of gravity and pulley mechanics were overlooked in the 3D design; added weights rebalanced it, and a better-balanced pulley/cart design was identified as the next improvement.",
-        "ko": "3D 모델링 시 무게 중심과 도르래 원리를 고려하지 못해 카가 옆·앞으로 쏠렸으나 무게 추로 보정했으며, 도르래와 카의 무게 중심을 반영한 설계를 개선 과제로 도출."
+        "ko": "3D 설계 단계에서 무게 중심과 도르래 원리를 고려하지 못해 카가 옆과 앞으로 기울었으나, 무게 추를 달아 균형을 맞췄습니다. 균형을 고려한 도르래·카 설계를 다음 개선 과제로 도출했습니다."
       },
       {
         "en": "Documented as the paper \"Design and Implementation of Elevator Using FPGA and Atmega 328p\" (Kim C.Y., Hong S.B.).",
-        "ko": "논문 「FPGA와 Atmega 328p를 이용한 엘리베이터 설계 및 구현」(김채윤, 홍서빈)으로 정리."
+        "ko": "논문 「FPGA와 Atmega 328p를 이용한 엘리베이터 설계 및 구현」(김채윤, 홍서빈)으로 정리했습니다."
       }
     ],
     "contributions": [
       {
         "en": "Proposed the idea and led the overall design as team lead.",
-        "ko": "팀장으로서 아이디어 제안 및 전체 설계 주도."
+        "ko": "팀장으로서 아이디어를 제안하고 전체 설계를 주도했습니다."
       },
       {
         "en": "Designed the ATmega328P stepper and FPGA servo circuits.",
-        "ko": "ATmega328P 스테핑 모터 회로 및 FPGA 서보 회로 설계."
+        "ko": "ATmega328P 스테핑 모터 회로와 FPGA 서보 회로를 설계했습니다."
       },
       {
         "en": "Wrote the ATmega328P firmware for floor tracking and stepper control.",
-        "ko": "층 위치 관리 및 스테핑 모터 제어용 ATmega328P 펌웨어 작성."
+        "ko": "현재 층 추적과 스테핑 모터 제어를 위한 ATmega328P 펌웨어를 작성했습니다."
       },
       {
         "en": "First author of the project paper.",
-        "ko": "프로젝트 논문 제1저자."
+        "ko": "프로젝트 논문의 제1저자로 참여했습니다."
       }
     ],
     "tech": [
@@ -2528,7 +2528,7 @@ window.PROJECTS = [
         "src": "img/fpga-elevator/01-elevator-operation-check.jpg",
         "caption": {
           "en": "Operation check of the 3D-printed elevator: stepper-driven cart and servo-actuated door lock (paper Fig. 7).",
-          "ko": "3D 프린팅 엘리베이터 동작 확인: 스테핑 모터로 움직이는 카와 서보로 작동하는 도어 lock (논문 그림 7)."
+          "ko": "3D 프린팅 엘리베이터 동작 확인: 스테핑 모터로 움직이는 카와 서보로 작동하는 도어 잠금장치 (논문 그림 7)."
         },
         "thumb": "img/fpga-elevator/thumbs/01-elevator-operation-check.jpg"
       },
@@ -2536,7 +2536,7 @@ window.PROJECTS = [
         "src": "img/fpga-elevator/02-elevator-3d-model.jpg",
         "caption": {
           "en": "3D model of the elevator body prepared for 3D printing.",
-          "ko": "3D 프린팅용 엘리베이터 외관 3D 모델."
+          "ko": "3D 프린팅용 엘리베이터 본체 3D 모델."
         },
         "thumb": "img/fpga-elevator/thumbs/02-elevator-3d-model.jpg"
       },
@@ -2600,15 +2600,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Team UniSat's entry to the 6th CanSat Competition (2017), hosted by the Ministry of Science and ICT and organized by the KAIST Satellite Technology Research Center, led as team lead. The CanSat is launched to 300–500 m, records attitude, 3-axis wind speed and dust density while descending by parachute, and sends the data to a ground station over XBee. Pasquill stability classes assigned to sections of the descent were compared with fine-dust concentration; the project won an Excellence Award (KAIST President's Award) and was presented at the KSAS 2017 Fall Conference.",
-      "ko": "과학기술정보통신부가 주최하고 KAIST 인공위성연구소가 주관한 제6회 캔위성 경연대회(2017)에 UniSat 팀장으로 참가한 프로젝트다. 캔위성은 300–500m 높이에서 낙하산으로 하강하며 자세, 3축 풍속, 미세먼지 농도를 기록하고 XBee로 지상국에 전송한다. 낙하 구간별 Pasquill 안정도를 구해 미세먼지 농도와 비교했으며, 우수상(KAIST 총장상)을 수상하고 한국항공우주학회 2017 추계학술대회에서 발표했다."
+      "ko": "과학기술정보통신부가 주최하고 KAIST 인공위성연구소가 주관한 제6회 캔위성 경연대회(2017)에 UniSat 팀장으로 참가한 프로젝트입니다. 캔위성은 300–500m 높이까지 발사된 뒤 낙하산으로 하강하면서 자세, 3축 풍속, 미세먼지 농도를 기록하고 XBee로 지상국에 전송합니다. 낙하 구간별로 구한 Pasquill 안정도를 미세먼지 농도와 비교했으며, 우수상(KAIST 총장상)을 수상하고 한국항공우주학회 2017 추계학술대회에서 발표했습니다."
     },
     "problem": {
       "en": "Fine-dust damage worsens every year and differs by region, and studies link those differences to atmospheric circulation, i.e. atmospheric stability. Stability is usually derived from an air parcel's adiabatic lapse rate, which is impractical within a CanSat's size limits, so the mission needed another way to estimate stability and relate it to dust concentration.",
-      "ko": "미세먼지 피해는 해마다 심해지고 지역별로 차이가 나며, 여러 연구에서 그 원인으로 대기 순환, 즉 대기 안정도가 지목된다. 대기 안정도는 보통 공기 덩이의 단열감률로 구하지만 캔위성의 크기 제약상 이를 측정하기 어려워, 다른 방식으로 안정도를 추정하고 미세먼지 농도와 연결하는 것이 과제였다."
+      "ko": "미세먼지 피해는 해마다 심해지고 지역별로 차이가 나며, 여러 연구에서 그 차이의 원인으로 대기 순환, 즉 대기 안정도를 지목합니다. 대기 안정도는 보통 공기 덩이의 단열감률로 구하지만 캔위성의 크기 제약 안에서는 이를 측정하기 어렵습니다. 따라서 다른 방식으로 안정도를 추정하고 미세먼지 농도와 연관 짓는 것이 과제였습니다."
     },
     "solution": {
       "en": "Use the Pasquill stability class, which needs only wind speed and solar radiation. Three wind sensors aligned with the gyro's x/y/z axes measure wind during descent; the measured attitude is used to rotate readings into an absolute frame, and an approximation for absolute wind speed was fitted by least-squares linear regression. A dust sensor mounted at the bottom, an XBee Pro S2B link with micro-SD backup, a real-time ground-station GUI and a pyranometer at the ground station complete the system.",
-      "ko": "풍속과 일사량만으로 구할 수 있는 Pasquill 안정도를 사용했다. 자이로 센서의 x/y/z축에 맞춰 배치한 바람 센서 3개로 낙하 중 풍속을 측정하고, 측정한 자세로 값을 절대 좌표계로 보정하며, 절대 풍속 근사식은 최소자승법 기반 선형회귀로 구했다. 위성 최하단의 먼지 센서, micro-SD 백업을 갖춘 XBee Pro S2B 통신, 실시간 지상국 GUI, 지상국의 일사계로 시스템을 구성했다."
+      "ko": "풍속과 일사량만으로 구할 수 있는 Pasquill 안정도를 사용했습니다. 자이로 센서의 x/y/z축에 맞춰 배치한 바람 센서 3개로 낙하 중 풍속을 측정하고, 측정한 자세를 이용해 값을 절대 좌표계로 회전 변환했으며, 절대 풍속 근사식은 최소자승법 기반 선형회귀로 구했습니다. 위성 최하단에 장착한 먼지 센서, micro-SD 백업을 갖춘 XBee Pro S2B 통신, 실시간 지상국 GUI, 지상국의 일사계로 시스템을 완성했습니다."
     },
     "approach": [
       {
@@ -2618,7 +2618,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Defined the mission as correlating atmospheric stability with fine-dust concentration, using Pasquill classes (wind speed + solar radiation) because lapse-rate measurement does not fit a CanSat.",
-          "ko": "대기 안정도와 미세먼지 농도의 상관관계 분석을 임무로 정하고, 단열감률 측정이 캔위성에 맞지 않아 풍속과 일사량으로 구하는 Pasquill 안정도를 채택했다."
+          "ko": "대기 안정도와 미세먼지 농도의 상관관계 분석을 임무로 정했습니다. 단열감률 측정은 캔위성에 맞지 않아 풍속과 일사량으로 구하는 Pasquill 안정도를 채택했습니다."
         }
       },
       {
@@ -2628,7 +2628,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Aligned three wind sensors with the gyro axes, corrected for attitude with a rotation-matrix transform, and fitted the absolute wind-speed approximation by least-squares regression; a wind-tunnel test showed under 5% error at or below 9 m/s.",
-          "ko": "바람 센서 3개를 자이로 축에 맞춰 배치하고 회전 행렬로 자세를 보정했으며, 절대 풍속 근사식을 최소자승법 회귀로 구했다. 풍동 실험에서 풍속 9m/s 이하일 때 오차 5% 미만을 확인했다."
+          "ko": "바람 센서 3개를 자이로 축에 맞춰 배치하고 회전 행렬로 자세를 보정했으며, 절대 풍속 근사식은 최소자승법 회귀로 구했습니다. 풍동 실험에서 풍속 9m/s 이하일 때 오차가 5% 미만임을 확인했습니다."
         }
       },
       {
@@ -2638,7 +2638,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Integrated an Arduino Mega, MPU-9250 gyro, three Wind Sensor Rev. C units, a GP2Y1014AU0F dust sensor (mounted lowest, considering the descent), a micro-SD reader and a Li-Po battery in a stacked frame.",
-          "ko": "Arduino Mega, MPU-9250 자이로, Wind Sensor Rev. C 3개, 낙하 상태를 고려해 최하단에 배치한 GP2Y1014AU0F 먼지 센서, micro-SD 리더, Li-Po 배터리를 적층 구조에 통합했다."
+          "ko": "Arduino Mega, MPU-9250 자이로, Wind Sensor Rev. C 3개, 낙하 상태를 고려해 최하단에 배치한 GP2Y1014AU0F 먼지 센서, micro-SD 리더, Li-Po 배터리를 적층 구조에 통합했습니다."
         }
       },
       {
@@ -2648,7 +2648,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Chose an XBee Pro S2B (about 1 km nominal) for the ~600 m link requirement; an XCTU range test reached only ~400 m, so data is also logged to micro-SD and sent when in range, with a real-time ground-station GUI.",
-          "ko": "최소 600m 통신 요구에 맞춰 이론상 1km 통신이 가능한 XBee Pro S2B를 사용했으나 XCTU 테스트에서 약 400m만 확인되어, micro-SD에 데이터를 함께 저장하고 통신 범위 내에서 송신하도록 했으며 실시간 지상국 GUI를 구성했다."
+          "ko": "최소 600m 통신 요구에 맞춰 이론상 약 1km까지 통신할 수 있는 XBee Pro S2B를 사용했습니다. XCTU 테스트에서는 약 400m까지만 통신이 확인되어, 데이터를 micro-SD에도 저장하고 통신 범위 안에서 송신하도록 했으며 실시간 지상국 GUI를 구성했습니다."
         }
       },
       {
@@ -2658,7 +2658,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "A ~28 m drop test with a 70 cm vinyl canopy and a 400 g water bottle gave ~2.8 m/s; based on this, designed a cross-shaped parachute with a 60 cm center hole for a more stable descent attitude.",
-          "ko": "약 28m 높이에서 지름 70cm 비닐에 400g 물통을 매단 낙하 실험으로 약 2.8m/s의 낙하 속도를 얻었고, 이를 바탕으로 안정적인 자세를 위해 중심에 지름 60cm 구멍을 낸 크로스형 낙하산을 설계했다."
+          "ko": "약 28m 높이에서 지름 70cm 비닐 캐노피에 400g 물통을 매달아 낙하 실험을 한 결과, 낙하 속도는 약 2.8m/s였습니다. 이를 바탕으로 더 안정적인 하강 자세를 위해 중심에 지름 60cm 구멍을 낸 크로스형 낙하산을 설계했습니다."
         }
       },
       {
@@ -2668,44 +2668,44 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Corrected attitude to compute absolute wind speed, plotted it against dust concentration, split the descent into sections and assigned Pasquill stability per section using ground pyranometer data.",
-          "ko": "자세 보정으로 절대 풍속을 산출해 미세먼지 농도와 비교하고, 구간을 나눠 지상 일사계 데이터와 함께 구간별 Pasquill 안정도를 구했다."
+          "ko": "자세를 보정해 절대 풍속을 산출하고 미세먼지 농도와 함께 그래프로 나타냈습니다. 낙하 구간을 나눈 뒤 지상 일사계 데이터를 이용해 구간별 Pasquill 안정도를 구했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Excellence Award (Creative Division), KAIST President's Award, 2017 CanSat Competition (Sep 14, 2017).",
-        "ko": "2017 캔위성 경연대회 우수상(창작부문), KAIST 총장상 (2017.09.14)."
+        "ko": "2017 캔위성 경연대회에서 우수상(창작부문, KAIST 총장상)을 수상했습니다(2017.09.14)."
       },
       {
         "en": "Paper presented at the KSAS (Korean Society for Aeronautical and Space Sciences) 2017 Fall Conference, Nov 15–18, 2017.",
-        "ko": "한국항공우주학회 2017 추계학술대회 논문 발표 (2017.11.15–18)."
+        "ko": "한국항공우주학회 2017 추계학술대회(2017.11.15–18)에서 논문을 발표했습니다."
       },
       {
         "en": "Wind-tunnel validation: under 5% error between measured and calculated wind speed at or below 9 m/s.",
-        "ko": "풍동 실험 검증: 풍속 9m/s 이하에서 측정값과 계산값의 오차 5% 미만."
+        "ko": "풍동 실험으로 풍속 9m/s 이하에서 측정 풍속과 계산 풍속의 오차가 5% 미만임을 검증했습니다."
       },
       {
         "en": "The paper reports a relationship between stability class and fine-dust concentration, but the low drop altitude limited the analysis to three stability sections, and wind drift made recovery difficult.",
-        "ko": "논문에서 대기 안정도와 미세먼지 농도 사이의 관계를 보고했으나, 낮은 낙하 고도로 대기 구간을 세 개로만 나눌 수 있었고, 바람에 의한 착륙 지점 이탈로 회수에 어려움이 있었음."
+        "ko": "논문에서 안정도 등급과 미세먼지 농도 사이의 관계를 보고했으나, 낙하 고도가 낮아 안정도 구간을 세 개로만 나눌 수 있었고 바람에 밀려 착륙 지점이 벗어나 회수가 어려웠습니다."
       }
     ],
     "contributions": [
       {
         "en": "Proposed the mission idea and led the overall design as team lead.",
-        "ko": "팀장으로서 임무 아이디어 제안 및 전체 설계 주도."
+        "ko": "팀장으로서 임무 아이디어를 제안하고 전체 설계를 주도했습니다."
       },
       {
         "en": "Designed sensor control (wind, dust, IMU) and developed the embedded firmware.",
-        "ko": "센서 제어(바람·먼지·IMU) 설계 및 임베디드 펌웨어 개발."
+        "ko": "센서 제어(바람·먼지·IMU)를 설계하고 임베디드 펌웨어를 개발했습니다."
       },
       {
         "en": "Designed the satellite–ground station communication link.",
-        "ko": "위성–지상국 통신부 설계."
+        "ko": "위성–지상국 통신 링크를 설계했습니다."
       },
       {
         "en": "First author of the KSAS 2017 Fall Conference paper.",
-        "ko": "한국항공우주학회 2017 추계학술대회 논문 제1저자."
+        "ko": "한국항공우주학회 2017 추계학술대회 논문에 제1저자로 참여했습니다."
       }
     ],
     "tech": [
@@ -2760,7 +2760,7 @@ window.PROJECTS = [
         "src": "img/cansat/01-unisat-cansat-assembled.jpg",
         "caption": {
           "en": "The assembled UniSat CanSat: a stacked acrylic frame holding the controller, sensors and communication module.",
-          "ko": "조립된 UniSat 캔위성: 적층형 아크릴 프레임에 제어기, 센서, 통신 모듈을 탑재했다."
+          "ko": "조립된 UniSat 캔위성: 적층형 아크릴 프레임에 제어기, 센서, 통신 모듈을 탑재했습니다."
         },
         "thumb": "img/cansat/thumbs/01-unisat-cansat-assembled.jpg"
       },
@@ -2768,7 +2768,7 @@ window.PROJECTS = [
         "src": "img/cansat/02-cansat-3d-model-components.jpg",
         "caption": {
           "en": "3D model and components: Arduino MEGA, XBee Pro S2B and shield, gyro sensor, micro-SD reader, dust sensor, wind sensor and Li-Po battery (paper Fig. 4).",
-          "ko": "3D 모델과 구성 부품: Arduino MEGA, XBee Pro S2B 및 쉴드, 자이로 센서, micro-SD 리더, 먼지 센서, 바람 센서, Li-Po 배터리 (논문 Fig. 4)."
+          "ko": "3D 모델과 구성 부품: Arduino MEGA, XBee Pro S2B 및 쉴드, 자이로 센서, micro-SD 리더, 먼지 센서, 바람 센서, Li-Po 배터리 (논문 그림 4)."
         },
         "thumb": "img/cansat/thumbs/02-cansat-3d-model-components.jpg"
       },
@@ -2784,7 +2784,7 @@ window.PROJECTS = [
         "src": "img/cansat/04-ground-station-gui.jpg",
         "caption": {
           "en": "Ground-station GUI: real-time x/y/z wind speed, attitude (Real-Time Motion), communication status and dust density.",
-          "ko": "지상국 GUI: x/y/z축 풍속, 자세(Real-Time Motion), 통신 상태, 미세먼지 농도를 실시간 표시."
+          "ko": "지상국 GUI: x/y/z축 풍속, 자세(Real-Time Motion), 통신 상태, 미세먼지 농도를 실시간으로 표시합니다."
         },
         "thumb": "img/cansat/thumbs/04-ground-station-gui.jpg"
       },
@@ -2792,7 +2792,7 @@ window.PROJECTS = [
         "src": "img/cansat/05-wind-vs-dust-analysis.jpg",
         "caption": {
           "en": "Absolute wind speed vs. fine-dust concentration, divided into Pasquill stability sections A-B, B and B-C (paper Fig. 11).",
-          "ko": "절대 풍속과 미세먼지 농도 비교 및 Pasquill 안정도 구간(A-B, B, B-C) 구분 (논문 Fig. 11)."
+          "ko": "Pasquill 안정도 구간(A-B, B, B-C)으로 나눈 절대 풍속과 미세먼지 농도 비교 (논문 그림 11)."
         },
         "thumb": "img/cansat/thumbs/05-wind-vs-dust-analysis.jpg"
       },
@@ -2800,7 +2800,7 @@ window.PROJECTS = [
         "src": "img/cansat/06-image.jpg",
         "caption": {
           "en": "Excellence Award (Creative Division) certificate, 2017 CanSat Competition, awarded by the KAIST President to team UniSat.",
-          "ko": "2017 캔위성 경연대회 우수상(창작부문) 상장, KAIST 총장 명의로 UniSat 팀에 수여."
+          "ko": "KAIST 총장 명의로 UniSat 팀에 수여된 2017 캔위성 경연대회 우수상(창작부문) 상장."
         },
         "thumb": "img/cansat/thumbs/06-image.jpg"
       }
@@ -2837,7 +2837,7 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Kaggle research code competition hosted by Google AI with the University of British Columbia and Czech Technical University, held as part of the CVPR 2022 Image Matching workshop. The goal is to register two photos of the same landmark taken from different viewpoints by predicting their fundamental matrix, scored by mean Average Accuracy (mAA). Competed as the two-person team BeeingBeeing and placed 105th of 643 teams on the private leaderboard (score 0.75574).",
-      "ko": "Google AI가 University of British Columbia, Czech Technical University와 함께 주최하고 CVPR 2022 Image Matching 워크숍과 연계된 Kaggle research code competition입니다. 서로 다른 시점에서 촬영한 같은 랜드마크의 두 사진에 대해 fundamental matrix를 예측해 정합하는 과제이며, mAA(mean Average Accuracy)로 평가합니다. 2인 팀 BeeingBeeing으로 참가해 private leaderboard 643팀 중 105위(점수 0.75574)를 기록했습니다."
+      "ko": "Google AI가 University of British Columbia, Czech Technical University와 함께 주최하고 CVPR 2022 Image Matching 워크숍의 일환으로 열린 Kaggle research code competition입니다. 서로 다른 시점에서 촬영한 같은 랜드마크의 두 사진에 대해 fundamental matrix를 예측해 정합하는 과제이며, mAA(mean Average Accuracy)로 평가합니다. 2인 팀 BeeingBeeing으로 참가해 private leaderboard 643팀 중 105위(점수 0.75574)를 기록했습니다."
     },
     "problem": {
       "en": "Structure-from-Motion needs to know which pixels in two photos show the same 3D point. Internet photo collections vary widely in viewpoint, lighting, weather, occlusion and filters, and the test pairs were taken at least 24 hours (sometimes months or years) apart, which makes robust registration hard.",
@@ -2845,7 +2845,7 @@ window.PROJECTS = [
     },
     "solution": {
       "en": "A Kaggle Notebook pipeline that matches each image pair and estimates its fundamental matrix, which encodes the relative camera pose the competition scores.",
-      "ko": "각 이미지 쌍을 매칭하고, 대회가 평가하는 상대 카메라 자세를 담은 fundamental matrix를 추정하는 Kaggle Notebook 파이프라인."
+      "ko": "각 이미지 쌍을 매칭하고, 대회 평가 대상인 상대 카메라 자세를 담은 fundamental matrix를 추정하는 Kaggle Notebook 파이프라인입니다."
     },
     "approach": [
       {
@@ -2855,7 +2855,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The task is relative pose estimation. Training scenes provide camera intrinsics K and extrinsics R, T, and the target is the fundamental matrix F. Scoring is mAA over ten rotation/translation threshold pairs (1°/20 cm to 10°/5 m), averaged per scene.",
-          "ko": "과제는 relative pose estimation 문제. 학습 데이터는 카메라 내부 파라미터 K와 외부 파라미터 R, T를 제공하며 목표는 fundamental matrix F 추정. 평가는 회전/이동 오차 임계값 10쌍(1°/20 cm ~ 10°/5 m)에 대한 mAA를 scene별로 평균."
+          "ko": "과제는 상대 자세 추정(relative pose estimation) 문제입니다. 학습 데이터는 카메라 내부 파라미터 K와 외부 파라미터 R, T를 제공하며, 목표는 fundamental matrix F를 추정하는 것입니다. 평가는 회전/이동 오차 임계값 10쌍(1°/20 cm ~ 10°/5 m)에 대한 mAA를 scene별로 구해 평균합니다."
         }
       },
       {
@@ -2865,7 +2865,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Established pixel correspondences between the two views of each pair. This image-registration step links the same physical points across photos.",
-          "ko": "각 이미지 쌍에서 동일한 물리적 지점을 가리키는 픽셀 대응점을 찾는 image registration 단계."
+          "ko": "각 이미지 쌍의 두 시점 사이에서 픽셀 대응점을 찾았습니다. 이 image registration 단계에서 여러 사진에 걸쳐 동일한 물리적 지점을 연결합니다."
         }
       },
       {
@@ -2875,7 +2875,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Estimated F for roughly 10,000 hidden test pairs and wrote each one to submission.csv as a 3×3 matrix flattened in row-major order.",
-          "ko": "약 10,000개의 hidden test 이미지 쌍에 대해 F를 추정하고, 3×3 행렬을 row-major로 펼쳐 submission.csv에 기록."
+          "ko": "비공개 test 이미지 쌍 약 10,000개에 대해 F를 추정하고, 각 3×3 행렬을 row-major 순서로 펼쳐 submission.csv에 기록했습니다."
         }
       },
       {
@@ -2885,22 +2885,22 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Submitted through Kaggle Notebooks under code-competition limits (internet disabled, runtime of 9 h or less). The team made 8 submissions before the June 2, 2022 deadline.",
-          "ko": "인터넷 차단, 실행 시간 9시간 이하의 code competition 조건에서 Kaggle Notebook으로 제출. 2022년 6월 2일 마감까지 총 8회 제출."
+          "ko": "인터넷 차단, 실행 시간 9시간 이하라는 code competition 조건에 맞춰 Kaggle Notebook으로 제출했습니다. 2022년 6월 2일 마감까지 팀은 총 8회 제출했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Private leaderboard: rank 105 of 643 teams, score 0.75574 (mAA)",
-        "ko": "Private leaderboard 643팀 중 105위, 점수 0.75574 (mAA)"
+        "ko": "Private leaderboard에서 643팀 중 105위(점수 0.75574, mAA)를 기록했습니다."
       },
       {
         "en": "Public leaderboard: rank 99, score 0.75335",
-        "ko": "Public leaderboard 99위, 점수 0.75335"
+        "ko": "Public leaderboard에서는 99위(점수 0.75335)를 기록했습니다."
       },
       {
         "en": "8 submissions as a two-person team",
-        "ko": "2인 팀으로 총 8회 제출"
+        "ko": "2인 팀으로 총 8회 제출했습니다."
       }
     ],
     "tech": [
@@ -2967,11 +2967,11 @@ window.PROJECTS = [
     },
     "problem": {
       "en": "Early in the pandemic, scarce data fueled misinformation, such as claims that alcohol helps prevent COVID-19, that salt water can be used for disinfection, or that a hair dryer could kill the virus. Once enough data had accumulated, the team set out to test common questions against the data instead of rumors.",
-      "ko": "코로나 발생 초기에는 정보 부족으로 '알코올이 예방에 좋다', '소금물로 방역할 수 있다', '드라이기로 바이러스를 죽일 수 있다' 같은 유언비어가 퍼졌습니다. 어느 정도 데이터가 쌓인 시점에서, 평소 궁금했던 점을 가설로 세우고 데이터로 검증하고자 했습니다."
+      "ko": "코로나 발생 초기에는 데이터가 부족해 '알코올이 예방에 좋다', '소금물로 소독할 수 있다', '드라이기로 바이러스를 죽일 수 있다' 같은 잘못된 정보가 퍼졌습니다. 데이터가 충분히 쌓인 뒤, 팀은 흔히 궁금해하던 질문을 소문이 아닌 데이터로 검증하고자 했습니다."
     },
     "solution": {
       "en": "Three hypotheses, each verified with visualizations: (1) if COVID-19 were deadlier for one sex, that sex would show a higher fatality rate; (2) regional differences in medical infrastructure would change confirmation and recovery rates; (3) the high share of cases among people in their 20s is due to mobility.",
-      "ko": "세 가지 가설을 세우고 각각 시각화로 검증: (1) 특정 성별에 더 치명적이라면 해당 성별의 치명률이 더 높을 것이다, (2) 지역별 의료 인프라 차이에 따라 확진률·완치율에 차이가 있을 것이다, (3) 20대 확진 비율이 높은 것은 유동성 때문이다."
+      "ko": "다음 세 가지 가설을 세우고 각각 시각화로 검증했습니다. (1) '특정 성별에 더 치명적이라면 그 성별의 치명률이 더 높을 것이다', (2) '지역별 의료 인프라 차이에 따라 확진률·완치율이 달라질 것이다', (3) '20대 확진 비율이 높은 것은 유동성 때문이다'."
     },
     "approach": [
       {
@@ -2981,7 +2981,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Reviewed ten tables: Case, PatientInfo, PatientRoute, Time, TimeAge, TimeGender, TimeProvince, Region, Weather and SearchTrend. Together they cover infection routes, patients, time series by age/sex/province, regions, weather and search trends.",
-          "ko": "감염 경로, 환자 정보·경로, 연령·성별·지역별 시계열, 지역 정보, 날씨, 검색 트렌드를 담은 10개 테이블(Case, PatientInfo, PatientRoute, Time, TimeAge, TimeGender, TimeProvince, Region, Weather, SearchTrend) 구성 파악."
+          "ko": "Case, PatientInfo, PatientRoute, Time, TimeAge, TimeGender, TimeProvince, Region, Weather, SearchTrend의 10개 테이블을 검토했습니다. 이 테이블들은 감염 경로, 환자 정보와 이동 경로, 연령·성별·지역별 시계열, 지역 정보, 날씨, 검색 트렌드를 담고 있습니다."
         }
       },
       {
@@ -2991,7 +2991,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Turned everyday questions into three testable hypotheses on sex, region and age.",
-          "ko": "평소 궁금했던 질문을 성별·지역·연령에 대한 세 가지 검증 가능한 가설로 정리."
+          "ko": "일상적인 궁금증을 성별·지역·연령에 대한 세 가지 검증 가능한 가설로 정리했습니다."
         }
       },
       {
@@ -3001,7 +3001,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Compared cumulative and daily confirmed/death ratios, recovery periods and average/cumulative contact counts by sex.",
-          "ko": "성별 누적·일별 확진자 및 사망자 비율, 회복 기간, 평균·누적 접촉자 수 비교."
+          "ko": "성별에 따른 누적·일별 확진자 및 사망자 비율, 회복 기간, 평균·누적 접촉자 수를 비교했습니다."
         }
       },
       {
@@ -3011,7 +3011,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Mapped confirmed, released and deceased counts by district (June 2020) and plotted cumulative cases by province. Correlation heatmaps then related medical infrastructure and population density to testing/recovery speed and to infection routes.",
-          "ko": "2020년 6월 기준 지역별 확진·완치·사망자 지도와 지역별 누적 확진자 그래프를 그리고, 의료 인프라·인구 밀도와 검진·회복 속도 및 감염 경로의 상관관계를 heatmap으로 분석."
+          "ko": "2020년 6월 기준 지역별 확진·완치·사망자 수를 지도로 나타내고, 지역별 누적 확진자 그래프를 그렸습니다. 이어 상관관계 히트맵으로 의료 인프라·인구 밀도와 검진·회복 속도, 감염 경로 사이의 관계를 분석했습니다."
         }
       },
       {
@@ -3021,7 +3021,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Tracked age-group shares over time and broke down infection routes for people in their 20s, 50s and older, and 80s. Mobility by age was estimated from telecom data, then compared with contacts and the spreader-to-patient ratio.",
-          "ko": "연령별 확진자 비율 추이, 20대·50대 이상·80대의 감염 경로, 통신 데이터 기반 연령별 유동성, 연령별 접촉자 수와 확진자 대비 전파자 비율 분석."
+          "ko": "연령대별 확진자 비율 추이를 살피고, 20대·50대 이상·80대의 감염 경로를 분석했습니다. 통신 데이터로 연령별 유동성을 추정한 뒤 접촉자 수, 확진자 대비 전파자 비율과 비교했습니다."
         }
       },
       {
@@ -3031,32 +3031,32 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Summarized each hypothesis as supported (O) or rejected (X) based on the visual evidence.",
-          "ko": "시각화 결과를 근거로 각 가설의 채택(O)/기각(X) 정리."
+          "ko": "시각화 결과를 근거로 각 가설의 채택(O)·기각(X) 여부를 정리했습니다."
         }
       }
     ],
     "results": [
       {
         "en": "Sex: the hypothesis that COVID-19 is deadlier for one sex was rejected. Both sexes averaged about 2 deaths per day, and average recovery took 24.5 days (female) vs. 24.9 days (male).",
-        "ko": "성별: 남녀 모두 하루 평균 사망자 약 2명, 평균 회복 기간 여성 24.5일·남성 24.9일로 특정 성별에 더 치명적이라는 가설은 기각."
+        "ko": "성별: 특정 성별에 더 치명적이라는 가설은 기각했습니다. 남녀 모두 하루 평균 사망자가 약 2명이었고, 평균 회복 기간은 여성 24.5일, 남성 24.9일이었습니다."
       },
       {
         "en": "Men averaged 22 contacts vs. 15 for women, pointing to more activity and greater exposure in spreading.",
-        "ko": "평균 접촉자 수 남성 22명·여성 15명으로 남성의 활동량과 전파 노출이 더 컸음."
+        "ko": "평균 접촉자 수는 남성 22명, 여성 15명으로, 남성의 활동량이 많고 전파 과정에서 노출이 더 컸음을 시사합니다."
       },
       {
         "en": "Region: medical infrastructure and population density showed almost no correlation (|r| < 0.2) with testing and recovery speed. Density did correlate with specific infection routes: Guro call center 0.77, overseas 0.59, church 0.53.",
-        "ko": "지역: 의료 인프라·인구 밀도와 검진·회복 속도의 상관관계는 |r| < 0.2로 거의 없었으나, 인구 밀도는 구로 콜센터(0.77), 해외 유입(0.59), 교회(0.53) 등 특정 감염 경로와 상관관계를 보임."
+        "ko": "지역: 의료 인프라·인구 밀도와 검진·회복 속도 사이에는 상관관계가 거의 없었습니다(|r| < 0.2). 반면 인구 밀도는 특정 감염 경로와 상관관계를 보였습니다(구로 콜센터 0.77, 해외 유입 0.59, 교회 0.53)."
       },
       {
         "en": "Age: people in their 20s had the most cases, yet mobility was highest in the 50s and contacts highest among teens, so the mobility hypothesis was rejected. Cluster infections in dense, enclosed settings (nursing hospitals, silver towns, call centers) mattered more, and deaths were highest among people in their 80s.",
-        "ko": "연령: 확진자는 20대가 가장 많았지만 유동성은 50대, 접촉자 수는 10대가 가장 높아 유동성 가설은 기각. 요양병원·실버타운·콜센터 등 밀집·밀폐 공간의 집단 감염 영향이 더 컸고, 사망자는 80대가 가장 많았음."
+        "ko": "연령: 확진자는 20대가 가장 많았지만 유동성은 50대, 접촉자 수는 10대가 가장 높아 유동성 가설은 기각했습니다. 요양병원·실버타운·콜센터 같은 밀집·밀폐 공간의 집단 감염 영향이 더 컸으며, 사망자는 80대가 가장 많았습니다."
       }
     ],
     "contributions": [
       {
-        "en": "Led the four-person team as team lead",
-        "ko": "4인 팀의 팀장으로 프로젝트 리드"
+        "en": "Led the four-person team as team lead.",
+        "ko": "4인 팀의 팀장으로 프로젝트를 이끌었습니다."
       }
     ],
     "tech": [
@@ -3078,7 +3078,7 @@ window.PROJECTS = [
         "src": "img/covid-eda/01-regional-maps.jpg",
         "caption": {
           "en": "Tile-grid maps of South Korea showing confirmed, released and deceased cases by district as of June 2020; Daegu and Gyeongbuk stand out.",
-          "ko": "2020년 6월 기준 지역별 확진자·완치자·사망자 수를 표시한 타일 그리드 지도. 대구·경북이 두드러짐."
+          "ko": "2020년 6월 기준 지역별 확진자·완치자·사망자 수를 표시한 국내 타일 그리드 지도로, 대구·경북이 두드러집니다."
         },
         "thumb": "img/covid-eda/thumbs/01-regional-maps.jpg"
       },
@@ -3086,7 +3086,7 @@ window.PROJECTS = [
         "src": "img/covid-eda/02-correlation-heatmap.jpg",
         "caption": {
           "en": "Correlation heatmap of infection routes, medical infrastructure and population density. Density correlates with the Guro call center (0.77), overseas (0.59) and church (0.53) routes.",
-          "ko": "감염 경로·의료 인프라·인구 밀도 상관관계 heatmap. 인구 밀도는 구로 콜센터(0.77), 해외 유입(0.59), 교회(0.53) 경로와 상관관계를 보임."
+          "ko": "감염 경로·의료 인프라·인구 밀도의 상관관계 히트맵입니다. 인구 밀도는 구로 콜센터(0.77), 해외 유입(0.59), 교회(0.53) 경로와 상관관계를 보입니다."
         },
         "thumb": "img/covid-eda/thumbs/02-correlation-heatmap.jpg"
       },
@@ -3094,7 +3094,7 @@ window.PROJECTS = [
         "src": "img/covid-eda/03-age-share-over-time.jpg",
         "caption": {
           "en": "Cumulative confirmed cases stacked by age group (Mar–Apr 2020); people in their 20s make up the largest share.",
-          "ko": "연령대별 누적 확진자 추이(2020년 3–4월). 20대 비율이 가장 높음."
+          "ko": "연령대별로 쌓아 올린 누적 확진자 추이(2020년 3–4월)로, 20대 비중이 가장 큽니다."
         },
         "thumb": "img/covid-eda/thumbs/03-age-share-over-time.jpg"
       },
@@ -3102,7 +3102,7 @@ window.PROJECTS = [
         "src": "img/covid-eda/04-spreaders-by-age.jpg",
         "caption": {
           "en": "Confirmed patients vs. spreaders per age group with their ratios; people in their 50s account for the largest share of all spreaders (red line).",
-          "ko": "연령대별 확진자·전파자 수와 비율. 전체 전파자 중 50대 비중이 가장 높음(빨간 선)."
+          "ko": "연령대별 확진자·전파자 수와 비율로, 전체 전파자 중 50대 비중이 가장 큽니다(빨간 선)."
         },
         "thumb": "img/covid-eda/thumbs/04-spreaders-by-age.jpg"
       },
@@ -3118,7 +3118,7 @@ window.PROJECTS = [
         "src": "img/covid-eda/06-dataset-tables.jpg",
         "caption": {
           "en": "The ten COVID-19 data tables used in the analysis (Case, PatientInfo, PatientRoute, Time, TimeAge, TimeGender, TimeProvince, Region, Weather, SearchTrend).",
-          "ko": "분석에 사용한 10개 COVID-19 데이터 테이블 구성."
+          "ko": "분석에 사용한 COVID-19 데이터 테이블 10종(Case, PatientInfo, PatientRoute, Time, TimeAge, TimeGender, TimeProvince, Region, Weather, SearchTrend)."
         },
         "thumb": "img/covid-eda/thumbs/06-dataset-tables.jpg"
       }

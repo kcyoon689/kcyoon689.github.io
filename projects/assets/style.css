@@ -447,3 +447,7 @@ body[data-slug] .topbar .wrap, body[data-slug] .site-footer .wrap { max-width: 9
   .pager .next { grid-column: 1; }
   .info-card, .block { padding: 1rem; }
 }
+
+/* mono icons sit on an inverted background inside primary buttons */
+.btn.primary .ico.mono { filter: invert(1); }
+body.dark-mode .btn.primary .ico.mono { filter: none; }
