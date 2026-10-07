@@ -18,7 +18,15 @@
     notion: { src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" },
     kaggle: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kaggle.svg", style: "filter: invert(52%) sepia(90%) saturate(1500%) hue-rotate(160deg) brightness(95%);" },
     drive: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googledrive.svg", mono: true },
-    paper: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlescholar.svg", mono: true }
+    paper: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/arxiv.svg", style: "filter: invert(16%) sepia(90%) saturate(4000%) hue-rotate(350deg) brightness(85%);" },
+    docker: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg", style: "filter: invert(45%) sepia(90%) saturate(2000%) hue-rotate(190deg) brightness(95%);" }
+  };
+  // inline icons for generic link types (stroke follows the text color)
+  var SVG = {
+    doc: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
+    slides: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>',
+    demo: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+    other: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>'
   };
 
   var LINK_LABEL = {
@@ -27,6 +35,9 @@
     notion: { en: "Notion", ko: "Notion" },
     demo: { en: "Live Demo", ko: "데모" },
     paper: { en: "Paper", ko: "논문" },
+    doc: { en: "Document", ko: "문서" },
+    slides: { en: "Slides", ko: "발표 자료" },
+    docker: { en: "Docker Hub", ko: "Docker Hub" },
     drive: { en: "Project file", ko: "프로젝트 자료" },
     kaggle: { en: "Kaggle", ko: "Kaggle" },
     other: { en: "Link", ko: "링크" }
@@ -92,10 +103,13 @@
   }
   function icon(type) {
     var i = ICONS[type];
-    if (!i) return '<span aria-hidden="true">🔗</span>';
+    if (!i) return SVG[type] || SVG.other;
     return '<img class="ico' + (i.mono ? " mono" : "") + '" src="' + i.src + '" alt="" width="15" height="15"' + (i.style ? ' style="' + i.style + '"' : "") + ">";
   }
-  function linkLabel(l) { return l.label ? { en: l.label, ko: l.label } : (LINK_LABEL[l.type] || LINK_LABEL.other); }
+  function linkLabel(l) {
+    if (!l.label) return LINK_LABEL[l.type] || LINK_LABEL.other;
+    return typeof l.label === "string" ? { en: l.label, ko: l.label } : l.label;
+  }
   function extAttrs() { return ' target="_blank" rel="noopener"'; }
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 
@@ -159,10 +173,11 @@
       var media = c
         ? '<img src="' + src(c) + '" alt="" loading="lazy" decoding="async">'
         : placeholder(p);
-      var links = (p.links || []).map(function (l) {
+      var seen = {};
+      var links = (p.links || []).filter(function (l) { var k = l.type; if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
         return '<a class="icon-link" href="' + esc(l.url) + '"' + extAttrs() + ' title="' + esc(plain(linkLabel(l), "en")) + '" aria-label="' + esc(plain(linkLabel(l), "en")) + '">' + icon(l.type) + "</a>";
       }).join("");
-      var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : "", has(p.role) ? bi(p.role) : ""].filter(Boolean).join(" · ");
+      var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : ""].filter(Boolean).join(" · ");
       return '<article class="card" data-cat="' + esc(p.category) + '">' +
         '<a class="media" href="' + href + '" tabindex="-1" aria-hidden="true">' + media +
         (c ? '<span class="year-badge">' + esc(p.year) + "</span>" : "") +
@@ -220,7 +235,7 @@
     var images = (p.images || []).slice();
     var links = p.links || [];
 
-    var linkBtns = links.map(function (l, n) {
+    var linkBtns = links.slice(0, 3).map(function (l, n) {
       return '<a class="btn' + (n === 0 ? " primary" : "") + '" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join("");
 
@@ -252,7 +267,7 @@
 
     var gallery = "";
     if (images.length) {
-      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" src="" alt="">' +
+      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" alt="">' +
         (images.length > 1 ? '<button type="button" class="gallery-nav prev" id="galPrev" aria-label="Previous image">&#8249;</button><button type="button" class="gallery-nav next" id="galNext" aria-label="Next image">&#8250;</button>' : "") +
         '<span class="gallery-counter" id="galCounter"></span></div><div class="gallery-caption" id="galCaption"></div>' +
         (images.length > 1 ? '<div class="gallery-thumbs" id="galThumbs">' + images.map(function (im, n) {
@@ -261,21 +276,14 @@
     }
     html += '<div class="detail-top' + (gallery ? "" : " no-gallery") + '">' + gallery + info + "</div>";
 
-    // text blocks in two columns
-    var left = [], right = [];
-    if (has(p.summary)) left.push(block(UI.summary, "<p>" + bi(p.summary) + "</p>"));
-    if (has(p.problem)) left.push(block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
-    if (has(p.contributions)) left.push(block(UI.contrib, "<ul>" + p.contributions.map(function (c) { return "<li>" + bi(c) + "</li>"; }).join("") + "</ul>"));
-    if (has(p.solution)) right.push(block(UI.solution, "<p>" + bi(p.solution) + "</p>"));
-    if (has(p.approach)) right.push(block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
+    // text blocks, in reading order: [Summary | Problem], Solution, Approach, [Results | My contributions]
+    var list = function (items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; };
+    html += pair(has(p.summary) && block(UI.summary, "<p>" + bi(p.summary) + "</p>"), has(p.problem) && block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
+    if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
+    if (has(p.approach)) html += block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
       return "<li>" + (has(s.title) ? "<strong>" + bi(s.title) + ":</strong> " : "") + bi(s.body) + "</li>";
-    }).join("") + "</ol>"));
-    if (has(p.results)) right.push(block(UI.results, "<ul>" + p.results.map(function (r) { return "<li>" + bi(r) + "</li>"; }).join("") + "</ul>"));
-    // balance: if one side is empty, move half over
-    if (!left.length && right.length > 1) left = right.splice(0, Math.ceil(right.length / 2));
-    if (!right.length && left.length > 1) right = left.splice(Math.ceil(left.length / 2));
-    if (left.length + right.length === 1) html += left.concat(right)[0];
-    else if (left.length || right.length) html += '<div class="blocks"><div class="col">' + left.join("") + '</div><div class="col">' + right.join("") + "</div></div>";
+    }).join("") + "</ol>");
+    html += pair(has(p.results) && block(UI.results, list(p.results)), has(p.contributions) && block(UI.contrib, list(p.contributions)));
 
     if (has(p.youtube)) {
       html += block(UI.videos, '<div class="videos">' + p.youtube.map(function (id) {
@@ -312,6 +320,10 @@
       return '<div class="info-row"><div class="info-label">' + bi(label) + '</div><div class="info-value' + (cls ? " " + cls : "") + '">' + value + "</div></div>";
     }
     function block(title, body) { return '<section class="block"><h3>' + bi(title) + "</h3>" + body + "</section>"; }
+    function pair(a, b) {
+      if (a && b) return '<div class="blocks">' + a + b + "</div>";
+      return a || b || "";
+    }
   }
 
   function initGallery(images) {

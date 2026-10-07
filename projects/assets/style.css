@@ -211,7 +211,8 @@ button { font: inherit; }
 .card-title a { color: var(--text); text-decoration: none; }
 .card-title a:hover { text-decoration: underline; }
 .card-meta { font-size: 0.85rem; color: var(--muted); margin: 0; }
-.card-tagline { font-size: 0.9rem; margin: 0; }
+.card-tagline { font-size: 0.9rem; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-meta { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .tag, .pill, .tags .more {
@@ -233,6 +234,7 @@ button { font: inherit; }
 .card-actions { display: flex; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 0.4rem; flex-wrap: wrap; }
 
 .btn {
+  -webkit-tap-highlight-color: transparent;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -252,6 +254,7 @@ button { font: inherit; }
 .btn.xs { padding: 0.25rem 0.6rem; font-size: 0.82rem; }
 
 .icon-link {
+  color: var(--text);
   display: inline-grid;
   place-items: center;
   width: 28px;
@@ -356,8 +359,7 @@ body.dark-mode .ico.mono { filter: invert(1); }
 .info-value.links { gap: 0.4rem; }
 
 .detail-main > .block, #detail > .block { margin-bottom: 1.5rem; }
-.blocks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; }
-.blocks .col { display: flex; flex-direction: column; gap: 1.5rem; }
+.blocks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-bottom: 1.5rem; align-items: start; }
 .block p { margin: 0 0 0.6rem; }
 .block p:last-child { margin-bottom: 0; }
 .block ul, .block ol { margin: 0; padding-left: 1.25rem; }
