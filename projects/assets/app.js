@@ -74,6 +74,8 @@
     draft: { en: "Preview – this page is not listed in the archive yet.", ko: "미리보기 – 아직 아카이브 목록에는 표시되지 않는 페이지입니다." },
     roadmap: { en: "Research roadmap", ko: "연구 로드맵" },
     tracks: { en: "Research tracks", ko: "연구 주제" },
+    pipeline: { en: "Pipeline", ko: "파이프라인" },
+    pubs: { en: "Publications & presentations", ko: "논문 · 발표" },
     hypothesis: { en: "Hypothesis", ko: "가설" },
     design: { en: "Experiment design", ko: "실험 설계" },
     planned: { en: "Planned", ko: "계획" },
@@ -320,10 +322,15 @@
     if (p.roadmap) html += block(UI.roadmap, roadmap(p.roadmap));
     if (has(p.tracks)) html += '<section class="tracks"><h3 class="tracks-title">' + bi(UI.tracks) + "</h3>" + p.tracks.map(track).join("") + "</section>";
     if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
+    if (has(p.pipeline)) html += block(UI.pipeline, '<figure class="dg dg-flow pipeline">' + p.pipeline.map(function (st, i) {
+      return '<div class="dg-node"><span class="rm-id">' + (i + 1) + "</span> " + bi(st) + "</div>" + (i < p.pipeline.length - 1 ? '<span class="dg-arrow" aria-hidden="true">→</span>' : "");
+    }).join("") + "</figure>");
     if (has(p.approach)) html += block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
       return "<li>" + (has(s.title) ? "<strong>" + bi(s.title) + ":</strong> " : "") + bi(s.body) + "</li>";
     }).join("") + "</ol>");
     html += pair(has(p.results) && block(UI.results, list(p.results)), has(p.contributions) && block(UI.contrib, list(p.contributions)));
+    if (has(p.tables)) p.tables.forEach(function (t) { html += block(t.title, table(t)); });
+    if (has(p.publications)) html += block(UI.pubs, list(p.publications));
 
     if (has(p.youtube)) {
       html += block(UI.videos, '<div class="videos">' + p.youtube.map(function (id) {
@@ -402,6 +409,16 @@
         (t.planned ? '<span class="pill">' + bi(UI.planned) + "</span>" : "") + "</div>" +
         '<h4 class="tr-title">' + bi(t.title) + "</h4>" + (lists ? '<div class="tr-cols">' + lists + "</div>" : "") + dg + "</article>";
     }
+    function table(t) {
+      var best = t.best || {};
+      return (has(t.note) ? '<p class="tbl-note">' + bi(t.note) + "</p>" : "") + '<div class="tbl-scroll"><table class="tbl"><thead><tr>' +
+        t.columns.map(function (c) { return "<th>" + bi(c) + "</th>"; }).join("") + "</tr></thead><tbody>" +
+        t.rows.map(function (r, ri) {
+          return '<tr' + (r.highlight ? ' class="hl"' : "") + ">" + r.cells.map(function (c, ci) {
+            return "<td" + (best[ci] === ri ? ' class="best"' : "") + ">" + bi(c) + "</td>";
+          }).join("") + "</tr>";
+        }).join("") + "</tbody></table></div>";
+    }
     function pair(a, b) {
       if (a && b) return '<div class="blocks">' + a + b + "</div>";
       return a || b || "";
@@ -458,6 +475,13 @@
       lb.addEventListener("click", closeLb);
     }
     show(0);
+    // very wide images (e.g. side-by-side comparisons): fit the stage to them instead of letterboxing
+    var probe = new Image();
+    probe.onload = function () {
+      var r = probe.naturalWidth / probe.naturalHeight;
+      if (r > 1.9) document.getElementById("galStage").style.aspectRatio = String(r);
+    };
+    probe.src = src(images[0].src);
   }
 
   /* ---------- boot ---------- */

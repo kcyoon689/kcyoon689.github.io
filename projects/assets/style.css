@@ -589,3 +589,21 @@ body.dark-mode .rm-bar.planned, body.dark-mode .rm-sw.planned {
 
 /* Korean: wrap at spaces, not in the middle of a word */
 .lang-ko { word-break: keep-all; overflow-wrap: break-word; }
+
+/* ---------- pipeline + tables ---------- */
+.dg.pipeline { margin-top: 0; }
+.dg.pipeline .dg-node { flex: 1 1 8rem; text-align: left; }
+.dg.pipeline .rm-id { margin-right: 0.15rem; }
+.tbl-scroll { overflow-x: auto; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 0.88rem; min-width: 26rem; }
+.tbl th { font-family: var(--mono); font-size: 0.7rem; font-weight: normal; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: left; padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--border); }
+.lang-ko .tbl th { letter-spacing: 0.02em; }
+.tbl td { padding: 0.35rem 0.6rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.tbl td:not(:first-child), .tbl th:not(:first-child) { text-align: right; }
+.tbl tr.hl td { background: var(--accent-soft); }
+.tbl td.best { font-weight: bold; color: var(--accent); }
+.tbl-note { font-size: 0.85rem; color: var(--muted); margin: 0 0 0.6rem !important; }
+@media (max-width: 640px) {
+  .dg.pipeline { flex-direction: column; align-items: stretch; }
+  .dg.pipeline .dg-arrow { transform: rotate(90deg); align-self: center; }
+}
