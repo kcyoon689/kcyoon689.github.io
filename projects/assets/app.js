@@ -307,9 +307,13 @@
 
     var gallery = "";
     if (images.length) {
-      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" alt="">' +
-        (images.length > 1 ? '<button type="button" class="gallery-nav prev" id="galPrev" aria-label="Previous image">&#8249;</button><button type="button" class="gallery-nav next" id="galNext" aria-label="Next image">&#8250;</button>' : "") +
-        '<span class="gallery-counter" id="galCounter"></span></div><div class="gallery-caption" id="galCaption"></div>' +
+      // arrows and counter sit under the image so they never cover figure labels
+      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" alt=""></div>' +
+        '<div class="gallery-bar"><div class="gallery-caption" id="galCaption"></div><div class="gallery-ctrl">' +
+        (images.length > 1 ? '<button type="button" class="gallery-nav prev" id="galPrev" aria-label="Previous image">&#8249;</button>' : "") +
+        '<span class="gallery-counter" id="galCounter"></span>' +
+        (images.length > 1 ? '<button type="button" class="gallery-nav next" id="galNext" aria-label="Next image">&#8250;</button>' : "") +
+        "</div></div>" +
         (images.length > 1 ? '<div class="gallery-thumbs" id="galThumbs">' + images.map(function (im, n) {
           return '<button type="button" data-i="' + n + '" aria-label="Image ' + (n + 1) + '"><img src="' + src(im.thumb || im.src) + '" alt="" loading="lazy"></button>';
         }).join("") + "</div>" : "") + "</div>";
@@ -474,14 +478,13 @@
       });
       lb.addEventListener("click", closeLb);
     }
+    // very wide images (figures, side-by-side comparisons): fit the stage to them instead of letterboxing
+    var stage = document.getElementById("galStage");
+    img.addEventListener("load", function () {
+      var r = img.naturalWidth / img.naturalHeight;
+      stage.style.aspectRatio = r > 1.9 ? String(Math.min(r, 4)) : "";
+    });
     show(0);
-    // very wide images (e.g. side-by-side comparisons): fit the stage to them instead of letterboxing
-    var probe = new Image();
-    probe.onload = function () {
-      var r = probe.naturalWidth / probe.naturalHeight;
-      if (r > 1.9) document.getElementById("galStage").style.aspectRatio = String(r);
-    };
-    probe.src = src(images[0].src);
   }
 
   /* ---------- boot ---------- */
