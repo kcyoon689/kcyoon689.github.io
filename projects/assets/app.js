@@ -13,12 +13,19 @@
   ];
 
   var ICONS = {
-    github: { src: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", mono: true },
-    youtube: { src: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg", style: "filter: invert(13%) sepia(98%) saturate(7150%) hue-rotate(358deg) brightness(89%) contrast(95%);" },
+    github: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg", mono: true },
+    youtube: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg", style: "filter: invert(13%) sepia(98%) saturate(7150%) hue-rotate(358deg) brightness(89%) contrast(95%);" },
     notion: { src: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" },
-    kaggle: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/kaggle.svg", style: "filter: invert(52%) sepia(90%) saturate(1500%) hue-rotate(160deg) brightness(95%);" },
+    kaggle: { src: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/svgs/brands/kaggle.svg", style: "filter: invert(52%) sepia(90%) saturate(1500%) hue-rotate(160deg) brightness(95%);" },
     drive: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googledrive.svg", mono: true },
-    paper: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlescholar.svg", mono: true }
+    docker: { src: "https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/docker.svg", style: "filter: invert(45%) sepia(90%) saturate(2000%) hue-rotate(190deg) brightness(95%);" }
+  };
+  // inline icons for generic link types (stroke follows the text color)
+  var SVG = {
+    doc: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>',
+    slides: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>',
+    demo: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>',
+    other: '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>'
   };
 
   var LINK_LABEL = {
@@ -27,6 +34,9 @@
     notion: { en: "Notion", ko: "Notion" },
     demo: { en: "Live Demo", ko: "데모" },
     paper: { en: "Paper", ko: "논문" },
+    doc: { en: "Document", ko: "문서" },
+    slides: { en: "Slides", ko: "발표 자료" },
+    docker: { en: "Docker Hub", ko: "Docker Hub" },
     drive: { en: "Project file", ko: "프로젝트 자료" },
     kaggle: { en: "Kaggle", ko: "Kaggle" },
     other: { en: "Link", ko: "링크" }
@@ -61,6 +71,30 @@
     empty: { en: "No projects in this category yet.", ko: "이 분야의 프로젝트가 아직 없습니다." }
   };
 
+  // Korean labels for topic pills (anything missing stays as written)
+  var TOPIC_KO = {
+    "LLM": "LLM", "Document AI": "문서 AI", "Document Parsing": "문서 파싱", "Summarization": "요약", "Q&A": "질의응답",
+    "Machine Translation": "기계 번역", "Semantic Highlighting": "시맨틱 하이라이트", "Full-stack": "풀스택",
+    "Sensor Fusion": "센서 퓨전", "Camera–LiDAR Calibration": "카메라–LiDAR 캘리브레이션", "Object Detection": "객체 탐지",
+    "Object Tracking": "객체 추적", "Mobile Robot": "모바일 로봇", "Anomaly Detection": "이상 탐지",
+    "Industrial Inspection": "산업 검사", "Model Serving": "모델 서빙", "Experiment Tracking": "실험 관리",
+    "Model Registry": "모델 레지스트리", "ONNX Export": "ONNX 변환", "Image Classification": "이미지 분류",
+    "Accessibility": "접근성", "Mobile App": "모바일 앱", "Underwater Imagery": "수중 영상", "Cross-validation": "교차 검증",
+    "Data Split": "데이터 분할", "Dataset Bias": "데이터셋 편향", "Robustness": "강건성", "Background Dependence": "배경 의존성",
+    "Kalman Filter": "칼만 필터", "Camera Calibration": "카메라 캘리브레이션", "Depth Estimation": "깊이 추정",
+    "Gesture Recognition": "제스처 인식", "Computer Vision": "컴퓨터 비전", "PID control": "PID 제어",
+    "Master–slave teleoperation": "마스터–슬레이브 원격 조작", "Motion record & playback": "동작 녹화·재생",
+    "Servo PWM": "서보 PWM", "3D printing": "3D 프린팅", "Embedded firmware": "임베디드 펌웨어",
+    "Groundwater monitoring": "지하수 모니터링", "Current-loop sensing": "전류 루프 센싱", "Data logging": "데이터 로깅",
+    "Instrumentation": "계측", "PWM control": "PWM 제어", "Stepper motor control": "스테핑 모터 제어",
+    "Digital system design": "디지털 시스템 설계", "CanSat": "캔위성", "Atmospheric stability": "대기 안정도",
+    "Fine dust": "미세먼지", "Attitude correction": "자세 보정", "Wireless telemetry": "무선 텔레메트리",
+    "Parachute design": "낙하산 설계", "Image Matching": "이미지 매칭", "Structure-from-Motion": "SfM",
+    "Epipolar Geometry": "에피폴라 기하", "Fundamental Matrix": "기본 행렬", "Relative Pose Estimation": "상대 자세 추정",
+    "Exploratory Data Analysis": "탐색적 데이터 분석", "Data Visualization": "데이터 시각화",
+    "Correlation Analysis": "상관 분석", "Hypothesis Testing": "가설 검정"
+  };
+
   /* ---------- helpers ---------- */
   function esc(s) {
     return String(s == null ? "" : s)
@@ -92,10 +126,13 @@
   }
   function icon(type) {
     var i = ICONS[type];
-    if (!i) return '<span aria-hidden="true">🔗</span>';
+    if (!i) return SVG[type === "paper" ? "doc" : type] || SVG.other;
     return '<img class="ico' + (i.mono ? " mono" : "") + '" src="' + i.src + '" alt="" width="15" height="15"' + (i.style ? ' style="' + i.style + '"' : "") + ">";
   }
-  function linkLabel(l) { return l.label ? { en: l.label, ko: l.label } : (LINK_LABEL[l.type] || LINK_LABEL.other); }
+  function linkLabel(l) {
+    if (!l.label) return LINK_LABEL[l.type] || LINK_LABEL.other;
+    return typeof l.label === "string" ? { en: l.label, ko: l.label } : l.label;
+  }
   function extAttrs() { return ' target="_blank" rel="noopener"'; }
   function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
 
@@ -144,6 +181,8 @@
     var grid = document.getElementById("projectsGrid");
     var tabs = document.getElementById("filterTabs");
     if (!grid || !tabs) return;
+    window.__titleFor = function (lang) { return lang === "ko" ? "프로젝트 – 김채윤" : "Projects – Chaeyoon Kim"; };
+    document.title = window.__titleFor(document.body.classList.contains("lang-ko") ? "ko" : "en");
 
     var counts = { all: PROJECTS.length };
     PROJECTS.forEach(function (p) { counts[p.category] = (counts[p.category] || 0) + 1; });
@@ -159,10 +198,11 @@
       var media = c
         ? '<img src="' + src(c) + '" alt="" loading="lazy" decoding="async">'
         : placeholder(p);
-      var links = (p.links || []).map(function (l) {
+      var seen = {};
+      var links = (p.links || []).filter(function (l) { var k = l.type; if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
         return '<a class="icon-link" href="' + esc(l.url) + '"' + extAttrs() + ' title="' + esc(plain(linkLabel(l), "en")) + '" aria-label="' + esc(plain(linkLabel(l), "en")) + '">' + icon(l.type) + "</a>";
       }).join("");
-      var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : "", has(p.role) ? bi(p.role) : ""].filter(Boolean).join(" · ");
+      var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : ""].filter(Boolean).join(" · ");
       return '<article class="card" data-cat="' + esc(p.category) + '">' +
         '<a class="media" href="' + href + '" tabindex="-1" aria-hidden="true">' + media +
         (c ? '<span class="year-badge">' + esc(p.year) + "</span>" : "") +
@@ -201,6 +241,7 @@
     });
     bindTagToggles(grid);
     apply((location.hash || "").replace("#", "") || "all");
+    window.addEventListener("hashchange", function () { apply(location.hash.slice(1) || "all"); });
   }
 
   /* ---------- detail ---------- */
@@ -214,24 +255,24 @@
       return;
     }
     var p = PROJECTS[idx];
-    window.__titleFor = function (lang) { return plain(p.title, lang) + " – Chaeyoon Kim"; };
+    window.__titleFor = function (lang) { return plain(p.title, lang) + (lang === "ko" ? " – 김채윤" : " – Chaeyoon Kim"); };
     document.title = window.__titleFor(document.body.classList.contains("lang-ko") ? "ko" : "en");
 
     var images = (p.images || []).slice();
     var links = p.links || [];
 
-    var linkBtns = links.map(function (l, n) {
+    var linkBtns = links.slice(0, 3).map(function (l, n) {
       return '<a class="btn' + (n === 0 ? " primary" : "") + '" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join("");
 
     var meta = [];
-    if (p.period || p.year) meta.push("<span><strong>" + esc(p.period || p.year) + "</strong></span>");
+    if (p.period || p.year) meta.push("<span><strong>" + bi(p.period || p.year) + "</strong></span>");
     if (has(p.team)) meta.push("<span>" + bi(p.team) + "</span>");
     if (has(p.role)) meta.push("<span>" + bi(p.role) + "</span>");
 
     var html = "";
     html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + BASE + '../cv/">' + bi(UI.cv) + '</a><span>/</span><a href="' + BASE + '">' + bi(UI.projects) +
-      '</a><span>/</span><span class="current">' + bi(p.title) + "</span></nav>";
+      '</a><span class="current-sep">/</span><span class="current">' + bi(p.title) + "</span></nav>";
     html += '<header class="hero"><span class="eyebrow">' + bi(catLabel(p)) + (p.year ? " · " + esc(p.year) : "") + "</span>" +
       '<h1 class="hero-title">' + bi(p.title) + "</h1>" +
       (has(p.tagline) ? '<p class="hero-tagline">' + bi(p.tagline) + "</p>" : "") +
@@ -240,11 +281,12 @@
 
     // gallery + info card
     var info = '<aside class="info-card"><h3>' + bi(UI.info) + "</h3>";
-    info += row(p.period ? UI.period : UI.year, "<span>" + esc(p.period || p.year) + "</span>");
-    if (has(p.team) || has(p.role)) info += row(UI.team, "<span>" + [has(p.team) ? bi(p.team) : "", has(p.role) ? bi(p.role) : ""].filter(Boolean).join(" · ") + "</span>");
+    info += row(p.period ? UI.period : UI.year, "<span>" + bi(p.period || p.year) + "</span>");
+    if (has(p.team)) info += row(UI.team, "<span>" + bi(p.team) + "</span>");
+    if (has(p.role)) info += row(UI.role, "<span>" + bi(p.role) + "</span>");
     info += row(UI.type, '<span class="pill">' + bi(catLabel(p)) + "</span>");
     if (has(p.tech)) info += row(UI.stack, p.tech.map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join(""));
-    if (has(p.topics)) info += row(UI.topics, p.topics.map(function (t) { return '<span class="pill">' + esc(t) + "</span>"; }).join(""));
+    if (has(p.topics)) info += row(UI.topics, p.topics.map(function (t) { return '<span class="pill">' + bi({ en: t, ko: TOPIC_KO[t] || t }) + "</span>"; }).join(""));
     if (links.length) info += row(UI.links, links.map(function (l) {
       return '<a class="btn xs" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join(""), "links");
@@ -252,30 +294,23 @@
 
     var gallery = "";
     if (images.length) {
-      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" src="" alt="">' +
+      gallery = '<div class="gallery"><div class="gallery-stage" id="galStage"><img id="galImg" alt="">' +
         (images.length > 1 ? '<button type="button" class="gallery-nav prev" id="galPrev" aria-label="Previous image">&#8249;</button><button type="button" class="gallery-nav next" id="galNext" aria-label="Next image">&#8250;</button>' : "") +
         '<span class="gallery-counter" id="galCounter"></span></div><div class="gallery-caption" id="galCaption"></div>' +
         (images.length > 1 ? '<div class="gallery-thumbs" id="galThumbs">' + images.map(function (im, n) {
-          return '<button type="button" data-i="' + n + '" aria-label="Image ' + (n + 1) + '"><img src="' + src(im.src) + '" alt="" loading="lazy"></button>';
+          return '<button type="button" data-i="' + n + '" aria-label="Image ' + (n + 1) + '"><img src="' + src(im.thumb || im.src) + '" alt="" loading="lazy"></button>';
         }).join("") + "</div>" : "") + "</div>";
     }
     html += '<div class="detail-top' + (gallery ? "" : " no-gallery") + '">' + gallery + info + "</div>";
 
-    // text blocks in two columns
-    var left = [], right = [];
-    if (has(p.summary)) left.push(block(UI.summary, "<p>" + bi(p.summary) + "</p>"));
-    if (has(p.problem)) left.push(block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
-    if (has(p.contributions)) left.push(block(UI.contrib, "<ul>" + p.contributions.map(function (c) { return "<li>" + bi(c) + "</li>"; }).join("") + "</ul>"));
-    if (has(p.solution)) right.push(block(UI.solution, "<p>" + bi(p.solution) + "</p>"));
-    if (has(p.approach)) right.push(block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
+    // text blocks, in reading order: [Summary | Problem], Solution, Approach, [Results | My contributions]
+    var list = function (items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; };
+    html += pair(has(p.summary) && block(UI.summary, "<p>" + bi(p.summary) + "</p>"), has(p.problem) && block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
+    if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
+    if (has(p.approach)) html += block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
       return "<li>" + (has(s.title) ? "<strong>" + bi(s.title) + ":</strong> " : "") + bi(s.body) + "</li>";
-    }).join("") + "</ol>"));
-    if (has(p.results)) right.push(block(UI.results, "<ul>" + p.results.map(function (r) { return "<li>" + bi(r) + "</li>"; }).join("") + "</ul>"));
-    // balance: if one side is empty, move half over
-    if (!left.length && right.length > 1) left = right.splice(0, Math.ceil(right.length / 2));
-    if (!right.length && left.length > 1) right = left.splice(Math.ceil(left.length / 2));
-    if (left.length + right.length === 1) html += left.concat(right)[0];
-    else if (left.length || right.length) html += '<div class="blocks"><div class="col">' + left.join("") + '</div><div class="col">' + right.join("") + "</div></div>";
+    }).join("") + "</ol>");
+    html += pair(has(p.results) && block(UI.results, list(p.results)), has(p.contributions) && block(UI.contrib, list(p.contributions)));
 
     if (has(p.youtube)) {
       html += block(UI.videos, '<div class="videos">' + p.youtube.map(function (id) {
@@ -312,6 +347,10 @@
       return '<div class="info-row"><div class="info-label">' + bi(label) + '</div><div class="info-value' + (cls ? " " + cls : "") + '">' + value + "</div></div>";
     }
     function block(title, body) { return '<section class="block"><h3>' + bi(title) + "</h3>" + body + "</section>"; }
+    function pair(a, b) {
+      if (a && b) return '<div class="blocks">' + a + b + "</div>";
+      return a || b || "";
+    }
   }
 
   function initGallery(images) {
@@ -331,6 +370,13 @@
       counter.textContent = (cur + 1) + " / " + images.length;
       caption.innerHTML = bi(im.caption);
       if (thumbs) [].forEach.call(thumbs.children, function (b, i) { b.classList.toggle("active", i === cur); });
+      if (lb && lb.classList.contains("open")) { lbImg.src = img.src; lbImg.alt = img.alt; }
+    }
+    var opener = null;
+    function closeLb() {
+      if (!lb || !lb.classList.contains("open")) return;
+      lb.classList.remove("open");
+      if (opener) opener.focus();
     }
     var prev = document.getElementById("galPrev"), next = document.getElementById("galNext");
     if (prev) prev.addEventListener("click", function () { show(cur - 1); });
@@ -340,14 +386,21 @@
       if (b) show(+b.getAttribute("data-i"));
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && lb) lb.classList.remove("open");
+      if (e.altKey || e.metaKey || e.ctrlKey) return;
+      if (e.key === "Escape") closeLb();
       if (images.length < 2) return;
+      var t = e.target && e.target.tagName;
+      if (t === "INPUT" || t === "TEXTAREA") return;
       if (e.key === "ArrowLeft") show(cur - 1);
       if (e.key === "ArrowRight") show(cur + 1);
     });
     if (lb) {
-      img.addEventListener("click", function () { lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open"); });
-      lb.addEventListener("click", function () { lb.classList.remove("open"); });
+      img.addEventListener("click", function () {
+        opener = document.activeElement;
+        lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open");
+        var c = lb.querySelector(".lightbox-close"); if (c) c.focus();
+      });
+      lb.addEventListener("click", closeLb);
     }
     show(0);
   }

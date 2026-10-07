@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elevator System using FPGA &amp; Atmega328p – Chaeyoon Kim</title>
-  <meta name="description" content="Idea proposal, circuit &amp; system design and Atmega328p coding." />
+  <title>Elevator System using FPGA &amp; ATmega328P – Chaeyoon Kim</title>
+  <meta name="description" content="A 3D-printed three-floor elevator model in which an ATmega328P drives the stepper-motor car and a Xilinx Spartan-3 FPGA generates PWM for the servo door." />
   <link rel="stylesheet" href="../assets/style.css" />
 </head>
 <body class="lang-en" data-base="../" data-slug="fpga-elevator">
+  <script>try { var t = localStorage.getItem("theme"), l = localStorage.getItem("language") || "en"; document.body.className = "lang-" + l + (t === "dark" ? " dark-mode" : ""); document.documentElement.lang = l; } catch (e) {}</script>
   <div class="controls">
     <button id="themeButton" type="button" onclick="toggleTheme()">🌞 Light</button>
     <button id="langButton" type="button" onclick="toggleLanguage()">🇰🇷 KO</button>
@@ -25,14 +26,14 @@
 
   <main class="wrap narrow" id="detail"></main>
 
-  <div class="lightbox" id="lightbox" role="dialog" aria-label="Enlarged image"><button type="button" class="lightbox-close" aria-label="Close">&times;</button><img src="" alt="" /></div>
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Enlarged image"><button type="button" class="lightbox-close" aria-label="Close">&times;</button><img alt="" /></div>
 
   <footer class="site-footer">
     <div class="wrap">
-      <span>© Chaeyoon Kim · <a href="mailto:kcyoun689@gmail.com">kcyoun689@gmail.com</a></span>
+      <span>© <span data-lang="en">Chaeyoon Kim</span><span data-lang="ko">김채윤</span> · <a href="mailto:kcyoun689@gmail.com">kcyoun689@gmail.com</a></span>
       <span class="social">
-        <a class="icon-link" href="https://www.linkedin.com/in/chaeyoon-kim689/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><img class="ico" src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="" width="15" height="15" style="filter: invert(15%) sepia(81%) saturate(622%) hue-rotate(179deg) brightness(94%) contrast(90%);" /></a>
-        <a class="icon-link" href="https://github.com/kcyoon689" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><img class="ico mono" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" width="15" height="15" /></a>
+        <a class="icon-link" href="https://www.linkedin.com/in/chaeyoon-kim689/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><img class="ico li" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg" alt="" width="15" height="15" /></a>
+        <a class="icon-link" href="https://github.com/kcyoon689" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><img class="ico mono" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/github.svg" alt="" width="15" height="15" /></a>
         <a class="icon-link" href="https://scholar.google.com/citations?user=ZWitB3wAAAAJ&hl=ko" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar"><img class="ico mono" src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlescholar.svg" alt="" width="15" height="15" /></a>
         <a class="icon-link" href="https://tinyurl.com/yoonk-archive" target="_blank" rel="noopener" title="Notion Archive" aria-label="Notion Archive"><img class="ico" src="https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png" alt="" width="15" height="15" /></a>
       </span>
