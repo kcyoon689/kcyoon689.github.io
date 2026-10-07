@@ -478,11 +478,11 @@
       });
       lb.addEventListener("click", closeLb);
     }
-    // very wide images (figures, side-by-side comparisons): fit the stage to them instead of letterboxing
+    // very wide or tall images (figures, plots, side-by-side comparisons): fit the stage to them instead of letterboxing
     var stage = document.getElementById("galStage");
     img.addEventListener("load", function () {
       var r = img.naturalWidth / img.naturalHeight;
-      stage.style.aspectRatio = r > 1.9 ? String(Math.min(r, 4)) : "";
+      stage.style.aspectRatio = r > 1.9 ? String(Math.min(r, 4)) : r < 1.45 ? String(Math.max(r, 1)) : "";
     });
     show(0);
   }
