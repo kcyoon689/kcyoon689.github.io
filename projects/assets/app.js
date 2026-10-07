@@ -75,6 +75,7 @@
     roadmap: { en: "Research roadmap", ko: "연구 로드맵" },
     tracks: { en: "Research tracks", ko: "연구 주제" },
     pipeline: { en: "Pipeline", ko: "파이프라인" },
+    equations: { en: "Loss functions", ko: "손실 함수" },
     pubs: { en: "Publications & presentations", ko: "논문 · 발표" },
     hypothesis: { en: "Hypothesis", ko: "가설" },
     design: { en: "Experiment design", ko: "실험 설계" },
@@ -185,7 +186,8 @@
     });
   }
   function placeholder(p) {
-    return '<div class="ph"><span class="ph-cat">' + bi(catLabel(p)) + '</span><span class="ph-year">' + esc(p.year) + "</span></div>";
+    var mono = p.monogram || plain(p.title, "en").split(/[\s–-]+/).filter(Boolean).slice(0, 3).map(function (w) { return w.charAt(0); }).join("").toUpperCase();
+    return '<div class="ph" aria-hidden="true"><span class="ph-mono">' + esc(mono) + "</span></div>";
   }
 
   /* ---------- archive (list) ---------- */
@@ -211,7 +213,7 @@
         ? '<img src="' + src(c) + '" alt="" loading="lazy" decoding="async">'
         : placeholder(p);
       var seen = {};
-      var links = (p.links || []).filter(function (l) { var k = l.type; if (seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
+      var links = (p.links || []).filter(function (l) { var k = l.type; if (l.ref || seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
         return '<a class="icon-link" href="' + esc(l.url) + '"' + extAttrs() + ' title="' + esc(plain(linkLabel(l), "en")) + '" aria-label="' + esc(plain(linkLabel(l), "en")) + '">' + icon(l.type) + "</a>";
       }).join("");
       var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : ""].filter(Boolean).join(" · ");
@@ -223,7 +225,7 @@
         '<div class="card-cat">' + bi(catLabel(p)) + "</div>" +
         '<h3 class="card-title"><a href="' + href + '">' + bi(p.title) + "</a></h3>" +
         (meta ? '<p class="card-meta">' + meta + "</p>" : "") +
-        (has(p.tagline) ? '<p class="card-tagline">' + bi(p.tagline) + "</p>" : "") +
+        (has(p.cardTagline || p.tagline) ? '<p class="card-tagline">' + bi(p.cardTagline || p.tagline) + "</p>" : "") +
         tagsHtml(p.tech, 3) +
         '<div class="card-actions"><a class="btn xs primary" href="' + href + '">' + bi(UI.details) + " →</a>" + links + "</div>" +
         "</div></article>";
@@ -273,14 +275,10 @@
     var images = (p.images || []).slice();
     var links = p.links || [];
 
-    var linkBtns = links.slice(0, 3).map(function (l, n) {
+    // reference links (ref: true) only appear in the info card, not as hero buttons
+    var linkBtns = links.filter(function (l) { return !l.ref; }).slice(0, 3).map(function (l, n) {
       return '<a class="btn' + (n === 0 ? " primary" : "") + '" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join("");
-
-    var meta = [];
-    if (p.period || p.year) meta.push("<span><strong>" + bi(p.period || p.year) + "</strong></span>");
-    if (has(p.team)) meta.push("<span>" + bi(p.team) + "</span>");
-    if (has(p.role)) meta.push("<span>" + bi(p.role) + "</span>");
 
     var html = "";
     if (p.draft) html += '<p class="draft-note">' + bi(UI.draft) + "</p>";
@@ -289,7 +287,6 @@
     html += '<header class="hero"><span class="eyebrow">' + bi(catLabel(p)) + (p.year ? " · " + esc(p.year) : "") + "</span>" +
       '<h1 class="hero-title">' + bi(p.title) + "</h1>" +
       (has(p.tagline) ? '<p class="hero-tagline">' + bi(p.tagline) + "</p>" : "") +
-      (meta.length ? '<div class="hero-meta">' + meta.join("") + "</div>" : "") +
       '<div class="cta-row">' + linkBtns + '<a class="btn" href="' + BASE + '">← ' + bi(UI.allProjects) + "</a></div></header>";
 
     // gallery + info card
@@ -318,17 +315,26 @@
           return '<button type="button" data-i="' + n + '" aria-label="Image ' + (n + 1) + '"><img src="' + src(im.thumb || im.src) + '" alt="" loading="lazy"></button>';
         }).join("") + "</div>" : "") + "</div>";
     }
-    html += '<div class="detail-top' + (gallery ? "" : " no-gallery") + '">' + gallery + info + "</div>";
+    var summary = has(p.summary) ? block(UI.summary, "<p>" + bi(p.summary) + "</p>") : "";
+    var problem = has(p.problem) ? block(UI.problem, "<p>" + bi(p.problem) + "</p>") : "";
+    if (gallery) {
+      html += '<div class="detail-top"><div class="detail-left">' + gallery + summary + "</div>" + info + "</div>" + problem;
+    } else {
+      html += '<div class="detail-top no-gallery">' + info + "</div>" + pair(summary, problem);
+    }
 
-    // text blocks, in reading order: [Summary | Problem], Solution, Approach, [Results | My contributions]
+    // remaining blocks in reading order: Solution, Approach, [Results | My contributions]
     function list(items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; }
-    html += pair(has(p.summary) && block(UI.summary, "<p>" + bi(p.summary) + "</p>"), has(p.problem) && block(UI.problem, "<p>" + bi(p.problem) + "</p>"));
     if (p.roadmap) html += block(UI.roadmap, roadmap(p.roadmap));
     if (has(p.tracks)) html += '<section class="tracks"><h3 class="tracks-title">' + bi(UI.tracks) + "</h3>" + p.tracks.map(track).join("") + "</section>";
     if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
     if (has(p.pipeline)) html += block(UI.pipeline, '<figure class="dg dg-flow pipeline">' + p.pipeline.map(function (st, i) {
       return '<div class="dg-node"><span class="rm-id">' + (i + 1) + "</span> " + bi(st) + "</div>" + (i < p.pipeline.length - 1 ? '<span class="dg-arrow" aria-hidden="true">→</span>' : "");
     }).join("") + "</figure>");
+    if (has(p.equations)) html += block(UI.equations, p.equations.map(function (q) {
+      return '<div class="eq-row">' + (has(q.label) ? '<div class="eq-label">' + bi(q.label) + "</div>" : "") +
+        '<div class="eq" data-tex="' + esc(q.tex) + '">' + esc(q.tex) + "</div></div>";
+    }).join(""));
     if (has(p.approach)) html += block(UI.approach, '<ol class="steps">' + p.approach.map(function (s) {
       return "<li>" + (has(s.title) ? "<strong>" + bi(s.title) + ":</strong> " : "") + bi(s.body) + "</li>";
     }).join("") + "</ol>");
@@ -337,9 +343,12 @@
     if (has(p.publications)) html += block(UI.pubs, list(p.publications));
 
     if (has(p.youtube)) {
-      html += block(UI.videos, '<div class="videos">' + p.youtube.map(function (id) {
-        return '<div class="video"><button type="button" class="video-poster" data-yt="' + esc(id) + '" aria-label="Play video">' +
-          '<img src="https://i.ytimg.com/vi/' + esc(id) + '/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span></button></div>';
+      var vids = p.youtube.map(function (v) { return typeof v === "string" ? { id: v } : v; });
+      var allVertical = vids.every(function (v) { return v.vertical; });
+      html += block(UI.videos, '<div class="videos' + (allVertical ? " vertical" : "") + '">' + vids.map(function (v) {
+        return '<figure class="video-item"><div class="video' + (v.vertical ? " vertical" : "") + '"><button type="button" class="video-poster" data-yt="' + esc(v.id) + '" data-vertical="' + (v.vertical ? 1 : 0) + '" aria-label="Play video">' +
+          '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy"><span class="play"></span></button></div>' +
+          (has(v.caption) ? "<figcaption>" + bi(v.caption) + "</figcaption>" : "") + "</figure>";
       }).join("") + "</div>");
     }
 
@@ -367,6 +376,7 @@
     });
 
     if (images.length) initGallery(images);
+    if (has(p.equations)) renderMath(root);
 
     function row(label, value, cls) {
       return '<div class="info-row"><div class="info-label">' + bi(label) + '</div><div class="info-value' + (cls ? " " + cls : "") + '">' + value + "</div></div>";
@@ -429,6 +439,22 @@
     }
   }
 
+  // KaTeX is loaded only on pages that have equations; the raw TeX stays visible if it fails to load
+  function renderMath(root) {
+    var V = "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/";
+    var css = document.createElement("link");
+    css.rel = "stylesheet"; css.href = V + "katex.min.css";
+    document.head.appendChild(css);
+    var js = document.createElement("script");
+    js.src = V + "katex.min.js";
+    js.onload = function () {
+      [].forEach.call(root.querySelectorAll(".eq[data-tex]"), function (el) {
+        try { window.katex.render(el.getAttribute("data-tex"), el, { displayMode: true, throwOnError: false }); } catch (e) { /* keep raw TeX */ }
+      });
+    };
+    document.head.appendChild(js);
+  }
+
   function initGallery(images) {
     var cur = 0;
     var img = document.getElementById("galImg");
@@ -447,11 +473,30 @@
       caption.innerHTML = bi(im.caption);
       if (thumbs) [].forEach.call(thumbs.children, function (b, i) { b.classList.toggle("active", i === cur); });
       if (lb && lb.classList.contains("open")) { lbImg.src = img.src; lbImg.alt = img.alt; }
+      if (lbCap) lbCap.innerHTML = bi(im.caption);
     }
     var opener = null;
+    var lbCap = null;
+    if (lb) {
+      lbCap = document.createElement("p");
+      lbCap.className = "lb-caption";
+      lb.appendChild(lbCap);
+      if (images.length > 1) {
+        ["prev", "next"].forEach(function (dir) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "lb-nav " + dir;
+          b.setAttribute("aria-label", dir === "prev" ? "Previous image" : "Next image");
+          b.innerHTML = dir === "prev" ? "&#8249;" : "&#8250;";
+          b.addEventListener("click", function (e) { e.stopPropagation(); show(cur + (dir === "prev" ? -1 : 1)); });
+          lb.appendChild(b);
+        });
+      }
+    }
     function closeLb() {
       if (!lb || !lb.classList.contains("open")) return;
       lb.classList.remove("open");
+      document.body.classList.remove("lb-open");
       if (opener) opener.focus();
     }
     var prev = document.getElementById("galPrev"), next = document.getElementById("galNext");
@@ -474,9 +519,10 @@
       img.addEventListener("click", function () {
         opener = document.activeElement;
         lbImg.src = img.src; lbImg.alt = img.alt; lb.classList.add("open");
+        document.body.classList.add("lb-open");
         var c = lb.querySelector(".lightbox-close"); if (c) c.focus();
       });
-      lb.addEventListener("click", closeLb);
+      lb.addEventListener("click", function (e) { if (e.target === lbImg) return; closeLb(); });
     }
     // very wide or tall images (figures, plots, side-by-side comparisons): fit the stage to them instead of letterboxing
     var stage = document.getElementById("galStage");
@@ -485,6 +531,11 @@
       stage.style.aspectRatio = r > 1.9 ? String(Math.min(r, 4)) : r < 1.45 ? String(Math.max(r, 1)) : "";
     });
     show(0);
+    if (thumbs) {
+      var fit = function () { thumbs.classList.toggle("overflowing", thumbs.scrollWidth > thumbs.clientWidth + 1); };
+      fit();
+      window.addEventListener("resize", fit);
+    }
   }
 
   /* ---------- boot ---------- */
