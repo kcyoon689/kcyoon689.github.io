@@ -1667,16 +1667,32 @@ window.PROJECTS = [
         "src": "img/active-learning-pseudo-labeling/01-method-overview.png",
         "thumb": "img/active-learning-pseudo-labeling/thumbs/01-method-overview.jpg",
         "caption": {
-          "en": "Method overview: labeled and unlabeled images (with horizontal flips) train an SSD300 detector that carries a loss prediction module; each cycle the top-K images by predicted loss go to human annotators, confident detections become pseudo-labels, and the rest stay unlabeled.",
+          "en": "Method overview: labeled and unlabeled images (with horizontal flips) train an SSD300 detector that carries a loss prediction module. Each cycle, the top-K images by predicted loss go to human annotators, confident detections become pseudo-labels, and the rest stay unlabeled.",
           "ko": "방법 개요: 라벨 데이터와 라벨 없는 데이터(좌우 반전 포함)로 loss prediction module을 단 SSD300 검출기를 학습합니다. 매 cycle마다 예측 손실 상위 K장은 사람이 라벨링하고, 신뢰도가 높은 검출은 pseudo-label이 되며, 나머지는 라벨 없이 남습니다."
         }
       },
       {
-        "src": "img/active-learning-pseudo-labeling/02-loss-prediction-module.png",
-        "thumb": "img/active-learning-pseudo-labeling/thumbs/02-loss-prediction-module.jpg",
+        "src": "img/active-learning-pseudo-labeling/02-consistency-loss.png",
+        "thumb": "img/active-learning-pseudo-labeling/thumbs/02-consistency-loss.jpg",
+        "caption": {
+          "en": "Consistency loss: an image and its horizontal flip go through the same SSD300. Matched predictions are compared with a symmetric KL divergence for classes and a squared box difference (x-centre negated), then weighted by a ramp-up schedule.",
+          "ko": "Consistency loss: 원본 이미지와 좌우 반전 이미지를 같은 SSD300에 넣고, 매칭된 예측을 클래스는 대칭 KL divergence로, 박스는 x 중심을 부호 반전한 제곱 차이로 비교한 뒤 ramp-up 가중치를 곱합니다."
+        }
+      },
+      {
+        "src": "img/active-learning-pseudo-labeling/03-loss-prediction-module.png",
+        "thumb": "img/active-learning-pseudo-labeling/thumbs/03-loss-prediction-module.jpg",
         "caption": {
           "en": "Loss prediction module on SSD300: Conv4_3, FC7 and Conv9_2 features each pass through GAP → FC(128) → ReLU, are concatenated and mapped to a predicted loss l̂, trained against the true loss with a ranking loss.",
           "ko": "SSD300에 붙인 loss prediction module: Conv4_3, FC7, Conv9_2 특징을 각각 GAP → FC(128) → ReLU로 줄인 뒤 이어 붙여 예측 손실 l̂을 출력하며, 실제 손실과의 ranking loss로 학습합니다."
+        }
+      },
+      {
+        "src": "img/active-learning-pseudo-labeling/04-two-stage-selection.png",
+        "thumb": "img/active-learning-pseudo-labeling/thumbs/04-two-stage-selection.jpg",
+        "caption": {
+          "en": "Two-stage sample selection per cycle: entropy keeps 3,000 images, flip inconsistency narrows them to 2,000 candidates, and the loss prediction module sends the 1,000 with the highest predicted loss to human annotators.",
+          "ko": "cycle마다 2단계로 샘플을 고릅니다: entropy로 3,000장을 남기고, 반전 불일치로 후보 2,000장을 고른 뒤, loss prediction module이 예측 손실이 가장 큰 1,000장을 사람에게 보냅니다."
         }
       }
     ],
