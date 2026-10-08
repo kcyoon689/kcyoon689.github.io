@@ -2426,20 +2426,20 @@ window.PROJECTS = [
       "ko": "데이터셋 수집, CNN 학습, Raspberry Pi 게임 구현"
     },
     "tagline": {
-      "en": "A camera-based rock–paper–scissors game on Raspberry Pi that recognizes the player's hand gesture with machine learning and plays against the computer.",
-      "ko": "Raspberry Pi 카메라로 플레이어의 손 모양을 머신러닝으로 인식해 컴퓨터와 대결하는 가위바위보 게임."
+      "en": "A camera-based rock–paper–scissors game on Raspberry Pi that recognizes the player's hand gesture with a CNN and plays against the computer.",
+      "ko": "Raspberry Pi 카메라로 플레이어의 손 모양을 CNN으로 인식해 컴퓨터와 대결하는 가위바위보 게임."
     },
     "summary": {
-      "en": "A Python rock–paper–scissors game that runs on a Raspberry Pi. A small Keras CNN is trained on a self-collected dataset of rock, paper and scissors hand photos. The game loop, adapted from the open-source rps-cv project, reads the camera, classifies the gesture with a pickled model, draws a random computer move and keeps a running score. Code, dataset and a demo video are published on GitHub and YouTube.",
-      "ko": "Raspberry Pi에서 동작하는 Python 가위바위보 게임입니다. 직접 수집한 가위·바위·보 손 사진 데이터셋으로 소형 Keras CNN을 학습했습니다. 오픈소스 rps-cv 프로젝트를 바탕으로 한 게임 루프는 카메라 영상을 읽어 pickle로 저장된 모델로 손 모양을 분류하고, 컴퓨터의 수를 무작위로 정한 뒤 점수를 기록합니다. 코드, 데이터셋, 시연 영상은 GitHub와 YouTube에 공개되어 있습니다."
+      "en": "A Python rock–paper–scissors game that runs on a Raspberry Pi. A small Keras CNN is trained on a self-collected dataset of rock, paper and scissors hand photos and saved as a .pkl file. The game loop, adapted from the open-source rps-cv project, reads the camera, classifies the gesture with the trained CNN, draws a random computer move and keeps a running score. Code, dataset and a demo video are published on GitHub and YouTube.",
+      "ko": "Raspberry Pi에서 동작하는 Python 가위바위보 게임입니다. 직접 수집한 가위·바위·보 손 사진 데이터셋으로 소형 Keras CNN을 학습해 .pkl 파일로 저장했습니다. 오픈소스 rps-cv 프로젝트를 바탕으로 한 게임 루프는 카메라 영상을 읽어 학습한 CNN으로 손 모양을 분류하고, 컴퓨터의 수를 무작위로 정한 뒤 점수를 기록합니다. 코드, 데이터셋, 시연 영상은 GitHub와 YouTube에 공개되어 있습니다."
     },
     "problem": {
       "en": "Build an interactive game in which a computer recognizes a player's rock, paper or scissors hand gesture from a live camera feed on low-cost hardware.",
       "ko": "저가형 하드웨어에서 컴퓨터가 실시간 카메라 영상으로 플레이어의 가위·바위·보 손 모양을 인식하는 인터랙티브 게임을 만드는 것이 목표였습니다."
     },
     "solution": {
-      "en": "Two scripts split the work: train.py trains the CNN on the collected photos, and main.py, adapted from the rps-cv game script, runs the camera game loop.",
-      "ko": "train.py가 수집한 사진으로 CNN을 학습하고, rps-cv 게임 스크립트를 바탕으로 한 main.py가 카메라 게임 루프를 실행하는 두 스크립트 구조입니다."
+      "en": "Two scripts split the work: train.py trains the CNN on the collected photos and produces a .pkl model file, and main.py, adapted from the rps-cv game script, loads that model and runs the camera game loop.",
+      "ko": "train.py가 수집한 사진으로 CNN을 학습해 .pkl 모델 파일을 만들고, rps-cv 게임 스크립트를 바탕으로 한 main.py가 이 모델을 불러와 카메라 게임 루프를 실행하는 두 스크립트 구조입니다."
     },
     "approach": [
       {
@@ -2509,8 +2509,8 @@ window.PROJECTS = [
         "ko": "가위·바위·보 손 모양 데이터셋을 수집하고 라벨링했습니다."
       },
       {
-        "en": "Trained a Keras CNN classifier, adapted from a tutorial example, on the collected dataset.",
-        "ko": "튜토리얼 예제를 바탕으로 한 Keras CNN 분류 모델을 수집한 데이터셋으로 학습했습니다."
+        "en": "Trained the Keras CNN classifier used in the game, adapted from a tutorial example, on the collected dataset.",
+        "ko": "튜토리얼 예제를 바탕으로, 게임에서 사용하는 Keras CNN 분류 모델을 수집한 데이터셋으로 학습했습니다."
       },
       {
         "en": "Adapted the open-source rps-cv camera pipeline and game loop and ran the game on Raspberry Pi.",
@@ -2581,8 +2581,8 @@ window.PROJECTS = [
       }
     ],
     "cardTagline": {
-      "en": "Raspberry Pi rock–paper–scissors game that recognizes hand gestures with machine learning.",
-      "ko": "머신러닝으로 손 모양을 인식하는 Raspberry Pi 가위바위보 게임."
+      "en": "Raspberry Pi rock–paper–scissors game that recognizes hand gestures with a CNN.",
+      "ko": "CNN으로 손 모양을 인식하는 Raspberry Pi 가위바위보 게임."
     }
   },
   {
@@ -2652,8 +2652,8 @@ window.PROJECTS = [
           "ko": "3D 모델링 및 출력"
         },
         "body": {
-          "en": "Modeled the potentiometer master arm and adapted the 5-axis slave arm (about 15 parts) from an open-source 3D-printable design, about two weeks of design work in total; printing took two days for the master arm and four days for the slave arm.",
-          "ko": "포텐쇼미터 마스터 암을 모델링하고, 오픈소스 3D 프린팅 설계를 바탕으로 약 15개 부품으로 된 5축 슬레이브 암을 수정했습니다(설계 약 2주). 출력에는 마스터 암 2일, 슬레이브 암 4일이 걸렸습니다."
+          "en": "Modeled the potentiometer master arm in Tinkercad and adapted the 5-axis slave arm (about 15 parts) from an open-source 3D-printable design, about two weeks of design work in total; printing took two days for the master arm and four days for the slave arm.",
+          "ko": "Tinkercad로 포텐쇼미터 마스터 암을 모델링하고, 오픈소스 3D 프린팅 설계를 바탕으로 약 15개 부품으로 된 5축 슬레이브 암을 수정했습니다(설계 약 2주). 출력에는 마스터 암 2일, 슬레이브 암 4일이 걸렸습니다."
         }
       },
       {
@@ -2707,8 +2707,8 @@ window.PROJECTS = [
         "ko": "제어 시스템을 모델링하고, 풀다운 모드 스위치와 Li-Po 전원부를 포함한 전체 회로를 설계했습니다."
       },
       {
-        "en": "3D-modeled the master arm, adapted an open-source slave-arm design and 3D-printed all parts.",
-        "ko": "마스터 암을 3D 모델링하고, 오픈소스 설계를 바탕으로 슬레이브 암을 수정했으며, 전 부품을 3D 프린팅했습니다."
+        "en": "3D-modeled the master arm in Tinkercad, adapted an open-source slave-arm design and 3D-printed all parts.",
+        "ko": "Tinkercad로 마스터 암을 3D 모델링하고, 오픈소스 설계를 바탕으로 슬레이브 암을 수정했으며, 전 부품을 3D 프린팅했습니다."
       },
       {
         "en": "Fabricated the controller board and assembled the arms, resolving tipping and connector issues.",
@@ -2728,7 +2728,7 @@ window.PROJECTS = [
       "Arduino (C/C++)",
       "Arduino Servo library",
       "OrCAD",
-      "Tinkercad (3D modeling)",
+      "Tinkercad",
       "3D printing",
       "Servo motors",
       "Potentiometers",
@@ -2834,8 +2834,8 @@ window.PROJECTS = [
       {
         "src": "img/robotic-arm-pid/03-master-arm-3d-model.jpg",
         "caption": {
-          "en": "3D model of the potentiometer master arm.",
-          "ko": "포텐쇼미터 마스터 암 3D 모델."
+          "en": "3D model of the potentiometer master arm (Tinkercad).",
+          "ko": "포텐쇼미터 마스터 암 3D 모델 (Tinkercad)."
         },
         "thumb": "img/robotic-arm-pid/thumbs/03-master-arm-3d-model.jpg"
       },
