@@ -19,8 +19,8 @@ window.PROJECTS = [
       "ko": "ScholarLensAI – 논문 리딩 어시스턴트"
     },
     "team": {
-      "en": "Team of 5 · Upstage AI Ambassador 1st cohort, Team 2",
-      "ko": "5인 팀 · Upstage AI Ambassador 1기 2팀"
+      "en": "Team of 5 (Upstage AI Ambassador)",
+      "ko": "5인 팀 (Upstage AI Ambassador 1기)"
     },
     "role": {
       "en": "Team Lead (PM) · Backend · Infra (Docker)",
@@ -31,12 +31,12 @@ window.PROJECTS = [
       "ko": "Upstage Document AI로 논문 PDF를 구조화하고, 섹션 요약·번역·Q&A·핵심 문장 하이라이트를 PDF 위에서 바로 제공하는 논문 리딩 어시스턴트."
     },
     "summary": {
-      "en": "ScholarLensAI is a web-based reading assistant for research papers, built by a five-person team in the first cohort of the Upstage AI Ambassador Program. Uploaded PDFs are parsed with Upstage Document Parse into layout-aware sections with element coordinates. Solar Pro2 then generates section-wise summaries, document-grounded Q&A, translation and three-level semantic highlights overlaid on the PDF. The Next.js frontend and FastAPI backend are kept as separate submodules and run together with Docker Compose.",
-      "ko": "ScholarLensAI는 Upstage AI Ambassador 1기 5인 팀이 개발한 웹 기반 논문 리딩 어시스턴트입니다. 업로드한 PDF는 Upstage Document Parse로 파싱해 요소 좌표를 포함한 레이아웃 기반 섹션으로 구조화합니다. 이후 Solar Pro2로 섹션별 요약, 논문 기반 Q&A, 번역, PDF 위에 오버레이되는 3단계 시맨틱 하이라이트를 생성합니다. Next.js 프론트엔드와 FastAPI 백엔드는 별도 submodule로 관리되며 Docker Compose로 함께 실행됩니다."
+      "en": "ScholarLensAI is a web-based reading assistant for research papers, built by a five-person team in the first cohort of the Upstage AI Ambassador Program. Uploaded PDFs are parsed with Upstage Document Parse into layout-aware sections with element coordinates. Solar Pro2 then generates section-wise summaries, document-grounded Q&A, translation and three-level semantic highlights overlaid on the PDF.",
+      "ko": "ScholarLensAI는 Upstage AI Ambassador 1기 5인 팀이 개발한 웹 기반 논문 리딩 어시스턴트입니다. 업로드한 PDF를 Upstage Document Parse로 파싱해 요소 좌표를 포함한 레이아웃 기반 섹션으로 구조화합니다. 이후 Solar Pro2로 섹션별 요약, 논문 기반 Q&A, 번역, PDF 위에 오버레이되는 3단계 시맨틱 하이라이트를 생성합니다."
     },
     "problem": {
-      "en": "Researchers face an overwhelming volume of papers, and the real bottleneck is not reading speed but judging which information matters. Multi-column layouts, tables and equations break context when text is extracted. Reading, translation, summarization and search are also scattered across separate tools, which fragments focus and adds repetitive work.",
-      "ko": "연구자가 읽어야 할 논문은 감당하기 어려울 만큼 많고, 실제 병목은 읽는 속도가 아니라 어떤 정보가 중요한지 판단하는 데 있습니다. 다단 레이아웃·표·수식이 섞인 PDF는 텍스트를 추출하면 맥락이 끊깁니다. 또한 읽기·번역·요약·검색이 서로 다른 도구에 흩어져 있어 집중이 끊기고 반복 작업이 늘어납니다."
+      "en": "Researchers have more papers than they can read, and the hard part is deciding what in each one matters. Multi-column layouts, tables and equations break context when text is extracted. Reading, translation, summarization and search are also scattered across separate tools, which fragments focus and adds repetitive work.",
+      "ko": "연구자가 읽어야 할 논문은 늘 읽을 수 있는 양보다 많으며, 정작 어려운 일은 각 논문에서 무엇이 중요한지 가려내는 것입니다. 다단 레이아웃·표·수식이 섞인 PDF는 텍스트를 추출하면 맥락이 끊깁니다. 또한 읽기·번역·요약·검색이 서로 다른 도구에 흩어져 있어 집중이 끊기고 반복 작업이 늘어납니다."
     },
     "solution": {
       "en": "A single reader keeps the PDF on the left and an AI panel (Summary · Chat · Translation) on the right. Document Parse restores reading order, section structure and element coordinates. The backend injects this structured context into Solar LLM prompts, and highlights are anchored to the original coordinates so each highlighted passage can be checked against the source text.",
@@ -59,8 +59,8 @@ window.PROJECTS = [
           "ko": "레이아웃 기반 파싱"
         },
         "body": {
-          "en": "PDFs up to 50MB are sent to Upstage Document Parse, with both the sync (up to 100 pages) and async (up to 1,000 pages) APIs wrapped and async used by default. OCR is forced only when a file looks scanned. Misclassified headings are corrected, sections are mapped to canonical names (Abstract → References), and two-column papers are supported.",
-          "ko": "최대 50MB의 PDF를 Upstage Document Parse로 처리합니다. 동기(최대 100페이지)·비동기(최대 1,000페이지) API를 모두 래핑했으며, 기본으로 비동기 API를 사용합니다. 스캔본으로 보이는 파일에만 OCR을 강제 적용합니다. 잘못 분류된 heading을 보정하고, 섹션을 표준 이름(Abstract → References)으로 매핑하며, 2단 편집 논문도 지원합니다."
+          "en": "PDFs up to 50MB are sent to Upstage Document Parse. Both the sync (up to 100 pages) and async (up to 1,000 pages) APIs are wrapped, and async is the default. OCR is forced only when a file looks scanned. Misclassified headings are corrected, sections are mapped to canonical names (Abstract → References), and two-column papers are supported.",
+          "ko": "최대 50MB의 PDF를 Upstage Document Parse로 처리합니다. 동기(최대 100페이지)·비동기(최대 1,000페이지) API를 모두 래핑했으며, 기본으로 비동기 API를 사용합니다. 스캔본으로 보이는 파일에만 OCR을 강제 적용합니다. 잘못 분류된 섹션 제목을 보정하고, 섹션을 표준 이름(Abstract → References)으로 매핑하며, 2단 편집 논문도 지원합니다."
         }
       },
       {
@@ -90,7 +90,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "A Next.js (App Router, TypeScript, Tailwind CSS, shadcn/ui, PDF.js) frontend talks to a FastAPI/Uvicorn backend over a REST API documented in Swagger UI. Both are kept as Git submodules in a monorepo and launched with Docker Compose. Backend calls were moved from sync to async to improve response speed.",
-          "ko": "Next.js(App Router, TypeScript, Tailwind CSS, shadcn/ui, PDF.js) 프론트엔드와 FastAPI/Uvicorn 백엔드는 Swagger UI로 문서화한 REST API를 통해 통신합니다. 두 서비스는 monorepo의 Git submodule로 관리되며 Docker Compose로 함께 실행됩니다. 백엔드 호출을 sync에서 async로 전환해 응답 속도를 개선했습니다."
+          "ko": "Next.js(App Router, TypeScript, Tailwind CSS, shadcn/ui, PDF.js) 프론트엔드와 FastAPI/Uvicorn 백엔드는 Swagger UI로 문서화한 REST API를 통해 통신합니다. 두 서비스는 모노레포의 Git 서브모듈로 관리되며 Docker Compose로 함께 실행됩니다. 백엔드 호출을 동기 방식에서 비동기 방식으로 전환해 응답 속도를 개선했습니다."
         }
       },
       {
@@ -107,11 +107,11 @@ window.PROJECTS = [
     "results": [
       {
         "en": "Delivered a working end-to-end MVP (PDF upload → parsing → summary, chat, translation and highlights), shown in a 5-minute demo video (Dec 2025).",
-        "ko": "PDF 업로드 → 파싱 → 요약·채팅·번역·하이라이트로 이어지는 end-to-end MVP를 완성하고 5분 데모 영상으로 시연했습니다(2025년 12월)."
+        "ko": "PDF 업로드부터 파싱, 요약·채팅·번역·하이라이트까지 전 과정이 동작하는 MVP를 완성하고 5분 데모 영상으로 시연했습니다(2025년 12월)."
       },
       {
-        "en": "Open-sourced under the ScholarLensAI GitHub organization as a monorepo with Next.js / FastAPI submodules, a Docker Compose QuickStart and a Swagger-documented REST API.",
-        "ko": "ScholarLensAI GitHub organization에 Next.js / FastAPI submodule, Docker Compose QuickStart, Swagger로 문서화된 REST API를 갖춘 monorepo로 공개했습니다."
+        "en": "Open-sourced under the ScholarLensAI GitHub organization with a Docker Compose QUICKSTART guide.",
+        "ko": "ScholarLensAI GitHub 조직에 Docker Compose 기반 QUICKSTART 가이드와 함께 공개했습니다."
       },
       {
         "en": "Completed as the Team 2 project of the Upstage AI Ambassador Program (1st cohort); recognized as an Outstanding Ambassador of the cohort.",
@@ -125,35 +125,35 @@ window.PROJECTS = [
       },
       {
         "en": "Main backend author (22 of 26 commits): Upstage client wrapper, Document Parse pipeline with heading detection and two-column support, LLM-based auto highlighting, chat prompts, and the sync-to-async switch.",
-        "ko": "백엔드 주 개발자로(커밋 26개 중 22개) Upstage client wrapper, heading 검출·2단 논문 지원을 포함한 Document Parse 파이프라인, LLM 기반 자동 하이라이트, 채팅 프롬프트, sync→async 전환을 구현했습니다."
+        "ko": "백엔드 주 개발자로서 커밋 26개 중 22개를 작성하며 Upstage API 클라이언트 래퍼, 섹션 제목 검출·2단 논문 지원을 포함한 Document Parse 파이프라인, LLM 기반 자동 하이라이트, 채팅 프롬프트, 동기→비동기 전환을 구현했습니다."
       },
       {
         "en": "Frontend work (29 of 37 commits): PDF viewer and canvas fixes, upload flow, section summary/translation API integration, and highlight rendering.",
-        "ko": "프론트엔드에서는(커밋 37개 중 29개) PDF 뷰어·canvas 오류 수정, 업로드 흐름, 섹션 요약·번역 API 연동, 하이라이트 렌더링을 담당했습니다."
+        "ko": "프론트엔드 커밋 37개 중 29개를 작성하며 PDF 뷰어·캔버스 오류 수정, 업로드 흐름, 섹션 요약·번역 API 연동, 하이라이트 렌더링을 담당했습니다."
       },
       {
-        "en": "Infra/DevOps: Docker and Docker Compose setup, monorepo submodule management, and English README/QUICKSTART documentation.",
-        "ko": "인프라/DevOps 분야에서는 Docker·Docker Compose 구성, monorepo submodule 관리, 영문 README·QUICKSTART 문서화를 맡았습니다."
+        "en": "Infra/DevOps: Docker and Docker Compose setup, and monorepo submodule management.",
+        "ko": "인프라/DevOps: Docker·Docker Compose 구성과 모노레포 서브모듈 관리를 맡았습니다."
       },
       {
-        "en": "Built the HTML presentation site (all commits) and published the demo video.",
-        "ko": "HTML 발표 사이트를 제작하고(커밋 전체 작성) 데모 영상을 공개했습니다."
+        "en": "Owned the documentation and the HTML presentation site (all commits), and published the demo video.",
+        "ko": "문서화와 HTML 발표 사이트(커밋 전체 작성)를 맡고 데모 영상을 공개했습니다."
       }
     ],
     "tech": [
-      "Upstage Document Parse",
-      "Upstage Information Extract",
       "Solar Pro2",
-      "Python",
       "FastAPI",
       "Next.js 14",
+      "Upstage Document Parse",
+      "Python",
       "React 18",
       "TypeScript",
       "Tailwind CSS",
       "shadcn/ui",
-      "PDF.js (pdfjs-dist)",
+      "PDF.js",
       "Docker",
-      "Docker Compose"
+      "Docker Compose",
+      "Upstage Information Extract"
     ],
     "topics": [
       "LLM",
@@ -163,8 +163,7 @@ window.PROJECTS = [
       "Q&A",
       "Machine Translation",
       "Semantic Highlighting",
-      "Full-stack",
-      "Upstage"
+      "Full-stack"
     ],
     "links": [
       {
@@ -203,7 +202,7 @@ window.PROJECTS = [
         "type": "github",
         "label": {
           "en": "Frontend repo",
-          "ko": "프론트엔드 repo"
+          "ko": "프론트엔드 저장소"
         },
         "url": "https://github.com/ScholarLensAI/scholarlensAI-FE"
       },
@@ -211,21 +210,28 @@ window.PROJECTS = [
         "type": "github",
         "label": {
           "en": "Backend repo",
-          "ko": "백엔드 repo"
+          "ko": "백엔드 저장소"
         },
         "url": "https://github.com/ScholarLensAI/scholarlensAI-BE"
       }
     ],
     "youtube": [
-      "DZ1qizLTM3o"
+      {
+        "id": "DZ1qizLTM3o",
+        "vertical": false,
+        "caption": {
+          "en": "Demo video (5 min, Dec 2025)",
+          "ko": "데모 영상 (5분, 2025.12)"
+        }
+      }
     ],
     "cover": "img/scholarlensai/cover.jpg",
     "images": [
       {
         "src": "img/scholarlensai/01-viewer-highlight-translation.jpg",
         "caption": {
-          "en": "Reader view: the Transformer paper with three-level semantic highlights (purple / blue / green) on the PDF and the Translation tab open (demo video frame).",
-          "ko": "리더 화면: Transformer 논문 PDF 위의 3단계 시맨틱 하이라이트(보라 / 파랑 / 초록)와 번역 탭 (데모 영상 장면)."
+          "en": "Reader view: the Transformer paper with three-level semantic highlights (purple / green / blue) on the PDF and the Translation tab open.",
+          "ko": "리더 화면: Transformer 논문 PDF 위의 3단계 시맨틱 하이라이트(보라 / 초록 / 파랑)와 열려 있는 번역 탭."
         },
         "thumb": "img/scholarlensai/thumbs/01-viewer-highlight-translation.jpg"
       },
@@ -233,7 +239,7 @@ window.PROJECTS = [
         "src": "img/scholarlensai/02-viewer-section-summary.jpg",
         "caption": {
           "en": "Section-wise summaries generated by Solar LLM, shown beside the parsed PDF with page references for each section.",
-          "ko": "Solar LLM이 생성한 섹션별 요약을 파싱된 PDF 옆에 섹션별 페이지 정보와 함께 표시한 화면."
+          "ko": "Solar LLM이 생성한 섹션별 요약을 페이지 정보와 함께 PDF 옆에 표시한 화면."
         },
         "thumb": "img/scholarlensai/thumbs/02-viewer-section-summary.jpg"
       },
@@ -248,8 +254,8 @@ window.PROJECTS = [
       {
         "src": "img/scholarlensai/04-core-feature-logic.jpg",
         "caption": {
-          "en": "Presentation slide: core features (layout analysis, semantic highlighting, Solar LLM Q&A) and the Upstage API pipeline as designed (Document Parse, Information Extract, Solar LLM).",
-          "ko": "발표 슬라이드: 핵심 기능(레이아웃 분석, 시맨틱 하이라이트, Solar LLM Q&A)과 발표 자료 기준 Upstage API 파이프라인(Document Parse, Information Extract, Solar LLM)."
+          "en": "Presentation slide: core features (layout analysis, semantic highlighting, Solar LLM Q&A) and the planned Upstage API pipeline (Document Parse, Information Extract, Solar LLM).",
+          "ko": "발표 슬라이드: 핵심 기능(레이아웃 분석, 시맨틱 하이라이트, Solar LLM Q&A)과 설계 단계의 Upstage API 파이프라인(Document Parse, Information Extract, Solar LLM)."
         },
         "thumb": "img/scholarlensai/thumbs/04-core-feature-logic.jpg"
       },
@@ -269,7 +275,11 @@ window.PROJECTS = [
         },
         "thumb": "img/scholarlensai/thumbs/06-upload-page.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "Paper-reading assistant on Upstage Document AI: summaries, translation, Q&A, on-PDF highlights.",
+      "ko": "Upstage Document AI로 논문 요약·번역·Q&A·하이라이트를 제공하는 리딩 어시스턴트."
+    }
   },
   {
     "slug": "moving-object-detection",
@@ -288,16 +298,16 @@ window.PROJECTS = [
       "ko": "개인 (토르드라이브 R&D)"
     },
     "role": {
-      "en": "Sole developer: camera–LiDAR fusion, detection matching, centroid and velocity estimation, ROS2 integration",
-      "ko": "단독 개발: 카메라–LiDAR 퓨전, 검출 결과 매칭, 중심점·속도 추정, ROS2 통합"
+      "en": "Sole developer",
+      "ko": "단독 개발"
     },
     "tagline": {
       "en": "A ROS2 pipeline that fuses 2D LiDAR scans with YOLO person detections to locate moving people and estimate their velocity.",
       "ko": "2D LiDAR 스캔과 YOLO 사람 검출을 융합해 이동하는 사람의 위치와 속도를 추정하는 ROS2 파이프라인."
     },
     "summary": {
-      "en": "A ROS2 sensor-fusion pipeline that reprojects 2D LiDAR points into the camera image and matches them with YOLO tracking results to estimate the centroid and velocity of each detected person. Scans are converted to PointCloud2, moved into the camera frame with the camera–LiDAR extrinsic T_cam_laser, and projected onto the image with the intrinsics K and distortion D via cv2.projectPoints. Each person's centroid and low-pass-filtered velocity vector are published as RViz Markers. The system was demonstrated on a mobile robot in an indoor office, including dynamic-obstacle test runs.",
-      "ko": "2D LiDAR 포인트를 카메라 영상에 리프로젝션하고 YOLO 트래킹 결과와 매칭해, 검출된 사람마다 중심점과 속도를 추정하는 ROS2 센서 퓨전 파이프라인입니다. LiDAR 스캔을 PointCloud2로 변환하고 카메라–LiDAR extrinsic(T_cam_laser)을 이용해 카메라 좌표계로 옮긴 뒤, intrinsic K와 왜곡 계수 D를 사용해 cv2.projectPoints로 이미지 평면에 투영합니다. 사람별 중심점과 저역통과 필터(LPF)를 적용한 속도 벡터는 RViz Marker로 퍼블리시합니다. 실내 사무 공간의 모바일 로봇에서 동적 장애물 테스트를 포함해 시연했습니다."
+      "en": "A ROS2 sensor-fusion node that combines a 2D LiDAR with YOLO person tracking. LiDAR points are projected into the camera image and matched to each detected person, giving a per-person centroid and a smoothed velocity that are published as RViz Markers. It was tested on a mobile robot in an indoor office.",
+      "ko": "2D LiDAR와 YOLO 사람 트래킹을 결합한 ROS2 센서 퓨전 노드입니다. LiDAR 포인트를 카메라 영상에 투영해 검출된 사람과 매칭하고, 사람별 중심점과 평활화한 속도를 RViz Marker로 퍼블리시합니다. 실내 사무 공간의 모바일 로봇에서 테스트했습니다."
     },
     "problem": {
       "en": "To handle dynamic obstacles, a mobile robot needs the position and motion of nearby people. Camera-based YOLO detections give class labels in pixel space but no metric position, and a 2D LiDAR scan gives range but no object identity.",
@@ -335,7 +345,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "The extrinsic T_cam_laser transforms the points into the camera frame, and only forward points (z > 0) are kept. cv2.projectPoints then projects them onto the image plane using the intrinsics K and distortion D.",
-          "ko": "Extrinsic 행렬 T_cam_laser로 포인트를 카메라 좌표계로 변환하고 전방(z > 0) 포인트만 남깁니다. 이후 intrinsic K와 왜곡 계수 D를 사용해 cv2.projectPoints로 이미지 평면에 투영합니다."
+          "ko": "외부 파라미터 행렬 T_cam_laser로 포인트를 카메라 좌표계로 변환하고 전방(z > 0) 포인트만 남깁니다. 이후 내부 파라미터 K와 왜곡 계수 D를 사용해 cv2.projectPoints로 이미지 평면에 투영합니다."
         }
       },
       {
@@ -371,26 +381,26 @@ window.PROJECTS = [
     ],
     "results": [
       {
-        "en": "End-to-end ROS2 node that outputs per-person centroid and velocity Markers (/bbox_centroids) and a LiDAR-to-image reprojection stream (/reprojection).",
-        "ko": "사람별 중심점·속도 Marker(/bbox_centroids)와 LiDAR→이미지 리프로젝션 영상(/reprojection)을 출력하는 end-to-end ROS2 노드를 구현했습니다."
+        "en": "Delivered an end-to-end ROS2 node that outputs per-person centroid and velocity Markers (/bbox_centroids) and a LiDAR-to-image reprojection stream (/reprojection).",
+        "ko": "센서 입력부터 사람별 중심점·속도 Marker(/bbox_centroids)와 LiDAR→이미지 리프로젝션 영상(/reprojection) 출력까지 하나의 ROS2 노드로 구현했습니다."
       },
       {
-        "en": "Demonstrated on a mobile robot in an indoor office; a 10-video playlist (Sep–Oct 2025 recordings) covers dynamic-obstacle tests and RViz2 runs of the lidar-camera-sensor-fusion demo.",
-        "ko": "실내 사무 공간의 모바일 로봇에서 시연했습니다. 2025년 9–10월에 녹화한 영상 10개로 구성된 플레이리스트에 동적 장애물 테스트와 lidar-camera-sensor-fusion 데모의 RViz2 실행 화면이 담겨 있습니다."
+        "en": "Published a 10-video demo playlist (Sep–Oct 2025) with dynamic-obstacle tests on the mobile robot and RViz2 runs of the lidar-camera-sensor-fusion demo.",
+        "ko": "모바일 로봇의 동적 장애물 테스트와 lidar-camera-sensor-fusion 데모의 RViz2 실행 화면을 담은 데모 영상 10개를 재생목록으로 공개했습니다(2025년 9–10월)."
       },
       {
-        "en": "2026 follow-up: a depth-camera person-tracking prototype that shows a depth colormap, a color–depth overlay and center/mean distance of the tracked person.",
-        "ko": "2026년 후속 작업으로 depth colormap, 컬러–depth 오버레이, 추적 대상의 중심·평균 거리를 표시하는 depth 카메라 기반 사람 추적 프로토타입을 구현했습니다."
+        "en": "Followed up in 2026 with a depth-camera person-tracking prototype that shows a depth colormap, a color–depth overlay and the center/mean distance of the tracked person.",
+        "ko": "2026년 후속 작업으로 깊이 컬러맵, 컬러–깊이 오버레이, 추적 대상의 중심·평균 거리를 표시하는 깊이 카메라 기반 사람 추적 프로토타입을 구현했습니다."
       }
     ],
     "contributions": [
       {
-        "en": "Designed and implemented the full ROS2 fusion node: synchronization, LiDAR-to-point-cloud conversion, reprojection, detection matching, and centroid and velocity estimation.",
-        "ko": "동기화, LiDAR→포인트 클라우드 변환, 리프로젝션, 검출 매칭, 중심점·속도 추정까지 ROS2 퓨전 노드 전체를 설계하고 구현했습니다."
+        "en": "Designed and implemented the full ROS2 fusion node, from sensor synchronization to velocity estimation.",
+        "ko": "센서 동기화부터 속도 추정까지 ROS2 퓨전 노드 전체를 설계하고 구현했습니다."
       },
       {
-        "en": "Used camera–LiDAR calibration parameters (T_cam_laser, K, D) to align 2D LiDAR points with the camera image.",
-        "ko": "카메라–LiDAR 캘리브레이션 파라미터(T_cam_laser, K, D)로 2D LiDAR 포인트를 카메라 영상에 정합했습니다."
+        "en": "Used the camera–LiDAR calibration parameters to align 2D LiDAR points with the camera image.",
+        "ko": "카메라–LiDAR 캘리브레이션 파라미터로 2D LiDAR 포인트를 카메라 영상에 정합했습니다."
       },
       {
         "en": "Integrated YOLO-based person tracking (/yolo/tracking) with LiDAR geometry to recover a metric position and velocity for each person.",
@@ -409,17 +419,14 @@ window.PROJECTS = [
       "NumPy",
       "RViz2",
       "PyTorch",
-      "Docker",
-      "Git",
-      "Ubuntu"
+      "Docker"
     ],
     "topics": [
       "Sensor Fusion",
       "Camera–LiDAR Calibration",
       "Object Detection",
       "Object Tracking",
-      "Mobile Robot",
-      "ROS2"
+      "Mobile Robot"
     ],
     "links": [
       {
@@ -444,38 +451,67 @@ window.PROJECTS = [
           "en": "2026 follow-up",
           "ko": "2026 후속 작업"
         },
-        "url": "https://chaeyoonkim.notion.site/2e785a417def8085af6ccfc15a8811ec"
+        "url": "https://chaeyoonkim.notion.site/2e785a417def8085af6ccfc15a8811ec",
+        "ref": true
       }
     ],
     "youtube": [
-      "4NHyqnMp92o",
-      "U8KemgeJpdg",
-      "tr5r2HTtcuI",
-      "thpI4Oksd5I"
+      {
+        "id": "4NHyqnMp92o",
+        "vertical": false,
+        "caption": {
+          "en": "Dynamic-obstacle test (Oct 2025): RViz map beside the real scene",
+          "ko": "동적 장애물 테스트(2025.10): RViz 맵과 실제 장면"
+        }
+      },
+      {
+        "id": "U8KemgeJpdg",
+        "vertical": false,
+        "caption": {
+          "en": "Dynamic obstacle avoidance (DOA) recording in RViz (Sep 2025)",
+          "ko": "RViz 동적 장애물 회피(DOA) 녹화(2025.09)"
+        }
+      },
+      {
+        "id": "tr5r2HTtcuI",
+        "vertical": false,
+        "caption": {
+          "en": "Test run: a person walks past the robot",
+          "ko": "테스트 장면: 로봇 옆을 지나가는 사람"
+        }
+      },
+      {
+        "id": "thpI4Oksd5I",
+        "vertical": false,
+        "caption": {
+          "en": "RViz2 screen recording of the fusion demo (Oct 2025)",
+          "ko": "퓨전 데모 RViz2 화면 녹화(2025.10)"
+        }
+      }
     ],
     "cover": "img/moving-object-detection/cover.jpg",
     "images": [
       {
         "src": "img/moving-object-detection/01-robot-person-walking.jpg",
         "caption": {
-          "en": "Test scene from the demo playlist: a person walks past the mobile robot in an indoor office.",
-          "ko": "데모 플레이리스트의 테스트 장면: 실내 사무 공간에서 모바일 로봇 옆을 사람이 지나가는 모습."
+          "en": "Test run: a person walks past the mobile robot in an indoor office.",
+          "ko": "테스트 장면: 실내 사무 공간에서 모바일 로봇 옆을 지나가는 사람."
         },
         "thumb": "img/moving-object-detection/thumbs/01-robot-person-walking.jpg"
       },
       {
         "src": "img/moving-object-detection/02-cover-dynamic-obstacle-demo.jpg",
         "caption": {
-          "en": "'251015 Dynamic Obstacle' demo: the robot on the RViz map (left) shown alongside the real scene of a person walking toward the robot (right).",
-          "ko": "'251015 Dynamic Obstacle' 데모: RViz 맵 위의 로봇(왼쪽)과 로봇 쪽으로 걸어오는 사람의 실제 장면(오른쪽)."
+          "en": "Dynamic-obstacle test (Oct 2025): the robot on the RViz map (left) and the real scene of a person walking toward it (right).",
+          "ko": "동적 장애물 테스트(2025.10): RViz 맵 위의 로봇(왼쪽)과 로봇 쪽으로 걸어오는 사람의 실제 장면(오른쪽)."
         },
         "thumb": "img/moving-object-detection/thumbs/02-cover-dynamic-obstacle-demo.jpg"
       },
       {
         "src": "img/moving-object-detection/03-rviz-lidar-centroids-reprojection.jpg",
         "caption": {
-          "en": "RViz view from the Notion write-up: LaserScan points with yellow person-centroid Markers and velocity vectors, plus the camera image showing person boxes and reprojected LiDAR points.",
-          "ko": "Notion 문서의 RViz 화면: LaserScan 포인트와 노란색 사람 중심점 Marker·속도 벡터, 사람 박스와 리프로젝션된 LiDAR 포인트가 표시된 카메라 영상."
+          "en": "RViz view: LaserScan points with yellow person-centroid Markers and velocity vectors, plus the camera image showing person boxes and reprojected LiDAR points.",
+          "ko": "RViz 화면: LaserScan 포인트와 노란색 사람 중심점 Marker·속도 벡터, 사람 박스와 리프로젝션된 LiDAR 포인트가 표시된 카메라 영상."
         },
         "thumb": "img/moving-object-detection/thumbs/03-rviz-lidar-centroids-reprojection.jpg"
       },
@@ -483,27 +519,31 @@ window.PROJECTS = [
         "src": "img/moving-object-detection/04-rviz2-map-fusion-demo.jpg",
         "caption": {
           "en": "RViz2 running the lidar-camera-sensor-fusion demo config: occupancy map, LaserScan, TF, Markers/MarkerArrays and Paths, with the camera image and person box in the side panel.",
-          "ko": "lidar-camera-sensor-fusion 데모 설정으로 실행한 RViz2: occupancy map, LaserScan, TF, Marker/MarkerArray, Path와 사이드 패널의 카메라 영상·사람 박스."
+          "ko": "lidar-camera-sensor-fusion 데모 설정으로 실행한 RViz2: 점유 격자 지도, LaserScan, TF, Marker/MarkerArray, Path와 사이드 패널의 카메라 영상·사람 박스."
         },
         "thumb": "img/moving-object-detection/thumbs/04-rviz2-map-fusion-demo.jpg"
       },
       {
         "src": "img/moving-object-detection/05-rviz-doa-polygons.jpg",
         "caption": {
-          "en": "Dynamic-obstacle-avoidance ('DOA') recording: polygon MarkerArrays from /thor/dynamic_obstacle_avoidance topics in RViz, and the camera view with tracked person boxes.",
-          "ko": "동적 장애물 회피('DOA') 녹화: RViz의 /thor/dynamic_obstacle_avoidance 토픽 폴리곤 MarkerArray와 추적 중인 사람 박스가 표시된 카메라 영상."
+          "en": "Dynamic obstacle avoidance (DOA) recording: avoidance polygons drawn in RViz, and the camera view with tracked person boxes.",
+          "ko": "동적 장애물 회피(DOA) 녹화: RViz에 표시된 회피 영역 폴리곤과 추적 중인 사람 박스가 표시된 카메라 영상."
         },
         "thumb": "img/moving-object-detection/thumbs/05-rviz-doa-polygons.jpg"
       },
       {
         "src": "img/moving-object-detection/06-depth-person-tracking-followup.jpg",
         "caption": {
-          "en": "2026 follow-up (Notion): depth-camera prototype with a depth colormap, a color–depth overlay, and person tracking that shows center/mean distance.",
-          "ko": "2026년 후속 작업(Notion): depth colormap, 컬러–depth 오버레이, 중심·평균 거리를 표시하는 사람 추적 화면으로 구성된 depth 카메라 프로토타입."
+          "en": "2026 follow-up: depth-camera prototype with a depth colormap, a color–depth overlay and a 'Person Tracking' view that shows center/mean distance.",
+          "ko": "2026년 후속 작업: 깊이 컬러맵, 컬러–깊이 오버레이, 중심·평균 거리를 표시하는 'Person Tracking' 화면으로 구성된 깊이 카메라 프로토타입."
         },
         "thumb": "img/moving-object-detection/thumbs/06-depth-person-tracking-followup.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "Fuses 2D LiDAR with YOLO person detections in ROS2 to estimate people's position and velocity.",
+      "ko": "2D LiDAR와 YOLO 사람 검출을 융합해 이동하는 사람의 위치·속도를 추정하는 ROS2 노드."
+    }
   },
   {
     "slug": "pcb-defect-detection",
@@ -518,8 +558,8 @@ window.PROJECTS = [
       "ko": "PCB 결함 탐지"
     },
     "team": {
-      "en": "Individual (industrial project at XIILAB)",
-      "ko": "개인 (씨이랩 산업 과제)"
+      "en": "Individual (XIILAB)",
+      "ko": "개인 (씨이랩)"
     },
     "role": {
       "en": "AI Researcher, AI Model Research Team",
@@ -527,20 +567,16 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "A PatchCore-based anomaly detection model for PCB defects, built with a backbone ensemble and mask prediction.",
-      "ko": "Backbone ensemble과 mask prediction을 적용한 PatchCore 기반 PCB 결함 탐지(anomaly detection) 모델."
+      "ko": "PatchCore에 백본 앙상블과 마스크 예측을 더해 PCB 결함을 찾는 이상 탐지 모델."
     },
     "summary": {
-      "en": "An industrial anomaly detection project at XIILAB's AI Model Research Team in 2024. The PCB defect detection model is based on PatchCore and adds a backbone ensemble and mask prediction. It was developed individually on Ubuntu with PyTorch, Git and Docker.",
-      "ko": "2024년 씨이랩 AI 모델 연구팀에서 수행한 산업용 이상 탐지(anomaly detection) 과제입니다. PCB 결함 탐지 모델은 PatchCore를 기반으로 하며 backbone ensemble과 mask prediction을 더했습니다. Ubuntu 환경에서 PyTorch, Git, Docker를 사용해 단독으로 개발했습니다."
-    },
-    "solution": {
-      "en": "A PatchCore anomaly detection model with a backbone ensemble and mask prediction.",
-      "ko": "PatchCore 기반 이상 탐지 모델에 backbone ensemble과 mask prediction을 적용했습니다."
+      "en": "A solo industrial anomaly detection task on XIILAB's AI Model Research Team (2024). The model extends PatchCore with a backbone ensemble and mask prediction to find defects in PCB images, and was developed on Ubuntu with PyTorch, Git and Docker.",
+      "ko": "2024년 씨이랩 AI 모델 연구팀에서 단독으로 수행한 산업용 이상 탐지 과제입니다. PatchCore에 백본 앙상블(backbone ensemble)과 마스크 예측(mask prediction)을 더해 PCB 이미지에서 결함을 찾는 모델을 만들었으며, Ubuntu 환경에서 PyTorch, Git, Docker로 개발했습니다."
     },
     "contributions": [
       {
-        "en": "Implemented the PatchCore backbone ensemble with mask prediction as an individual project.",
-        "ko": "개인 프로젝트로 mask prediction을 포함한 PatchCore backbone ensemble을 구현했습니다."
+        "en": "Sole developer: implemented the backbone ensemble and mask prediction on top of PatchCore.",
+        "ko": "단독 개발: PatchCore 위에 백본 앙상블과 마스크 예측을 구현했습니다."
       }
     ],
     "tech": [
@@ -558,7 +594,11 @@ window.PROJECTS = [
       "PCB"
     ],
     "links": [],
-    "monogram": "PCB"
+    "monogram": "PCB",
+    "cardTagline": {
+      "en": "PatchCore-based PCB defect detection with a backbone ensemble and mask prediction.",
+      "ko": "백본 앙상블과 마스크 예측을 더한 PatchCore 기반 PCB 결함 탐지 모델."
+    }
   },
   {
     "slug": "cnn-mlops",
@@ -593,22 +633,18 @@ window.PROJECTS = [
       "ko": "MNIST 숫자 분류 모델의 전체 라이프사이클을 REST API로 구성한 개인 MLOps 프로젝트입니다. /train은 사용자가 입력한 하이퍼파라미터로 학습을 수행하고 MLflow로 추적합니다. /register는 학습된 모델을 ONNX로 변환해 MLflow Model Registry에 등록하고, /predict는 최신 등록 모델로 업로드된 이미지를 분류합니다. API 서버와 MLflow UI는 Docker Compose로 함께 실행됩니다."
     },
     "problem": {
-      "en": "Training a model is only one step toward serving it. Experiments need tracking, trained models need a governed hand-off to a registry in a portable format, and inference has to use the right model version. The goal was one API service for training and serving an MNIST classifier, integrated with a model registry and experiment tracking.",
-      "ko": "모델 학습은 서비스로 가는 과정의 한 단계일 뿐입니다. 실험을 추적해야 하고, 학습된 모델은 이식 가능한 형식으로 관리된 절차를 거쳐 레지스트리에 등록해야 하며, 추론에는 올바른 모델 버전을 사용해야 합니다. 이에 Model Registry·실험 추적과 통합된, MNIST 분류 모델 학습·서빙용 단일 API 서비스를 목표로 했습니다."
-    },
-    "solution": {
-      "en": "FastAPI exposes /train, /register and /predict. Training runs a PyTorch Lightning module with MLflow autologging and returns the run ID. Registration loads that run's model, exports it to ONNX, validates it and logs it to the registry as mnist_model. Prediction preprocesses the uploaded image, loads the latest registered ONNX model through MLflow, and returns the digit with a confidence score.",
-      "ko": "FastAPI로 /train, /register, /predict 엔드포인트를 제공합니다. 학습은 MLflow autologging이 적용된 PyTorch Lightning 모듈로 수행하고 run ID를 반환합니다. 등록은 해당 run의 모델을 불러와 ONNX로 변환·검증한 뒤 mnist_model로 레지스트리에 기록합니다. 추론은 업로드 이미지를 전처리하고 MLflow로 최신 등록 ONNX 모델을 불러와 예측 숫자와 confidence를 반환합니다."
+      "en": "A trained model is not yet a service: runs need to be tracked, the chosen model has to be stored in a registry in a portable format, and predictions must come from the right version. The goal was a single API that trains, registers and serves an MNIST classifier, with MLflow handling tracking and the registry.",
+      "ko": "학습만으로는 모델을 서비스할 수 없습니다. 실험을 추적하고, 선택한 모델을 이식 가능한 형식으로 레지스트리에 등록하고, 항상 올바른 버전으로 추론해야 합니다. 이 프로젝트는 MLflow로 실험 추적과 레지스트리를 관리하면서 MNIST 분류 모델의 학습·등록·서빙을 하나의 API로 제공하는 것을 목표로 했습니다."
     },
     "approach": [
       {
         "title": {
-          "en": "CNN baseline & Lightning refactor",
-          "ko": "CNN 베이스라인과 Lightning 리팩터링"
+          "en": "From CNN baseline to Lightning MLP",
+          "ko": "CNN 베이스라인에서 Lightning MLP로"
         },
         "body": {
-          "en": "Started from a reference PyTorch CNN for MNIST, credited in the README (Conv2d–BatchNorm–Dropout blocks with a 1×1 transition layer and max-pooling). Training was then refactored into a LightningModule and LightningDataModule with a 55,000 / 5,000 train/validation split and Adam with a OneCycleLR schedule; the Lightning version uses a fully connected classifier.",
-          "ko": "README에 출처를 밝힌 PyTorch 기반 MNIST CNN 레퍼런스(Conv2d–BatchNorm–Dropout 블록, 1×1 transition layer, max-pooling)로 시작했습니다. 이후 학습 코드를 LightningModule·LightningDataModule로 리팩터링했으며, 학습/검증 데이터는 55,000 / 5,000으로 분할하고 Adam과 OneCycleLR 스케줄을 사용했습니다. Lightning 버전에서는 fully connected 분류기를 사용합니다."
+          "en": "Started from a reference PyTorch CNN for MNIST, credited in the README (Conv2d–BatchNorm–Dropout blocks with a 1×1 transition layer and max-pooling). Training was then refactored into a LightningModule and LightningDataModule with a 55,000 / 5,000 train/validation split and Adam with a OneCycleLR schedule. The Lightning model that /train trains and /predict serves is a 3-layer fully connected network (MLP).",
+          "ko": "README에 출처를 밝힌 PyTorch 기반 MNIST CNN 레퍼런스(Conv2d–BatchNorm–Dropout 블록, 1×1 transition layer, max-pooling)로 시작했습니다. 이후 학습 코드를 LightningModule·LightningDataModule로 리팩터링했으며, 학습/검증 데이터는 55,000 / 5,000으로 분할하고 Adam과 OneCycleLR 스케줄을 사용했습니다. /train이 학습하고 /predict가 서빙하는 Lightning 모델은 3층 완전 연결 신경망(MLP)입니다."
         }
       },
       {
@@ -618,7 +654,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "/train accepts learning rate, epochs and batch size as JSON. It enables MLflow PyTorch autologging and system-metrics logging, then returns the MLflow run ID and artifact path. Guardrails reject more than 15 epochs and cap training at 10 minutes.",
-          "ko": "/train은 learning rate, epoch, batch size를 JSON으로 받습니다. MLflow PyTorch autologging과 시스템 메트릭 로깅을 활성화하고, 학습 후 MLflow run ID와 artifact 경로를 반환합니다. 15 epoch 초과 요청은 거부하고 학습 시간은 최대 10분으로 제한했습니다."
+          "ko": "/train은 학습률, epoch 수, 배치 크기를 JSON으로 받습니다. MLflow PyTorch autologging과 시스템 메트릭 로깅을 활성화하고, 학습 후 MLflow run ID와 artifact 경로를 반환합니다. 15 epoch 초과 요청은 거부하고 학습 시간은 최대 10분으로 제한했습니다."
         }
       },
       {
@@ -638,7 +674,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "/predict converts the uploaded image into a normalized 28×28 grayscale tensor, looks up the latest registered version, runs it through MLflow pyfunc and returns the label with a softmax confidence. A test script checks that PyTorch and ONNX Runtime outputs match.",
-          "ko": "/predict는 업로드 이미지를 정규화된 28×28 grayscale 텐서로 변환하고, 최신 등록 버전을 조회해 MLflow pyfunc로 추론한 뒤 label과 softmax confidence를 반환합니다. PyTorch와 ONNX Runtime 출력이 일치하는지 검증하는 테스트 스크립트도 작성했습니다."
+          "ko": "/predict는 업로드 이미지를 정규화된 28×28 흑백 텐서로 변환하고, 최신 등록 버전을 조회해 MLflow pyfunc로 추론한 뒤 예측 라벨과 softmax 신뢰도를 반환합니다. PyTorch와 ONNX Runtime 출력이 일치하는지 검증하는 테스트 스크립트도 작성했습니다."
         }
       },
       {
@@ -654,8 +690,8 @@ window.PROJECTS = [
     ],
     "results": [
       {
-        "en": "All three endpoints (Train / Register / Predict) work end to end, as shown in Swagger UI and Insomnia screenshots. For example, /predict returns {label: \"5\", confidence: 92.68} for an uploaded digit image.",
-        "ko": "Train / Register / Predict 세 엔드포인트가 end-to-end로 동작하며, Swagger UI와 Insomnia 스크린샷으로 확인할 수 있습니다. 예를 들어 /predict는 업로드한 숫자 이미지에 대해 {label: \"5\", confidence: 92.68}를 반환합니다."
+        "en": "All three endpoints (Train / Register / Predict) work end to end, as shown in the Insomnia screenshots. For example, /predict returns label \"0\" with 95.27% confidence for the sample img_7.jpg, a handwritten 0.",
+        "ko": "Train / Register / Predict 세 엔드포인트가 학습부터 등록, 추론까지 이어서 정상 동작하며, Insomnia 스크린샷으로 확인할 수 있습니다. 예를 들어 손글씨 0인 샘플 img_7.jpg를 /predict에 보내면 label \"0\", 신뢰도 95.27%를 반환합니다."
       },
       {
         "en": "Open-sourced with a README covering Docker Compose, curl, Swagger and Insomnia usage, plus sample digit images.",
@@ -688,7 +724,7 @@ window.PROJECTS = [
       "torchmetrics",
       "FastAPI",
       "Pydantic",
-      "MLflow (Tracking & Model Registry)",
+      "MLflow",
       "ONNX",
       "ONNX Runtime",
       "Docker",
@@ -717,50 +753,34 @@ window.PROJECTS = [
     "cover": "img/cnn-mlops/cover.jpg",
     "images": [
       {
-        "src": "img/cnn-mlops/01-swagger-train-request.jpg",
+        "src": "img/cnn-mlops/01-insomnia-train.jpg",
         "caption": {
-          "en": "Swagger UI: POST /train with JSON hyperparameters (learning_rate, max_epochs, batch_size).",
-          "ko": "Swagger UI: JSON 하이퍼파라미터(learning_rate, max_epochs, batch_size)로 POST /train 요청."
+          "en": "Insomnia: POST /train with JSON hyperparameters (learning_rate, max_epochs, batch_size) returns the MLflow run_id and artifact_path.",
+          "ko": "Insomnia: JSON 하이퍼파라미터(learning_rate, max_epochs, batch_size)로 POST /train을 호출해 MLflow run_id와 artifact_path를 받은 화면."
         },
-        "thumb": "img/cnn-mlops/thumbs/01-swagger-train-request.jpg"
+        "thumb": "img/cnn-mlops/thumbs/01-insomnia-train.jpg"
       },
       {
-        "src": "img/cnn-mlops/02-swagger-train-response.jpg",
+        "src": "img/cnn-mlops/02-insomnia-register.jpg",
         "caption": {
-          "en": "/train response returning the MLflow run_id and artifact_path of the tracked experiment.",
-          "ko": "추적된 실험의 MLflow run_id와 artifact_path를 반환하는 /train 응답."
+          "en": "Insomnia: POST /register with the training run_id registers the ONNX model as mnist_model and returns registered_run_id and registered_artifact_path.",
+          "ko": "Insomnia: 학습 run_id로 POST /register를 호출해 ONNX 모델을 mnist_model로 등록하고 registered_run_id와 registered_artifact_path를 받은 화면."
         },
-        "thumb": "img/cnn-mlops/thumbs/02-swagger-train-response.jpg"
+        "thumb": "img/cnn-mlops/thumbs/02-insomnia-register.jpg"
       },
       {
-        "src": "img/cnn-mlops/03-swagger-register-request.jpg",
+        "src": "img/cnn-mlops/03-insomnia-predict.jpg",
         "caption": {
-          "en": "POST /register: a run_id is promoted to the registry as mnist_model with an ONNX artifact path.",
-          "ko": "POST /register: run_id를 ONNX artifact 경로와 함께 mnist_model로 레지스트리에 등록하는 요청."
+          "en": "Insomnia: POST /predict with img_7.jpg (a handwritten 0) returns label \"0\" with 95.27% confidence.",
+          "ko": "Insomnia: 손글씨 0인 img_7.jpg로 POST /predict를 호출해 label \"0\", 신뢰도 95.27%를 받은 화면."
         },
-        "thumb": "img/cnn-mlops/thumbs/03-swagger-register-request.jpg"
-      },
-      {
-        "src": "img/cnn-mlops/04-swagger-register-response.jpg",
-        "caption": {
-          "en": "/register response with the registered run ID and onnx_model artifact path.",
-          "ko": "등록된 run ID와 onnx_model artifact 경로를 반환하는 /register 응답."
-        },
-        "thumb": "img/cnn-mlops/thumbs/04-swagger-register-response.jpg"
-      },
-      {
-        "src": "img/cnn-mlops/05-swagger-predict-response.jpg",
-        "caption": {
-          "en": "/predict response: the latest registered model returns label \"5\" with 92.68% confidence.",
-          "ko": "/predict 응답: 최신 등록 모델이 반환한 label \"5\", confidence 92.68%."
-        },
-        "thumb": "img/cnn-mlops/thumbs/05-swagger-predict-response.jpg"
+        "thumb": "img/cnn-mlops/thumbs/03-insomnia-predict.jpg"
       },
       {
         "src": "img/cnn-mlops/06-mnist-sample-input.jpg",
         "caption": {
           "en": "Normalized 28×28 MNIST sample (digit 2) from the repository's samples folder.",
-          "ko": "저장소 samples 폴더의 정규화된 28×28 MNIST 샘플 (숫자 2)."
+          "ko": "저장소 samples 폴더의 정규화된 28×28 MNIST 샘플(숫자 2)."
         },
         "thumb": "img/cnn-mlops/thumbs/06-mnist-sample-input.jpg"
       }
@@ -773,7 +793,11 @@ window.PROJECTS = [
       "REST API",
       "ONNX Export",
       "Image Classification"
-    ]
+    ],
+    "cardTagline": {
+      "en": "A FastAPI service that trains an MNIST model, registers it in MLflow as ONNX and serves it.",
+      "ko": "MNIST 모델을 학습하고 ONNX로 MLflow에 등록해 서빙하는 FastAPI 서비스."
+    }
   },
   {
     "slug": "medicine-guidance",
@@ -788,23 +812,23 @@ window.PROJECTS = [
       "ko": "A-EYE: 시각 장애인을 위한 의약품 안내"
     },
     "team": {
-      "en": "Team of 3 — A-EYE (ChaeJiJoo Studio)",
-      "ko": "3인 팀 — A-EYE (ChaeJiJoo Studio)"
+      "en": "Team of 3 (A-EYE, ChaeJiJoo Studio)",
+      "ko": "3인 팀 (A-EYE, ChaeJiJoo Studio)"
     },
     "role": {
-      "en": "Team Lead — idea & system design, data labeling, YOLOv5 training, FastAPI backend, Docker deployment, Google Play release",
-      "ko": "팀장 — 아이디어 및 시스템 설계, 데이터 라벨링, YOLOv5 학습, FastAPI 백엔드, Docker 배포, Google Play 출시"
+      "en": "Team Lead",
+      "ko": "팀장"
     },
     "tagline": {
       "en": "A YOLOv5-powered Android app and API that recognizes medicine packaging from a photo and returns its name, dosage and efficacy for blind and low-vision users.",
       "ko": "사진 한 장으로 의약품 패키지를 인식해 약품명·용법·효능을 알려주는, 시각 장애인과 저시력자를 위한 YOLOv5 기반 Android 앱 및 API."
     },
     "summary": {
-      "en": "A-EYE (A.I + Additional Eye) is a medicine-information service for people who cannot read the dosage and usage text printed on medicine packaging. A YOLOv5 detector trained on Roboflow-annotated package images identifies the product, and a Dockerized FastAPI server returns its name, usage/dosage, efficacy and bounding box as JSON to a mobile client. The model reached 0.985 mAP@0.5 across three product classes, and the app was released on Google Play alongside an API documented for developers.",
-      "ko": "A-EYE(A.I + Additional Eye)는 의약품 포장에 인쇄된 복용 방법·용량 정보를 읽기 어려운 사용자를 위한 의약품 정보 서비스입니다. Roboflow로 라벨링한 패키지 이미지로 학습한 YOLOv5 모델이 제품을 인식하고, Docker로 배포한 FastAPI 서버가 약품명·용법 및 용량·효능·bounding box를 JSON으로 모바일 앱에 반환합니다. 3개 제품 클래스 전체에서 mAP@0.5 0.985를 기록했고, 앱은 Google Play에 출시했으며 개발자용 API 문서도 함께 제공했습니다."
+      "en": "A-EYE (AI + Additional Eye) is a medicine-information service for people who cannot read the dosage and usage text printed on medicine packaging. A YOLOv5 detector trained on Roboflow-annotated package images identifies the product, and a Dockerized FastAPI server returns its name, usage/dosage, efficacy and bounding box as JSON to a mobile client. The model reached 0.985 mAP@0.5 across three product classes, and the app was released on Google Play alongside an API documented for developers.",
+      "ko": "A-EYE(AI + Additional Eye)는 의약품 포장에 인쇄된 복용 방법·용량 정보를 읽기 어려운 사용자를 위한 의약품 정보 서비스입니다. Roboflow로 라벨링한 패키지 이미지로 학습한 YOLOv5 모델이 제품을 인식하고, Docker로 배포한 FastAPI 서버가 약품명·용법 및 용량·효능·bounding box를 JSON으로 모바일 앱에 반환합니다. 3개 제품 클래스 전체에서 mAP@0.5 0.985를 기록했고, 앱을 Google Play에 출시했으며 개발자용 API 문서도 함께 제공했습니다."
     },
     "problem": {
-      "en": "Medicine packaging often carries no braille, and regulation on braille labeling of medicines was judged insufficient. When people cannot read or recognize the dosage and usage printed on a medicine container, the risk of accidentally taking the wrong medicine rises sharply — a problem for blind users and for people with presbyopia or amblyopia.",
+      "en": "Medicine packaging often carries no braille, and the team judged the rules on braille labeling of medicines insufficient. When people cannot read or recognize the dosage and usage printed on a medicine container, the risk of accidentally taking the wrong medicine rises sharply. This affects blind users as well as people with presbyopia or amblyopia.",
       "ko": "의약품 포장에는 점자 표기가 없는 경우가 많고, 의약품 점자 표기에 관한 규정도 미흡하다고 판단했습니다. 약병에 적힌 복용 방법과 용량을 읽거나 인식하기 어려우면 실수로 잘못된 약을 복용할 위험이 크게 높아지며, 이는 시각 장애인뿐 아니라 노안·약시가 있는 사람에게도 해당하는 문제입니다."
     },
     "solution": {
@@ -818,8 +842,8 @@ window.PROJECTS = [
           "ko": "서비스 기획 및 비즈니스 모델"
         },
         "body": {
-          "en": "Framed the problem with a why–how–what pitch and a business model canvas: target users (blind, presbyopic and low-vision people), key metrics (mAP, F1), an Android app-store channel and a learning loop driven by user feedback. Named the service A-EYE — A.I plus an Additional Eye. Early plans considered OCR with TTS; the delivered pipeline centers on package detection.",
-          "ko": "why–how–what 흐름의 피치와 비즈니스 모델 캔버스로 문제를 정의하고, 대상 사용자(시각 장애인, 노안·약시가 있는 사람), 핵심 지표(mAP, F1), Android 앱스토어 채널, 사용자 피드백 기반 학습 루프를 정리했습니다. 서비스 이름은 A.I와 Additional Eye를 합쳐 A-EYE로 지었습니다. 초기에는 OCR과 TTS를 결합하는 방식도 검토했지만, 최종 파이프라인은 패키지 검출 중심으로 구성했습니다."
+          "en": "Framed the problem with a why–how–what pitch and a business model canvas: target users (blind, presbyopic and low-vision people), key metrics (mAP, F1), an Android app-store channel and a learning loop driven by user feedback. Named the service A-EYE, short for AI + Additional Eye. Early plans considered OCR with TTS; the delivered pipeline centers on package detection.",
+          "ko": "why–how–what 흐름의 피치와 비즈니스 모델 캔버스로 문제를 정의하고, 대상 사용자(시각 장애인, 노안·약시가 있는 사람), 핵심 지표(mAP, F1), Android 앱스토어 채널, 사용자 피드백 기반 학습 루프를 정리했습니다. 서비스 이름은 AI와 Additional Eye를 합쳐 A-EYE로 지었습니다. 초기에는 OCR과 TTS를 결합하는 방식도 검토했지만, 최종 파이프라인은 패키지 검출 중심으로 구성했습니다."
         }
       },
       {
@@ -829,7 +853,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Crawled medicine-package images and built bounding-box annotations in Roboflow (777 images in the project dataset), then split the data into train/validation/test at 8:1:1.",
-          "ko": "의약품 패키지 이미지를 크롤링하고 Roboflow로 bounding box를 라벨링했습니다(프로젝트 데이터셋 777장). 데이터는 train/validation/test를 8:1:1 비율로 분할했습니다."
+          "ko": "의약품 패키지 이미지를 크롤링하고 Roboflow로 bounding box를 라벨링했습니다(프로젝트 데이터셋 777장). 데이터는 학습·검증·테스트용으로 8:1:1 비율로 분할했습니다."
         }
       },
       {
@@ -838,8 +862,8 @@ window.PROJECTS = [
           "ko": "YOLOv5 학습 및 평가"
         },
         "body": {
-          "en": "Trained a one-stage YOLOv5 detector for three products — Tylenol, Easyn6 and Hwalmyungsu — and evaluated it on the test split with mAP, precision/recall, F1-confidence curves and a confusion matrix.",
-          "ko": "타이레놀, 이지엔6, 활명수 3개 제품을 검출하는 one-stage YOLOv5 모델을 학습하고, test set에서 mAP, precision/recall, F1-confidence 곡선, confusion matrix로 평가했습니다."
+          "en": "Trained a one-stage YOLOv5 detector for three products (Tylenol, Easyn6 and Hwalmyungsu) and evaluated it on the test split with mAP, precision/recall, F1-confidence curves and a confusion matrix.",
+          "ko": "타이레놀, 이지엔6, 활명수 3개 제품을 검출하는 one-stage YOLOv5 모델을 학습하고, 테스트셋에서 mAP, precision/recall, F1-confidence 곡선, 혼동 행렬(confusion matrix)로 평가했습니다."
         }
       },
       {
@@ -880,11 +904,11 @@ window.PROJECTS = [
       },
       {
         "en": "Peak F1 of 0.96 at a confidence threshold of 0.560.",
-        "ko": "confidence threshold 0.560에서 최고 F1 0.96을 기록했습니다."
+        "ko": "신뢰도 임계값(confidence threshold) 0.560에서 최고 F1 0.96을 기록했습니다."
       },
       {
         "en": "Normalized confusion-matrix scores of 0.93 (Tylenol), 0.94 (Easyn6) and 1.00 (Hwalmyungsu).",
-        "ko": "정규화 confusion matrix에서 타이레놀 0.93, 이지엔6 0.94, 활명수 1.00을 기록했습니다."
+        "ko": "정규화 혼동 행렬에서 타이레놀 0.93, 이지엔6 0.94, 활명수 1.00을 기록했습니다."
       },
       {
         "en": "Android app released on Google Play; inference server published as a public Docker Hub image (June 2023).",
@@ -975,9 +999,30 @@ window.PROJECTS = [
       }
     ],
     "youtube": [
-      "tUa_03D01fY",
-      "O50GQRBaCB0",
-      "r_Q5QkrsvRQ"
+      {
+        "id": "tUa_03D01fY",
+        "vertical": true,
+        "caption": {
+          "en": "V2.0 – camera screen with retake prompt",
+          "ko": "V2.0 – 재촬영 안내 카메라 화면"
+        }
+      },
+      {
+        "id": "O50GQRBaCB0",
+        "vertical": true,
+        "caption": {
+          "en": "V1.0 – Hwalmyungsu",
+          "ko": "V1.0 – 활명수"
+        }
+      },
+      {
+        "id": "r_Q5QkrsvRQ",
+        "vertical": true,
+        "caption": {
+          "en": "V1.0 – Easyn6 and Tylenol",
+          "ko": "V1.0 – 이지엔6·타이레놀"
+        }
+      }
     ],
     "cover": "img/medicine-guidance/cover.jpg",
     "images": [
@@ -985,7 +1030,7 @@ window.PROJECTS = [
         "src": "img/medicine-guidance/01-yolov5-predictions.jpg",
         "caption": {
           "en": "Sample YOLOv5 detections: Tylenol, Easyn6 ('easyn') and Hwalmyungsu ('su') packages boxed with confidence scores.",
-          "ko": "YOLOv5 검출 예시: confidence와 함께 박스로 표시된 타이레놀, 이지엔6(easyn), 활명수(su) 패키지."
+          "ko": "YOLOv5 검출 예시: 신뢰도와 함께 박스로 표시된 타이레놀, 이지엔6(easyn), 활명수(su) 패키지."
         },
         "thumb": "img/medicine-guidance/thumbs/01-yolov5-predictions.jpg"
       },
@@ -1001,7 +1046,7 @@ window.PROJECTS = [
         "src": "img/medicine-guidance/03-service-architecture.jpg",
         "caption": {
           "en": "Service architecture: the mobile client exchanges requests with a Dockerized Back-End/AI server (Python, FastAPI, JSON, YOLOv5) on a local server.",
-          "ko": "서비스 구조: 모바일 클라이언트가 로컬 서버의 Docker 기반 Back-End/AI 서버(Python, FastAPI, JSON, YOLOv5)와 요청·응답을 주고받습니다."
+          "ko": "서비스 구조: 모바일 클라이언트와 로컬 서버의 Docker 기반 Back-End/AI 서버(Python, FastAPI, JSON, YOLOv5) 간 요청·응답 흐름."
         },
         "thumb": "img/medicine-guidance/thumbs/03-service-architecture.jpg"
       },
@@ -1009,27 +1054,31 @@ window.PROJECTS = [
         "src": "img/medicine-guidance/04-api-response.jpg",
         "caption": {
           "en": "Developer API: POST a JPG to /upload-image and receive JSON with category, product title, usage, efficacy and bounding box (x, y, w, h).",
-          "ko": "개발자용 API: /upload-image에 JPG를 POST하면 category, 약품명, 용법, 효능, bounding box(x, y, w, h)가 담긴 JSON을 반환합니다."
+          "ko": "개발자용 API 안내: /upload-image에 JPG를 POST하면 반환되는 JSON(category, 약품명, 용법, 효능, bounding box x·y·w·h)."
         },
         "thumb": "img/medicine-guidance/thumbs/04-api-response.jpg"
       },
       {
         "src": "img/medicine-guidance/05-pr-curve.jpg",
         "caption": {
-          "en": "Precision–recall curve: 0.985 mAP@0.5 over all classes (Tylenol 0.972, easyn 0.988, su 0.995).",
-          "ko": "Precision–recall 곡선: 전체 클래스 mAP@0.5 0.985 (Tylenol 0.972, easyn 0.988, su 0.995)."
+          "en": "Precision–recall curve: 0.985 mAP@0.5 over all classes (Tylenol 0.972, Easyn6 0.988, Hwalmyungsu 0.995).",
+          "ko": "Precision–recall 곡선: 전체 클래스 mAP@0.5 0.985 (타이레놀 0.972, 이지엔6 0.988, 활명수 0.995)."
         },
         "thumb": "img/medicine-guidance/thumbs/05-pr-curve.jpg"
       },
       {
         "src": "img/medicine-guidance/06-confusion-matrix.jpg",
         "caption": {
-          "en": "Normalized confusion matrix for the three product classes and background (0.93 Tylenol, 0.94 easyn, 1.00 su).",
-          "ko": "3개 제품 클래스와 background에 대한 정규화 confusion matrix (Tylenol 0.93, easyn 0.94, su 1.00)."
+          "en": "Normalized confusion matrix for the three product classes and background (Tylenol 0.93, Easyn6 0.94, Hwalmyungsu 1.00).",
+          "ko": "3개 제품 클래스와 배경(background)에 대한 정규화 혼동 행렬(타이레놀 0.93, 이지엔6 0.94, 활명수 1.00)."
         },
         "thumb": "img/medicine-guidance/thumbs/06-confusion-matrix.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "A YOLOv5 app and API that recognizes medicine packages and returns name, dosage and efficacy.",
+      "ko": "사진 한 장으로 의약품을 인식해 약품명·용법·효능을 알려주는 YOLOv5 기반 앱과 API."
+    }
   },
   {
     "slug": "wsi-3d-registration",
@@ -1629,8 +1678,8 @@ window.PROJECTS = [
     },
     "category": "ai",
     "categoryLabel": {
-      "en": "AI · Object Detection · Kaggle",
-      "ko": "AI · 객체 탐지 · Kaggle"
+      "en": "AI · Object Detection",
+      "ko": "AI · 객체 탐지"
     },
     "title": {
       "en": "[Kaggle] Help Protect the Great Barrier Reef",
@@ -2294,7 +2343,7 @@ window.PROJECTS = [
       "ko": "AI · 임베디드 ML"
     },
     "title": {
-      "en": "Rock–Paper–Scissors Game using Machine Learning",
+      "en": "Rock–Paper–Scissors Game Using Machine Learning",
       "ko": "머신러닝을 이용한 가위바위보 게임"
     },
     "team": {
@@ -2486,7 +2535,7 @@ window.PROJECTS = [
     },
     "team": {
       "en": "Individual (capstone design, Baekseok University)",
-      "ko": "개인 프로젝트 (백석대학교 캡스톤디자인)"
+      "ko": "개인 (백석대학교 캡스톤디자인)"
     },
     "role": {
       "en": "Circuit design, 3D modeling, Arduino coding",
@@ -2743,7 +2792,7 @@ window.PROJECTS = [
     },
     "team": {
       "en": "Individual (UST research internship at KIGAM)",
-      "ko": "개인 프로젝트 (UST 연구인턴십, 한국지질자원연구원)"
+      "ko": "개인 (UST 연구인턴십, 한국지질자원연구원)"
     },
     "role": {
       "en": "Circuit design, 3D modeling",
@@ -2952,7 +3001,7 @@ window.PROJECTS = [
       "ko": "임베디드 · FPGA"
     },
     "title": {
-      "en": "Elevator System using FPGA & ATmega328P",
+      "en": "Elevator System Using FPGA & ATmega328P",
       "ko": "FPGA와 ATmega328P를 이용한 엘리베이터 설계 및 구현"
     },
     "team": {
