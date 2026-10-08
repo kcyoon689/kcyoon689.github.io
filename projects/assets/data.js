@@ -1728,15 +1728,15 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "A 4-person team Kaggle entry that detects crown-of-thorns starfish in underwater reef video with YOLOv5; the team finished 353rd of 2,026.",
-      "ko": "YOLOv5로 산호초 수중 영상 속 왕관가시불가사리(crown-of-thorns starfish, COTS)를 탐지한 4인 팀 Kaggle 프로젝트, 2,026팀 중 353위."
+      "ko": "YOLOv5로 산호초 수중 영상 속 왕관가시불가사리(COTS)를 탐지한 4인 팀 Kaggle 프로젝트, 2,026팀 중 353위."
     },
     "summary": {
-      "en": "TensorFlow – Help Protect the Great Barrier Reef was a Kaggle code competition to detect coral-eating crown-of-thorns starfish (COTS) in underwater video. It was scored by F2 averaged over IoU thresholds from 0.3 to 0.8. As a member of the 4-person team Under The Sea, worked on a YOLOv5 pipeline with sequence-aware stratified group k-fold splits, background-image mixing and recall-oriented tuning. The team finished 353 / 2026 on the private leaderboard with a score of 0.635.",
-      "ko": "TensorFlow – Help Protect the Great Barrier Reef는 수중 영상에서 산호를 먹는 왕관가시불가사리(crown-of-thorns starfish, COTS)를 탐지하는 Kaggle code competition입니다. 평가 지표는 IoU 임계값 0.3~0.8에 걸쳐 평균한 F2 score입니다. 4인 팀 Under The Sea의 일원으로 시퀀스 단위 stratified group k-fold 분할, 배경 이미지 혼합, recall 중심 튜닝을 적용한 YOLOv5 파이프라인 작업에 참여했습니다. 팀은 private leaderboard에서 0.635점으로 2,026팀 중 353위를 기록했습니다."
+      "en": "TensorFlow – Help Protect the Great Barrier Reef was a Kaggle code competition to detect coral-eating crown-of-thorns starfish (COTS) in underwater video. It was scored by F2 averaged over IoU thresholds from 0.3 to 0.8. The 4-person team Under The Sea built a YOLOv5 pipeline with sequence-aware stratified group k-fold splits, background-image mixing and recall-oriented tuning.",
+      "ko": "TensorFlow – Help Protect the Great Barrier Reef는 수중 영상에서 산호를 먹는 왕관가시불가사리(crown-of-thorns starfish, COTS)를 탐지하는 Kaggle 코드 대회입니다. 평가 지표는 IoU 임계값 0.3~0.8에 걸쳐 평균한 F2 score입니다. 4인 팀 Under The Sea는 시퀀스 단위 stratified group k-fold 분할, 배경 이미지 혼합, recall 중심 튜닝을 적용한 YOLOv5 파이프라인을 구축했습니다."
     },
     "problem": {
-      "en": "The F2 metric weights recall over precision, so a missed starfish costs more than a false alarm. Images are frames from continuous video sequences, so a random train/validation split leaks highly correlated frames and makes validation scores look better than they are. Fewer than 5,000 labeled images were available, far below the 10,000+ recommended for YOLOv5. Some starfish visible in consecutive frames were left unlabeled, and local validation diverged from the leaderboard.",
-      "ko": "F2 지표는 precision보다 recall에 더 큰 가중치를 두므로, 불가사리를 놓치는 비용이 오탐보다 큽니다. 이미지는 연속된 영상 시퀀스의 프레임이므로 train/validation을 무작위로 나누면 상관관계가 높은 프레임이 양쪽에 섞여 validation 점수가 실제보다 높게 나옵니다. 라벨이 있는 이미지는 5,000장이 채 되지 않아 YOLOv5 권장치(10,000장 이상)에 크게 못 미쳤습니다. 연속 프레임에 보이는 불가사리 일부에는 라벨이 빠져 있었고, 로컬 validation 점수와 leaderboard 점수도 서로 어긋났습니다."
+      "en": "The F2 metric weights recall over precision, so a missed starfish costs more than a false alarm. Images are frames from continuous video sequences, so a random train/validation split leaks highly correlated frames and makes validation scores look better than they are. Fewer than 5,000 images were labeled, and after holding out validation folds only about 3,000–4,000 remained for training. Some starfish visible in consecutive frames were left unlabeled, and local validation diverged from the leaderboard.",
+      "ko": "F2 지표는 precision보다 recall에 더 큰 가중치를 두므로, 불가사리를 놓치는 비용이 오탐보다 큽니다. 이미지는 연속된 영상 시퀀스의 프레임이므로 train/validation을 무작위로 나누면 상관관계가 높은 프레임이 양쪽에 섞여 validation 점수가 실제보다 높게 나옵니다. 라벨이 있는 이미지는 5,000장이 채 되지 않았고, validation fold를 떼어 내면 학습에 쓸 수 있는 이미지는 3,000~4,000장 정도에 불과했습니다. 연속 프레임에 보이는 불가사리 일부에는 라벨이 빠져 있었고, 로컬 validation 점수와 리더보드 점수도 서로 어긋났습니다."
     },
     "solution": {
       "en": "A YOLOv5 detector, starting from a yolov5m baseline, with a sequence-aware Stratified Group 5-fold split. Validation folds mimic the assumed test mix of about 80% background and 20% annotated images. Training adds a small share of background images to reduce false positives, plus Albumentations augmentation, a tuned learning-rate schedule and objectness-loss gain. A lowered confidence threshold favors recall.",
@@ -1750,7 +1750,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Started from public YOLOv5 and YOLOX training notebooks. Modules were implemented locally and merged in Kaggle notebooks for training and submission. The yolov5m baseline (20 epochs, random 5-fold) scored 0.389 on the leaderboard. A model trained on multiple GPUs was confirmed to run in the single-GPU Kaggle inference notebook.",
-          "ko": "공개된 YOLOv5·YOLOX 학습 노트북에서 출발했습니다. 모듈은 로컬에서 구현한 뒤 Kaggle 노트북에서 합쳐 학습과 제출을 진행했습니다. yolov5m 베이스라인(20 epoch, random 5-fold)의 LB 점수는 0.389였습니다. 여러 GPU로 학습한 모델이 단일 GPU Kaggle 추론 노트북에서도 정상 동작하는 것을 확인했습니다."
+          "ko": "공개된 YOLOv5·YOLOX 학습 노트북에서 출발했습니다. 모듈은 로컬에서 구현한 뒤 Kaggle 노트북에서 합쳐 학습과 제출을 진행했습니다. yolov5m 베이스라인(20 epoch, random 5-fold)의 리더보드 점수는 0.389였습니다. 여러 GPU로 학습한 모델이 단일 GPU Kaggle 추론 노트북에서도 정상 동작하는 것을 확인했습니다."
         }
       },
       {
@@ -1770,7 +1770,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Unannotated background images were mixed into training. Adding 300 background images with a 0.15 confidence threshold raised the leaderboard score from 0.389 to 0.443. Under F2, false negatives matter more than false positives, so lower confidence thresholds were preferred.",
-          "ko": "라벨이 없는 배경 이미지를 학습 데이터에 섞었습니다. 배경 이미지 300장을 추가하고 confidence threshold를 0.15로 설정하자 LB 점수가 0.389에서 0.443으로 올랐습니다. F2에서는 false positive보다 false negative가 더 중요하므로 낮은 confidence threshold를 택했습니다."
+          "ko": "라벨이 없는 배경 이미지를 학습 데이터에 섞었습니다. 배경 이미지 300장을 추가하고 confidence threshold를 0.15로 설정하자 리더보드 점수가 0.389에서 0.443으로 올랐습니다. F2에서는 false positive보다 false negative가 더 중요하므로 낮은 confidence threshold를 택했습니다."
         }
       },
       {
@@ -1790,28 +1790,24 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Albumentations augmentation used up/down and left/right flips, RandomBrightnessContrast, GaussNoise and random scaling. A larger inference image size improved the score because the public test set contained mostly small starfish. Roboflow was used to inspect sequences and clean labels.",
-          "ko": "Albumentations로 상하·좌우 반전, RandomBrightnessContrast, GaussNoise, 무작위 스케일링을 적용했습니다. Public test set에는 작은 불가사리가 많아, 추론 이미지 크기를 키우자 점수가 올랐습니다. Roboflow로 시퀀스를 확인하고 라벨을 정제했습니다."
+          "ko": "Albumentations로 상하·좌우 반전, RandomBrightnessContrast, GaussNoise, 무작위 스케일링을 적용했습니다. 공개 test set에는 작은 불가사리가 많아, 추론 이미지 크기를 키우자 점수가 올랐습니다. Roboflow로 시퀀스를 확인하고 라벨을 정제했습니다."
         }
       }
     ],
     "results": [
       {
-        "en": "Private leaderboard: rank 353 / 2026, score 0.635 (public LB 0.614).",
-        "ko": "Private leaderboard에서 2,026팀 중 353위(점수 0.635, public LB 0.614)를 기록했습니다."
-      },
-      {
-        "en": "Experiment log: yolov5m baseline LB 0.389, raised to 0.443 with 300 background images and a 0.15 confidence threshold.",
-        "ko": "실험 기록상 yolov5m 베이스라인의 LB 0.389를 배경 이미지 300장 추가와 confidence threshold 0.15 적용으로 0.443까지 끌어올렸습니다."
+        "en": "Private leaderboard: rank 353 of 2,026, score 0.635 (public leaderboard 0.614).",
+        "ko": "최종(private) 리더보드에서 2,026팀 중 353위(점수 0.635, public 리더보드 0.614)를 기록했습니다."
       }
     ],
     "contributions": [
       {
-        "en": "Member of the 4-person team Under The Sea; took part in the team's experiments and discussions on data splitting, background-image mixing and hyperparameter tuning.",
-        "ko": "4인 팀 Under The Sea의 팀원으로 데이터 분할, 배경 이미지 혼합, 하이퍼파라미터 튜닝에 관한 팀 실험과 논의에 참여했습니다."
+        "en": "Took part in the team's experiments and discussions on data splitting, background-image mixing and hyperparameter tuning.",
+        "ko": "데이터 분할, 배경 이미지 혼합, 하이퍼파라미터 튜닝에 관한 팀 실험과 논의에 참여했습니다."
       },
       {
-        "en": "Assigned to upload a video sequence to Roboflow and analyze it for label review.",
-        "ko": "영상 시퀀스 하나를 Roboflow에 업로드하고 라벨 검토를 위해 분석하는 작업을 맡았습니다."
+        "en": "Took on the Roboflow analysis of one video sequence as part of the team's label review.",
+        "ko": "팀의 라벨 검토 작업 중 영상 시퀀스 하나를 Roboflow로 분석하는 일을 맡았습니다."
       }
     ],
     "tech": [
@@ -1887,8 +1883,8 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/06-two-stage-pipeline.png",
         "thumb": "img/kaggle-great-barrier-reef/thumbs/06-two-stage-pipeline.jpg",
         "caption": {
-          "en": "Two-stage detection idea: a single-frame detector (e.g. YOLOX) proposes starfish candidates in the current frame, then crops of the same spots from previous frames are upsampled and passed to a multi-frame classifier for the final prediction.",
-          "ko": "2단계 탐지 아이디어: 단일 프레임 검출기(예: YOLOX)가 현재 프레임에서 불가사리 후보를 찾고, 이전 프레임들의 같은 위치를 잘라 확대한 뒤 multi-frame 분류기로 최종 예측을 내립니다."
+          "en": "Two-stage detection idea: a single-frame detector (e.g. YOLOX) proposes starfish candidates in the current frame, then crops of the same spots from previous frames are upsampled and passed to a multi-frame classifier for the final prediction",
+          "ko": "2단계 탐지 아이디어: 단일 프레임 검출기(예: YOLOX)로 현재 프레임의 불가사리 후보를 찾고, 이전 프레임들의 같은 위치를 잘라 확대해 multi-frame 분류기로 최종 예측하는 구조"
         }
       },
       {
@@ -1910,12 +1906,16 @@ window.PROJECTS = [
       {
         "src": "img/kaggle-great-barrier-reef/05-test-image-example.jpg",
         "caption": {
-          "en": "Test-image example, used to compare visual differences between the training and test frames",
-          "ko": "Test 이미지 예시: 학습 프레임과 test 프레임의 시각적 차이를 비교하는 데 사용한 이미지"
+          "en": "Test-set example: a frame used to compare how test images look against the training frames",
+          "ko": "테스트 데이터 예시: 학습 프레임과의 시각적 차이를 비교하는 데 쓴 프레임"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/05-test-image-example.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "4-person Kaggle entry detecting crown-of-thorns starfish with YOLOv5; 353rd of 2,026 teams.",
+      "ko": "YOLOv5로 왕관가시불가사리를 탐지한 4인 팀 Kaggle 참가작, 2,026팀 중 353위."
+    }
   },
   {
     "slug": "background-dependency",
@@ -1934,27 +1934,27 @@ window.PROJECTS = [
       "ko": "머신러닝 학습 모델에서 배경 이미지 의존도 분석"
     },
     "team": {
-      "en": "Individual",
-      "ko": "개인"
+      "en": "Individual (KNU M.S. course project)",
+      "ko": "개인 (경북대 석사과정 기말 프로젝트)"
     },
     "role": {
-      "en": "Sole researcher (M.S. course term project, KNU)",
-      "ko": "단독 수행 (경북대 석사과정 기말 프로젝트)"
+      "en": "Sole researcher",
+      "ko": "단독 수행"
     },
     "tagline": {
       "en": "A term project that measures how much a YOLOv5 detector relies on image backgrounds, using ImageNet-9 variants with separated and swapped foregrounds and backgrounds.",
       "ko": "전경·배경을 분리하거나 교체한 ImageNet-9 변형 데이터셋으로 YOLOv5 탐지 모델이 배경 이미지에 얼마나 의존하는지 측정한 기말 프로젝트."
     },
     "summary": {
-      "en": "Final term project for the Deep Learning Applications course (심화학습 응용) at Kyungpook National University, 2021-2. It builds on the ICLR 2021 paper 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'. YOLOv5 labels were built for the IN-9L dataset variants, YOLOv5s was trained on foreground-only, background-only and mixed-background data, and accuracy was compared across test sets. YOLOv5 showed measurable background dependence, though less than the paper reports for ResNet, and further training on mixed backgrounds narrowed the background gap.",
-      "ko": "경북대학교 2021-2학기 심화학습 응용 과목의 기말 프로젝트입니다. ICLR 2021 논문 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'을 바탕으로 했습니다. IN-9L 변형 데이터셋에 맞는 YOLOv5 라벨을 구축하고, 전경만 있는 데이터·배경만 있는 데이터·배경을 섞은 데이터로 YOLOv5s를 학습해 test set별 정확도를 비교했습니다. YOLOv5에서도 측정 가능한 수준의 배경 의존도가 나타났지만 논문의 ResNet 결과보다는 낮았고, 배경을 섞은 데이터로 추가 학습하자 배경에 따른 정확도 차이가 줄었습니다."
+      "en": "Final term project for the Deep Learning Applications course at Kyungpook National University. It builds on the ICLR 2021 paper 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'. YOLOv5 labels were built for the IN-9L dataset variants, YOLOv5s was trained on foreground-only, background-only and mixed-background data, and accuracy was compared across test sets. YOLOv5 showed measurable background dependence, though less than the paper reports for ResNet, and further training on mixed backgrounds narrowed the background gap.",
+      "ko": "경북대학교 심화학습 응용 과목의 기말 프로젝트입니다. ICLR 2021 논문 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'을 바탕으로 했습니다. IN-9L 변형 데이터셋에 맞는 YOLOv5 라벨을 구축하고, 전경만 있는 데이터·배경만 있는 데이터·배경을 섞은 데이터로 YOLOv5s를 학습해 test set별 정확도를 비교했습니다. YOLOv5에서도 측정 가능한 수준의 배경 의존도가 나타났지만 논문의 ResNet 결과보다는 낮았고, 배경을 섞은 데이터로 추가 학습하자 배경에 따른 정확도 차이가 줄었습니다."
     },
     "problem": {
       "en": "An earlier experiment exposed the issue. YOLOv5s was trained on about 3,000 images of roughly 300 3D-modeled chairs rendered on plain backgrounds. It then boxed the entire image instead of the object and recognized any object on a plain background as a chair. The question was how strongly a detector's predictions depend on the training images' backgrounds rather than on the object itself.",
       "ko": "이전 실험에서 문제가 드러났습니다. 단색 배경에 렌더링한 3D 의자 모델 약 300개, 이미지 약 3,000장으로 YOLOv5s를 학습하자 물체 대신 이미지 전체를 검출하고, 단색 배경 위의 어떤 물체든 의자로 인식했습니다. 이에 탐지 모델의 예측이 물체 자체보다 학습 이미지의 배경에 얼마나 의존하는지를 확인하고자 했습니다."
     },
     "solution": {
-      "en": "Reproduce the background-dependence analysis of Xiao et al. (ICLR 2021) with an object detector. The IN-9L variants (Original, Only-FG, No-FG, Mixed-Same, Mixed-Rand, Mixed-Next) were converted to YOLOv5 format, and YOLOv5s models trained on different variants were tested across them. Dependence was measured with cross-dataset test accuracy and the BG-Gap, the accuracy difference between Mixed-Same and Mixed-Rand.",
+      "en": "The background-dependence analysis of Xiao et al. (ICLR 2021) was reproduced with an object detector. The IN-9L variants (Original, Only-FG, No-FG, Mixed-Same, Mixed-Rand, Mixed-Next) were converted to YOLOv5 format, and YOLOv5s models trained on different variants were tested across them. Dependence was measured with cross-dataset test accuracy and the BG-Gap, the accuracy difference between Mixed-Same and Mixed-Rand.",
       "ko": "Xiao et al.(ICLR 2021)의 배경 의존도 분석을 객체 탐지 모델로 재현했습니다. IN-9L 변형(Original, Only-FG, No-FG, Mixed-Same, Mixed-Rand, Mixed-Next)을 YOLOv5 형식으로 변환하고 서로 다른 변형으로 학습한 YOLOv5s 모델을 여러 변형에서 교차 테스트했습니다. 의존도는 데이터셋 간 교차 test 정확도와 BG-Gap(Mixed-Same과 Mixed-Rand의 정확도 차이)으로 측정했습니다."
     },
     "approach": [
@@ -1984,7 +1984,7 @@ window.PROJECTS = [
           "ko": "전경 유무 비교"
         },
         "body": {
-          "en": "Models trained on No-FG and on Only-FG data were tested on Original images. The No-FG model scored about 8.5%p higher, which shows the detector uses background features around the object.",
+          "en": "Models trained on No-FG and on Only-FG data were tested on Original images. The No-FG model scored about 8.5 percentage points higher, which shows the detector uses background features around the object.",
           "ko": "No-FG와 Only-FG 데이터로 각각 학습한 모델을 Original 이미지로 테스트했습니다. No-FG 모델이 약 8.5%p 높았으며, 이를 통해 탐지 모델이 물체 주변의 배경 특징을 활용한다는 것을 확인했습니다."
         }
       },
@@ -2011,19 +2011,19 @@ window.PROJECTS = [
     ],
     "results": [
       {
-        "en": "The model trained on Original data reached 0.90 accuracy on Original test images but only 0.64 on Mixed-Rand and 0.61 on Mixed-Next (Original vs Mixed-Rand BG-Gap: 0.26).",
-        "ko": "Original로 학습한 모델은 Original test에서 정확도 0.90을 기록했지만 Mixed-Rand에서 0.64, Mixed-Next에서 0.61에 그쳤습니다(Original–Mixed-Rand BG-Gap 0.26)."
+        "en": "The model trained on Original data reached 0.90 accuracy on Original test images but only 0.64 on Mixed-Rand and 0.61 on Mixed-Next (Original–Mixed-Rand accuracy gap: 0.26).",
+        "ko": "Original로 학습한 모델은 Original test에서 정확도 0.90을 기록했지만 Mixed-Rand에서 0.64, Mixed-Next에서 0.61에 그쳤습니다(Original–Mixed-Rand 정확도 차이 0.26)."
       },
       {
         "en": "After further training on Mixed-Rand, accuracy rose to 0.86 on Mixed-Rand and 0.87 on Mixed-Next, and the Mixed-Rand vs Mixed-Same BG-Gap narrowed from 0.08 to 0.03; Original-test accuracy fell from 0.90 to 0.81.",
         "ko": "Mixed-Rand 추가 학습 후 Mixed-Rand 0.86, Mixed-Next 0.87로 올랐고, Mixed-Rand–Mixed-Same BG-Gap은 0.08에서 0.03으로 줄었습니다. 대신 Original test 정확도는 0.90에서 0.81로 낮아졌습니다."
       },
       {
-        "en": "On Original test images, the No-FG-trained model scored about 8.5%p higher than the Only-FG-trained model.",
+        "en": "On Original test images, the No-FG-trained model scored about 8.5 percentage points higher than the Only-FG-trained model.",
         "ko": "Original test 이미지에서 No-FG로 학습한 모델이 Only-FG로 학습한 모델보다 약 8.5%p 높았습니다."
       },
       {
-        "en": "YOLOv5 showed background dependence, but less than the ResNet results in the reference paper, and frequent misclassification from background noise was not observed.",
+        "en": "YOLOv5 showed background dependence, but less than the ResNet results in the reference paper, and background noise rarely caused misclassification.",
         "ko": "YOLOv5에도 배경 의존도가 있었지만 참고 논문의 ResNet 결과보다 낮았고, 배경 노이즈로 인한 오분류는 자주 나타나지 않았습니다."
       }
     ],
@@ -2069,7 +2069,7 @@ window.PROJECTS = [
         "url": "https://chaeyoonkim.notion.site/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F4859eacc-cd9b-4782-921b-bc618b18cd0e%2F%EA%B9%80%EC%B1%84%EC%9C%A4_%EC%8B%AC%ED%99%94%ED%95%99%EC%8A%B5_%EC%9D%91%EC%9A%A9_%EA%B8%B0%EB%A7%90_%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EC%B5%9C%EC%A2%85_Report.pdf?table=block&id=1fb85a41-7def-81c9-aad4-e85bd2e88d11&spaceId=3b7bc2fe-53ff-43ca-a1d7-3a75f677c2d7"
       },
       {
-        "type": "doc",
+        "type": "slides",
         "label": {
           "en": "Final presentation (PPTX)",
           "ko": "최종 발표 자료 (PPTX)"
@@ -2100,15 +2100,15 @@ window.PROJECTS = [
         "src": "img/background-dependency/02-in9l-dataset-variants.jpg",
         "caption": {
           "en": "IN-9L dataset variants used in the analysis: Original, Only-BG-B/T, No-FG, Only-FG, Mixed-Same/Rand/Next (figure from Xiao et al., ICLR 2021)",
-          "ko": "분석에 사용한 IN-9L 변형 데이터셋: Original, Only-BG-B/T, No-FG, Only-FG, Mixed-Same/Rand/Next (Xiao et al., ICLR 2021 논문 figure)"
+          "ko": "분석에 사용한 IN-9L 변형 데이터셋: Original, Only-BG-B/T, No-FG, Only-FG, Mixed-Same/Rand/Next (Xiao et al., ICLR 2021 논문의 그림)"
         },
         "thumb": "img/background-dependency/thumbs/02-in9l-dataset-variants.jpg"
       },
       {
         "src": "img/background-dependency/03-chair-plain-background-failure.jpg",
         "caption": {
-          "en": "Motivating case: YOLOv5s trained on plain-background chair renders boxes whole images and labels an umbrella as a chair",
-          "ko": "문제의 출발점: 단색 배경 의자 렌더링 이미지로 학습한 YOLOv5s가 이미지 전체에 박스를 치고 우산을 의자로 인식한 사례"
+          "en": "Motivating case: trained on rendered chairs with plain backgrounds, YOLOv5s draws boxes around whole images and labels an umbrella as a chair (0.69)",
+          "ko": "문제의 출발점: 단색 배경 의자 렌더링 이미지로 학습한 YOLOv5s가 이미지 전체에 박스를 치고 우산을 의자로 인식한 사례(신뢰도 0.69)"
         },
         "thumb": "img/background-dependency/thumbs/03-chair-plain-background-failure.jpg"
       },
@@ -2123,8 +2123,8 @@ window.PROJECTS = [
       {
         "src": "img/background-dependency/05-nofg-vs-onlyfg.jpg",
         "caption": {
-          "en": "Original-test results of No-FG- vs Only-FG-trained models, plotted as a background-dependency ratio; No-FG is about 8.5%p higher",
-          "ko": "No-FG와 Only-FG로 학습한 모델의 Original test 결과를 background dependency ratio로 나타낸 그래프로, No-FG 모델이 약 8.5%p 높습니다."
+          "en": "Original-test results of No-FG- vs Only-FG-trained models, plotted as a background-dependency ratio; No-FG is about 8.5 percentage points higher",
+          "ko": "No-FG·Only-FG 학습 모델의 Original test 결과(배경 의존도 비율): No-FG 모델이 약 8.5%p 높음"
         },
         "thumb": "img/background-dependency/thumbs/05-nofg-vs-onlyfg.jpg"
       },
@@ -2132,11 +2132,15 @@ window.PROJECTS = [
         "src": "img/background-dependency/06-bg-gap-results-slide.jpg",
         "caption": {
           "en": "Background dependence after further training on Mixed-Same / Mixed-Rand: radar chart of test accuracy and BG-Gap table",
-          "ko": "Mixed-Same / Mixed-Rand 추가 학습 후 배경 의존도: test 정확도 radar chart와 BG-Gap 표"
+          "ko": "Mixed-Same / Mixed-Rand 추가 학습 후 배경 의존도: test 정확도 레이더 차트와 BG-Gap 표"
         },
         "thumb": "img/background-dependency/thumbs/06-bg-gap-results-slide.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "Measures how much a YOLOv5 detector relies on image backgrounds, using ImageNet-9 variants.",
+      "ko": "ImageNet-9 변형 데이터셋으로 YOLOv5 탐지 모델의 배경 의존도를 측정한 프로젝트."
+    }
   },
   {
     "slug": "kalman-3d-tracking",
@@ -2155,27 +2159,27 @@ window.PROJECTS = [
       "ko": "칼만 필터를 이용한 3차원 객체 추적"
     },
     "team": {
-      "en": "Individual (KNU 'Advanced Topics in Robot Sensors' term project)",
-      "ko": "개인 (경북대 로봇센서특론 기말 프로젝트)"
+      "en": "Individual (KNU M.S. course project)",
+      "ko": "개인 (경북대 석사과정 기말 프로젝트)"
     },
     "role": {
-      "en": "Sole developer: detector training, camera calibration, depth estimation, image-to-world transform, Kalman filter, ROS integration",
-      "ko": "단독 개발: 검출기 학습, 카메라 캘리브레이션, 깊이 추정, 이미지→월드 좌표 변환, 칼만 필터, ROS 통합"
+      "en": "Sole developer",
+      "ko": "단독 개발"
     },
     "tagline": {
       "en": "Tracks a YOLOv5-detected ball in 3D world coordinates with a constant-velocity Kalman filter on ROS.",
       "ko": "YOLOv5로 검출한 공을 ROS 기반 등속 모델 칼만 필터로 3차원 월드 좌표계에서 추적."
     },
     "summary": {
-      "en": "A ROS package that turns monocular camera detections into 3D position and velocity estimates. A custom-trained YOLOv5s detects a blue ball, and its distance is estimated from bounding-box size with a fitted curve. The pixel position is back-projected into 3D using calibrated intrinsics, and a constant-velocity Kalman filter estimates 3D position and velocity. The filter was built step by step (1D image, 2D image, 3D world), and results are visualized in RViz and as a velocity arrow drawn on the camera image.",
-      "ko": "단안 카메라의 검출 결과를 3차원 위치·속도 추정값으로 변환하는 ROS 패키지입니다. 직접 학습한 YOLOv5s로 파란 공을 검출하고, 커브 피팅한 함수로 바운딩 박스 크기에서 거리를 추정합니다. 캘리브레이션으로 구한 내부 파라미터로 픽셀 위치를 3D로 역투영하고, 등속 모델 칼만 필터로 3D 위치와 속도를 추정합니다. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했으며, 결과는 RViz와 카메라 영상 위의 속도 화살표로 시각화했습니다."
+      "en": "A ROS package, built for the Advanced Topics in Robot Sensors course at Kyungpook National University, that turns monocular camera detections into 3D position and velocity estimates. A custom-trained YOLOv5s detects a blue ball, and its distance is estimated from bounding-box size with a fitted curve. The pixel position is back-projected into 3D using calibrated intrinsics, and a constant-velocity Kalman filter estimates 3D position and velocity. The filter was built step by step (1D image, 2D image, 3D world), and results are visualized in RViz and as a velocity arrow drawn on the camera image.",
+      "ko": "경북대학교 로봇센서특론 과목에서 개발한 ROS 패키지로, 단안 카메라의 검출 결과를 3차원 위치·속도 추정값으로 변환합니다. 직접 학습한 YOLOv5s로 파란 공을 검출하고, 커브 피팅한 함수로 바운딩 박스 크기에서 거리를 추정합니다. 캘리브레이션으로 구한 내부 파라미터로 픽셀 위치를 3D로 역투영하고, 등속 모델 칼만 필터로 3D 위치와 속도를 추정합니다. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했으며, 결과는 RViz와 카메라 영상 위의 속도 화살표로 시각화했습니다."
     },
     "problem": {
-      "en": "Deep-learning detectors can miss an object (false negatives) or lose it behind obstacles (occlusion), which interrupts tracking. A detection also gives only a pixel position, with no velocity and no metric 3D location.",
-      "ko": "딥러닝 기반 검출기는 물체를 놓치거나(false negative) 장애물에 가려진 물체를 잃는(occlusion) 경우가 있어 추적이 끊길 수 있습니다. 또한 검출 결과는 픽셀 위치만 제공하므로 속도와 실제 3차원 위치는 알 수 없습니다."
+      "en": "Deep-learning detectors can miss an object (false negatives) or lose it behind obstacles (occlusion), which makes raw detections jittery and intermittent. A detection also gives only a pixel position, with no velocity and no metric 3D location.",
+      "ko": "딥러닝 기반 검출기는 물체를 놓치거나(false negative) 장애물에 가려진 물체를 잃는(occlusion) 경우가 있어 검출 결과가 불안정하게 끊길 수 있습니다. 또한 검출 결과는 픽셀 위치만 제공하므로 속도와 실제 3차원 위치는 알 수 없습니다."
     },
     "solution": {
-      "en": "Detection, calibrated geometry and filtering are chained in ROS. YOLOv5s gives the ball's pixel position, a bbox-size-to-distance curve gives depth, the camera intrinsics K lift the detection into 3D, and a constant-velocity Kalman filter filters the measured position and estimates the velocity that a detection alone does not provide. The estimated velocity is projected back onto the image plane for display.",
+      "en": "Detection, calibrated geometry and filtering are chained in ROS. YOLOv5s gives the ball's pixel position, a bbox-size-to-distance curve gives depth, the camera intrinsics K lift the detection into 3D, and a constant-velocity Kalman filter smooths the measured position and estimates the velocity that a detection alone does not provide. The estimated velocity is projected back onto the image plane for display.",
       "ko": "ROS에서 검출, 캘리브레이션 기반 기하 변환, 필터링을 연결했습니다. YOLOv5s로 공의 픽셀 위치를, 바운딩 박스 크기–거리 커브로 깊이를 구하고, 카메라 내부 파라미터 K로 3D 위치를 계산합니다. 등속 모델 칼만 필터는 측정 위치를 필터링하고 검출만으로는 알 수 없는 속도까지 추정하며, 추정한 속도는 다시 이미지 평면에 투영해 표시합니다."
     },
     "approach": [
@@ -2195,8 +2199,8 @@ window.PROJECTS = [
           "ko": "카메라 캘리브레이션"
         },
         "body": {
-          "en": "Checkerboard calibration in ROS gave the intrinsics for the 640×480 camera: fx ≈ 639.0, fy ≈ 643.0, principal point ≈ (337.5, 222.9), skew 0, plus distortion coefficients.",
-          "ko": "ROS에서 체커보드로 캘리브레이션해 640×480 카메라의 내부 파라미터를 구했습니다. fx ≈ 639.0, fy ≈ 643.0, 주점 ≈ (337.5, 222.9), skew 0이며, 왜곡 계수도 함께 얻었습니다."
+          "en": "Checkerboard calibration in ROS gave the intrinsics for the 640×480 camera: fx ≈ 639.0, fy ≈ 643.0, principal point ≈ (337.5, 222.9), skew 0, plus distortion coefficients.",
+          "ko": "ROS에서 체커보드로 캘리브레이션해 640×480 카메라의 내부 파라미터를 구했습니다. fx ≈ 639.0, fy ≈ 643.0, 주점 ≈ (337.5, 222.9), skew 0이며, 왜곡 계수도 함께 얻었습니다."
         }
       },
       {
@@ -2205,8 +2209,8 @@ window.PROJECTS = [
           "ko": "바운딩 박스 크기 기반 깊이 추정"
         },
         "body": {
-          "en": "Bounding-box sizes were collected at known distances. The longer box side was used so that partial occlusion has less effect, and a 4-parameter logistic curve was fitted (R² = 0.9971). depth_estimator.py publishes the result on /kcy/depth.",
-          "ko": "실제 거리별로 바운딩 박스 크기 데이터를 수집했습니다. 부분 가림(occlusion)의 영향을 줄이기 위해 가로·세로 중 긴 변을 사용하고, 4PL(4-parameter logistic) 커브로 피팅했습니다(R² = 0.9971). depth_estimator.py가 결과를 /kcy/depth로 퍼블리시합니다."
+          "en": "Bounding-box sizes were collected at known distances. The longer box side was used so that partial occlusion has less effect, and a 4-parameter logistic curve was fitted (R² = 0.9971). depth_estimator.py publishes the result on /kcy/depth.",
+          "ko": "실제 거리별로 바운딩 박스 크기 데이터를 수집했습니다. 부분 가림(occlusion)의 영향을 줄이기 위해 가로·세로 중 긴 변을 사용하고, 4PL(4-parameter logistic) 커브로 피팅했습니다(R² = 0.9971). depth_estimator.py가 결과를 /kcy/depth로 퍼블리시합니다."
         }
       },
       {
@@ -2215,8 +2219,8 @@ window.PROJECTS = [
           "ko": "이미지 → 월드 좌표 변환"
         },
         "body": {
-          "en": "The box center (u, v) and the depth are back-projected as X = depth · K⁻¹[u, v, 1]ᵀ, with R = I and t = 0 because the camera sits at the origin. The result is rotated into a forward-left-up frame and published as a PoseStamped on /kcy/pose.",
-          "ko": "카메라가 원점에 있으므로 R = I, t = 0으로 두고, 박스 중심 (u, v)와 깊이(depth)를 X = depth · K⁻¹[u, v, 1]ᵀ로 역투영했습니다. 결과는 forward-left-up 좌표계로 회전해 /kcy/pose에 PoseStamped로 퍼블리시합니다."
+          "en": "The box center (u, v) and the depth are back-projected as X = depth · K⁻¹[u, v, 1]ᵀ, with R = I and t = 0 because the camera sits at the origin. The result is rotated into a forward-left-up frame and published as a PoseStamped on /kcy/pose.",
+          "ko": "카메라가 원점에 있으므로 R = I, t = 0으로 두고, 박스 중심 (u, v)와 깊이(depth)를 X = depth · K⁻¹[u, v, 1]ᵀ로 역투영했습니다. 결과는 forward-left-up 좌표계로 회전해 /kcy/pose에 PoseStamped로 퍼블리시합니다."
         }
       },
       {
@@ -2225,8 +2229,8 @@ window.PROJECTS = [
           "ko": "등속 모델 칼만 필터"
         },
         "body": {
-          "en": "The 6-D state [x, ẋ, y, ẏ, z, ż] uses P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50) and R = I, and dt is updated from message timing. The filter was developed step by step: 1D image, 2D image, then 3D world.",
-          "ko": "6차원 상태 [x, ẋ, y, ẏ, z, ż]에 P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50), R = I를 적용하고, dt는 메시지 수신 시간으로 갱신합니다. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했습니다."
+          "en": "The 6-D state [x, ẋ, y, ẏ, z, ż] uses P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50) and R = I, and dt is updated from message timing. The filter was developed step by step: 1D image, 2D image, then 3D world.",
+          "ko": "6차원 상태 [x, ẋ, y, ẏ, z, ż]에 P₀ = 100I, Q = diag(0.1, 50, 0.1, 50, 0.1, 50), R = I를 적용하고, dt는 메시지 수신 시간으로 갱신합니다. 필터는 1D 이미지 → 2D 이미지 → 3D 월드 순서로 단계적으로 구현했습니다."
         }
       },
       {
@@ -2246,8 +2250,8 @@ window.PROJECTS = [
         "ko": "깊이 추정, 이미지→월드 변환, 1D/2D/3D 칼만 필터 노드와 launch 파일, RViz 설정을 포함해 실제로 동작하는 ROS 패키지(kcy_sensor_fusion)를 GitHub에 공개했습니다."
       },
       {
-        "en": "Bounding-box-to-distance model fitted with R² = 0.9971.",
-        "ko": "바운딩 박스 크기–거리 모델을 R² = 0.9971로 피팅했습니다."
+        "en": "Bounding-box-to-distance model fitted with R² = 0.9971.",
+        "ko": "바운딩 박스 크기–거리 모델을 R² = 0.9971로 피팅했습니다."
       },
       {
         "en": "Demo videos of tracking in 1D, in the 2D image and in the 3D world.",
@@ -2320,61 +2324,86 @@ window.PROJECTS = [
       }
     ],
     "youtube": [
-      "vwdLDFC3c2s",
-      "Sn67RHamnDo",
-      "BfwLm4y_x1M"
+      {
+        "id": "BfwLm4y_x1M",
+        "vertical": false,
+        "caption": {
+          "en": "Tracking in 1D: horizontal image position",
+          "ko": "1D 추적: 이미지 가로 위치"
+        }
+      },
+      {
+        "id": "Sn67RHamnDo",
+        "vertical": false,
+        "caption": {
+          "en": "Tracking in the 2D image",
+          "ko": "2D 이미지 추적"
+        }
+      },
+      {
+        "id": "vwdLDFC3c2s",
+        "vertical": false,
+        "caption": {
+          "en": "Tracking in the 3D world",
+          "ko": "3D 월드 추적"
+        }
+      }
     ],
     "cover": "img/kalman-3d-tracking/cover.jpg",
     "images": [
       {
         "src": "img/kalman-3d-tracking/01-cover-3d-world-tracking.jpg",
         "caption": {
-          "en": "Tracking in the 3D world: RViz shows the Kalman-filtered 3D trajectory and pose of the ball, next to camera views with the YOLOv5 detection and the projected velocity arrow.",
-          "ko": "3D 월드 추적: RViz에 칼만 필터로 추정한 공의 3D 궤적과 pose가 표시되고, 옆에는 YOLOv5 검출 결과와 투영한 속도 화살표가 그려진 카메라 영상이 있습니다."
+          "en": "Tracking in the 3D world: the ball's Kalman-filtered 3D trajectory and pose in RViz, beside camera views with the YOLOv5 detection and the projected velocity arrow",
+          "ko": "3D 월드 추적: 칼만 필터로 추정한 공의 3D 궤적·pose를 표시한 RViz 화면과, YOLOv5 검출 결과·투영한 속도 화살표가 그려진 카메라 영상"
         },
         "thumb": "img/kalman-3d-tracking/thumbs/01-cover-3d-world-tracking.jpg"
       },
       {
         "src": "img/kalman-3d-tracking/02-2d-image-tracking-rqtplot.jpg",
         "caption": {
-          "en": "Tracking in the 2D image: Kalman filter outputs (/kcy/kf_output) plotted in rqt_plot, beside the detection view with the velocity arrow.",
-          "ko": "2D 이미지 추적: rqt_plot으로 그린 칼만 필터 출력(/kcy/kf_output)과 속도 화살표가 표시된 검출 화면."
+          "en": "Tracking in the 2D image: Kalman filter outputs (/kcy/kf_output) plotted in rqt_plot, beside the detection view with the velocity arrow",
+          "ko": "2D 이미지 추적: rqt_plot으로 그린 칼만 필터 출력(/kcy/kf_output)과 속도 화살표가 표시된 검출 화면"
         },
         "thumb": "img/kalman-3d-tracking/thumbs/02-2d-image-tracking-rqtplot.jpg"
       },
       {
         "src": "img/kalman-3d-tracking/03-yolov5-blueball-detection.jpg",
         "caption": {
-          "en": "YOLOv5 detection of the target blue ball (confidence 0.88) on /yolov5/image_output, viewed in rqt_image_view.",
-          "ko": "rqt_image_view로 확인한 /yolov5/image_output의 파란 공 YOLOv5 검출 결과(신뢰도 0.88)."
+          "en": "Object detection: YOLOv5 detection of the blue ball (confidence 0.88) on /yolov5/image_output, viewed in rqt_image_view",
+          "ko": "객체 검출: rqt_image_view로 확인한 /yolov5/image_output의 파란 공 YOLOv5 검출 결과(신뢰도 0.88)"
         },
         "thumb": "img/kalman-3d-tracking/thumbs/03-yolov5-blueball-detection.jpg"
       },
       {
         "src": "img/kalman-3d-tracking/04-checkerboard-calibration.jpg",
         "caption": {
-          "en": "Checkerboard camera calibration in ROS, used to obtain the focal lengths, principal point and distortion coefficients.",
-          "ko": "초점 거리, 주점, 왜곡 계수를 얻기 위한 ROS 체커보드 카메라 캘리브레이션."
+          "en": "Camera calibration: checkerboard calibration in ROS for the focal lengths, principal point and distortion coefficients",
+          "ko": "카메라 캘리브레이션: 초점 거리, 주점, 왜곡 계수를 얻기 위한 ROS 체커보드 캘리브레이션"
         },
         "thumb": "img/kalman-3d-tracking/thumbs/04-checkerboard-calibration.jpg"
       },
       {
         "src": "img/kalman-3d-tracking/05-depth-curve-fit.jpg",
         "caption": {
-          "en": "Depth estimation: distance vs. bounding-box size fitted with a 4-parameter logistic curve (R² = 0.9971).",
-          "ko": "깊이 추정: 거리와 바운딩 박스 크기의 관계를 4PL 커브로 피팅한 결과(R² = 0.9971)."
+          "en": "Depth estimation: distance vs. bounding-box size (longer side) fitted with a 4-parameter logistic curve in MyCurveFit (R² = 0.9971)",
+          "ko": "깊이 추정: MyCurveFit으로 거리와 바운딩 박스 크기(긴 변)의 관계를 4PL 커브로 피팅한 결과(R² = 0.9971)"
         },
         "thumb": "img/kalman-3d-tracking/thumbs/05-depth-curve-fit.jpg"
       },
       {
         "src": "img/kalman-3d-tracking/06-kf-state-matrices.jpg",
         "caption": {
-          "en": "Constant-velocity Kalman filter model: 6-D state [x, ẋ, y, ẏ, z, ż], P₀ = 100I, transition matrix A and measurement matrix H.",
-          "ko": "등속 모델 칼만 필터: 6차원 상태 [x, ẋ, y, ẏ, z, ż], P₀ = 100I, 상태 전이 행렬 A와 측정 행렬 H."
+          "en": "Constant-velocity Kalman filter model: 6-D state [x, ẋ, y, ẏ, z, ż], P₀ = 100I, transition matrix A and measurement matrix H",
+          "ko": "등속 모델 칼만 필터: 6차원 상태 [x, ẋ, y, ẏ, z, ż], P₀ = 100I, 상태 전이 행렬 A와 측정 행렬 H"
         },
         "thumb": "img/kalman-3d-tracking/thumbs/06-kf-state-matrices.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "Tracks a YOLOv5-detected ball in 3D world coordinates with a constant-velocity Kalman filter.",
+      "ko": "YOLOv5로 검출한 공을 등속 모델 칼만 필터로 3차원 월드 좌표계에서 추적하는 ROS 패키지."
+    }
   },
   {
     "slug": "rock-paper-scissors",
@@ -2393,8 +2422,8 @@ window.PROJECTS = [
       "ko": "개인"
     },
     "role": {
-      "en": "Solo developer — dataset collection, CNN training and game integration on Raspberry Pi",
-      "ko": "단독 개발 — 데이터셋 수집, CNN 학습, Raspberry Pi 게임 구성"
+      "en": "Dataset collection, CNN training, game integration on Raspberry Pi",
+      "ko": "데이터셋 수집, CNN 학습, Raspberry Pi 게임 구현"
     },
     "tagline": {
       "en": "A camera-based rock–paper–scissors game on Raspberry Pi that recognizes the player's hand gesture with machine learning and plays against the computer.",
@@ -2409,8 +2438,8 @@ window.PROJECTS = [
       "ko": "저가형 하드웨어에서 컴퓨터가 실시간 카메라 영상으로 플레이어의 가위·바위·보 손 모양을 인식하는 인터랙티브 게임을 만드는 것이 목표였습니다."
     },
     "solution": {
-      "en": "train.py trains a CNN (two Conv2D layers with 32 and 64 filters, max pooling, a 128-unit dense layer and a 3-way softmax) on 150×150 inputs. main.py, adapted from the open-source rps-cv game script, loads a pickled model and crops and thresholds each camera frame. A frame counts as a hand when it has enough foreground pixels, and a gesture is accepted once the same prediction appears on three consecutive frames. The computer's move is random, the winner is decided from the gesture difference, and the first player to three wins ends the game.",
-      "ko": "train.py는 150×150 입력에 대해 CNN(32·64 필터 Conv2D 2층, max pooling, 128-unit dense, 3-class softmax)을 학습합니다. 오픈소스 rps-cv 게임 스크립트를 바탕으로 한 main.py는 pickle로 저장된 모델을 불러와 카메라 프레임마다 crop과 threshold를 적용합니다. 전경 픽셀이 충분하면 손으로 판단하고, 같은 예측이 3프레임 연속 나오면 해당 손 모양을 확정합니다. 컴퓨터의 수는 무작위로 정하고 두 손 모양의 차이로 승패를 판정하며, 어느 한쪽이 먼저 3승하면 게임이 끝납니다."
+      "en": "Two scripts split the work: train.py trains the CNN on the collected photos, and main.py, adapted from the rps-cv game script, runs the camera game loop.",
+      "ko": "train.py가 수집한 사진으로 CNN을 학습하고, rps-cv 게임 스크립트를 바탕으로 한 main.py가 카메라 게임 루프를 실행하는 두 스크립트 구조입니다."
     },
     "approach": [
       {
@@ -2419,8 +2448,8 @@ window.PROJECTS = [
           "ko": "데이터셋 수집"
         },
         "body": {
-          "en": "Photographed rock, paper and scissors hand gestures against varied backgrounds in June 2019 and organized them into R/P/S class folders: 199 training images (63 rock, 73 paper, 63 scissors) and 54 test images (18 per class), stored at 24×24 px in the repository.",
-          "ko": "2019년 6월 다양한 배경에서 가위·바위·보 손 모양을 촬영해 R/P/S 클래스 폴더로 정리했습니다. 학습 199장(바위 63, 보 73, 가위 63), 테스트 54장(클래스당 18장)이며 저장소에는 24×24 px로 저장되어 있습니다."
+          "en": "Photographed rock, paper and scissors hand gestures against varied backgrounds in June 2019 and organized them into R/P/S class folders: 199 training images (63 rock, 73 paper, 63 scissors) and 54 test images (18 per class), stored at 24×24 px in the repository.",
+          "ko": "2019년 6월 다양한 배경에서 가위·바위·보 손 모양을 촬영해 R/P/S 클래스 폴더로 정리했습니다. 학습 199장(바위 63, 보 73, 가위 63), 테스트 54장(클래스당 18장)이며 저장소에는 24×24 px로 저장되어 있습니다."
         }
       },
       {
@@ -2429,8 +2458,8 @@ window.PROJECTS = [
           "ko": "Keras CNN 학습"
         },
         "body": {
-          "en": "Adapted the CNN example from a Keras tutorial to this dataset: loaded the folders with ImageDataGenerator (rescale 1/255, 150×150, batch size 3), then trained Conv2D(32) → Conv2D(64) → MaxPooling → Dense(128) → Dense(3, softmax) for 50 epochs with Adam and categorical cross-entropy, evaluating on the test generator.",
-          "ko": "Keras 튜토리얼의 CNN 예제를 이 데이터셋에 맞게 적용했습니다. ImageDataGenerator(rescale 1/255, 150×150, batch size 3)로 폴더를 불러오고, Conv2D(32) → Conv2D(64) → MaxPooling → Dense(128) → Dense(3, softmax) 구조를 Adam과 categorical cross-entropy로 50 epoch 학습한 뒤 test generator로 평가했습니다."
+          "en": "Adapted the CNN example from a Keras tutorial to this dataset: loaded the folders with ImageDataGenerator (rescale 1/255, 150×150, batch size 3), then trained Conv2D(32) → Conv2D(64) → MaxPooling → Dense(128) → Dense(3, softmax) for 50 epochs with Adam and categorical cross-entropy and evaluated it on the test images.",
+          "ko": "Keras 튜토리얼의 CNN 예제를 이 데이터셋에 맞게 적용했습니다. ImageDataGenerator(픽셀값 1/255 정규화, 150×150, 배치 크기 3)로 폴더를 불러오고, Conv2D(32) → Conv2D(64) → MaxPooling → Dense(128) → Dense(3, softmax) 구조를 Adam 옵티마이저와 categorical cross-entropy 손실로 50 에폭 학습한 뒤 테스트 이미지로 평가했습니다."
         }
       },
       {
@@ -2439,8 +2468,8 @@ window.PROJECTS = [
           "ko": "프레임 전처리 및 손 감지"
         },
         "body": {
-          "en": "Using the rpscv helper module from rps-cv, each camera frame is cropped, converted to RGB and thresholded to a grayscale mask (threshold 17). Classification runs only when the mask has more than 9,000 non-zero pixels, which skips empty frames.",
-          "ko": "rps-cv의 rpscv 헬퍼 모듈로 카메라 프레임을 crop하고 RGB로 변환한 뒤 grayscale mask(threshold 17)로 만듭니다. mask의 non-zero 픽셀이 9,000개를 넘을 때만 분류해 빈 화면을 건너뜁니다."
+          "en": "Using the rpscv helper module from rps-cv, each camera frame is cropped, converted to RGB and turned into a background-removed grayscale image (threshold 17). Classification runs only when that image has more than 9,000 non-zero pixels, which skips frames without a hand.",
+          "ko": "rps-cv의 rpscv 헬퍼 모듈로 카메라 프레임을 잘라 RGB로 변환한 뒤, 임계값 17로 배경을 제거한 그레이스케일 이미지를 만듭니다. 이 이미지에서 0이 아닌 픽셀이 9,000개를 넘을 때만 분류해 손이 없는 프레임은 건너뜁니다."
         }
       },
       {
@@ -2449,8 +2478,8 @@ window.PROJECTS = [
           "ko": "제스처 안정화 및 게임 로직"
         },
         "body": {
-          "en": "As in the rps-cv game loop, a move is confirmed only after three consecutive identical predictions. The computer then picks a random gesture, the winner is computed from the gesture difference, and the score is printed each round until the player or the computer reaches three wins.",
-          "ko": "rps-cv 게임 루프와 마찬가지로 같은 예측이 3번 연속 나와야 플레이어의 수로 확정합니다. 이후 컴퓨터가 무작위로 손 모양을 고르고, 두 손 모양의 차이로 승패를 계산해 매 라운드 점수를 출력합니다. 플레이어나 컴퓨터 중 한쪽이 3승하면 게임이 끝납니다."
+          "en": "As in the rps-cv game loop, a move is confirmed only after three consecutive identical predictions. The computer then picks a random gesture, the winner is computed from the gesture difference, and the score is printed after each round.",
+          "ko": "rps-cv 게임 루프와 마찬가지로 같은 예측이 3번 연속 나와야 플레이어의 수로 확정합니다. 이후 컴퓨터가 무작위로 손 모양을 고르고, 두 손 모양의 차이로 승패를 계산해 매 라운드 점수를 출력합니다."
         }
       },
       {
@@ -2459,15 +2488,15 @@ window.PROJECTS = [
           "ko": "Raspberry Pi 구동"
         },
         "body": {
-          "en": "Runs on a Raspberry Pi. The game shows an OpenCV window ('ChaeYoon.K_Python_Project') with a frame-rate overlay alongside a terminal round log, and q/Esc quits.",
-          "ko": "Raspberry Pi에서 구동됩니다. 프레임 레이트가 표시되는 OpenCV 창('ChaeYoon.K_Python_Project')과 터미널 라운드 로그를 함께 보여주며, q/Esc로 종료합니다."
+          "en": "The game opens an OpenCV camera window with a frame-rate overlay next to a terminal that logs each round; q or Esc quits.",
+          "ko": "카메라 영상과 프레임 레이트를 보여 주는 OpenCV 창과 라운드 결과를 출력하는 터미널이 함께 실행되며, q 또는 Esc 키로 종료합니다."
         }
       }
     ],
     "results": [
       {
-        "en": "Working game demonstrated live on a Raspberry Pi in a 41-second demo video (camera view at 6–8 fps, terminal logging moves, winners and scores).",
-        "ko": "41초 분량의 시연 영상에서 Raspberry Pi로 실제 동작하는 게임을 시연했습니다(카메라 화면 6–8 fps, 터미널에 수·승패·점수 기록)."
+        "en": "A 41-second demo video shows the game running on a Raspberry Pi (camera view at 6–8 fps, terminal logging moves, winners and scores).",
+        "ko": "41초 분량의 시연 영상에 Raspberry Pi에서 실제로 동작하는 게임을 담았습니다(카메라 화면 6–8 fps, 터미널에 수·승패·점수 기록)."
       },
       {
         "en": "Code, the 253-image dataset and demo media published on GitHub.",
@@ -2525,7 +2554,8 @@ window.PROJECTS = [
           "en": "rps-cv (reference project)",
           "ko": "rps-cv (참고 오픈소스 프로젝트)"
         },
-        "url": "https://github.com/DrGFreeman/rps-cv"
+        "url": "https://github.com/DrGFreeman/rps-cv",
+        "ref": true
       }
     ],
     "youtube": [
@@ -2534,30 +2564,26 @@ window.PROJECTS = [
     "cover": "img/rock-paper-scissors/cover.jpg",
     "images": [
       {
-        "src": "img/rock-paper-scissors/01-yt-73zbodj07li-maxres.jpg",
-        "caption": {
-          "en": "Live demo on Raspberry Pi: the camera window shows a rock gesture while the terminal logs each round's moves, winner and running score.",
-          "ko": "Raspberry Pi 실시간 시연: 카메라 창에 바위 손 모양이 보이고, 터미널에는 라운드별 수·승패·누적 점수가 기록됩니다."
-        },
-        "thumb": "img/rock-paper-scissors/thumbs/01-yt-73zbodj07li-maxres.jpg"
-      },
-      {
         "src": "img/rock-paper-scissors/02-demo-frame.jpg",
         "caption": {
-          "en": "Paper gesture in the 6 fps camera window; the terminal shows rounds such as 'Player: paper / Computer: rock / Player wins!'.",
-          "ko": "6 fps 카메라 창에 보 손 모양이 잡혀 있고, 터미널에는 'Player: paper / Computer: rock / Player wins!' 같은 라운드 결과가 표시됩니다."
+          "en": "Demo on Raspberry Pi: a paper gesture in the 6 fps camera window, with the terminal logging rounds such as 'Player: paper / Computer: rock / Player wins!'.",
+          "ko": "Raspberry Pi 시연 화면: 6 fps 카메라 창에 잡힌 보 손 모양과 'Player: paper / Computer: rock / Player wins!' 같은 라운드 결과를 출력하는 터미널."
         },
         "thumb": "img/rock-paper-scissors/thumbs/02-demo-frame.jpg"
       },
       {
         "src": "img/rock-paper-scissors/03-dataset-samples.jpg",
         "caption": {
-          "en": "Samples from the self-collected training set (rows: rock, paper, scissors), upscaled from the stored 24×24 px images; 199 training and 54 test images in total.",
-          "ko": "직접 수집한 학습 데이터 예시(행: 바위, 보, 가위). 24×24 px로 저장된 이미지를 확대한 것이며, 전체 학습 199장·테스트 54장입니다."
+          "en": "Samples from the self-collected training set (rows: rock, paper, scissors), upscaled from the stored 24×24 px images; 199 training and 54 test images in total.",
+          "ko": "직접 수집한 학습 데이터 예시(행: 바위·보·가위, 24×24 px로 저장된 이미지를 확대). 전체 규모는 학습 199장, 테스트 54장."
         },
         "thumb": "img/rock-paper-scissors/thumbs/03-dataset-samples.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "Raspberry Pi rock–paper–scissors game that recognizes hand gestures with machine learning.",
+      "ko": "머신러닝으로 손 모양을 인식하는 Raspberry Pi 가위바위보 게임."
+    }
   },
   {
     "slug": "robotic-arm-pid",
@@ -2576,8 +2602,8 @@ window.PROJECTS = [
       "ko": "PID 제어기를 이용한 로봇 팔 원격 제어 시스템"
     },
     "team": {
-      "en": "Individual (capstone design, Baekseok University)",
-      "ko": "개인 (백석대학교 캡스톤디자인)"
+      "en": "Individual (capstone design)",
+      "ko": "개인 (캡스톤디자인)"
     },
     "role": {
       "en": "Circuit design, 3D modeling, Arduino coding",
@@ -2585,19 +2611,19 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "A 3D-printed master–slave robotic arm that mirrors an operator's motion and records and replays motion sequences on an ATmega328P controller.",
-      "ko": "ATmega328P 제어기로 조작자의 동작을 따라 하고 동작 시퀀스를 녹화·재생하는 3D 프린팅 마스터–슬레이브 로봇 팔."
+      "ko": "조작자가 움직이는 마스터 암을 그대로 따라 하고 동작 시퀀스를 녹화·재생하는 ATmega328P 기반 3D 프린팅 로봇 팔."
     },
     "summary": {
-      "en": "Individual capstone design project at Baekseok University (2018): a remote-control system for a multi-joint robotic arm. A potentiometer-based master arm drives a 5-axis, 3D-printed slave arm, and a Record/Play mode stores and replays motion sequences. The work spans control-system modeling, circuit design, 3D modeling and printing, controller fabrication, Arduino firmware and oscilloscope verification.",
-      "ko": "백석대학교 캡스톤디자인(2018) 개인 프로젝트로, 다관절 로봇 팔의 원격 제어 시스템을 설계했습니다. 포텐쇼미터 기반 마스터 암으로 3D 프린팅한 5축 슬레이브 암을 조작하며, 녹화/재생 모드로 동작 시퀀스를 저장하고 다시 실행합니다. 제어 시스템 모델링, 회로 설계, 3D 모델링·출력, 제어기 제작, Arduino 펌웨어, 오실로스코프 검증까지 전 과정을 수행했습니다."
+      "en": "Individual capstone design project at Baekseok University (2018): a remote-control system for a multi-joint robotic arm. A potentiometer-based master arm drives a 5-axis, 3D-printed slave arm, and a Record/Play mode stores and replays motion sequences.",
+      "ko": "백석대학교 캡스톤디자인(2018) 개인 프로젝트로, 다관절 로봇 팔의 원격 제어 시스템을 설계했습니다. 포텐쇼미터 기반 마스터 암으로 3D 프린팅한 5축 슬레이브 암을 조작하며, 녹화/재생 모드로 동작 시퀀스를 저장하고 다시 실행합니다."
     },
     "problem": {
-      "en": "Robot arms combine dynamics, motor and sensor control, and electro-mechanical design. The goal was an arm that does more than PID position control: one that can be teleoperated by a master arm and can record and replay motion sequences, running on a portable, battery-powered controller.",
-      "ko": "로봇 팔 개발에는 동역학, 모터·센서 제어, 전기전자·기계 설계가 복합적으로 요구됩니다. PID로 위치만 제어하는 데 그치지 않고, 마스터 암으로 원격 조작하며 동작 시퀀스를 저장·재생할 수 있는 로봇 팔을 휴대 가능한 배터리 구동 제어기로 구현하는 것이 목표였습니다."
+      "en": "The goal was an arm that does more than PID position control: one that can be teleoperated by a master arm and can record and replay motion sequences, running on a portable, battery-powered controller.",
+      "ko": "PID로 위치만 제어하는 데 그치지 않고, 마스터 암으로 원격 조작하며 동작 시퀀스를 저장·재생할 수 있는 로봇 팔을 휴대 가능한 배터리 구동 제어기로 구현하는 것이 목표였습니다."
     },
     "solution": {
-      "en": "A master–slave system built around an ATmega328P: five potentiometers on the master arm are sampled by the ADC and mapped to five servos (base, hip, shoulder, neck, gripper) on the slave arm under PID-based control. A toggle switch enables Record mode and a push button triggers Play mode, both wired with 10 kΩ pull-down resistors, and the controller runs from a Li-Po battery with a rocker power switch.",
-      "ko": "ATmega328P를 중심으로 한 마스터–슬레이브 시스템입니다. 마스터 암의 포텐쇼미터 5개를 ADC로 읽어 슬레이브 암의 서보모터 5개(Base, Hip, Shoulder, Neck, Gripper)에 매핑하고 PID 기반으로 제어합니다. 토글 스위치로 녹화 모드를, 푸시 버튼으로 재생 모드를 실행하며, 두 입력 모두 10kΩ 풀다운 저항으로 구성했습니다. 제어기는 Li-Po 배터리로 구동되며 로커 전원 스위치를 갖췄습니다."
+      "en": "A master–slave system built around an ATmega328P: five potentiometers on the master arm are sampled by the ADC and mapped to five servos (base, hip, shoulder, neck, gripper) on the slave arm; the capstone report models this loop with a PID controller. A toggle switch enables Record mode and a push button triggers Play mode, both wired with 10 kΩ pull-down resistors, and the controller runs from a Li-Po battery with a rocker power switch.",
+      "ko": "ATmega328P를 중심으로 한 마스터–슬레이브 시스템입니다. 마스터 암의 포텐쇼미터 5개를 ADC로 읽어 슬레이브 암의 서보모터 5개(베이스, 힙, 숄더, 넥, 그리퍼)에 매핑합니다. 캡스톤 보고서에서는 이 제어 루프를 PID 제어기로 모델링했습니다. 토글 스위치로 녹화 모드를, 푸시 버튼으로 재생 모드를 실행하며, 두 입력 모두 10kΩ 풀다운 저항으로 구성했습니다. 제어기는 Li-Po 배터리로 구동되며 로커 전원 스위치를 갖췄습니다."
     },
     "approach": [
       {
@@ -2616,7 +2642,7 @@ window.PROJECTS = [
           "ko": "회로 설계"
         },
         "body": {
-          "en": "Designed the full schematic around an ATmega328P-PU: five potentiometers, five servos, Record/Play switches with 10 kΩ pull-downs to prevent floating inputs, and a Li-Po supply with a rocker switch.",
+          "en": "Designed the full schematic around an ATmega328P-PU: five potentiometers, five servos, Record/Play switches with 10 kΩ pull-downs to prevent floating inputs, and a Li-Po supply with a rocker switch.",
           "ko": "ATmega328P-PU를 중심으로 포텐쇼미터 5개, 서보모터 5개, 입력 플로팅을 막는 10kΩ 풀다운 저항을 단 녹화/재생 스위치, 로커 스위치가 달린 Li-Po 전원부까지 전체 회로도를 설계했습니다."
         }
       },
@@ -2626,8 +2652,8 @@ window.PROJECTS = [
           "ko": "3D 모델링 및 출력"
         },
         "body": {
-          "en": "Modeled the potentiometer master arm and adapted the 5-axis slave arm (about 15 parts) from an open-source 3D-printable design in roughly two weeks; printing took two days for the master arm and four days for the slave arm.",
-          "ko": "포텐쇼미터 마스터 암을 모델링하고, 오픈소스 3D 프린팅 설계를 바탕으로 약 15개 부품으로 된 5축 슬레이브 암을 수정하는 데 약 2주가 걸렸습니다. 출력에는 마스터 암 2일, 슬레이브 암 4일이 소요되었습니다."
+          "en": "Modeled the potentiometer master arm and adapted the 5-axis slave arm (about 15 parts) from an open-source 3D-printable design, about two weeks of design work in total; printing took two days for the master arm and four days for the slave arm.",
+          "ko": "포텐쇼미터 마스터 암을 모델링하고, 오픈소스 3D 프린팅 설계를 바탕으로 약 15개 부품으로 된 5축 슬레이브 암을 수정했습니다(설계 약 2주). 출력에는 마스터 암 2일, 슬레이브 암 4일이 걸렸습니다."
         }
       },
       {
@@ -2636,8 +2662,8 @@ window.PROJECTS = [
           "ko": "제어기 제작 및 조립"
         },
         "body": {
-          "en": "Built a two-tier controller board with the battery on the lower tier and Molex connectors for servos and potentiometers; fixed the arm's forward tipping with a wooden base and replaced epoxy-glued potentiometer joints, which blocked conduction, with soldered connections.",
-          "ko": "아래층에 배터리를 넣은 2층 구조의 제어 기판을 제작하고, 서보모터·포텐쇼미터는 몰렉스 커넥터로 연결했습니다. 로봇 팔이 앞으로 쏠리는 문제는 나무 받침으로 고정해 해결했고, 에폭시로 접착해 전기가 통하지 않던 포텐쇼미터 연결부는 납땜으로 다시 결선했습니다."
+          "en": "Built a two-tier controller board with the battery on the lower tier and Molex connectors for servos and potentiometers; anchored the slave arm, which leaned forward under its servos' weight, to a wooden base and replaced epoxy-glued potentiometer joints, which blocked conduction, with soldered connections.",
+          "ko": "아래층에 배터리를 넣은 2층 구조의 제어 기판을 제작하고, 서보모터·포텐쇼미터는 몰렉스 커넥터로 연결했습니다. 서보모터 무게 때문에 앞으로 쏠리던 슬레이브 암은 나무 받침에 고정했고, 에폭시로 접착해 전기가 통하지 않던 포텐쇼미터 연결부는 납땜으로 다시 결선했습니다."
         }
       },
       {
@@ -2656,8 +2682,8 @@ window.PROJECTS = [
           "ko": "오실로스코프 검증"
         },
         "body": {
-          "en": "Compared servo PWM waveforms with and without PID control on an oscilloscope, and evaluated arm behavior on the 3.7 V Li-Po supply versus 5 V.",
-          "ko": "오실로스코프로 PID 적용 전후의 서보 PWM 파형을 비교하고, 3.7V Li-Po 전원과 5V 전원에서 로봇 팔의 동작을 비교 평가했습니다."
+          "en": "As documented in the capstone report, compared servo PWM waveforms without and with PID control on an oscilloscope, and evaluated arm behavior on the 3.7 V Li-Po supply versus 5 V.",
+          "ko": "캡스톤 보고서에 정리한 대로 오실로스코프로 PID 적용 전후의 서보 PWM 파형을 비교하고, 3.7V Li-Po 전원과 5V 전원에서 로봇 팔의 동작을 비교 평가했습니다."
         }
       }
     ],
@@ -2667,12 +2693,12 @@ window.PROJECTS = [
         "ko": "원격·녹화·재생 모드로 동작하는 마스터–슬레이브 로봇 팔을 시연했습니다(데모 영상 3편)."
       },
       {
-        "en": "Oscilloscope check: the servo waveform driven by plain PWM was heavily noisy, while the PID-controlled waveform was clean; visible overshoot and a fairly long settling time showed room for further tuning.",
-        "ko": "오실로스코프 검증 결과, PWM만으로 구동한 서보 파형은 노이즈가 심했던 반면 PID 제어 파형은 깨끗했습니다. 다만 오버슈트가 보이고 정착 시간이 다소 길어 추가 튜닝의 여지를 확인했습니다."
+        "en": "In the report's oscilloscope comparison, the servo waveform driven by plain PWM was heavily noisy while the waveform with PID control was clean; visible overshoot and a fairly long settling time left room for tuning.",
+        "ko": "보고서의 오실로스코프 비교에서 PWM만으로 구동한 서보 파형은 노이즈가 심했던 반면 PID 제어 파형은 깨끗했습니다. 다만 오버슈트가 보이고 정착 시간이 다소 길어 추가 튜닝의 여지가 있었습니다."
       },
       {
-        "en": "Identified the 3.7 V Li-Po output as a torque bottleneck: at 5 V the arm no longer tipped forward, and under PID control it returned from unstable states to a stable one.",
-        "ko": "3.7V Li-Po 출력이 토크 부족의 원인임을 확인했습니다. 5V를 인가하자 앞으로 쏠리는 현상이 사라졌고, PID 제어로 불안정한 상태에서도 안정 상태로 복귀했습니다."
+        "en": "Identified the 3.7 V Li-Po output as a torque bottleneck: at 3.7 V the arm leaned forward and was hard to control (per the report, PID control still restored a stable state), while at 5 V the servos had enough torque to hold it upright.",
+        "ko": "3.7V Li-Po 출력이 토크 부족의 원인임을 확인했습니다. 3.7V에서는 무게 중심이 앞으로 쏠려 제어가 까다로웠지만 보고서에 따르면 PID 제어로 안정 상태를 회복했고, 5V를 인가하자 서보 토크가 충분해져 앞으로 쏠리지 않았습니다."
       }
     ],
     "contributions": [
@@ -2745,8 +2771,8 @@ window.PROJECTS = [
       {
         "type": "other",
         "label": {
-          "en": "Reference: CircuitDigest record & play robotic arm tutorial",
-          "ko": "참고: CircuitDigest 녹화·재생 로봇 팔 튜토리얼"
+          "en": "Ref: CircuitDigest tutorial",
+          "ko": "참고: CircuitDigest 튜토리얼"
         },
         "url": "https://circuitdigest.com/microcontroller-projects/record-and-play-3d-printed-robotic-arm-using-arduino",
         "ref": true
@@ -2754,17 +2780,38 @@ window.PROJECTS = [
       {
         "type": "other",
         "label": {
-          "en": "Reference: Robotic Arm V2.0 by Ashing (Thingiverse)",
-          "ko": "참고: Robotic Arm V2.0 by Ashing (Thingiverse)"
+          "en": "Ref: Ashing's Robotic Arm V2.0",
+          "ko": "참고: Ashing의 Robotic Arm V2.0"
         },
         "url": "https://www.thingiverse.com/thing:1215831",
         "ref": true
       }
     ],
     "youtube": [
-      "-W-gj6TkzW4",
-      "a9sSb8NWltA",
-      "P6XdI0nHfFc"
+      {
+        "id": "-W-gj6TkzW4",
+        "vertical": true,
+        "caption": {
+          "en": "Remote mode",
+          "ko": "원격 모드"
+        }
+      },
+      {
+        "id": "a9sSb8NWltA",
+        "vertical": true,
+        "caption": {
+          "en": "Record/Play mode (1)",
+          "ko": "녹화/재생 모드 (1)"
+        }
+      },
+      {
+        "id": "P6XdI0nHfFc",
+        "vertical": true,
+        "caption": {
+          "en": "Record/Play mode (2)",
+          "ko": "녹화/재생 모드 (2)"
+        }
+      }
     ],
     "cover": "img/robotic-arm-pid/cover.jpg",
     "images": [
@@ -2772,7 +2819,7 @@ window.PROJECTS = [
         "src": "img/robotic-arm-pid/01-remote-mode-demo.jpg",
         "caption": {
           "en": "Remote mode: the 3D-printed slave arm follows the hand-operated master arm, driven by the custom controller board.",
-          "ko": "원격 모드: 손으로 조작하는 마스터 암을 3D 프린팅 슬레이브 암이 따라 움직이며, 자체 제작한 제어 기판이 이를 구동합니다."
+          "ko": "원격 모드: 손으로 조작하는 마스터 암을 따라 움직이는 3D 프린팅 슬레이브 암과 이를 구동하는 자체 제작 제어 기판."
         },
         "thumb": "img/robotic-arm-pid/thumbs/01-remote-mode-demo.jpg"
       },
@@ -2787,15 +2834,15 @@ window.PROJECTS = [
       {
         "src": "img/robotic-arm-pid/03-master-arm-3d-model.jpg",
         "caption": {
-          "en": "3D model of the master arm (Fig. 13 of the capstone report).",
-          "ko": "마스터 암 3D 모델 (캡스톤 보고서 그림 13)."
+          "en": "3D model of the potentiometer master arm.",
+          "ko": "포텐쇼미터 마스터 암 3D 모델."
         },
         "thumb": "img/robotic-arm-pid/thumbs/03-master-arm-3d-model.jpg"
       },
       {
         "src": "img/robotic-arm-pid/04-circuit-schematic.jpg",
         "caption": {
-          "en": "Full schematic: ATmega328P-PU, five potentiometers, five servos, battery switch and Record/Play switches with 10 kΩ pull-downs.",
+          "en": "Full schematic: ATmega328P-PU, five potentiometers, five servos, battery switch and Record/Play switches with 10 kΩ pull-downs.",
           "ko": "전체 회로도: ATmega328P-PU, 포텐쇼미터 5개, 서보모터 5개, 전원 스위치, 10kΩ 풀다운 저항을 단 녹화/재생 스위치."
         },
         "thumb": "img/robotic-arm-pid/thumbs/04-circuit-schematic.jpg"
@@ -2803,7 +2850,7 @@ window.PROJECTS = [
       {
         "src": "img/robotic-arm-pid/05-controller-pcb-annotated.jpg",
         "caption": {
-          "en": "Two-tier controller board: ATmega328P, record/play switches, power switch, servo and potentiometer headers, with the Li-Po battery on the lower tier.",
+          "en": "Two-tier controller board (callouts in Korean): ATmega328P, record/play switches, power switch, servo and potentiometer headers, with the Li-Po battery on the lower tier.",
           "ko": "2층 구조 제어 기판: ATmega328P, 녹화/재생 스위치, 전원 스위치, 서보·포텐쇼미터 커넥터와 아래층의 Li-Po 배터리."
         },
         "thumb": "img/robotic-arm-pid/thumbs/05-controller-pcb-annotated.jpg"
@@ -2811,12 +2858,16 @@ window.PROJECTS = [
       {
         "src": "img/robotic-arm-pid/06-pwm-without-vs-with-pid.jpg",
         "caption": {
-          "en": "Oscilloscope captures: servo PWM without PID (left, Agilent scope, noisy) vs. with PID control (right, DSO138 handheld scope, clean pulse).",
-          "ko": "오실로스코프 측정: PID 미적용 서보 PWM(왼쪽, Agilent 오실로스코프, 노이즈 심함)과 PID 적용 파형(오른쪽, DSO138 휴대용 오실로스코프, 깨끗한 펄스)."
+          "en": "Oscilloscope captures from the capstone report: servo PWM without PID (left, Agilent scope, noisy) vs. with PID control (right, DSO138 handheld scope, clean pulse).",
+          "ko": "캡스톤 보고서의 오실로스코프 측정: PID 미적용 서보 PWM(왼쪽, Agilent 오실로스코프, 노이즈 심함)과 PID 적용 파형(오른쪽, DSO138 휴대용 오실로스코프, 깨끗한 펄스)."
         },
         "thumb": "img/robotic-arm-pid/thumbs/06-pwm-without-vs-with-pid.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "3D-printed master–slave robotic arm that mirrors the operator and records and replays motions.",
+      "ko": "마스터 암의 움직임을 따라 하고 동작을 녹화·재생하는 3D 프린팅 로봇 팔."
+    }
   },
   {
     "slug": "groundwater-monitoring",
@@ -2832,31 +2883,31 @@ window.PROJECTS = [
     },
     "title": {
       "en": "Groundwater Level Monitoring Device",
-      "ko": "지하수 수위 모니터링을 위한 계측 장비 개발"
+      "ko": "지하수 수위 모니터링 장비"
     },
     "team": {
-      "en": "Individual (UST research internship at KIGAM)",
-      "ko": "개인 (UST 연구인턴십, 한국지질자원연구원)"
+      "en": "Individual (UST internship)",
+      "ko": "개인 (UST 인턴십)"
     },
     "role": {
       "en": "Circuit design, 3D modeling",
       "ko": "회로 설계, 3D 모델링"
     },
     "tagline": {
-      "en": "A portable Arduino-based instrument that measures water level through 4–20 mA pressure sensors, showing readings on an OLED and logging them to an SD card.",
+      "en": "A portable Arduino-based instrument that measures water level through 4–20 mA pressure sensors, showing readings on an OLED and logging them to an SD card.",
       "ko": "4–20mA 압력식 센서로 수위를 측정해 OLED에 표시하고 SD 카드에 기록하는 휴대용 Arduino 기반 계측 장비."
     },
     "summary": {
-      "en": "Developed during a UST research internship at the Korea Institute of Geoscience and Mineral Resources (KIGAM) in 2018. The device converts water pressure into a 4–20 mA current-loop signal, digitizes it on an Arduino Uno, displays live readings on an OLED and logs them to a micro-SD card. A Pascal's-principle test rig was built to validate the relationship between measured voltage and water level.",
+      "en": "Developed during a UST research internship at the Korea Institute of Geoscience and Mineral Resources (KIGAM) in 2018. The device converts water pressure into a 4–20 mA current-loop signal, digitizes it on an Arduino Uno, displays live readings on an OLED and logs them to a micro-SD card. A Pascal's-principle test rig was built to validate the relationship between measured voltage and water level.",
       "ko": "2018년 한국지질자원연구원(KIGAM)에서 진행한 UST 연구인턴십 과제입니다. 이 장비는 수압을 4–20mA 전류 루프 신호로 변환한 뒤 Arduino Uno에서 디지털화하고, 측정값을 OLED에 실시간으로 표시하며 micro-SD 카드에 기록합니다. 파스칼의 원리를 이용한 실험 장치를 제작해 측정 전압과 수위의 관계를 검증했습니다."
     },
     "problem": {
-      "en": "Korea relies heavily on groundwater, especially volcanic islands such as Jeju that lack water-management facilities like dams, yet groundwater levels fluctuate with earthquakes, atmospheric pressure and tidal forces, which makes precise monitoring difficult. The aim was an easy-to-carry instrument for checking these fluctuating levels.",
+      "en": "Korea depends heavily on groundwater, and volcanic islands such as Jeju, which lack dams and other water-management facilities, depend on it even more. Groundwater levels, however, fluctuate with earthquakes, atmospheric pressure and tidal forces, which makes precise monitoring difficult. The aim was an easy-to-carry instrument for checking these levels.",
       "ko": "우리나라는 지하수 의존도가 높으며, 특히 댐 등 물 관리 시설이 부족한 제주도 같은 화산섬은 의존도가 더 높습니다. 그러나 지하수위는 지진, 대기압, 기조력에 따라 변동하므로 정밀하게 모니터링하기 어렵습니다. 이렇게 변동하는 지하수위를 손쉽게 확인할 수 있는 휴대용 측정 장비를 만드는 것이 목표였습니다."
     },
     "solution": {
-      "en": "Pressure-type level sensors (up to 2 bar, about 20 m of water) output a 4–20 mA current that is converted to voltage across a 250 Ω resistor and read on four Arduino Uno ADC channels. Readings appear on an SSD1306 OLED over I2C and are logged to a stacked micro-SD shield, in a 3D-modeled two-tier assembly with power/reset switches, Molex sensor connectors and a 12 V sensor-supply clip.",
-      "ko": "최대 2bar(수심 약 20m)까지 측정할 수 있는 압력식 수위 센서의 4–20mA 전류 출력을 250Ω 저항을 거쳐 전압으로 변환하고, Arduino Uno의 ADC 4채널로 읽습니다. 측정값은 I2C로 연결한 SSD1306 OLED에 표시하고 적층한 micro-SD 쉴드에 기록합니다. 장비는 전원·리셋 스위치, 몰렉스 센서 커넥터, 12V 센서 전원용 클립을 갖춘 2층 구조로 3D 모델링해 제작했습니다."
+      "en": "One Arduino Uno reads four 4–20 mA sensor loops on separate ADC inputs; the OLED, the micro-SD logger and the power switching are packed into a portable, 3D-modeled two-tier unit.",
+      "ko": "Arduino Uno 한 대가 4–20mA 센서 루프 4개를 각각 별도의 ADC 입력으로 읽습니다. OLED, micro-SD 기록부, 전원 스위치는 3D 모델링한 휴대용 2층 구조 장비에 함께 담았습니다."
     },
     "approach": [
       {
@@ -2865,18 +2916,18 @@ window.PROJECTS = [
           "ko": "압력 기반 수위 측정"
         },
         "body": {
-          "en": "Measured water level indirectly from water pressure using Pascal's principle; the sensor's maximum range is 2 bar, equivalent to about 20 m of water.",
+          "en": "Measured water level indirectly from water pressure using Pascal's principle; the sensor's maximum range is 2 bar, equivalent to about 20 m of water.",
           "ko": "파스칼의 원리를 이용해 수압으로 수위를 간접 측정했습니다. 센서의 최대 측정 범위는 2bar로, 수심 약 20m의 압력에 해당합니다."
         }
       },
       {
         "title": {
-          "en": "4–20 mA current loop",
+          "en": "4–20 mA current loop",
           "ko": "4–20mA 전류 루프"
         },
         "body": {
-          "en": "Chose a current-loop output over voltage because it avoids voltage drop over long cables, is less sensitive to noise, and shows a broken wire as 0 mA instead of 4 mA; each loop uses a 12 V sensor supply and a 250 Ω sense resistor.",
-          "ko": "전압 신호 대신 전류 루프 출력을 택했습니다. 긴 케이블에서도 전압 강하가 생기지 않고 노이즈에 강하며, 단선되면 4mA가 아닌 0mA로 나타나기 때문입니다. 각 루프는 12V 센서 전원과 250Ω 감지 저항으로 구성했습니다."
+          "en": "Chose a current-loop output over voltage because the signal is unaffected by voltage drop over long cables, is less sensitive to noise, and shows a broken wire as 0 mA instead of 4 mA; each loop uses a 12 V sensor supply and a 250 Ω sense resistor.",
+          "ko": "전압 신호 대신 전류 루프 출력을 택했습니다. 긴 케이블의 전압 강하에 영향을 받지 않고 노이즈에 강하며, 단선되면 4mA가 아닌 0mA로 나타나기 때문입니다. 각 루프는 12V 센서 전원과 250Ω 감지 저항으로 구성했습니다."
         }
       },
       {
@@ -2895,7 +2946,7 @@ window.PROJECTS = [
           "ko": "3D 모델링 및 제작"
         },
         "body": {
-          "en": "Modeled and built the instrument with the OLED at the upper left for readout without a computer, Molex connectors for the sensors, power/reset switches and a clip for the 12 V sensor supply.",
+          "en": "Modeled and built the instrument with the OLED at the upper left for readout without a computer, Molex connectors for the sensors, power/reset switches and a clip for the 12 V sensor supply.",
           "ko": "컴퓨터 없이도 측정값을 확인할 수 있도록 왼쪽 상단에 OLED를 배치하고, 센서용 몰렉스 커넥터, 전원·리셋 스위치, 12V 센서 전원 클립을 갖춘 장비를 모델링해 제작했습니다."
         }
       },
@@ -2905,7 +2956,7 @@ window.PROJECTS = [
           "ko": "펌웨어"
         },
         "body": {
-          "en": "Main loop reads each ADC channel, converts it to voltage, prints the four values to the OLED and appends them to a log file on the SD card.",
+          "en": "The main loop reads each ADC channel, converts it to voltage, prints the four values to the OLED and appends them to a log file on the SD card.",
           "ko": "메인 루프에서 각 ADC 채널을 읽어 전압으로 변환하고, 4개 값을 OLED에 출력한 뒤 SD 카드의 로그 파일에 이어서 기록합니다."
         }
       },
@@ -2915,7 +2966,7 @@ window.PROJECTS = [
           "ko": "수위 측정 실험"
         },
         "body": {
-          "en": "Built a hose-based test rig with the sensor at one end and moved the sensor to emulate water levels from 62 cm down to 5 cm, comparing measured voltage with the pressure–level relationship.",
+          "en": "Built a hose-based test rig with the sensor at one end and moved the sensor to emulate water levels from 62 cm down to 5 cm, comparing measured voltage with the pressure–level relationship.",
           "ko": "호스 한쪽 끝에 센서를 단 실험 장치를 제작하고, 센서 위치를 옮겨 가며 62cm에서 5cm까지의 수위를 모사해 측정 전압을 압력–수위 관계와 비교했습니다."
         }
       }
@@ -2926,17 +2977,17 @@ window.PROJECTS = [
         "ko": "수위 측정 실험에서 OLED 표시와 micro-SD 데이터 기록 동작을 확인했습니다."
       },
       {
-        "en": "Over a 62 → 5 cm water-level sweep, the measured voltage varied in proportion to the pressure–water-level relationship.",
+        "en": "Over a 62 → 5 cm water-level sweep, the measured voltage varied in proportion to the pressure–water-level relationship.",
         "ko": "62cm → 5cm 수위 변화 구간에서 측정 전압이 압력–수위 관계에 비례해 변하는 것을 확인했습니다."
       },
       {
-        "en": "With only a ~62–67 cm water column (about 0.5 V of change), readings were scaled at 8-bit resolution to amplify the change, which reduced accuracy; higher ADC resolution and an improved test setup were identified as next steps.",
-        "ko": "수주가 약 62–67cm(전압 변화 약 0.5V)에 불과해 변화량을 키우려고 측정값을 8bit 분해능으로 환산했고, 그 결과 정확도가 떨어졌습니다. ADC 분해능 향상과 실험 환경 개선을 후속 과제로 도출했습니다."
+        "en": "The test hose held only about 62–67 cm of water, so the sensor output changed by just ~0.5 V. To make the trend visible, readings were rescaled to 8-bit (0–255) values, which cost precision; a higher-resolution ADC and an improved test setup were identified as next steps.",
+        "ko": "실험용 호스에 채운 물의 높이가 약 62–67cm에 불과해 센서 출력 변화가 약 0.5V에 그쳤습니다. 변화 추이를 보기 위해 측정값을 8bit(0–255) 값으로 환산했지만 그만큼 정밀도가 떨어졌고, ADC 분해능 향상과 실험 환경 개선을 후속 과제로 정리했습니다."
       }
     ],
     "contributions": [
       {
-        "en": "Designed the control system and circuits: 4–20 mA sensor loops, OLED/SD interface and power stage.",
+        "en": "Designed the control system and circuits: 4–20 mA sensor loops, OLED/SD interface and power stage.",
         "ko": "4–20mA 센서 루프, OLED/SD 인터페이스, 전원부를 포함한 제어 시스템과 회로를 설계했습니다."
       },
       {
@@ -2986,23 +3037,23 @@ window.PROJECTS = [
         "src": "img/groundwater-monitoring/01-oled-live-readings.jpg",
         "caption": {
           "en": "Finished instrument: the OLED shows live voltage readings from four sensor channels.",
-          "ko": "완성된 계측 장비: OLED에 센서 4채널의 전압 측정값이 실시간으로 표시됩니다."
+          "ko": "완성된 계측 장비: OLED에 실시간으로 표시되는 센서 4채널 전압 측정값."
         },
         "thumb": "img/groundwater-monitoring/thumbs/01-oled-live-readings.jpg"
       },
       {
         "src": "img/groundwater-monitoring/02-system-block-diagram.jpg",
         "caption": {
-          "en": "Control system block diagram: water level → four sensor circuits → Arduino Uno → OLED LCD and SD card module.",
-          "ko": "제어 시스템 블록도: 수위 → 센서 회로 4채널 → Arduino Uno → OLED LCD 및 SD 카드 모듈."
+          "en": "Control system block diagram: water level → four sensor circuits → Arduino Uno → OLED display and SD card module.",
+          "ko": "제어 시스템 블록도: 수위 → 센서 회로 4채널 → Arduino Uno → OLED 디스플레이 및 SD 카드 모듈."
         },
         "thumb": "img/groundwater-monitoring/thumbs/02-system-block-diagram.jpg"
       },
       {
         "src": "img/groundwater-monitoring/03-current-loop-sensor-circuit.jpg",
         "caption": {
-          "en": "Sensor circuits: each 4–20 mA sensor runs on 12 V and is read across a 250 Ω resistor on A0–A3.",
-          "ko": "센서 회로: 4–20mA 센서마다 12V 전원을 인가하고 250Ω 저항 양단 전압을 A0–A3로 읽습니다."
+          "en": "Sensor circuits: each 4–20 mA sensor runs on 12 V and is read across a 250 Ω resistor on A0–A3.",
+          "ko": "센서 회로: 4–20mA 센서마다 12V 전원을 인가하고 250Ω 저항 양단 전압을 A0–A3로 읽는 구성."
         },
         "thumb": "img/groundwater-monitoring/thumbs/03-current-loop-sensor-circuit.jpg"
       },
@@ -3018,19 +3069,23 @@ window.PROJECTS = [
         "src": "img/groundwater-monitoring/05-pressure-test-rig.jpg",
         "caption": {
           "en": "Water-level test rig based on Pascal's principle, with the sensor at the end of a water-filled hose.",
-          "ko": "파스칼의 원리를 이용한 수위 측정 실험 장치: 물을 채운 호스 끝에 센서를 연결했습니다."
+          "ko": "파스칼의 원리를 이용한 수위 측정 실험 장치(물을 채운 호스 끝에 센서 연결)."
         },
         "thumb": "img/groundwater-monitoring/thumbs/05-pressure-test-rig.jpg"
       },
       {
         "src": "img/groundwater-monitoring/06-voltage-pressure-vs-level.jpg",
         "caption": {
-          "en": "Measured voltage vs. water level (blue) compared with the pressure–water-level line (orange), 62 → 5 cm.",
+          "en": "Measured voltage vs. water level (blue) compared with the pressure–water-level line (orange), 62 → 5 cm.",
           "ko": "수위별 측정 전압(파란색)과 압력–수위 관계(주황색) 비교, 62cm → 5cm."
         },
         "thumb": "img/groundwater-monitoring/thumbs/06-voltage-pressure-vs-level.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "Portable Arduino device reading 4–20 mA level sensors, with OLED readout and SD-card logging.",
+      "ko": "4–20mA 수위 센서 값을 OLED에 표시하고 SD 카드에 기록하는 휴대용 Arduino 장비."
+    }
   },
   {
     "slug": "fpga-elevator",

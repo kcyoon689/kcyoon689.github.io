@@ -94,7 +94,7 @@
     "Industrial Inspection": "산업 검사", "Model Serving": "모델 서빙", "Experiment Tracking": "실험 관리",
     "Model Registry": "모델 레지스트리", "ONNX Export": "ONNX 변환", "Image Classification": "이미지 분류",
     "Accessibility": "접근성", "Mobile App": "모바일 앱", "Underwater Imagery": "수중 영상", "Cross-validation": "교차 검증",
-    "Data Split": "데이터 분할", "Dataset Bias": "데이터셋 편향", "Robustness": "강건성", "Background Dependence": "배경 의존성",
+    "Data Split": "데이터 분할", "Dataset Bias": "데이터셋 편향", "Robustness": "강건성", "Background Dependence": "배경 의존도",
     "Kalman Filter": "칼만 필터", "Camera Calibration": "카메라 캘리브레이션", "Depth Estimation": "깊이 추정",
     "Gesture Recognition": "제스처 인식", "Computer Vision": "컴퓨터 비전", "PID control": "PID 제어",
     "Master–slave teleoperation": "마스터–슬레이브 원격 조작", "Motion record & playback": "동작 녹화·재생",
@@ -135,7 +135,7 @@
   function cover(p) {
     if (p.cover) return p.cover;
     if (p.images && p.images.length) return p.images[0].src;
-    if (p.youtube && p.youtube.length) return "https://i.ytimg.com/vi/" + p.youtube[0] + "/hqdefault.jpg";
+    if (p.youtube && p.youtube.length) return "https://i.ytimg.com/vi/" + (typeof p.youtube[0] === "string" ? p.youtube[0] : p.youtube[0].id) + "/hqdefault.jpg";
     return null;
   }
   function icon(type) {
