@@ -3117,15 +3117,15 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Two-person digital system design project (2018) built to understand PWM control and MCU design hands-on. An ATmega328P moves the car between three floors with a stepper motor, while a Xilinx XC3S200 FPGA drives the servo that opens and closes the door. The elevator body was 3D-modeled and printed, the ATmega328P controller was built on perfboard with a Li-Po supply, and the work was written up as a short paper.",
-      "ko": "PWM 제어와 MCU 설계를 직접 익히기 위해 2인 팀으로 진행한 디지털시스템설계 프로젝트(2018)입니다. ATmega328P가 스테핑 모터로 카를 3개 층 사이에서 이동시키고, Xilinx XC3S200 FPGA가 문을 여닫는 서보모터를 구동합니다. 엘리베이터 본체는 3D 모델링 후 출력했고, ATmega328P 제어기는 Li-Po 전원을 갖춘 만능기판으로 제작했습니다. 결과는 짧은 논문으로 정리했습니다."
+      "ko": "PWM 제어와 MCU 설계를 직접 익히기 위해 2인 팀으로 진행한 디지털 시스템 설계 프로젝트(2018)입니다. ATmega328P가 스테핑 모터로 카를 3개 층 사이에서 이동시키고, Xilinx XC3S200 FPGA가 문을 여닫는 서보 모터를 구동합니다. 엘리베이터 본체는 3D 모델링 후 출력했고, ATmega328P 제어기는 Li-Po 전원을 갖춘 만능기판으로 제작했습니다. 결과는 짧은 논문으로 정리했습니다."
     },
     "problem": {
-      "en": "Learn PWM control hands-on by driving a servo from an FPGA, and deepen MCU understanding by designing a complete elevator rather than controlling a motor in isolation.",
-      "ko": "FPGA로 서보모터를 구동하며 PWM 제어를 직접 익히고, 모터 하나만 따로 제어하는 데 그치지 않고 엘리베이터 전체를 설계하며 MCU에 대한 이해를 넓히는 것이 목표였습니다."
+      "en": "The goal was to learn PWM control hands-on by driving a servo from an FPGA, and to deepen MCU understanding by designing a complete elevator rather than controlling a single motor in isolation.",
+      "ko": "FPGA로 서보 모터를 구동하며 PWM 제어를 직접 익히고, 모터 하나만 따로 제어하는 데 그치지 않고 엘리베이터 전체를 설계하며 MCU에 대한 이해를 넓히는 것이 목표였습니다."
     },
     "solution": {
       "en": "Control is split across two devices. The ATmega328P handles car motion with a stepper motor through a ULN2003A driver and three pull-down floor buttons, tracking the current floor and rotating CW/CCW to the requested one. The FPGA generates a 20 ms-period PWM for the door servo (90° at rest, 180° to open). A cylindrical lock in front of the door removes the need for gears to turn the servo's rotation into linear motion.",
-      "ko": "제어를 두 장치로 나눴습니다. ATmega328P는 ULN2003A 드라이버와 풀다운으로 구성한 1·2·3층 버튼으로 스테핑 모터를 제어하며, 현재 층을 추적해 CW/CCW 회전으로 요청된 층까지 카를 이동시킵니다. FPGA는 주기 20ms의 PWM을 생성해 도어 서보모터를 구동합니다(평상시 90°, 열림 180°). 문 앞에 원기둥형 잠금장치를 두어 서보의 회전 운동을 직선 운동으로 바꾸는 기어가 필요 없도록 했습니다."
+      "ko": "제어를 두 장치로 나눴습니다. ATmega328P는 ULN2003A 드라이버와 풀다운으로 구성한 1·2·3층 버튼으로 스테핑 모터를 제어하며, 현재 층을 추적해 CW/CCW 회전으로 요청된 층까지 카를 이동시킵니다. FPGA는 주기 20ms의 PWM을 생성해 도어 서보 모터를 구동합니다(평상시 90°, 열림 180°). 문 앞에 원기둥형 잠금장치를 두어 서보의 회전 운동을 직선 운동으로 바꾸는 기어가 필요 없도록 했습니다."
     },
     "approach": [
       {
@@ -3135,7 +3135,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Assigned a stepper motor to vertical car motion (ATmega328P) and a servo motor to the door (FPGA).",
-          "ko": "카의 상하 운동은 스테핑 모터(ATmega328P)가, 문 개폐는 서보모터(FPGA)가 담당하도록 나눴습니다."
+          "ko": "카의 상하 운동은 스테핑 모터(ATmega328P)가, 문 개폐는 서보 모터(FPGA)가 담당하도록 나눴습니다."
         }
       },
       {
@@ -3154,7 +3154,7 @@ window.PROJECTS = [
           "ko": "3D 모델링 및 출력"
         },
         "body": {
-          "en": "3D-modeled the shaft, cart, front panel, door and a cylindrical servo lock for 3D printing, with revised versions of the cart and door.",
+          "en": "3D-modeled the shaft, car, front panel, door and a cylindrical servo lock for 3D printing, with revised versions of the car and door.",
           "ko": "3D 프린팅을 위해 승강로, 카, 전면부, 도어, 원기둥형 서보 잠금장치를 모델링했으며, 카와 도어는 수정 버전도 만들었습니다."
         }
       },
@@ -3184,19 +3184,19 @@ window.PROJECTS = [
           "ko": "통합 및 테스트"
         },
         "body": {
-          "en": "Connected the elevator to both controllers and verified operation; corrected the cart's sideways and forward lean by adding weights to rebalance its center of gravity.",
+          "en": "Connected the elevator to both controllers and verified operation; corrected the car's sideways and forward lean by adding weights to rebalance its center of gravity.",
           "ko": "엘리베이터에 두 제어기를 연결해 동작을 확인했습니다. 카가 옆과 앞으로 기우는 문제는 무게 추를 달아 무게 중심을 맞춰 바로잡았습니다."
         }
       }
     ],
     "results": [
       {
-        "en": "Verified that the integrated elevator operated without errors.",
-        "ko": "통합한 엘리베이터가 오류 없이 동작함을 확인했습니다."
+        "en": "The integrated elevator operated without errors.",
+        "ko": "통합한 엘리베이터가 오류 없이 동작했습니다."
       },
       {
-        "en": "The cart leaned sideways and forward because the center of gravity and pulley mechanics were overlooked in the 3D design; added weights rebalanced it, and a better-balanced pulley/cart design was identified as the next improvement.",
-        "ko": "3D 설계 단계에서 무게 중심과 도르래 원리를 고려하지 못해 카가 옆과 앞으로 기울었으나, 무게 추를 달아 균형을 맞췄습니다. 균형을 고려한 도르래·카 설계를 다음 개선 과제로 도출했습니다."
+        "en": "The car's lean was caused by overlooking the center of gravity and pulley mechanics in the 3D design; a better-balanced pulley/car design was identified as the next improvement.",
+        "ko": "카가 기운 원인은 3D 설계 단계에서 무게 중심과 도르래 원리를 고려하지 못한 데 있었습니다. 균형을 고려한 도르래·카 설계를 다음 개선 과제로 도출했습니다."
       },
       {
         "en": "Documented as the paper \"Design and Implementation of Elevator Using FPGA and Atmega 328p\" (Kim C.Y., Hong S.B.).",
@@ -3224,15 +3224,12 @@ window.PROJECTS = [
     "tech": [
       "ATmega328P",
       "Arduino (C/C++)",
-      "Arduino Stepper library",
+      "Arduino Stepper.h",
       "Xilinx Spartan-3 (XC3S200)",
       "Xilinx ISE",
       "VHDL",
       "ULN2003A",
-      "Stepper motor",
-      "Servo motor (PWM)",
-      "3D printing",
-      "Li-Po battery",
+      "Fritzing",
       "OrCAD"
     ],
     "topics": [
@@ -3265,8 +3262,8 @@ window.PROJECTS = [
       {
         "src": "img/fpga-elevator/01-elevator-operation-check.jpg",
         "caption": {
-          "en": "Operation check of the 3D-printed elevator: stepper-driven cart and servo-actuated door lock (paper Fig. 7).",
-          "ko": "3D 프린팅 엘리베이터 동작 확인: 스테핑 모터로 움직이는 카와 서보로 작동하는 도어 잠금장치 (논문 그림 7)."
+          "en": "Operation check (paper Fig. 7): door closed with the servo at rest (left), and the servo rotated to slide the door open (right).",
+          "ko": "동작 확인 (논문 그림 7): 서보가 기본 위치일 때 문이 닫힌 상태(왼쪽)와 서보가 회전해 문이 열린 상태(오른쪽)."
         },
         "thumb": "img/fpga-elevator/thumbs/01-elevator-operation-check.jpg"
       },
@@ -3306,11 +3303,15 @@ window.PROJECTS = [
         "src": "img/fpga-elevator/06-fpga-servo-test.jpg",
         "caption": {
           "en": "FPGA board driving a servo motor with PWM during testing (frame from the repo demo video).",
-          "ko": "FPGA 보드로 서보모터를 PWM 구동하는 테스트 장면 (저장소 데모 영상 캡처)."
+          "ko": "FPGA 보드로 서보 모터를 PWM 구동하는 테스트 장면 (저장소 데모 영상 캡처)."
         },
         "thumb": "img/fpga-elevator/thumbs/06-fpga-servo-test.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "3D-printed three-floor elevator: an ATmega328P moves the car and an FPGA drives the door servo.",
+      "ko": "ATmega328P가 카를, FPGA가 서보 도어를 제어하는 3D 프린팅 3층 엘리베이터 모형."
+    }
   },
   {
     "slug": "cansat",
@@ -3322,11 +3323,11 @@ window.PROJECTS = [
     },
     "title": {
       "en": "Can Satellite Design for Fine Dust Monitoring",
-      "ko": "대기 안정도와 미세먼지 농도의 상관관계 분석을 위한 캔위성 설계"
+      "ko": "미세먼지 관측을 위한 캔위성 설계"
     },
     "team": {
-      "en": "Team of 3 (UniSat: Baekseok Univ., Seoul Tech, Sejong Univ.) · Team Lead",
-      "ko": "3인 팀 (UniSat: 백석대·서울과기대·세종대) · 팀장"
+      "en": "Team of 3 (UniSat) · Team Lead",
+      "ko": "3인 팀 (UniSat) · 팀장"
     },
     "role": {
       "en": "Mission idea & design, sensor control, satellite–ground communication, embedded SW",
@@ -3337,15 +3338,15 @@ window.PROJECTS = [
       "ko": "로켓으로 발사되어 낙하하는 동안 3축 풍속, 자세, 미세먼지 농도를 측정해 대기 안정도와 미세먼지의 상관관계를 분석하는 캔위성."
     },
     "summary": {
-      "en": "Team UniSat's entry to the 6th CanSat Competition (2017), hosted by the Ministry of Science and ICT and organized by the KAIST Satellite Technology Research Center, led as team lead. The CanSat is launched to 300–500 m, records attitude, 3-axis wind speed and dust density while descending by parachute, and sends the data to a ground station over XBee. Pasquill stability classes assigned to sections of the descent were compared with fine-dust concentration; the project won an Excellence Award (KAIST President's Award) and was presented at the KSAS 2017 Fall Conference.",
-      "ko": "과학기술정보통신부가 주최하고 KAIST 인공위성연구소가 주관한 제6회 캔위성 경연대회(2017)에 UniSat 팀장으로 참가한 프로젝트입니다. 캔위성은 300–500m 높이까지 발사된 뒤 낙하산으로 하강하면서 자세, 3축 풍속, 미세먼지 농도를 기록하고 XBee로 지상국에 전송합니다. 낙하 구간별로 구한 Pasquill 안정도를 미세먼지 농도와 비교했으며, 우수상(KAIST 총장상)을 수상하고 한국항공우주학회 2017 추계학술대회에서 발표했습니다."
+      "en": "Led team UniSat (Baekseok Univ., SeoulTech, Sejong Univ.) at the 6th CanSat Competition (2017), hosted by the Ministry of Science and ICT and organized by the KAIST Satellite Technology Research Center. The CanSat is launched to 300–500 m, records attitude, 3-axis wind speed and dust density while descending by parachute, and sends the data to a ground station over XBee. Pasquill stability classes assigned to sections of the descent were compared with fine-dust concentration; the project won an Excellence Award (KAIST President's Award) and was presented at the KSAS 2017 Fall Conference.",
+      "ko": "과학기술정보통신부가 주최하고 KAIST 인공위성연구소가 주관한 제6회 캔위성 경연대회(2017)에 UniSat(백석대·서울과기대·세종대) 팀장으로 참가한 프로젝트입니다. 캔위성은 300–500m 높이까지 발사된 뒤 낙하산으로 하강하면서 자세, 3축 풍속, 미세먼지 농도를 기록하고 XBee로 지상국에 전송합니다. 낙하 구간별로 구한 Pasquill 안정도를 미세먼지 농도와 비교했으며, 우수상(KAIST 총장상)을 수상하고 한국항공우주학회 2017 추계학술대회에서 발표했습니다."
     },
     "problem": {
       "en": "Fine-dust damage worsens every year and differs by region, and studies link those differences to atmospheric circulation, i.e. atmospheric stability. Stability is usually derived from an air parcel's adiabatic lapse rate, which is impractical within a CanSat's size limits, so the mission needed another way to estimate stability and relate it to dust concentration.",
       "ko": "미세먼지 피해는 해마다 심해지고 지역별로 차이가 나며, 여러 연구에서 그 차이의 원인으로 대기 순환, 즉 대기 안정도를 지목합니다. 대기 안정도는 보통 공기 덩이의 단열감률로 구하지만 캔위성의 크기 제약 안에서는 이를 측정하기 어렵습니다. 따라서 다른 방식으로 안정도를 추정하고 미세먼지 농도와 연관 짓는 것이 과제였습니다."
     },
     "solution": {
-      "en": "Use the Pasquill stability class, which needs only wind speed and solar radiation. Three wind sensors aligned with the gyro's x/y/z axes measure wind during descent; the measured attitude is used to rotate readings into an absolute frame, and an approximation for absolute wind speed was fitted by least-squares linear regression. A dust sensor mounted at the bottom, an XBee Pro S2B link with micro-SD backup, a real-time ground-station GUI and a pyranometer at the ground station complete the system.",
+      "en": "The design uses the Pasquill stability class, which needs only wind speed and solar radiation. Three wind sensors aligned with the gyro's x/y/z axes measure wind during descent; the measured attitude is used to rotate readings into an absolute frame, and an approximation for absolute wind speed was fitted by least-squares linear regression. A dust sensor mounted at the bottom, an XBee Pro S2B link with micro-SD backup, a real-time ground-station GUI and a pyranometer at the ground station complete the system.",
       "ko": "풍속과 일사량만으로 구할 수 있는 Pasquill 안정도를 사용했습니다. 자이로 센서의 x/y/z축에 맞춰 배치한 바람 센서 3개로 낙하 중 풍속을 측정하고, 측정한 자세를 이용해 값을 절대 좌표계로 회전 변환했으며, 절대 풍속 근사식은 최소자승법 기반 선형회귀로 구했습니다. 위성 최하단에 장착한 먼지 센서, micro-SD 백업을 갖춘 XBee Pro S2B 통신, 실시간 지상국 GUI, 지상국의 일사계로 시스템을 완성했습니다."
     },
     "approach": [
@@ -3365,8 +3366,8 @@ window.PROJECTS = [
           "ko": "절대 풍속 산출"
         },
         "body": {
-          "en": "Aligned three wind sensors with the gyro axes, corrected for attitude with a rotation-matrix transform, and fitted the absolute wind-speed approximation by least-squares regression; a wind-tunnel test showed under 5% error at or below 9 m/s.",
-          "ko": "바람 센서 3개를 자이로 축에 맞춰 배치하고 회전 행렬로 자세를 보정했으며, 절대 풍속 근사식은 최소자승법 회귀로 구했습니다. 풍동 실험에서 풍속 9m/s 이하일 때 오차가 5% 미만임을 확인했습니다."
+          "en": "Aligned three wind sensors with the gyro axes, corrected for attitude with a rotation-matrix transform, and fitted the absolute wind-speed approximation by least-squares regression, then validated it in a wind tunnel.",
+          "ko": "바람 센서 3개를 자이로 축에 맞춰 배치하고 회전 행렬로 자세를 보정했으며, 절대 풍속 근사식은 최소자승법 회귀로 구한 뒤 풍동 실험으로 검증했습니다."
         }
       },
       {
@@ -3375,7 +3376,7 @@ window.PROJECTS = [
           "ko": "하드웨어 및 구조 설계"
         },
         "body": {
-          "en": "Integrated an Arduino Mega, MPU-9250 gyro, three Wind Sensor Rev. C units, a GP2Y1014AU0F dust sensor (mounted lowest, considering the descent), a micro-SD reader and a Li-Po battery in a stacked frame.",
+          "en": "Integrated an Arduino Mega, MPU-9250 gyro, three Wind Sensor Rev. C units, a GP2Y1014AU0F dust sensor (mounted at the bottom to account for the descent), a micro-SD reader and a Li-Po battery in a stacked frame.",
           "ko": "Arduino Mega, MPU-9250 자이로, Wind Sensor Rev. C 3개, 낙하 상태를 고려해 최하단에 배치한 GP2Y1014AU0F 먼지 센서, micro-SD 리더, Li-Po 배터리를 적층 구조에 통합했습니다."
         }
       },
@@ -3385,8 +3386,8 @@ window.PROJECTS = [
           "ko": "위성–지상국 통신"
         },
         "body": {
-          "en": "Chose an XBee Pro S2B (about 1 km nominal) for the ~600 m link requirement; an XCTU range test reached only ~400 m, so data is also logged to micro-SD and sent when in range, with a real-time ground-station GUI.",
-          "ko": "최소 600m 통신 요구에 맞춰 이론상 약 1km까지 통신할 수 있는 XBee Pro S2B를 사용했습니다. XCTU 테스트에서는 약 400m까지만 통신이 확인되어, 데이터를 micro-SD에도 저장하고 통신 범위 안에서 송신하도록 했으며 실시간 지상국 GUI를 구성했습니다."
+          "en": "Chose an XBee Pro S2B (about 1 km nominal) to meet the 600 m minimum link range; an XCTU range test reached only ~400 m, so data is also logged to micro-SD and transmitted once the CanSat comes within range. A ground-station GUI shows the incoming data in real time.",
+          "ko": "최소 600m 통신 요구에 맞춰 이론상 약 1km까지 통신할 수 있는 XBee Pro S2B를 사용했습니다. XCTU 테스트에서는 약 400m까지만 통신이 확인되어, 데이터를 micro-SD에도 저장하고 통신 범위 안에 들어오면 송신하도록 했습니다. 수신 데이터는 지상국 GUI에서 실시간으로 확인할 수 있게 했습니다."
         }
       },
       {
@@ -3405,7 +3406,7 @@ window.PROJECTS = [
           "ko": "데이터 분석"
         },
         "body": {
-          "en": "Corrected attitude to compute absolute wind speed, plotted it against dust concentration, split the descent into sections and assigned Pasquill stability per section using ground pyranometer data.",
+          "en": "Corrected the readings for attitude to compute absolute wind speed, plotted it against dust concentration, split the descent into sections and assigned a Pasquill stability class to each section using ground pyranometer data.",
           "ko": "자세를 보정해 절대 풍속을 산출하고 미세먼지 농도와 함께 그래프로 나타냈습니다. 낙하 구간을 나눈 뒤 지상 일사계 데이터를 이용해 구간별 Pasquill 안정도를 구했습니다."
         }
       }
@@ -3413,19 +3414,19 @@ window.PROJECTS = [
     "results": [
       {
         "en": "Excellence Award (Creative Division), KAIST President's Award, 2017 CanSat Competition (Sep 14, 2017).",
-        "ko": "2017 캔위성 경연대회에서 우수상(창작부문, KAIST 총장상)을 수상했습니다(2017.09.14)."
+        "ko": "2017 캔위성 경연대회(2017.09.14)에서 우수상(창작부문, KAIST 총장상)을 받았습니다."
       },
       {
-        "en": "Paper presented at the KSAS (Korean Society for Aeronautical and Space Sciences) 2017 Fall Conference, Nov 15–18, 2017.",
-        "ko": "한국항공우주학회 2017 추계학술대회(2017.11.15–18)에서 논문을 발표했습니다."
+        "en": "Paper \"Design of CANSAT for a correlation analysis between atmospheric stability and the concentration of fine dust\" presented at the KSAS (Korean Society for Aeronautical and Space Sciences) 2017 Fall Conference, Nov 15–18, 2017.",
+        "ko": "논문 「대기 안정도와 미세먼지 농도의 상관관계 분석을 위한 캔위성 설계」를 한국항공우주학회 2017 추계학술대회(2017.11.15–18)에서 발표했습니다."
       },
       {
         "en": "Wind-tunnel validation: under 5% error between measured and calculated wind speed at or below 9 m/s.",
         "ko": "풍동 실험으로 풍속 9m/s 이하에서 측정 풍속과 계산 풍속의 오차가 5% 미만임을 검증했습니다."
       },
       {
-        "en": "The paper reports a relationship between stability class and fine-dust concentration, but the low drop altitude limited the analysis to three stability sections, and wind drift made recovery difficult.",
-        "ko": "논문에서 안정도 등급과 미세먼지 농도 사이의 관계를 보고했으나, 낙하 고도가 낮아 안정도 구간을 세 개로만 나눌 수 있었고 바람에 밀려 착륙 지점이 벗어나 회수가 어려웠습니다."
+        "en": "The paper reports a relationship between stability class and fine-dust concentration across three sections (Fig. 11–12) while noting that three sections are too few to establish a correlation. The low drop altitude limited the data, and wind drift carried the CanSat off the landing zone, making recovery difficult.",
+        "ko": "논문은 세 구간에서 안정도 등급과 미세먼지 농도 사이의 관계를 보고하면서도(그림 11–12), 세 구간만으로 상관관계를 확정하기에는 한계가 있다고 밝혔습니다. 낙하 고도가 낮아 데이터가 적었고, 캔위성이 바람에 밀려 착륙 지점을 벗어나 회수에도 어려움이 있었습니다."
       }
     ],
     "contributions": [
@@ -3450,12 +3451,13 @@ window.PROJECTS = [
       "Arduino Mega",
       "C/C++ (Arduino)",
       "Python (NumPy, Matplotlib)",
-      "MPU-9250 IMU (SparkFun DMP library)",
+      "MPU-9250 (SparkFun DMP)",
       "Wind Sensor Rev. C",
-      "GP2Y1014AU0F dust sensor",
+      "GP2Y1014AU0F",
       "XBee Pro S2B / XCTU",
-      "micro-SD logging",
+      "micro-SD",
       "PLX-DAQ",
+      "MATLAB",
       "OrCAD"
     ],
     "topics": [
@@ -3486,8 +3488,8 @@ window.PROJECTS = [
       {
         "type": "doc",
         "label": {
-          "en": "Award certificate (PDF)",
-          "ko": "수상 상장 (PDF)"
+          "en": "Award certificate (PDF, Korean)",
+          "ko": "상장 (PDF)"
         },
         "url": "https://chaeyoonkim.notion.site/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F04e0e5a5-2243-4aef-a76b-f6e70fa31aa8%2F2017_%EC%BA%94%EC%9C%84%EC%84%B1%EA%B2%BD%EC%97%B0%EB%8C%80%ED%9A%8C.pdf?table=block&id=20e85a41-7def-80ac-968d-c23dc61df12c&spaceId=3b7bc2fe-53ff-43ca-a1d7-3a75f677c2d7"
       }
@@ -3498,7 +3500,7 @@ window.PROJECTS = [
         "src": "img/cansat/01-unisat-cansat-assembled.jpg",
         "caption": {
           "en": "The assembled UniSat CanSat: a stacked acrylic frame holding the controller, sensors and communication module.",
-          "ko": "조립된 UniSat 캔위성: 적층형 아크릴 프레임에 제어기, 센서, 통신 모듈을 탑재했습니다."
+          "ko": "조립된 UniSat 캔위성: 제어기, 센서, 통신 모듈을 탑재한 적층형 아크릴 프레임."
         },
         "thumb": "img/cansat/thumbs/01-unisat-cansat-assembled.jpg"
       },
@@ -3521,15 +3523,15 @@ window.PROJECTS = [
       {
         "src": "img/cansat/04-ground-station-gui.jpg",
         "caption": {
-          "en": "Ground-station GUI: real-time x/y/z wind speed, attitude (Real-Time Motion), communication status and dust density.",
-          "ko": "지상국 GUI: x/y/z축 풍속, 자세(Real-Time Motion), 통신 상태, 미세먼지 농도를 실시간으로 표시합니다."
+          "en": "Ground-station GUI built in MATLAB: real-time x/y/z wind speed, attitude (Real-Time Motion), communication status and dust density.",
+          "ko": "x/y/z축 풍속, 자세(Real-Time Motion), 통신 상태, 미세먼지 농도를 실시간으로 표시하는 MATLAB 지상국 GUI."
         },
         "thumb": "img/cansat/thumbs/04-ground-station-gui.jpg"
       },
       {
         "src": "img/cansat/05-wind-vs-dust-analysis.jpg",
         "caption": {
-          "en": "Absolute wind speed vs. fine-dust concentration, divided into Pasquill stability sections A-B, B and B-C (paper Fig. 11).",
+          "en": "Absolute wind speed vs. fine-dust concentration, divided into Pasquill stability sections A-B, B and B-C (paper Fig. 11). Legend: blue = absolute wind speed, orange = fine dust.",
           "ko": "Pasquill 안정도 구간(A-B, B, B-C)으로 나눈 절대 풍속과 미세먼지 농도 비교 (논문 그림 11)."
         },
         "thumb": "img/cansat/thumbs/05-wind-vs-dust-analysis.jpg"
@@ -3542,7 +3544,11 @@ window.PROJECTS = [
         },
         "thumb": "img/cansat/thumbs/06-image.jpg"
       }
-    ]
+    ],
+    "cardTagline": {
+      "en": "CanSat that measures wind and fine dust during descent to relate atmospheric stability to dust.",
+      "ko": "낙하 중 3축 풍속·자세·미세먼지를 측정해 대기 안정도와 미세먼지의 상관관계를 분석하는 캔위성."
+    }
   },
   {
     "slug": "kaggle-image-matching",
