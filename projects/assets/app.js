@@ -58,6 +58,7 @@
     stack: { en: "Tech stack", ko: "기술 스택" },
     topics: { en: "Topics", ko: "주제" },
     links: { en: "Links", ko: "링크" },
+    refs: { en: "References", ko: "참고 자료" },
     info: { en: "Technical information", ko: "프로젝트 정보" },
     summary: { en: "Summary", ko: "요약" },
     problem: { en: "Problem", ko: "문제 정의" },
@@ -216,17 +217,15 @@
       var links = (p.links || []).filter(function (l) { var k = l.type; if (l.ref || seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
         return '<a class="icon-link" href="' + esc(l.url) + '"' + extAttrs() + ' title="' + esc(plain(linkLabel(l), "en")) + '" aria-label="' + esc(plain(linkLabel(l), "en")) + '">' + icon(l.type) + "</a>";
       }).join("");
-      var meta = [p.year ? esc(p.year) : "", has(p.team) ? bi(p.team) : ""].filter(Boolean).join(" · ");
       return '<article class="card" data-cat="' + esc(p.category) + '">' +
         '<a class="media" href="' + href + '" tabindex="-1" aria-hidden="true">' + media +
-        (c ? '<span class="year-badge">' + esc(p.year) + "</span>" : "") +
+        (p.year ? '<span class="year-badge">' + esc(p.year) + "</span>" : "") +
         (p.youtube && p.youtube.length ? '<span class="play"></span>' : "") + "</a>" +
         '<div class="card-body">' +
         '<div class="card-cat">' + bi(catLabel(p)) + "</div>" +
         '<h3 class="card-title"><a href="' + href + '">' + bi(p.title) + "</a></h3>" +
-        (meta ? '<p class="card-meta">' + meta + "</p>" : "") +
         (has(p.cardTagline || p.tagline) ? '<p class="card-tagline">' + bi(p.cardTagline || p.tagline) + "</p>" : "") +
-        tagsHtml(p.tech, 3) +
+        tagsHtml((p.tech || []).map(function (t) { return t.replace(/\s*\(.*?\)/g, ""); }), 2) +
         '<div class="card-actions"><a class="btn xs primary" href="' + href + '">' + bi(UI.details) + " →</a>" + links + "</div>" +
         "</div></article>";
     }).join("");
@@ -276,7 +275,7 @@
     var links = p.links || [];
 
     // reference links (ref: true) only appear in the info card, not as hero buttons
-    var linkBtns = links.filter(function (l) { return !l.ref; }).slice(0, 3).map(function (l, n) {
+    var linkBtns = links.filter(function (l) { return !l.ref; }).slice(0, 2).map(function (l, n) {
       return '<a class="btn' + (n === 0 ? " primary" : "") + '" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join("");
 
@@ -294,12 +293,16 @@
     info += row(p.period ? UI.period : UI.year, "<span>" + bi(p.period || p.year) + "</span>");
     if (has(p.team)) info += row(UI.team, "<span>" + bi(p.team) + "</span>");
     if (has(p.role)) info += row(UI.role, "<span>" + bi(p.role) + "</span>");
-    info += row(UI.type, '<span class="pill">' + bi(catLabel(p)) + "</span>");
     if (has(p.tech)) info += row(UI.stack, p.tech.map(function (t) { return '<span class="tag">' + esc(t) + "</span>"; }).join(""));
     if (has(p.topics)) info += row(UI.topics, p.topics.map(function (t) { return '<span class="pill">' + bi({ en: t, ko: TOPIC_KO[t] || t }) + "</span>"; }).join(""));
-    if (links.length) info += row(UI.links, links.map(function (l) {
+    var own = links.filter(function (l) { return !l.ref; }), refs = links.filter(function (l) { return l.ref; });
+    if (own.length) info += row(UI.links, own.map(function (l) {
       return '<a class="btn xs" href="' + esc(l.url) + '"' + extAttrs() + ">" + icon(l.type) + " " + bi(linkLabel(l)) + "</a>";
     }).join(""), "links");
+    if (refs.length) info += row(UI.refs, '<ul class="ref-list">' + refs.map(function (l) {
+      var lab = linkLabel(l), strip = function (t) { return String(t || "").replace(/^(Reference|참고 논문|참고 자료|참고)\s*:\s*/i, ""); };
+      return '<li><a href="' + esc(l.url) + '"' + extAttrs() + ">" + bi({ en: strip(lab.en), ko: strip(lab.ko) }) + "</a></li>";
+    }).join("") + "</ul>");
     info += "</aside>";
 
     var gallery = "";
@@ -317,17 +320,17 @@
     }
     var summary = has(p.summary) ? block(UI.summary, "<p>" + bi(p.summary) + "</p>") : "";
     var problem = has(p.problem) ? block(UI.problem, "<p>" + bi(p.problem) + "</p>") : "";
+    var solution = has(p.solution) ? block(UI.solution, "<p>" + bi(p.solution) + "</p>") : "";
     if (gallery) {
-      html += '<div class="detail-top"><div class="detail-left">' + gallery + summary + "</div>" + info + "</div>" + problem;
+      html += '<div class="detail-top"><div class="detail-left">' + gallery + summary + "</div>" + info + "</div>" + pair(problem, solution);
     } else {
-      html += '<div class="detail-top no-gallery">' + info + "</div>" + pair(summary, problem);
+      html += '<div class="detail-top no-gallery">' + info + "</div>" + pair(summary, problem) + solution;
     }
 
     // remaining blocks in reading order: Solution, Approach, [Results | My contributions]
     function list(items) { return "<ul>" + items.map(function (x) { return "<li>" + bi(x) + "</li>"; }).join("") + "</ul>"; }
     if (p.roadmap) html += block(UI.roadmap, roadmap(p.roadmap));
     if (has(p.tracks)) html += '<section class="tracks"><h3 class="tracks-title">' + bi(UI.tracks) + "</h3>" + p.tracks.map(track).join("") + "</section>";
-    if (has(p.solution)) html += block(UI.solution, "<p>" + bi(p.solution) + "</p>");
     if (has(p.pipeline)) html += block(UI.pipeline, '<figure class="dg dg-flow pipeline">' + p.pipeline.map(function (st, i) {
       return '<div class="dg-node"><span class="rm-id">' + (i + 1) + "</span> " + bi(st) + "</div>" + (i < p.pipeline.length - 1 ? '<span class="dg-arrow" aria-hidden="true">→</span>' : "");
     }).join("") + "</figure>");
@@ -528,7 +531,7 @@
     var stage = document.getElementById("galStage");
     img.addEventListener("load", function () {
       var r = img.naturalWidth / img.naturalHeight;
-      stage.style.aspectRatio = r > 1.9 ? String(Math.min(r, 4)) : r < 1.45 ? String(Math.max(r, 1)) : "";
+      stage.style.aspectRatio = r > 1.7 ? String(Math.min(r, 4)) : r < 1.45 ? String(Math.max(r, 1)) : "";
     });
     show(0);
     if (thumbs) {
