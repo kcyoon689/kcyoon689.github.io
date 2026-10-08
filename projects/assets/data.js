@@ -2066,7 +2066,8 @@ window.PROJECTS = [
           "en": "Reference: Noise or Signal (ICLR 2021)",
           "ko": "참고 논문: Noise or Signal (ICLR 2021)"
         },
-        "url": "https://arxiv.org/abs/2006.09994"
+        "url": "https://arxiv.org/abs/2006.09994",
+        "ref": true
       }
     ],
     "cover": "img/background-dependency/cover.jpg",
@@ -2731,7 +2732,8 @@ window.PROJECTS = [
           "en": "Reference: CircuitDigest record & play robotic arm tutorial",
           "ko": "참고: CircuitDigest 녹화·재생 로봇 팔 튜토리얼"
         },
-        "url": "https://circuitdigest.com/microcontroller-projects/record-and-play-3d-printed-robotic-arm-using-arduino"
+        "url": "https://circuitdigest.com/microcontroller-projects/record-and-play-3d-printed-robotic-arm-using-arduino",
+        "ref": true
       },
       {
         "type": "other",
@@ -2739,7 +2741,8 @@ window.PROJECTS = [
           "en": "Reference: Robotic Arm V2.0 by Ashing (Thingiverse)",
           "ko": "참고: Robotic Arm V2.0 by Ashing (Thingiverse)"
         },
-        "url": "https://www.thingiverse.com/thing:1215831"
+        "url": "https://www.thingiverse.com/thing:1215831",
+        "ref": true
       }
     ],
     "youtube": [
