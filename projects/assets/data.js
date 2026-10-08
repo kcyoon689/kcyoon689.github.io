@@ -1662,12 +1662,29 @@ window.PROJECTS = [
         "ref": true
       }
     ],
-    "images": [],
+    "images": [
+      {
+        "src": "img/active-learning-pseudo-labeling/01-method-overview.png",
+        "thumb": "img/active-learning-pseudo-labeling/thumbs/01-method-overview.jpg",
+        "caption": {
+          "en": "Method overview: labeled and unlabeled images (with horizontal flips) train an SSD300 detector that carries a loss prediction module; each cycle the top-K images by predicted loss go to human annotators, confident detections become pseudo-labels, and the rest stay unlabeled.",
+          "ko": "방법 개요: 라벨 데이터와 라벨 없는 데이터(좌우 반전 포함)로 loss prediction module을 단 SSD300 검출기를 학습합니다. 매 cycle마다 예측 손실 상위 K장은 사람이 라벨링하고, 신뢰도가 높은 검출은 pseudo-label이 되며, 나머지는 라벨 없이 남습니다."
+        }
+      },
+      {
+        "src": "img/active-learning-pseudo-labeling/02-loss-prediction-module.png",
+        "thumb": "img/active-learning-pseudo-labeling/thumbs/02-loss-prediction-module.jpg",
+        "caption": {
+          "en": "Loss prediction module on SSD300: Conv4_3, FC7 and Conv9_2 features each pass through GAP → FC(128) → ReLU, are concatenated and mapped to a predicted loss l̂, trained against the true loss with a ranking loss.",
+          "ko": "SSD300에 붙인 loss prediction module: Conv4_3, FC7, Conv9_2 특징을 각각 GAP → FC(128) → ReLU로 줄인 뒤 이어 붙여 예측 손실 l̂을 출력하며, 실제 손실과의 ranking loss로 학습합니다."
+        }
+      }
+    ],
     "cardTagline": {
       "en": "Active learning for detection: pseudo-labels, flip consistency and a loss predictor.",
       "ko": "Pseudo-label·반전 일관성·손실 예측을 결합한 객체 탐지 액티브 러닝."
     },
-    "monogram": "AL"
+    "cover": "img/active-learning-pseudo-labeling/cover.jpg"
   },
   {
     "slug": "kaggle-great-barrier-reef",
@@ -1849,6 +1866,14 @@ window.PROJECTS = [
           "ko": "데이터 분할 설계: 5-fold 구성에서 train fold는 라벨 이미지 약 95%·배경 이미지 약 5%, validation fold는 가정한 test set에 맞춰 라벨 이미지 약 20%·배경 이미지 약 80%"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/02-stratified-group-5fold.jpg"
+      },
+      {
+        "src": "img/kaggle-great-barrier-reef/06-two-stage-pipeline.png",
+        "thumb": "img/kaggle-great-barrier-reef/thumbs/06-two-stage-pipeline.jpg",
+        "caption": {
+          "en": "Two-stage detection idea: a single-frame detector (e.g. YOLOX) proposes starfish candidates in the current frame, then crops of the same spots from previous frames are upsampled and passed to a multi-frame classifier for the final prediction.",
+          "ko": "2단계 탐지 아이디어: 단일 프레임 검출기(예: YOLOX)가 현재 프레임에서 불가사리 후보를 찾고, 이전 프레임들의 같은 위치를 잘라 확대한 뒤 multi-frame 분류기로 최종 예측을 내립니다."
+        }
       },
       {
         "src": "img/kaggle-great-barrier-reef/03-background-sampling-formula.jpg",
