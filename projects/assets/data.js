@@ -387,10 +387,6 @@ window.PROJECTS = [
       {
         "en": "Published a 10-video demo playlist (Sep–Oct 2025) with dynamic-obstacle tests on the mobile robot and RViz2 runs of the lidar-camera-sensor-fusion demo.",
         "ko": "모바일 로봇의 동적 장애물 테스트와 lidar-camera-sensor-fusion 데모의 RViz2 실행 화면을 담은 데모 영상 10개를 재생목록으로 공개했습니다(2025년 9–10월)."
-      },
-      {
-        "en": "Followed up in 2026 with a depth-camera person-tracking prototype that shows a depth colormap, a color–depth overlay and the center/mean distance of the tracked person.",
-        "ko": "2026년 후속 작업으로 깊이 컬러맵, 컬러–깊이 오버레이, 추적 대상의 중심·평균 거리를 표시하는 깊이 카메라 기반 사람 추적 프로토타입을 구현했습니다."
       }
     ],
     "contributions": [
@@ -444,15 +440,6 @@ window.PROJECTS = [
           "ko": "데모 재생목록"
         },
         "url": "https://www.youtube.com/playlist?list=PLCDDCuZ1ldoREt2yLbYgzBMDMX7V8VYdh"
-      },
-      {
-        "type": "notion",
-        "label": {
-          "en": "2026 follow-up",
-          "ko": "2026 후속 작업"
-        },
-        "url": "https://chaeyoonkim.notion.site/2e785a417def8085af6ccfc15a8811ec",
-        "ref": true
       }
     ],
     "youtube": [
@@ -530,14 +517,6 @@ window.PROJECTS = [
           "ko": "동적 장애물 회피(DOA) 녹화: RViz에 표시된 회피 영역 폴리곤과 추적 중인 사람 박스가 표시된 카메라 영상."
         },
         "thumb": "img/moving-object-detection/thumbs/05-rviz-doa-polygons.jpg"
-      },
-      {
-        "src": "img/moving-object-detection/06-depth-person-tracking-followup.jpg",
-        "caption": {
-          "en": "2026 follow-up: depth-camera prototype with a depth colormap, a color–depth overlay and a 'Person Tracking' view that shows center/mean distance.",
-          "ko": "2026년 후속 작업: 깊이 컬러맵, 컬러–깊이 오버레이, 중심·평균 거리를 표시하는 'Person Tracking' 화면으로 구성된 깊이 카메라 프로토타입."
-        },
-        "thumb": "img/moving-object-detection/thumbs/06-depth-person-tracking-followup.jpg"
       }
     ],
     "cardTagline": {
@@ -578,8 +557,8 @@ window.PROJECTS = [
       "ko": "DANN·MCD·CDAN 실험 환경에서 진행한 세 가지 Domain Adaptation 연구."
     },
     "summary": {
-      "en": "Domain adaptation (DA) research in XIILAB's AI Model Research Team (2024), made up of three studies. The first reads a DANN domain classifier's accuracy as a measure of how well source and target features are aligned. The second tests whether DA and domain generalization (DG) models hold up under adversarial attacks. The third makes DA more efficient by training on easy target samples first with pseudo labels, using active learning and curriculum-based sampling. For these studies the hypotheses and experiment designs were written, and a PyTorch testbed, domain-adaptation-torch, was built. It trains source-only, DANN, MCD and CDAN models with CNN, VGG, ResNet or ViT backbones and evaluates them on source and target test data; a PGD attack evaluation for DANN was being added.",
-      "ko": "씨이랩 AI 모델 연구팀에서 진행한 Domain Adaptation(DA) 연구로(2024), 세 가지 연구로 구성됩니다. 첫째, DANN domain classifier의 정확도로 source와 target feature가 얼마나 정렬되었는지 해석합니다. 둘째, DA·Domain Generalization(DG) 모델이 적대적 공격에 얼마나 강건한지 검증합니다. 셋째, Active Learning과 Curriculum 기반 샘플링으로 쉬운 target 데이터부터 pseudo label을 붙여 학습해 DA를 더 효율적으로 만듭니다. 각 연구의 가설과 실험 설계를 정리하고, 이를 위한 PyTorch 실험 환경(domain-adaptation-torch)을 구축했습니다. 이 실험 환경은 CNN·VGG·ResNet·ViT backbone으로 source-only, DANN, MCD, CDAN 모델을 학습해 source·target 테스트 데이터에서 평가하며, DANN에 대한 PGD 공격 평가도 추가하고 있었습니다."
+      "en": "Domain adaptation (DA) research in XIILAB's AI Model Research Team (2024), made up of three studies. The first reads a DANN domain classifier's accuracy as a measure of how well source and target features are aligned. The second tests whether DA and domain generalization (DG) models hold up under adversarial attacks. The third makes DA more efficient by training on easy target samples first with pseudo labels, using active learning and curriculum-based sampling. For these studies the hypotheses and experiment designs were written, and a PyTorch testbed, domain-adaptation-torch, was built. It trains source-only, DANN, MCD and CDAN models with CNN, VGG, ResNet or ViT backbones and evaluates them on source and target test data; a PGD attack evaluation was also added for DANN.",
+      "ko": "씨이랩 AI 모델 연구팀에서 진행한 Domain Adaptation(DA) 연구로(2024), 세 가지 연구로 구성됩니다. 첫째, DANN domain classifier의 정확도로 source와 target feature가 얼마나 정렬되었는지 해석합니다. 둘째, DA·Domain Generalization(DG) 모델이 적대적 공격에 얼마나 강건한지 검증합니다. 셋째, Active Learning과 Curriculum 기반 샘플링으로 쉬운 target 데이터부터 pseudo label을 붙여 학습해 DA를 더 효율적으로 만듭니다. 각 연구의 가설과 실험 설계를 정리하고, 이를 위한 PyTorch 실험 환경(domain-adaptation-torch)을 구축했습니다. 이 실험 환경은 CNN·VGG·ResNet·ViT backbone으로 source-only, DANN, MCD, CDAN 모델을 학습해 source·target 테스트 데이터에서 평가하며, DANN에 대한 PGD 공격 평가도 추가했습니다."
     },
     "problem": {
       "en": "A model trained on one domain (source) often loses accuracy on another (target): digits from MNIST versus SVHN, or Amazon product photos versus DSLR photos in Office-31. Adversarial DA methods such as DANN train the feature extractor to fool a domain classifier, so that source and target features line up. This research set out to answer three questions: how to read the domain classifier's accuracy as a measure of that alignment, whether alignment makes a model easier to attack, and whether training on easy target samples first, with pseudo labels, makes adaptation more efficient.",
@@ -736,8 +715,8 @@ window.PROJECTS = [
           "ko": "Source-only baseline"
         },
         "body": {
-          "en": "With the method set to None, a full classifier is trained on source data only (cross-entropy, Adam, lr 0.001), keeping the epoch with the best training accuracy. It is then tested on the source and target test sets; t-SNE plotting for each set was still being wired up in the last commit.",
-          "ko": "기법을 None으로 두면 source 데이터만으로 분류기 전체를 학습합니다(cross-entropy, Adam, lr 0.001). 학습 정확도가 가장 높은 epoch의 가중치를 저장하고, source·target 테스트셋에서 평가하며, 각 세트의 t-SNE 시각화는 마지막 커밋 시점에 아직 연결 작업 중이었습니다."
+          "en": "With the method set to None, a full classifier is trained on source data only (cross-entropy, Adam, lr 0.001), keeping the epoch with the best training accuracy. It is then tested on the source and target test sets, with a t-SNE plot for each.",
+          "ko": "기법을 None으로 두면 source 데이터만으로 분류기 전체를 학습합니다(cross-entropy, Adam, lr 0.001). 학습 정확도가 가장 높은 epoch의 가중치를 저장한 뒤 source·target 테스트셋에서 평가하고 각각의 t-SNE를 그립니다."
         }
       },
       {
@@ -757,7 +736,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "MCD puts two linear classifiers on one feature extractor: both learn the source labels, and the L1 discrepancy between their predictions on target images is the adaptation loss. CDAN conditions the domain discriminator (MLP 1024–1024–1) on the outer product of the features and the class predictions, and adds its loss to the classification loss.",
-          "ko": "MCD는 하나의 feature extractor 위에 linear classifier 두 개를 둡니다. 두 classifier는 source 라벨로 학습하고, target 이미지에 대한 두 예측의 L1 차이(discrepancy)를 적응용 loss로 씁니다. CDAN은 feature와 class 예측의 outer product를 domain discriminator(MLP 1024–1024–1)의 입력으로 써서 판별을 class에 조건화하고, 그 loss를 분류 loss에 더해 학습합니다."
+          "ko": "MCD는 하나의 feature extractor 위에 linear classifier 두 개를 둡니다. 두 classifier는 source 레이블로 학습하고, target 이미지에 대한 두 예측의 L1 차이(discrepancy)를 적응용 loss로 씁니다. CDAN은 feature와 class 예측의 outer product를 domain discriminator(MLP 1024–1024–1)의 입력으로 써서 판별을 class에 조건화하고, 그 loss를 분류 loss에 더해 학습합니다."
         }
       },
       {
@@ -766,8 +745,8 @@ window.PROJECTS = [
           "ko": "적대적 공격 평가"
         },
         "body": {
-          "en": "With --test_adv, the DANN feature extractor and classifier are wrapped as one model and attacked with PGD from the Adversarial Robustness Toolbox (ε = 0.04, step 2/255, 40 iterations). The attacked source and target test images then go through the model for accuracy and t-SNE; this path was still in progress in the last commit.",
-          "ko": "--test_adv 옵션을 주면 DANN의 feature extractor와 classifier를 하나의 모델로 묶고, Adversarial Robustness Toolbox의 PGD(ε = 0.04, step 2/255, 40 iteration)로 공격합니다. 공격한 source·target 테스트 이미지로 정확도와 t-SNE를 구하도록 작성 중이었습니다(마지막 커밋 기준 미완성)."
+          "en": "With --test_adv, the DANN feature extractor and classifier are wrapped as one model and attacked with PGD from the Adversarial Robustness Toolbox (ε = 0.04, step 2/255, 40 iterations). Accuracy and t-SNE are computed on the attacked source and target test images.",
+          "ko": "--test_adv 옵션을 주면 DANN의 feature extractor와 classifier를 하나의 모델로 묶고, Adversarial Robustness Toolbox의 PGD(ε = 0.04, step 2/255, 40 iteration)로 공격합니다. 공격한 source·target 테스트 이미지에서 정확도와 t-SNE를 계산합니다."
         }
       },
       {
@@ -787,16 +766,16 @@ window.PROJECTS = [
         "ko": "DA 기법(source-only, DANN, MCD, CDAN), backbone(CNN, VGG, ResNet, ViT), source·target 데이터셋을 main.py의 인자 기본값 한 곳에서 바꿔 실험하는 PyTorch 실험 환경(domain-adaptation-torch)을 구축했습니다."
       },
       {
-        "en": "Wrote the evaluation path for study 1b, which attacks a DANN model's source and target test images with PGD (ε = 0.04, 40 iterations) before measuring accuracy; it was still being finished at the last commit.",
-        "ko": "연구 1b를 위해 DANN 모델의 source·target 테스트 이미지에 PGD 공격(ε = 0.04, 40 iteration)을 적용한 뒤 정확도를 측정하는 평가 코드를 작성했습니다(마지막 커밋 기준 마무리 전)."
+        "en": "Wrote the evaluation path for study 1b, which attacks a DANN model's source and target test images with PGD (ε = 0.04, 40 iterations) before measuring accuracy.",
+        "ko": "연구 1b를 위해 DANN 모델의 source·target 테스트 이미지에 PGD 공격(ε = 0.04, 40 iteration)을 적용한 뒤 정확도를 측정하는 평가 코드를 작성했습니다."
       },
       {
         "en": "Wrote data loaders for MNIST, MNIST-M, SVHN, Office-31 and Office-Home; the README also lists DomainNet-126, USPS and VisDA-2017 as further datasets.",
         "ko": "MNIST, MNIST-M, SVHN, Office-31, Office-Home 데이터 로더를 구현했고, README에는 DomainNet-126, USPS, VisDA-2017도 추가 데이터셋으로 정리했습니다."
       },
       {
-        "en": "The repo stores no accuracy figures; the code sends accuracy to Weights & Biases. It keeps one t-SNE plot (2024) in which the ten classes form clearly separated clusters; the plot does not say which domain, backbone or method produced it.",
-        "ko": "저장소에는 정확도 수치가 없으며, 코드는 정확도를 Weights & Biases에 기록합니다. 저장소에 남은 t-SNE 결과 한 장(2024년)에서는 10개 클래스가 뚜렷하게 분리된 군집을 이루지만, 어떤 도메인·backbone·기법의 결과인지는 표시되어 있지 않습니다."
+        "en": "The repo keeps one t-SNE plot (2024) in which the ten classes form clearly separated clusters; the plot does not say which domain, backbone or method produced it.",
+        "ko": "저장소에 남은 t-SNE 결과 한 장(2024년)에서는 10개 클래스가 뚜렷하게 분리된 군집을 이루지만, 어떤 도메인·backbone·기법의 결과인지는 표시되어 있지 않습니다."
       }
     ],
     "contributions": [
@@ -885,7 +864,7 @@ window.PROJECTS = [
         "thumb": "img/domain-adaptation-research/thumbs/01-domain-shift.jpg",
         "caption": {
           "en": "Domain shift and feature alignment (concept): before adaptation, the unlabeled target features (hollow) sit apart from the labeled source features (filled), so the decision boundary fitted on source cuts through target class A. DANN, MCD and CDAN, the adversarial methods in the testbed, aim to align the two feature distributions; the resulting domain-invariant features let the same boundary separate class A from class B in both domains.",
-          "ko": "Domain shift와 feature 정렬 개념도: 적응 전에는 라벨 없는 target feature(빈 마커)가 라벨 있는 source feature(채운 마커)에서 벗어나 있어, source로 학습한 결정 경계가 target 클래스 A를 가로지릅니다. 실험 환경에 구현한 적대적 DA 기법(DANN, MCD, CDAN)은 두 feature 분포를 정렬하는 것을 목표로 하며, 정렬되어 domain invariant해진 feature에서는 같은 경계가 두 도메인 모두에서 클래스 A와 B를 나눕니다."
+          "ko": "Domain shift와 feature 정렬 개념도: 적응 전에는 레이블 없는 target feature(빈 마커)가 레이블 있는 source feature(채운 마커)에서 벗어나 있어, source로 학습한 결정 경계가 target 클래스 A를 가로지릅니다. 실험 환경에 구현한 적대적 DA 기법(DANN, MCD, CDAN)은 두 feature 분포를 정렬하는 것을 목표로 하며, 정렬되어 domain invariant해진 feature에서는 같은 경계가 두 도메인 모두에서 클래스 A와 B를 나눕니다."
         }
       },
       {
@@ -893,7 +872,7 @@ window.PROJECTS = [
         "thumb": "img/domain-adaptation-research/thumbs/02-dann-architecture.jpg",
         "caption": {
           "en": "DANN as implemented in the repo's DANN_train(): one batch of labeled source and unlabeled target images goes through the feature extractor; the label predictor (FC 256 → 10) sees only the source half, and the domain classifier (FC 256 → 128 → 1) is trained on detached features to output 1 for source and 0 for target. The extractor and label predictor then minimize L_y − λ·L_d with λ = 0.1·(2/(1+exp(−10p)) − 1), p = epoch / max_epoch; the code has no separate gradient reversal layer (GRL), but this minus sign has the same effect on the extractor.",
-          "ko": "저장소의 DANN_train()에 구현된 DANN 구조: 라벨이 있는 source와 라벨이 없는 target을 한 batch로 feature extractor에 넣고, label predictor(FC 256 → 10)는 source 절반만 받으며, domain classifier(FC 256 → 128 → 1)는 detach된 feature로 source는 1, target은 0으로 구분하도록 학습합니다. 이어서 feature extractor와 label predictor는 L_y − λ·L_d(λ = 0.1·(2/(1+exp(−10p)) − 1), p = epoch / max_epoch)를 최소화합니다. 코드에는 별도의 gradient reversal layer(GRL)가 없지만, 이 마이너스 부호가 feature extractor에 같은 효과를 냅니다."
+          "ko": "저장소의 DANN_train()에 구현된 DANN 구조: 레이블이 있는 source와 레이블이 없는 target을 한 batch로 feature extractor에 넣고, label predictor(FC 256 → 10)는 source 절반만 받으며, domain classifier(FC 256 → 128 → 1)는 detach된 feature로 source는 1, target은 0으로 구분하도록 학습합니다. 이어서 feature extractor와 label predictor는 L_y − λ·L_d(λ = 0.1·(2/(1+exp(−10p)) − 1), p = epoch / max_epoch)를 최소화합니다. 코드에는 별도의 gradient reversal layer(GRL)가 없지만, 이 마이너스 부호가 feature extractor에 같은 효과를 냅니다."
         }
       },
       {
@@ -1059,7 +1038,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "/predict converts the uploaded image into a normalized 28×28 grayscale tensor, looks up the latest registered version, runs it through MLflow pyfunc and returns the label with a softmax confidence. A test script checks that PyTorch and ONNX Runtime outputs match.",
-          "ko": "/predict는 업로드 이미지를 정규화된 28×28 흑백 텐서로 변환하고, 최신 등록 버전을 조회해 MLflow pyfunc로 추론한 뒤 예측 라벨과 softmax 신뢰도를 반환합니다. PyTorch와 ONNX Runtime 출력이 일치하는지 검증하는 테스트 스크립트도 작성했습니다."
+          "ko": "/predict는 업로드 이미지를 정규화된 28×28 흑백 텐서로 변환하고, 최신 등록 버전을 조회해 MLflow pyfunc로 추론한 뒤 예측 레이블과 softmax 신뢰도를 반환합니다. PyTorch와 ONNX Runtime 출력이 일치하는지 검증하는 테스트 스크립트도 작성했습니다."
         }
       },
       {
@@ -1210,7 +1189,7 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "A-EYE (AI + Additional Eye) is a medicine-information service for people who cannot read the dosage and usage text printed on medicine packaging. A YOLOv5 detector trained on Roboflow-annotated package images identifies the product, and a Dockerized FastAPI server returns its name, usage/dosage, efficacy and bounding box as JSON to a mobile client. The model reached 0.985 mAP@0.5 across three product classes, and the app was released on Google Play alongside an API documented for developers.",
-      "ko": "A-EYE(AI + Additional Eye)는 의약품 포장에 인쇄된 복용 방법·용량 정보를 읽기 어려운 사용자를 위한 의약품 정보 서비스입니다. Roboflow로 라벨링한 패키지 이미지로 학습한 YOLOv5 모델이 제품을 인식하고, Docker로 배포한 FastAPI 서버가 약품명·용법 및 용량·효능·bounding box를 JSON으로 모바일 앱에 반환합니다. 3개 제품 클래스 전체에서 mAP@0.5 0.985를 기록했고, 앱을 Google Play에 출시했으며 개발자용 API 문서도 함께 제공했습니다."
+      "ko": "A-EYE(AI + Additional Eye)는 의약품 포장에 인쇄된 복용 방법·용량 정보를 읽기 어려운 사용자를 위한 의약품 정보 서비스입니다. Roboflow로 레이블링한 패키지 이미지로 학습한 YOLOv5 모델이 제품을 인식하고, Docker로 배포한 FastAPI 서버가 약품명·용법 및 용량·효능·bounding box를 JSON으로 모바일 앱에 반환합니다. 3개 제품 클래스 전체에서 mAP@0.5 0.985를 기록했고, 앱을 Google Play에 출시했으며 개발자용 API 문서도 함께 제공했습니다."
     },
     "problem": {
       "en": "Medicine packaging often carries no braille, and the team judged the rules on braille labeling of medicines insufficient. When people cannot read or recognize the dosage and usage printed on a medicine container, the risk of accidentally taking the wrong medicine rises sharply. This affects blind users as well as people with presbyopia or amblyopia.",
@@ -1234,11 +1213,11 @@ window.PROJECTS = [
       {
         "title": {
           "en": "Data collection & annotation",
-          "ko": "데이터 수집 및 라벨링"
+          "ko": "데이터 수집 및 레이블링"
         },
         "body": {
           "en": "Crawled medicine-package images and built bounding-box annotations in Roboflow (777 images in the project dataset), then split the data into train/validation/test at 8:1:1.",
-          "ko": "의약품 패키지 이미지를 크롤링하고 Roboflow로 bounding box를 라벨링했습니다(프로젝트 데이터셋 777장). 데이터는 학습·검증·테스트용으로 8:1:1 비율로 분할했습니다."
+          "ko": "의약품 패키지 이미지를 크롤링하고 Roboflow로 bounding box를 레이블링했습니다(프로젝트 데이터셋 777장). 데이터는 학습·검증·테스트용으로 8:1:1 비율로 분할했습니다."
         }
       },
       {
@@ -1311,7 +1290,7 @@ window.PROJECTS = [
       },
       {
         "en": "Labeled and preprocessed the medicine-package dataset.",
-        "ko": "의약품 패키지 데이터셋을 라벨링하고 전처리했습니다."
+        "ko": "의약품 패키지 데이터셋을 레이블링하고 전처리했습니다."
       },
       {
         "en": "Trained and optimized the YOLOv5 detection model.",
@@ -1878,19 +1857,19 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "An active-learning strategy for object detection that combines pseudo-labeling, a flip-consistency score and a learned loss predictor to choose which images are worth a human label.",
-      "ko": "Pseudo-labeling, 좌우 반전 일관성 점수, 학습된 손실 예측기를 결합해 사람이 라벨링할 가치가 있는 이미지를 고르는 객체 탐지용 액티브 러닝 전략."
+      "ko": "Pseudo-labeling, 좌우 반전 일관성 점수, 학습된 손실 예측기를 결합해 사람이 레이블링할 가치가 있는 이미지를 고르는 객체 탐지용 액티브 러닝 전략."
     },
     "summary": {
       "en": "Labeling object-detection data is expensive, especially in fields such as medical imaging that need expert annotators. Active learning asks people to label only the images that help the model most. This work uses an SSD300 detector (VGG16 backbone) and combines semi-supervised pseudo-labeling and a consistency score, following AL-SSL (Elezi et al., CVPR 2022), with a loss prediction module (Yoo & Kweon, CVPR 2019) that estimates each image's training loss, so the selection also covers objects of low-confidence or poorly learned classes.",
-      "ko": "객체 탐지 데이터 라벨링은 비용이 크며, 의료 영상처럼 전문가가 필요한 분야에서는 더욱 그렇습니다. 액티브 러닝은 모델에 가장 도움이 되는 이미지만 사람이 라벨링하도록 합니다. 이 연구는 SSD300 검출기(VGG16 backbone)를 기반으로, AL-SSL(Elezi et al., CVPR 2022)의 준지도학습 pseudo-labeling·일관성 점수와 각 이미지의 학습 손실을 예측하는 loss prediction module(Yoo & Kweon, CVPR 2019)을 결합해, 신뢰도가 낮거나 학습이 덜 된 클래스의 객체까지 선택에 반영합니다."
+      "ko": "객체 탐지 데이터 레이블링은 비용이 크며, 의료 영상처럼 전문가가 필요한 분야에서는 더욱 그렇습니다. 액티브 러닝은 모델에 가장 도움이 되는 이미지만 사람이 레이블링하도록 합니다. 이 연구는 SSD300 검출기(VGG16 backbone)를 기반으로, AL-SSL(Elezi et al., CVPR 2022)의 준지도학습 pseudo-labeling·일관성 점수와 각 이미지의 학습 손실을 예측하는 loss prediction module(Yoo & Kweon, CVPR 2019)을 결합해, 신뢰도가 낮거나 학습이 덜 된 클래스의 객체까지 선택에 반영합니다."
     },
     "problem": {
       "en": "Typical active learning scores every class with the same confidence. When the dataset is imbalanced or classes behave differently, some classes are under-sampled, which leads to low accuracy or a distribution shift for those classes. Pseudo-labeling reduces this class bias, but early in training the many uncertain images make labeling inefficient.",
-      "ko": "일반적인 액티브 러닝은 모든 클래스를 같은 confidence로 평가합니다. 데이터셋이 클래스 간에 불균형하거나 클래스마다 양상이 다르면 일부 클래스가 덜 선택되어, 해당 클래스의 정확도가 낮아지거나 distribution shift가 생길 수 있습니다. Pseudo-labeling은 이런 클래스 편향을 줄이지만, 학습 초기에는 불확실한 데이터가 많아 라벨링 효율이 떨어질 수 있습니다."
+      "ko": "일반적인 액티브 러닝은 모든 클래스를 같은 confidence로 평가합니다. 데이터셋이 클래스 간에 불균형하거나 클래스마다 양상이 다르면 일부 클래스가 덜 선택되어, 해당 클래스의 정확도가 낮아지거나 distribution shift가 생길 수 있습니다. Pseudo-labeling은 이런 클래스 편향을 줄이지만, 학습 초기에는 불확실한 데이터가 많아 레이블링 효율이 떨어질 수 있습니다."
     },
     "solution": {
       "en": "An unlabeled image and its horizontally flipped copy go through the same detector; disagreement between the two predictions (class distributions and boxes) gives a consistency score, and confident predictions become pseudo-labels. A loss prediction module attached to three SSD feature maps learns to predict each image's loss. Candidates chosen by entropy and inconsistency are re-ranked by predicted loss, and the top-K are sent for human annotation.",
-      "ko": "라벨이 없는 이미지와 좌우 반전한 이미지를 같은 검출기에 넣어, 두 예측(클래스 분포와 박스)의 불일치로 일관성 점수를 구하고, 신뢰도가 높은 예측은 pseudo-label로 사용합니다. SSD의 세 feature map에 붙인 loss prediction module이 각 이미지의 손실을 예측하도록 학습합니다. Entropy와 불일치로 고른 후보를 예측 손실로 다시 정렬해, 상위 K개를 사람이 라벨링합니다."
+      "ko": "레이블이 없는 이미지와 좌우 반전한 이미지를 같은 검출기에 넣어, 두 예측(클래스 분포와 박스)의 불일치로 일관성 점수를 구하고, 신뢰도가 높은 예측은 pseudo-label로 사용합니다. SSD의 세 feature map에 붙인 loss prediction module이 각 이미지의 손실을 예측하도록 학습합니다. Entropy와 불일치로 고른 후보를 예측 손실로 다시 정렬해, 상위 K개를 사람이 레이블링합니다."
     },
     "equations": [
       {
@@ -1940,7 +1919,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "For each unlabeled image and its horizontal flip, matched detections are compared with a symmetric KL divergence for the class distributions and a squared difference of box centre and size, with the x-centre negated.",
-          "ko": "라벨이 없는 이미지와 좌우 반전 이미지의 매칭된 검출 결과를, 클래스 분포는 대칭 KL divergence로, 박스는 x 중심을 부호 반전한 뒤 중심·크기의 제곱 차이로 비교합니다."
+          "ko": "레이블이 없는 이미지와 좌우 반전 이미지의 매칭된 검출 결과를, 클래스 분포는 대칭 KL divergence로, 박스는 x 중심을 부호 반전한 뒤 중심·크기의 제곱 차이로 비교합니다."
         }
       },
       {
@@ -1970,7 +1949,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Each cycle keeps the 3,000 most uncertain unlabeled images by entropy, takes the 2,000 most inconsistent among them, and lets the loss prediction module pick the 1,000 with the highest predicted loss for human annotation.",
-          "ko": "각 cycle마다 entropy가 높은 3,000장을 남기고, 그중 불일치가 큰 2,000장을 후보로 고른 뒤, loss prediction module이 예측 손실이 가장 큰 1,000장을 골라 사람이 라벨링합니다."
+          "ko": "각 cycle마다 entropy가 높은 3,000장을 남기고, 그중 불일치가 큰 2,000장을 후보로 고른 뒤, loss prediction module이 예측 손실이 가장 큰 1,000장을 골라 사람이 레이블링합니다."
         }
       },
       {
@@ -1980,7 +1959,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Configured for COCO: 82,081 training images, 5,000 labeled at the start and 1,000 added in each of 5 cycles.",
-          "ko": "COCO 기준으로 설정했습니다. 학습 이미지 82,081장 중 5,000장을 초기 라벨로 두고, 5번의 cycle마다 1,000장씩 추가합니다."
+          "ko": "COCO 기준으로 설정했습니다. 학습 이미지 82,081장 중 5,000장을 초기 레이블로 두고, 5번의 cycle마다 1,000장씩 추가합니다."
         }
       }
     ],
@@ -1991,7 +1970,7 @@ window.PROJECTS = [
       },
       {
         "en": "Whether the method actually reduces the number of labels and iterations still needs to be verified; the planned next step was to compare sampling a different K% of data at each iteration.",
-        "ko": "이 방법이 실제로 라벨 수와 반복 횟수를 줄이는지는 추가 검증이 필요하며, 다음 단계로 iteration마다 K%의 데이터를 다르게 샘플링해 비교하는 실험을 계획했습니다."
+        "ko": "이 방법이 실제로 레이블 수와 반복 횟수를 줄이는지는 추가 검증이 필요하며, 다음 단계로 iteration마다 K%의 데이터를 다르게 샘플링해 비교하는 실험을 계획했습니다."
       }
     ],
     "contributions": [
@@ -2053,7 +2032,7 @@ window.PROJECTS = [
         "thumb": "img/active-learning-pseudo-labeling/thumbs/01-method-overview.jpg",
         "caption": {
           "en": "Method overview: labeled and unlabeled images (with horizontal flips) train an SSD300 detector that carries a loss prediction module. Each cycle, the top-K images by predicted loss go to human annotators, confident detections become pseudo-labels, and the rest stay unlabeled.",
-          "ko": "방법 개요: 라벨 데이터와 라벨 없는 데이터(좌우 반전 포함)로 loss prediction module을 단 SSD300 검출기를 학습합니다. 매 cycle마다 예측 손실 상위 K장은 사람이 라벨링하고, 신뢰도가 높은 검출은 pseudo-label이 되며, 나머지는 라벨 없이 남습니다."
+          "ko": "방법 개요: 레이블 데이터와 레이블 없는 데이터(좌우 반전 포함)로 loss prediction module을 단 SSD300 검출기를 학습합니다. 매 cycle마다 예측 손실 상위 K장은 사람이 레이블링하고, 신뢰도가 높은 검출은 pseudo-label이 되며, 나머지는 레이블 없이 남습니다."
         }
       },
       {
@@ -2113,7 +2092,7 @@ window.PROJECTS = [
     },
     "tagline": {
       "en": "A pipeline that turns ShapeNet CAD models into a COCO-format detection and segmentation dataset without manual labeling: multi-view captures, threshold-based masks and boxes, and random real backgrounds.",
-      "ko": "ShapeNet CAD 모델을 여러 시점에서 캡처하고, threshold로 mask와 bounding box를 얻고, 실제 배경 사진을 합성해 수작업 라벨링 없이 COCO 형식의 탐지·분할 데이터셋을 만드는 파이프라인."
+      "ko": "ShapeNet CAD 모델을 여러 시점에서 캡처하고, threshold로 mask와 bounding box를 얻고, 실제 배경 사진을 합성해 수작업 레이블링 없이 COCO 형식의 탐지·분할 데이터셋을 만드는 파이프라인."
     },
     "cardTagline": {
       "en": "Captures ShapeNet CAD models and auto-labels them into a COCO dataset for detection and segmentation.",
@@ -2121,11 +2100,11 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Building a detection or segmentation dataset by hand takes a great deal of time; the paper points to ImageNet, where people labeled more than 14 million images over about ten years. This M.S. project at Kyungpook National University built a pipeline that turns 3D object files into a labeled training set without manual annotation. ShapeNet models are captured from many viewpoints on a white background, each capture is thresholded into a binary mask that gives the segmentation polygon and bounding box, the object is composited onto random background photos, and the result is exported in COCO format. A detection and segmentation network trained on this data was tested on real photos, and the results looked accurate in qualitative checks (KRoC 2022, first author). A co-authored follow-up (IEIE 2022) used synthetic renders to estimate the pose of objects in single real photos.",
-      "ko": "탐지·분할용 데이터셋을 사람이 직접 만들려면 많은 시간이 듭니다. 논문에서 예로 든 ImageNet은 약 10년에 걸쳐 1,400만 장이 넘는 이미지를 사람이 직접 라벨링했습니다. 경북대학교 석사과정에서 진행한 이 연구에서는 3D 물체 파일로 수작업 없이 라벨이 달린 학습 데이터를 만드는 파이프라인을 개발했습니다. ShapeNet 모델을 흰 배경에서 여러 시점으로 캡처하고, 각 이미지를 threshold로 이진화해 segmentation polygon과 bounding box를 얻은 뒤, 물체를 무작위 배경 사진에 합성해 COCO 형식으로 저장합니다. 이 데이터로 학습한 탐지·분할 네트워크를 실제 사진으로 테스트한 결과, 정성적으로 보아 탐지와 분할이 정확하게 이루어졌습니다(KRoC 2022, 제1저자). 공저자로 참여한 후속 연구(IEIE 2022)에서는 합성 렌더링 이미지를 이용해 실제 단일 사진 속 물체의 자세를 추정했습니다."
+      "ko": "탐지·분할용 데이터셋을 사람이 직접 만들려면 많은 시간이 듭니다. 논문에서 예로 든 ImageNet은 약 10년에 걸쳐 1,400만 장이 넘는 이미지를 사람이 직접 레이블링했습니다. 경북대학교 석사과정에서 진행한 이 연구에서는 3D 물체 파일로 수작업 없이 레이블이 달린 학습 데이터를 만드는 파이프라인을 개발했습니다. ShapeNet 모델을 흰 배경에서 여러 시점으로 캡처하고, 각 이미지를 threshold로 이진화해 segmentation polygon과 bounding box를 얻은 뒤, 물체를 무작위 배경 사진에 합성해 COCO 형식으로 저장합니다. 이 데이터로 학습한 탐지·분할 네트워크를 실제 사진으로 테스트한 결과, 정성적으로 보아 탐지와 분할이 정확하게 이루어졌습니다(KRoC 2022, 제1저자). 공저자로 참여한 후속 연구(IEIE 2022)에서는 합성 렌더링 이미지를 이용해 실제 단일 사진 속 물체의 자세를 추정했습니다."
     },
     "problem": {
       "en": "Detection and segmentation networks need many labeled images, and how noisy the training data are and how consistently the labels are structured have a large effect on training. Labeling thousands of images by hand costs a lot of time and effort, and cost, time and quality all vary with how the labeling is done. Captures of 3D models can be labeled automatically, but training on images that showed only the object on a white background did not work properly. This matches the ICLR 2021 finding that image backgrounds strongly affect object recognition; a similar failure with plain-background chair renders is described in the Background Image Dependency project.",
-      "ko": "탐지·분할 네트워크는 라벨이 달린 이미지가 많이 필요하고, 학습 데이터에 노이즈가 얼마나 적은지, 라벨링이 얼마나 정형화되어 있는지가 학습 결과에 큰 영향을 줍니다. 수천 장을 손으로 라벨링하려면 시간과 노력이 많이 들고, 라벨링 방식에 따라 비용·시간·품질도 달라집니다. 3D 모델을 캡처한 이미지는 자동으로 라벨링할 수 있지만, 흰 배경에 물체만 있는 이미지로 학습하자 학습이 제대로 되지 않았습니다. 이는 이미지 배경이 물체 인식에 큰 영향을 준다는 ICLR 2021 논문의 결과와도 일치하며, 단색 배경의 의자 렌더링으로 학습했을 때 생긴 비슷한 실패 사례는 '배경 이미지 의존도 분석' 프로젝트에 정리되어 있습니다."
+      "ko": "탐지·분할 네트워크는 레이블이 달린 이미지가 많이 필요하고, 학습 데이터에 노이즈가 얼마나 적은지, 레이블링이 얼마나 정형화되어 있는지가 학습 결과에 큰 영향을 줍니다. 수천 장을 손으로 레이블링하려면 시간과 노력이 많이 들고, 레이블링 방식에 따라 비용·시간·품질도 달라집니다. 3D 모델을 캡처한 이미지는 자동으로 레이블링할 수 있지만, 흰 배경에 물체만 있는 이미지로 학습하자 학습이 제대로 되지 않았습니다. 이는 이미지 배경이 물체 인식에 큰 영향을 준다는 ICLR 2021 논문의 결과와도 일치하며, 단색 배경의 의자 렌더링으로 학습했을 때 생긴 비슷한 실패 사례는 '배경 이미지 의존도 분석' 프로젝트에 정리되어 있습니다."
     },
     "solution": {
       "en": "The pipeline's inputs are 3D object files and a pool of background photos. Each ShapeNet model is captured from a fixed set of viewpoints on a white background. Because the background is uniform, a grayscale threshold separates the object: the binary image becomes the segmentation mask, and the object region gives the bounding box and contour polygon, which are written into a COCO annotation JSON. The same mask cuts the object out and places it on a random background photo, so the training images have real backgrounds instead of plain white.",
@@ -2165,7 +2144,7 @@ window.PROJECTS = [
       {
         "title": {
           "en": "Labels and COCO export",
-          "ko": "라벨 생성과 COCO 변환"
+          "ko": "레이블 생성과 COCO 변환"
         },
         "body": {
           "en": "scikit-image traces the mask's contours, and the script keeps the first one and simplifies it into a polygon with Shapely; the polygon's bounds and area give the bounding box and area. split-folders divides the data 70/20/10 into train, validation and test sets (seed 689), and each split is written as a COCO JSON with images, annotations and categories, alongside the mask images.",
@@ -2200,7 +2179,7 @@ window.PROJECTS = [
       },
       {
         "en": "Because the labels are generated in a fixed format, the paper concludes that any object with a 3D file can be turned into training data of consistent quality, without converting thousands of images by hand.",
-        "ko": "논문은 라벨이 정해진 형식으로 생성되므로, 3D 물체 파일만 있으면 수천 장을 손으로 변환하지 않고도 일정한 품질의 학습 데이터를 얻을 수 있다고 결론지었습니다."
+        "ko": "논문은 레이블이 정해진 형식으로 생성되므로, 3D 물체 파일만 있으면 수천 장을 손으로 변환하지 않고도 일정한 품질의 학습 데이터를 얻을 수 있다고 결론지었습니다."
       },
       {
         "en": "Each generated image contains a single object, which can make it harder to learn how classes relate to each other; the paper suggests combining images with mosaic augmentation to address this.",
@@ -2218,7 +2197,7 @@ window.PROJECTS = [
       },
       {
         "en": "Wrote the public auto-annotation scripts (threshold masks, dataset split, and a COCO JSON export adapted from the Immersive Limit COCO tutorial) and the background crop-and-merge scripts.",
-        "ko": "공개 저장소의 자동 라벨링 스크립트(threshold mask 생성, 데이터 분할, Immersive Limit COCO 튜토리얼을 바탕으로 한 COCO JSON 변환)와 배경 crop·합성 스크립트를 작성했습니다."
+        "ko": "공개 저장소의 자동 레이블링 스크립트(threshold mask 생성, 데이터 분할, Immersive Limit COCO 튜토리얼을 바탕으로 한 COCO JSON 변환)와 배경 crop·합성 스크립트를 작성했습니다."
       },
       {
         "en": "Third author of the IEIE 2022 pose-estimation paper.",
@@ -2260,7 +2239,7 @@ window.PROJECTS = [
         "type": "github",
         "label": {
           "en": "Auto annotation",
-          "ko": "자동 라벨링"
+          "ko": "자동 레이블링"
         },
         "url": "https://github.com/kcyoon689/Auto_Annotation_For_detectoRS"
       },
@@ -2358,7 +2337,7 @@ window.PROJECTS = [
         "thumb": "img/cad-synthetic-data/thumbs/03-auto-labeling-example.jpg",
         "caption": {
           "en": "The auto-labeling steps re-run on the sofa render from Fig. 2 of the KRoC 2022 paper: the white-background render is thresholded (gray ≤ 245 on this downscaled copy; the original code used 254 on full-resolution renders) into a binary mask, whose extent and outline give the bounding box and segmentation for the COCO JSON. The last panel is the paper's own composite of the same render on a background photo.",
-          "ko": "KRoC 2022 논문 Fig. 2의 소파 렌더링에 자동 라벨링 과정을 다시 적용한 예시입니다. 흰 배경 렌더링에 threshold(이 축소본에서는 245, 원래 코드는 원본 해상도에서 254)를 적용해 이진 mask를 만들고, mask의 범위에서 bounding box를, 외곽선에서 segmentation을 얻어 COCO JSON에 기록합니다. 마지막 패널은 논문에 실린 배경 합성 결과입니다."
+          "ko": "KRoC 2022 논문 Fig. 2의 소파 렌더링에 자동 레이블링 과정을 다시 적용한 예시입니다. 흰 배경 렌더링에 threshold(이 축소본에서는 245, 원래 코드는 원본 해상도에서 254)를 적용해 이진 mask를 만들고, mask의 범위에서 bounding box를, 외곽선에서 segmentation을 얻어 COCO JSON에 기록합니다. 마지막 패널은 논문에 실린 배경 합성 결과입니다."
         }
       },
       {
@@ -2429,11 +2408,11 @@ window.PROJECTS = [
     },
     "problem": {
       "en": "The F2 metric weights recall over precision, so a missed starfish costs more than a false alarm. Images are frames from continuous video sequences, so a random train/validation split leaks highly correlated frames and makes validation scores look better than they are. Fewer than 5,000 images were labeled, and after holding out validation folds only about 3,000–4,000 remained for training. Some starfish visible in consecutive frames were left unlabeled, and local validation diverged from the leaderboard.",
-      "ko": "F2 지표는 precision보다 recall에 더 큰 가중치를 두므로, 불가사리를 놓치는 비용이 오탐보다 큽니다. 이미지는 연속된 영상 시퀀스의 프레임이므로 train/validation을 무작위로 나누면 상관관계가 높은 프레임이 양쪽에 섞여 validation 점수가 실제보다 높게 나옵니다. 라벨이 있는 이미지는 5,000장이 채 되지 않았고, validation fold를 떼어 내면 학습에 쓸 수 있는 이미지는 3,000~4,000장 정도에 불과했습니다. 연속 프레임에 보이는 불가사리 일부에는 라벨이 빠져 있었고, 로컬 validation 점수와 리더보드 점수도 서로 어긋났습니다."
+      "ko": "F2 지표는 precision보다 recall에 더 큰 가중치를 두므로, 불가사리를 놓치는 비용이 오탐보다 큽니다. 이미지는 연속된 영상 시퀀스의 프레임이므로 train/validation을 무작위로 나누면 상관관계가 높은 프레임이 양쪽에 섞여 validation 점수가 실제보다 높게 나옵니다. 레이블이 있는 이미지는 5,000장이 채 되지 않았고, validation fold를 떼어 내면 학습에 쓸 수 있는 이미지는 3,000~4,000장 정도에 불과했습니다. 연속 프레임에 보이는 불가사리 일부에는 레이블이 빠져 있었고, 로컬 validation 점수와 리더보드 점수도 서로 어긋났습니다."
     },
     "solution": {
       "en": "A YOLOv5 detector, starting from a yolov5m baseline, with a sequence-aware Stratified Group 5-fold split. Validation folds mimic the assumed test mix of about 80% background and 20% annotated images. Training adds a small share of background images to reduce false positives, plus Albumentations augmentation, a tuned learning-rate schedule and objectness-loss gain. A lowered confidence threshold favors recall.",
-      "ko": "yolov5m 베이스라인에서 출발해 시퀀스 단위 Stratified Group 5-fold 분할을 적용한 YOLOv5 검출 모델입니다. Validation fold는 test set의 구성으로 가정한 배경 이미지 약 80%, 라벨 이미지 약 20% 비율을 따르도록 했습니다. 학습에는 오탐을 줄이기 위해 소량의 배경 이미지를 추가하고, Albumentations 데이터 증강과 조정한 learning-rate schedule, objectness loss gain을 적용했습니다. 또한 recall을 높이기 위해 confidence threshold를 낮췄습니다."
+      "ko": "yolov5m 베이스라인에서 출발해 시퀀스 단위 Stratified Group 5-fold 분할을 적용한 YOLOv5 검출 모델입니다. Validation fold는 test set의 구성으로 가정한 배경 이미지 약 80%, 레이블 이미지 약 20% 비율을 따르도록 했습니다. 학습에는 오탐을 줄이기 위해 소량의 배경 이미지를 추가하고, Albumentations 데이터 증강과 조정한 learning-rate schedule, objectness loss gain을 적용했습니다. 또한 recall을 높이기 위해 confidence threshold를 낮췄습니다."
     },
     "approach": [
       {
@@ -2453,7 +2432,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Frames were grouped by video sequence (GroupKFold) so that no sequence appears in both train and validation. This became a Stratified Group 5-fold split: train folds hold about 95% annotated and 5% background images, and validation folds about 20% annotated and 80% background, to match the assumed test distribution.",
-          "ko": "프레임을 영상 시퀀스 단위로 묶어(GroupKFold) 같은 시퀀스가 train과 validation에 동시에 들어가지 않도록 했습니다. 이를 Stratified Group 5-fold 분할로 발전시켜, 가정한 test 분포에 맞게 train fold는 라벨 이미지 약 95%·배경 이미지 약 5%, validation fold는 라벨 이미지 약 20%·배경 이미지 약 80%로 구성했습니다."
+          "ko": "프레임을 영상 시퀀스 단위로 묶어(GroupKFold) 같은 시퀀스가 train과 validation에 동시에 들어가지 않도록 했습니다. 이를 Stratified Group 5-fold 분할로 발전시켜, 가정한 test 분포에 맞게 train fold는 레이블 이미지 약 95%·배경 이미지 약 5%, validation fold는 레이블 이미지 약 20%·배경 이미지 약 80%로 구성했습니다."
         }
       },
       {
@@ -2463,7 +2442,7 @@ window.PROJECTS = [
         },
         "body": {
           "en": "Unannotated background images were mixed into training. Adding 300 background images with a 0.15 confidence threshold raised the leaderboard score from 0.389 to 0.443. Under F2, false negatives matter more than false positives, so lower confidence thresholds were preferred.",
-          "ko": "라벨이 없는 배경 이미지를 학습 데이터에 섞었습니다. 배경 이미지 300장을 추가하고 confidence threshold를 0.15로 설정하자 리더보드 점수가 0.389에서 0.443으로 올랐습니다. F2에서는 false positive보다 false negative가 더 중요하므로 낮은 confidence threshold를 택했습니다."
+          "ko": "레이블이 없는 배경 이미지를 학습 데이터에 섞었습니다. 배경 이미지 300장을 추가하고 confidence threshold를 0.15로 설정하자 리더보드 점수가 0.389에서 0.443으로 올랐습니다. F2에서는 false positive보다 false negative가 더 중요하므로 낮은 confidence threshold를 택했습니다."
         }
       },
       {
@@ -2479,11 +2458,11 @@ window.PROJECTS = [
       {
         "title": {
           "en": "Augmentation, resolution & labels",
-          "ko": "데이터 증강·해상도·라벨"
+          "ko": "데이터 증강·해상도·레이블"
         },
         "body": {
           "en": "Albumentations augmentation used up/down and left/right flips, RandomBrightnessContrast, GaussNoise and random scaling. A larger inference image size improved the score because the public test set contained mostly small starfish. Roboflow was used to inspect sequences and clean labels.",
-          "ko": "Albumentations로 상하·좌우 반전, RandomBrightnessContrast, GaussNoise, 무작위 스케일링을 적용했습니다. 공개 test set에는 작은 불가사리가 많아, 추론 이미지 크기를 키우자 점수가 올랐습니다. Roboflow로 시퀀스를 확인하고 라벨을 정제했습니다."
+          "ko": "Albumentations로 상하·좌우 반전, RandomBrightnessContrast, GaussNoise, 무작위 스케일링을 적용했습니다. 공개 test set에는 작은 불가사리가 많아, 추론 이미지 크기를 키우자 점수가 올랐습니다. Roboflow로 시퀀스를 확인하고 레이블을 정제했습니다."
         }
       }
     ],
@@ -2500,7 +2479,7 @@ window.PROJECTS = [
       },
       {
         "en": "Took on the Roboflow analysis of one video sequence as part of the team's label review.",
-        "ko": "팀의 라벨 검토 작업 중 영상 시퀀스 하나를 Roboflow로 분석하는 일을 맡았습니다."
+        "ko": "팀의 레이블 검토 작업 중 영상 시퀀스 하나를 Roboflow로 분석하는 일을 맡았습니다."
       }
     ],
     "tech": [
@@ -2568,7 +2547,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/02-stratified-group-5fold.jpg",
         "caption": {
           "en": "Data split design: 5 folds, with train folds about 95% annotated / 5% background and validation folds about 20% annotated / 80% background to mirror the assumed test set",
-          "ko": "데이터 분할 설계: 5-fold 구성에서 train fold는 라벨 이미지 약 95%·배경 이미지 약 5%, validation fold는 가정한 test set에 맞춰 라벨 이미지 약 20%·배경 이미지 약 80%"
+          "ko": "데이터 분할 설계: 5-fold 구성에서 train fold는 레이블 이미지 약 95%·배경 이미지 약 5%, validation fold는 가정한 test set에 맞춰 레이블 이미지 약 20%·배경 이미지 약 80%"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/02-stratified-group-5fold.jpg"
       },
@@ -2592,7 +2571,7 @@ window.PROJECTS = [
         "src": "img/kaggle-great-barrier-reef/04-unannotated-starfish-frames.jpg",
         "caption": {
           "en": "Consecutive video frames: a starfish labeled in one frame is unlabeled in the neighboring frame, which motivated label cleaning and pseudo-labeling ideas",
-          "ko": "연속된 영상 프레임: 한 프레임에서 라벨이 있는 불가사리가 인접 프레임에서는 라벨이 빠져 있어, 라벨 정제와 pseudo-labeling 아이디어의 계기가 된 사례"
+          "ko": "연속된 영상 프레임: 한 프레임에서 레이블이 있는 불가사리가 인접 프레임에서는 레이블이 빠져 있어, 레이블 정제와 pseudo-labeling 아이디어의 계기가 된 사례"
         },
         "thumb": "img/kaggle-great-barrier-reef/thumbs/04-unannotated-starfish-frames.jpg"
       },
@@ -2640,7 +2619,7 @@ window.PROJECTS = [
     },
     "summary": {
       "en": "Final term project for the Deep Learning Applications course at Kyungpook National University. It builds on the ICLR 2021 paper 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'. YOLOv5 labels were built for the IN-9L dataset variants, YOLOv5s was trained on foreground-only, background-only and mixed-background data, and accuracy was compared across test sets. YOLOv5 showed measurable background dependence, though less than the paper reports for ResNet, and further training on mixed backgrounds narrowed the background gap.",
-      "ko": "경북대학교 심화학습 응용 과목의 기말 프로젝트입니다. ICLR 2021 논문 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'을 바탕으로 했습니다. IN-9L 변형 데이터셋에 맞는 YOLOv5 라벨을 구축하고, 전경만 있는 데이터·배경만 있는 데이터·배경을 섞은 데이터로 YOLOv5s를 학습해 test set별 정확도를 비교했습니다. YOLOv5에서도 측정 가능한 수준의 배경 의존도가 나타났지만 논문의 ResNet 결과보다는 낮았고, 배경을 섞은 데이터로 추가 학습하자 배경에 따른 정확도 차이가 줄었습니다."
+      "ko": "경북대학교 심화학습 응용 과목의 기말 프로젝트입니다. ICLR 2021 논문 'Noise or Signal: The Role of Image Backgrounds in Object Recognition'을 바탕으로 했습니다. IN-9L 변형 데이터셋에 맞는 YOLOv5 레이블을 구축하고, 전경만 있는 데이터·배경만 있는 데이터·배경을 섞은 데이터로 YOLOv5s를 학습해 test set별 정확도를 비교했습니다. YOLOv5에서도 측정 가능한 수준의 배경 의존도가 나타났지만 논문의 ResNet 결과보다는 낮았고, 배경을 섞은 데이터로 추가 학습하자 배경에 따른 정확도 차이가 줄었습니다."
     },
     "problem": {
       "en": "An earlier experiment exposed the issue. YOLOv5s was trained on about 3,000 images of roughly 300 3D-modeled chairs rendered on plain backgrounds. It then boxed the entire image instead of the object and recognized any object on a plain background as a chair. The question was how strongly a detector's predictions depend on the training images' backgrounds rather than on the object itself.",
@@ -2727,7 +2706,7 @@ window.PROJECTS = [
       },
       {
         "en": "Wrote the preprocessing scripts (className.py, resetClass.py) that build YOLOv5 labels for IN-9L from ImageNet annotations.",
-        "ko": "ImageNet annotation으로 IN-9L의 YOLOv5 라벨을 만드는 전처리 스크립트(className.py, resetClass.py)를 작성했습니다."
+        "ko": "ImageNet annotation으로 IN-9L의 YOLOv5 레이블을 만드는 전처리 스크립트(className.py, resetClass.py)를 작성했습니다."
       }
     ],
     "tech": [
@@ -2785,7 +2764,7 @@ window.PROJECTS = [
         "src": "img/background-dependency/01-only-fg-train-set.jpg",
         "caption": {
           "en": "Only-FG training set: foreground objects on black backgrounds with YOLOv5 labels (dog, bird, reptile, insect, fish)",
-          "ko": "Only-FG 학습 데이터: 검은 배경 위 전경 물체와 YOLOv5 라벨(dog, bird, reptile, insect, fish)"
+          "ko": "Only-FG 학습 데이터: 검은 배경 위 전경 물체와 YOLOv5 레이블(dog, bird, reptile, insect, fish)"
         },
         "thumb": "img/background-dependency/thumbs/01-only-fg-train-set.jpg"
       },
@@ -3199,7 +3178,7 @@ window.PROJECTS = [
     "contributions": [
       {
         "en": "Collected and labeled the rock/paper/scissors hand-gesture dataset.",
-        "ko": "가위·바위·보 손 모양 데이터셋을 수집하고 라벨링했습니다."
+        "ko": "가위·바위·보 손 모양 데이터셋을 수집하고 레이블링했습니다."
       },
       {
         "en": "Trained the Keras CNN classifier used in the game, adapted from a tutorial example, on the collected dataset.",
