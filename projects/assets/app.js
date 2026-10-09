@@ -1,4 +1,4 @@
-/* Projects archive – renders the list (/projects/) and detail pages (/projects/<slug>/) from data.js.
+/* Projects archive – renders the lists (/projects/, /researchs/) and detail pages (/projects/<slug>/) from data.js.
    Theme and language use the same localStorage keys as /cv/, so the choice carries over between pages. */
 (function () {
   "use strict";
@@ -7,6 +7,8 @@
   var ALL = (window.PROJECTS || []).filter(function (p) { return !p.hidden; });
   var PROJECTS = ALL.filter(function (p) { return !p.draft; });
   var BASE = document.body.getAttribute("data-base") || "";
+  // /researchs/ reuses this archive: same data and detail pages, filtered to entries marked research: true
+  var SECTION = document.body.getAttribute("data-section") || "projects";
 
   var CATEGORIES = [
     { id: "ai", label: { en: "AI / ML", ko: "AI / ML" } },
@@ -197,18 +199,25 @@
     var grid = document.getElementById("projectsGrid");
     var tabs = document.getElementById("filterTabs");
     if (!grid || !tabs) return;
-    window.__titleFor = function (lang) { return lang === "ko" ? "프로젝트 – 김채윤" : "Projects – Chaeyoon Kim"; };
+    var research = SECTION === "research";
+    var list = research ? PROJECTS.filter(function (p) { return p.research; }) : PROJECTS;
+    window.__titleFor = function (lang) {
+      if (research) return lang === "ko" ? "연구 – 김채윤" : "Research – Chaeyoon Kim";
+      return lang === "ko" ? "프로젝트 – 김채윤" : "Projects – Chaeyoon Kim";
+    };
     document.title = window.__titleFor(document.body.classList.contains("lang-ko") ? "ko" : "en");
 
-    var counts = { all: PROJECTS.length };
-    PROJECTS.forEach(function (p) { counts[p.category] = (counts[p.category] || 0) + 1; });
+    var counts = { all: list.length };
+    list.forEach(function (p) { counts[p.category] = (counts[p.category] || 0) + 1; });
+    // a single category needs no filter row
+    tabs.hidden = CATEGORIES.filter(function (c) { return counts[c.id]; }).length < 2;
 
     tabs.innerHTML = [{ id: "all", label: UI.all }].concat(CATEGORIES).filter(function (c) { return counts[c.id]; }).map(function (c) {
       return '<button type="button" class="filter-tab" role="tab" data-filter="' + c.id + '">' + bi(c.label) +
         ' <span class="count">' + counts[c.id] + "</span></button>";
     }).join("");
 
-    grid.innerHTML = PROJECTS.map(function (p) {
+    grid.innerHTML = list.map(function (p) {
       var href = BASE + p.slug + "/";
       var c = cover(p);
       var media = c
