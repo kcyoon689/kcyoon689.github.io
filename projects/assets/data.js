@@ -387,6 +387,10 @@ window.PROJECTS = [
       {
         "en": "Published a 10-video demo playlist (Sep–Oct 2025) with dynamic-obstacle tests on the mobile robot and RViz2 runs of the lidar-camera-sensor-fusion demo.",
         "ko": "모바일 로봇의 동적 장애물 테스트와 lidar-camera-sensor-fusion 데모의 RViz2 실행 화면을 담은 데모 영상 10개를 재생목록으로 공개했습니다(2025년 9–10월)."
+      },
+      {
+        "en": "Built a depth-camera person-tracking prototype that shows a depth colormap, a color–depth overlay and the center/mean distance of the tracked person.",
+        "ko": "깊이 컬러맵, 컬러–깊이 오버레이, 추적 대상의 중심·평균 거리를 표시하는 깊이 카메라 기반 사람 추적 프로토타입을 구현했습니다."
       }
     ],
     "contributions": [
@@ -440,6 +444,15 @@ window.PROJECTS = [
           "ko": "데모 재생목록"
         },
         "url": "https://www.youtube.com/playlist?list=PLCDDCuZ1ldoREt2yLbYgzBMDMX7V8VYdh"
+      },
+      {
+        "type": "notion",
+        "label": {
+          "en": "Depth-camera prototype",
+          "ko": "깊이 카메라 프로토타입"
+        },
+        "url": "https://chaeyoonkim.notion.site/2e785a417def8085af6ccfc15a8811ec",
+        "ref": true
       }
     ],
     "youtube": [
@@ -517,6 +530,14 @@ window.PROJECTS = [
           "ko": "동적 장애물 회피(DOA) 녹화: RViz에 표시된 회피 영역 폴리곤과 추적 중인 사람 박스가 표시된 카메라 영상."
         },
         "thumb": "img/moving-object-detection/thumbs/05-rviz-doa-polygons.jpg"
+      },
+      {
+        "src": "img/moving-object-detection/06-depth-person-tracking-followup.jpg",
+        "caption": {
+          "en": "Depth-camera prototype with a depth colormap, a color–depth overlay and a 'Person Tracking' view that shows center/mean distance.",
+          "ko": "깊이 컬러맵, 컬러–깊이 오버레이, 중심·평균 거리를 표시하는 'Person Tracking' 화면으로 구성된 깊이 카메라 프로토타입."
+        },
+        "thumb": "img/moving-object-detection/thumbs/06-depth-person-tracking-followup.jpg"
       }
     ],
     "cardTagline": {
