@@ -977,12 +977,41 @@ window.PROJECTS = [
       "PatchCore",
       "PCB"
     ],
-    "links": [],
-    "monogram": "PCB",
+    "links": [
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: PatchCore — Towards Total Recall in Industrial Anomaly Detection (CVPR 2022)",
+          "ko": "참고 논문: PatchCore — Towards Total Recall in Industrial Anomaly Detection (CVPR 2022)"
+        },
+        "url": "https://arxiv.org/abs/2106.08265",
+        "ref": true
+      },
+      {
+        "type": "github",
+        "label": {
+          "en": "Reference: PatchCore official code (amazon-science)",
+          "ko": "참고 자료: PatchCore 공식 코드 (amazon-science)"
+        },
+        "url": "https://github.com/amazon-science/patchcore-inspection",
+        "ref": true
+      }
+    ],
     "cardTagline": {
       "en": "PatchCore-based PCB defect detection with a backbone ensemble and mask prediction.",
       "ko": "백본 앙상블과 마스크 예측을 더한 PatchCore 기반 PCB 결함 탐지 모델."
-    }
+    },
+    "cover": "img/pcb-defect-detection/cover.jpg",
+    "images": [
+      {
+        "src": "img/pcb-defect-detection/01-patchcore-architecture.png",
+        "thumb": "img/pcb-defect-detection/thumbs/01-patchcore-architecture.jpg",
+        "caption": {
+          "en": "PatchCore architecture redrawn from Roth et al. (CVPR 2022): during training, a frozen ImageNet-pretrained backbone extracts patch features from defect-free images; these are stored in a memory bank and reduced to a coreset. At test time, each test patch is scored by its distance to the nearest neighbour in the coreset, which gives an anomaly map and an image-level anomaly score; this project builds on it with a backbone ensemble and mask prediction.",
+          "ko": "Roth et al.(CVPR 2022)의 PatchCore 구조를 다시 그린 그림입니다. 학습 단계에서는 결함 없는 이미지를 ImageNet으로 사전학습한 고정 백본에 넣어 patch feature를 뽑고 memory bank에 모은 뒤 coreset으로 줄입니다. 테스트 단계에서는 각 patch를 coreset 안의 최근접 이웃과의 거리로 점수화해 anomaly map과 이미지 단위 anomaly score를 만들며, 이 프로젝트는 여기에 백본 앙상블과 마스크 예측을 더했습니다."
+        }
+      }
+    ]
   },
   {
     "slug": "cnn-mlops",
