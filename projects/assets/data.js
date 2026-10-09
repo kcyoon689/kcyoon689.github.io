@@ -1800,8 +1800,8 @@ window.PROJECTS = [
         "src": "img/wsi-3d-registration/01-pipeline-overview.png",
         "thumb": "img/wsi-3d-registration/thumbs/01-pipeline-overview.jpg",
         "caption": {
-          "en": "Overview of the 3D WSI registration pipeline: transformer-based feature matching on pyramid inputs, feature aggregation (resolution sync, coordinate normalization), a rigid transformation by SVD (R | t), and applying R | t to the target WSI to align the stack.",
-          "ko": "3D WSI 정합 파이프라인 개요: pyramid 입력에 대한 Transformer 기반 feature matching, feature aggregation(해상도 동기화, 좌표 정규화), SVD로 구한 rigid 변환(R | t), 그리고 target WSI에 R | t를 적용해 스택을 정렬하는 과정입니다."
+          "en": "Redrawn overview of the 3D WSI registration pipeline. Adjacent slides of an unaligned stack are matched by a transformer-based matcher on pyramid inputs, the correspondences from each scale are rescaled to the original resolution and merged, and a rigid transform R | t solved by SVD is applied to the target slide to align the stack in 3D. The slide thumbnails are taken from the LoFTR result, and the match lines and points are illustrative.",
+          "ko": "3D WSI 정합 파이프라인 개요를 다시 그린 그림입니다. 정렬되지 않은 스택의 인접 슬라이드를 pyramid 입력에서 Transformer 기반 matcher로 매칭하고, 해상도별 대응점을 원본 해상도로 리스케일링해 합친 뒤, SVD로 구한 rigid 변환 R | t를 target 슬라이드에 적용해 스택을 3D로 정렬합니다. 슬라이드 썸네일은 LoFTR 결과 이미지에서 가져왔으며, 매칭선과 점은 이해를 돕기 위한 개념도입니다."
         }
       },
       {
@@ -3778,10 +3778,10 @@ window.PROJECTS = [
         "thumb": "img/groundwater-monitoring/thumbs/01-oled-live-readings.jpg"
       },
       {
-        "src": "img/groundwater-monitoring/02-system-block-diagram.jpg",
+        "src": "img/groundwater-monitoring/02-system-block-diagram.png",
         "caption": {
-          "en": "Control system block diagram: water level → four sensor circuits → Arduino Uno → OLED display and SD card module.",
-          "ko": "제어 시스템 블록도: 수위 → 센서 회로 4채널 → Arduino Uno → OLED 디스플레이 및 SD 카드 모듈."
+          "en": "Control system block diagram (redrawn): four 4–20 mA sensor loops (12 V supply, 250 Ω sense resistor) measure water pressure. The Arduino Uno reads them on A0–A3, converts each reading to voltage, shows the values on the OLED and logs them to a micro-SD card.",
+          "ko": "제어 시스템 블록도를 다시 그린 그림입니다. 4–20mA 센서 루프 4개(12V 전원, 250Ω 감지 저항)가 수압을 측정하고, Arduino Uno가 이를 A0–A3로 읽어 전압으로 변환한 뒤 OLED에 표시하고 micro-SD 카드에 기록합니다."
         },
         "thumb": "img/groundwater-monitoring/thumbs/02-system-block-diagram.jpg"
       },
@@ -4012,18 +4012,18 @@ window.PROJECTS = [
         "thumb": "img/fpga-elevator/thumbs/02-elevator-3d-model.jpg"
       },
       {
-        "src": "img/fpga-elevator/03-atmega328p-stepper-circuit.jpg",
+        "src": "img/fpga-elevator/03-atmega328p-stepper-circuit.png",
         "caption": {
-          "en": "ATmega328P stepper-control schematic with a ULN2003A driver and pull-down floor buttons.",
-          "ko": "ULN2003A 드라이버와 풀다운 층 버튼을 포함한 ATmega328P 스테핑 모터 제어 회로도."
+          "en": "The ATmega328P stepper controller for the elevator, redrawn as an OrCAD Capture-style schematic. Three floor buttons (S1–S3, each with a 10k pull-down) go to D5–D7. D8–D11 drive a ULN2003A, which switches the two coils of a unipolar stepper whose centre taps connect to V+.",
+          "ko": "엘리베이터 ATmega328P 스테퍼 제어 회로를 OrCAD Capture 스타일로 다시 그린 회로도입니다. 층 버튼 3개(S1–S3, 각각 10k 풀다운)는 D5–D7에 연결되고, D8–D11은 ULN2003A를 거쳐 유니폴라 스테퍼 모터의 두 코일을 구동하며, 코일의 센터탭은 V+에 연결됩니다."
         },
         "thumb": "img/fpga-elevator/thumbs/03-atmega328p-stepper-circuit.jpg"
       },
       {
-        "src": "img/fpga-elevator/04-fpga-servo-circuit.jpg",
+        "src": "img/fpga-elevator/04-fpga-servo-circuit.png",
         "caption": {
-          "en": "FPGA (Xilinx XC3S200) servo-control schematic with door open/close switches.",
-          "ko": "문 열림/닫힘 스위치를 포함한 FPGA(Xilinx XC3S200) 서보 제어 회로도."
+          "en": "Redrawn OrCAD-style schematic of the FPGA door-servo controller: a Xilinx XC3S200 (Spartan-3) reads switches S1 and S2 (with pull-downs R2 and R1) and drives servo J1's pulse pin with a PWM signal, all powered from a single battery.",
+          "ko": "FPGA 도어 서보 제어 회로를 OrCAD 스타일로 다시 그린 회로도입니다. Xilinx XC3S200(Spartan-3)이 풀다운 저항 R2, R1이 달린 스위치 S1, S2의 입력을 받아 서보 J1의 pulse 핀으로 PWM 신호를 출력하며, 전원은 배터리 하나로 공급됩니다."
         },
         "thumb": "img/fpga-elevator/thumbs/04-fpga-servo-circuit.jpg"
       },
