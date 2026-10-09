@@ -3560,36 +3560,44 @@ window.PROJECTS = [
         "thumb": "img/robotic-arm-pid/thumbs/02-master-slave-arms.jpg"
       },
       {
-        "src": "img/robotic-arm-pid/03-master-arm-3d-model.jpg",
+        "src": "img/robotic-arm-pid/03-firmware-flowchart.png",
         "caption": {
-          "en": "3D model of the potentiometer master arm (Tinkercad).",
-          "ko": "포텐쇼미터 마스터 암 3D 모델 (Tinkercad)."
+          "en": "Firmware flowchart: after setup(), loop() reads the potentiometers (ADC), applies P control and drives the servos. When the Record button (Butt_R) is HIGH, Record() applies D control and stores the angles in an array; when the Play button (Butt_P) is HIGH, play() steps each servo toward the recorded angle until it matches.",
+          "ko": "펌웨어 순서도: setup() 이후 loop()에서 포텐쇼미터 값을 ADC로 읽고 P 제어를 거쳐 서보모터를 구동합니다. 녹화 버튼(Butt_R)이 HIGH이면 Record()가 D 제어를 거쳐 각도를 배열에 저장하고, 재생 버튼(Butt_P)이 HIGH이면 play()가 각 서보를 저장된 각도에 도달할 때까지 한 단계씩 움직입니다."
         },
-        "thumb": "img/robotic-arm-pid/thumbs/03-master-arm-3d-model.jpg"
+        "thumb": "img/robotic-arm-pid/thumbs/03-firmware-flowchart.jpg"
       },
       {
         "src": "img/robotic-arm-pid/04-circuit-schematic.jpg",
         "caption": {
-          "en": "Full schematic: ATmega328P-PU, five potentiometers, five servos, battery switch and Record/Play switches with 10 kΩ pull-downs.",
-          "ko": "전체 회로도: ATmega328P-PU, 포텐쇼미터 5개, 서보모터 5개, 전원 스위치, 10kΩ 풀다운 저항을 단 녹화/재생 스위치."
+          "en": "Circuit schematic (final revision, Nov 2018): an ATmega328P-PU with a crystal oscillator reads the five master-arm potentiometers on ADC0–ADC4 and drives the five servos (MG1–MG5) from pins 15, 16, 12, 11 and 5. The Record/Play switches (SW2, SW3) on pins 13 and 14 have 10 kΩ pull-downs, and SW1 switches the battery supply.",
+          "ko": "회로도(최종본, 2018.11): 크리스털 발진기를 단 ATmega328P-PU가 ADC0–ADC4로 마스터 암의 포텐쇼미터 5개를 읽고, 15·16·12·11·5번 핀으로 서보모터 5개(MG1–MG5)를 구동합니다. 13·14번 핀의 녹화/재생 스위치(SW2, SW3)에는 10kΩ 풀다운 저항을 달았고, SW1로 배터리 전원을 켜고 끕니다."
         },
         "thumb": "img/robotic-arm-pid/thumbs/04-circuit-schematic.jpg"
       },
       {
-        "src": "img/robotic-arm-pid/05-controller-pcb-annotated.jpg",
+        "src": "img/robotic-arm-pid/05-master-arm-3d-model.jpg",
+        "caption": {
+          "en": "3D model of the potentiometer master arm (Tinkercad).",
+          "ko": "포텐쇼미터 마스터 암 3D 모델 (Tinkercad)."
+        },
+        "thumb": "img/robotic-arm-pid/thumbs/05-master-arm-3d-model.jpg"
+      },
+      {
+        "src": "img/robotic-arm-pid/06-controller-pcb-annotated.jpg",
         "caption": {
           "en": "Two-tier controller board (callouts in Korean): ATmega328P, record/play switches, power switch, servo and potentiometer headers, with the Li-Po battery on the lower tier.",
           "ko": "2층 구조 제어 기판: ATmega328P, 녹화/재생 스위치, 전원 스위치, 서보·포텐쇼미터 커넥터와 아래층의 Li-Po 배터리."
         },
-        "thumb": "img/robotic-arm-pid/thumbs/05-controller-pcb-annotated.jpg"
+        "thumb": "img/robotic-arm-pid/thumbs/06-controller-pcb-annotated.jpg"
       },
       {
-        "src": "img/robotic-arm-pid/06-pwm-without-vs-with-pid.jpg",
+        "src": "img/robotic-arm-pid/07-pwm-without-vs-with-pid.jpg",
         "caption": {
           "en": "Oscilloscope captures from the capstone report: servo PWM without PID (left, Agilent scope, noisy) vs. with PID control (right, DSO138 handheld scope, clean pulse).",
           "ko": "캡스톤 보고서의 오실로스코프 측정: PID 미적용 서보 PWM(왼쪽, Agilent 오실로스코프, 노이즈 심함)과 PID 적용 파형(오른쪽, DSO138 휴대용 오실로스코프, 깨끗한 펄스)."
         },
-        "thumb": "img/robotic-arm-pid/thumbs/06-pwm-without-vs-with-pid.jpg"
+        "thumb": "img/robotic-arm-pid/thumbs/07-pwm-without-vs-with-pid.jpg"
       }
     ],
     "cardTagline": {
