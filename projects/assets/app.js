@@ -106,7 +106,8 @@
     "Parachute design": "낙하산 설계", "Image Matching": "이미지 매칭", "Structure-from-Motion": "SfM",
     "Epipolar Geometry": "에피폴라 기하", "Fundamental Matrix": "기본 행렬", "Relative Pose Estimation": "상대 자세 추정",
     "Exploratory Data Analysis": "탐색적 데이터 분석", "Data Visualization": "데이터 시각화",
-    "Correlation Analysis": "상관 분석", "Hypothesis Testing": "가설 검정"
+    "Correlation Analysis": "상관 분석", "Hypothesis Testing": "가설 검정",
+    "Synthetic Data": "합성 데이터", "Auto Annotation": "자동 라벨링", "Instance Segmentation": "인스턴스 분할", "Pose Estimation": "자세 추정"
   };
 
   /* ---------- helpers ---------- */

@@ -1703,6 +1703,314 @@ window.PROJECTS = [
     "cover": "img/active-learning-pseudo-labeling/cover.jpg"
   },
   {
+    "slug": "cad-synthetic-data",
+    "year": "2022",
+    "period": {
+      "en": "2022 · M.S. research (KNU)",
+      "ko": "2022 · 석사 연구 (경북대)"
+    },
+    "category": "ai",
+    "categoryLabel": {
+      "en": "AI · Synthetic Data",
+      "ko": "AI · 합성 데이터"
+    },
+    "title": {
+      "en": "Automated CAD-Based Dataset Generation for 3D Object Recognition",
+      "ko": "3D 객체 인식을 위한 CAD 기반 딥러닝 학습 데이터 자동 생성"
+    },
+    "team": {
+      "en": "Computer & Robot Vision Lab (CRVL), Kyungpook National University",
+      "ko": "경북대학교 컴퓨터 로봇 비전 연구실 (CRVL)"
+    },
+    "role": {
+      "en": "First author · pipeline design and implementation · co-author of the pose-estimation follow-up",
+      "ko": "제1저자 · 파이프라인 설계 및 구현 · 자세 추정 후속 연구 공저자"
+    },
+    "tagline": {
+      "en": "A pipeline that turns ShapeNet CAD models into a COCO-format detection and segmentation dataset without manual labeling: multi-view captures, threshold-based masks and boxes, and random real backgrounds.",
+      "ko": "ShapeNet CAD 모델을 여러 시점에서 캡처하고, threshold로 mask와 bounding box를 얻고, 실제 배경 사진을 합성해 수작업 라벨링 없이 COCO 형식의 탐지·분할 데이터셋을 만드는 파이프라인."
+    },
+    "cardTagline": {
+      "en": "Captures ShapeNet CAD models and auto-labels them into a COCO dataset for detection and segmentation.",
+      "ko": "ShapeNet CAD 모델로 COCO 형식 탐지·분할 데이터셋을 자동 생성."
+    },
+    "summary": {
+      "en": "Building a detection or segmentation dataset by hand takes a great deal of time; the paper points to ImageNet, where people labeled more than 14 million images over about ten years. This M.S. project at Kyungpook National University built a pipeline that turns 3D object files into a labeled training set without manual annotation. ShapeNet models are captured from many viewpoints on a white background, each capture is thresholded into a binary mask that gives the segmentation polygon and bounding box, the object is composited onto random background photos, and the result is exported in COCO format. A detection and segmentation network trained on this data was tested on real photos, and the results looked accurate in qualitative checks (KRoC 2022, first author). A co-authored follow-up (IEIE 2022) used synthetic renders to estimate the pose of objects in single real photos.",
+      "ko": "탐지·분할용 데이터셋을 사람이 직접 만들려면 많은 시간이 듭니다. 논문에서 예로 든 ImageNet은 약 10년에 걸쳐 1,400만 장이 넘는 이미지를 사람이 직접 라벨링했습니다. 경북대학교 석사과정에서 진행한 이 연구에서는 3D 물체 파일로 수작업 없이 라벨이 달린 학습 데이터를 만드는 파이프라인을 개발했습니다. ShapeNet 모델을 흰 배경에서 여러 시점으로 캡처하고, 각 이미지를 threshold로 이진화해 segmentation polygon과 bounding box를 얻은 뒤, 물체를 무작위 배경 사진에 합성해 COCO 형식으로 저장합니다. 이 데이터로 학습한 탐지·분할 네트워크를 실제 사진으로 테스트한 결과, 정성적으로 보아 탐지와 분할이 정확하게 이루어졌습니다(KRoC 2022, 제1저자). 공저자로 참여한 후속 연구(IEIE 2022)에서는 합성 렌더링 이미지를 이용해 실제 단일 사진 속 물체의 자세를 추정했습니다."
+    },
+    "problem": {
+      "en": "Detection and segmentation networks need many labeled images, and how noisy the training data are and how consistently the labels are structured have a large effect on training. Labeling thousands of images by hand costs a lot of time and effort, and cost, time and quality all vary with how the labeling is done. Captures of 3D models can be labeled automatically, but training on images that showed only the object on a white background did not work properly. This matches the ICLR 2021 finding that image backgrounds strongly affect object recognition; a similar failure with plain-background chair renders is described in the Background Image Dependency project.",
+      "ko": "탐지·분할 네트워크는 라벨이 달린 이미지가 많이 필요하고, 학습 데이터에 노이즈가 얼마나 적은지, 라벨링이 얼마나 정형화되어 있는지가 학습 결과에 큰 영향을 줍니다. 수천 장을 손으로 라벨링하려면 시간과 노력이 많이 들고, 라벨링 방식에 따라 비용·시간·품질도 달라집니다. 3D 모델을 캡처한 이미지는 자동으로 라벨링할 수 있지만, 흰 배경에 물체만 있는 이미지로 학습하자 학습이 제대로 되지 않았습니다. 이는 이미지 배경이 물체 인식에 큰 영향을 준다는 ICLR 2021 논문의 결과와도 일치하며, 단색 배경의 의자 렌더링으로 학습했을 때 생긴 비슷한 실패 사례는 '배경 이미지 의존도 분석' 프로젝트에 정리되어 있습니다."
+    },
+    "solution": {
+      "en": "The pipeline's inputs are 3D object files and a pool of background photos. Each ShapeNet model is captured from a fixed set of viewpoints on a white background. Because the background is uniform, a grayscale threshold separates the object: the binary image becomes the segmentation mask, and the object region gives the bounding box and contour polygon, which are written into a COCO annotation JSON. The same mask cuts the object out and places it on a random background photo, so the training images have real backgrounds instead of plain white.",
+      "ko": "파이프라인의 입력은 3D 물체 파일과 배경 사진 묶음입니다. ShapeNet 모델을 흰 배경에서 정해진 시점들로 캡처합니다. 배경이 균일하므로 grayscale threshold만으로 물체를 분리할 수 있으며, 이진 이미지는 segmentation mask가 되고, 물체 영역에서 bounding box와 외곽선 polygon을 얻어 COCO annotation JSON에 기록합니다. 같은 mask로 물체를 잘라 무작위 배경 사진 위에 합성해, 학습 이미지가 흰 단색 배경이 아닌 실제 배경을 갖도록 했습니다."
+    },
+    "approach": [
+      {
+        "title": {
+          "en": "Multi-view capture",
+          "ko": "다시점 캡처"
+        },
+        "body": {
+          "en": "ShapeNet models are loaded into a Unity-based viewer and captured at five elevations (0°, 20°, 30°, 45°, 60°) and every 5° of azimuth, 360 images per model. An earlier Python/OpenGL viewer that loads .obj files and saves frames in a turntable auto-capture mode is also public.",
+          "ko": "Unity 기반 뷰어에 ShapeNet 모델을 불러와 고각 5단계(0°, 20°, 30°, 45°, 60°)와 방위각 5° 간격으로 모델당 360장을 캡처합니다. .obj 파일을 불러와 턴테이블 자동 캡처 모드로 프레임을 저장하는, 이전에 만든 Python/OpenGL 뷰어도 공개되어 있습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Threshold masks",
+          "ko": "Threshold 기반 mask"
+        },
+        "body": {
+          "en": "Each capture is converted to grayscale and thresholded into a binary image in which the object is 1 and the background 0. The paper sets the threshold per model to suit its captures; the public script uses 254 for every class and saves masks with the class ID on object pixels and 255 (ignore) elsewhere.",
+          "ko": "캡처 이미지를 grayscale로 바꾼 뒤 threshold를 적용해 물체는 1, 배경은 0인 이진 이미지를 만듭니다. 논문에서는 모델별 캡처 특성에 맞춰 threshold를 정했고, 공개 스크립트는 모든 클래스에 254를 쓰며 물체 픽셀에는 클래스 ID, 나머지에는 255(ignore)를 기록한 mask를 저장합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Background compositing",
+          "ko": "배경 합성"
+        },
+        "body": {
+          "en": "About 200 background photos are randomly cropped to 1920×1280, and the 2880×1920 captures are randomly cropped to the same size, which also shifts where the object sits in the frame. A threshold of 254 marks the white background, which is replaced with a background crop while the object pixels are kept.",
+          "ko": "배경 사진 약 200장을 1920×1280 크기로 무작위 crop하고, 2880×1920 캡처 이미지도 같은 크기로 무작위 crop해 프레임 안에서 물체의 위치가 달라지게 합니다. 이후 threshold 254로 흰 배경 영역을 찾아 배경 crop으로 바꾸고, 물체 픽셀은 그대로 둡니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Labels and COCO export",
+          "ko": "라벨 생성과 COCO 변환"
+        },
+        "body": {
+          "en": "scikit-image traces the mask's contours, and the script keeps the first one and simplifies it into a polygon with Shapely; the polygon's bounds and area give the bounding box and area. split-folders divides the data 70/20/10 into train, validation and test sets (seed 689), and each split is written as a COCO JSON with images, annotations and categories, alongside the mask images.",
+          "ko": "scikit-image로 mask의 외곽선을 추적한 뒤 첫 번째 외곽선만 Shapely로 단순화해 polygon을 만들며, polygon의 범위와 넓이로 bounding box와 area를 구합니다. split-folders로 데이터를 train·validation·test에 70/20/10 비율로 나누고(seed 689), 각 split을 images·annotations·categories가 담긴 COCO JSON과 mask 이미지로 저장합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Follow-up (co-author): view retrieval",
+          "ko": "후속 연구(공저): 유사 시점 검색"
+        },
+        "body": {
+          "en": "The IEIE 2022 study segments real photos crawled from Google with a DetectoRS instance-segmentation model trained on synthetic images. 3D models are rendered every 3° of azimuth and 10° of elevation, and HOG descriptors (128×128 window, 2×2 block, 8×8 cell; similarity = dot product of the normalized descriptors) rank the renders against the segmented object. The top 9 are kept.",
+          "ko": "IEIE 2022 연구에서는 구글에서 크롤링한 실제 사진을, 합성 이미지로 학습한 DetectoRS instance segmentation 모델로 분할합니다. 3D 모델은 방위각 3°, 고각 10° 간격으로 렌더링하고, HOG 디스크립터(윈도 128×128, 블록 2×2, 셀 8×8, 정규화한 디스크립터의 내적으로 유사도 측정)로 분할된 물체와 비교해 상위 9장을 고릅니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Follow-up (co-author): pose check by projection",
+          "ko": "후속 연구(공저): 투영으로 자세 확인"
+        },
+        "body": {
+          "en": "Among the 9 candidates, KAZE matching against the real image picks the render with the most matched feature points as the closest pose. That render is lifted to 3D with its depth, PnP gives the rotation and translation to the real image, and the 3D points are projected onto the photo to check the pose. The camera intrinsics were set to arbitrary values.",
+          "ko": "후보 9장 중 실제 이미지와 KAZE 매칭을 해 특징점이 가장 많은 렌더링을 가장 비슷한 자세로 봅니다. 이 렌더링을 깊이 정보와 결합해 3차원 점으로 복원하고, PnP로 실제 이미지와의 회전·평행이동 관계를 구한 뒤 실제 사진에 투영해 자세를 확인합니다. 이때 카메라 내부 파라미터는 임의의 값으로 설정했습니다."
+        }
+      }
+    ],
+    "results": [
+      {
+        "en": "After training on the generated dataset, the network was tested on real photos. In these qualitative tests it detected and segmented objects such as a lamp, beer bottles, a bowl and a football helmet; the paper describes detection and segmentation accuracy as quite high but reports no quantitative metrics.",
+        "ko": "생성한 데이터셋으로 학습한 네트워크를 실제 사진으로 테스트했습니다. 정성적 테스트에서 램프, 맥주병, 그릇, 미식축구 헬멧 같은 물체를 탐지하고 분할했으며, 논문은 탐지·분할 정확도가 꽤 높다고 서술하지만 정량 지표는 제시하지 않았습니다."
+      },
+      {
+        "en": "Because the labels are generated in a fixed format, the paper concludes that any object with a 3D file can be turned into training data of consistent quality, without converting thousands of images by hand.",
+        "ko": "논문은 라벨이 정해진 형식으로 생성되므로, 3D 물체 파일만 있으면 수천 장을 손으로 변환하지 않고도 일정한 품질의 학습 데이터를 얻을 수 있다고 결론지었습니다."
+      },
+      {
+        "en": "Each generated image contains a single object, which can make it harder to learn how classes relate to each other; the paper suggests combining images with mosaic augmentation to address this.",
+        "ko": "생성된 이미지에는 물체가 하나씩만 있어 클래스 간 관계(correlation)를 학습하기 어려울 수 있으며, 논문은 mosaic 기법으로 여러 이미지를 합쳐 이 한계를 보완하는 방법을 제안했습니다."
+      },
+      {
+        "en": "In the co-authored pose study, the car and piano examples suggest that renders with poses similar to the real objects were found. The authors name two limitations for future work: the fundamental domain gap between real and synthetic images, and that distance was not considered in the azimuth-based search.",
+        "ko": "공저로 참여한 자세 추정 연구에서는 자동차와 피아노 예시를 통해 실제 물체와 비슷한 자세의 합성 이미지를 찾은 것으로 보였습니다. 다만 실제·합성 이미지 사이의 근본적인 도메인 차이와, 방위각 기반 탐색에서 거리를 고려하지 않은 점을 향후 개선할 한계로 꼽았습니다."
+      }
+    ],
+    "contributions": [
+      {
+        "en": "First author of the KRoC 2022 paper; designed the pipeline from multi-view capture through background compositing to COCO export.",
+        "ko": "KRoC 2022 논문 제1저자로, 다시점 캡처부터 배경 합성, COCO 변환까지 이어지는 파이프라인을 설계했습니다."
+      },
+      {
+        "en": "Wrote the public auto-annotation scripts (threshold masks, dataset split, and a COCO JSON export adapted from the Immersive Limit COCO tutorial) and the background crop-and-merge scripts.",
+        "ko": "공개 저장소의 자동 라벨링 스크립트(threshold mask 생성, 데이터 분할, Immersive Limit COCO 튜토리얼을 바탕으로 한 COCO JSON 변환)와 배경 crop·합성 스크립트를 작성했습니다."
+      },
+      {
+        "en": "Third author of the IEIE 2022 pose-estimation paper.",
+        "ko": "IEIE 2022 자세 추정 논문의 제3저자로 참여했습니다."
+      }
+    ],
+    "publications": [
+      {
+        "en": "Development of an Automated Deep Learning Dataset Generation Pipeline Using CAD for 3D Object Recognition — 17th Korea Robotics Society Annual Conference (KRoC), May 2022",
+        "ko": "3D 개체 인식을 위한 CAD 기반의 딥러닝 학습 데이터 자동 생성 파이프라인 개발 — 제17회 한국로봇종합학술대회(KRoC), 2022.05"
+      },
+      {
+        "en": "Real Mono-frame object pose estimation from synthetic images — IEIE Summer Conference, Jun 2022 (3rd author)",
+        "ko": "가상 합성 영상으로부터 실제 단일 영상에서의 객체 자세 추정 — 대한전자공학회 하계종합학술대회, 2022.06 (제3저자)"
+      }
+    ],
+    "tech": [
+      "Python",
+      "OpenCV",
+      "scikit-image",
+      "Shapely",
+      "split-folders",
+      "Unity",
+      "PyOpenGL / GLFW",
+      "ShapeNet",
+      "COCO format",
+      "DetectoRS",
+      "HOG / KAZE / PnP"
+    ],
+    "topics": [
+      "Synthetic Data",
+      "Auto Annotation",
+      "Object Detection",
+      "Instance Segmentation",
+      "Pose Estimation"
+    ],
+    "links": [
+      {
+        "type": "github",
+        "label": {
+          "en": "Auto annotation",
+          "ko": "자동 라벨링"
+        },
+        "url": "https://github.com/kcyoon689/Auto_Annotation_For_detectoRS"
+      },
+      {
+        "type": "github",
+        "label": {
+          "en": "Background merge",
+          "ko": "배경 합성"
+        },
+        "url": "https://github.com/kcyoon689/crop_img_for_coco"
+      },
+      {
+        "type": "github",
+        "label": {
+          "en": "OpenGL viewer",
+          "ko": "OpenGL 뷰어"
+        },
+        "url": "https://github.com/kcyoon689/Obj_AutoCapture_And_Viewer"
+      },
+      {
+        "type": "other",
+        "label": {
+          "en": "Reference: ShapeNet",
+          "ko": "참고: ShapeNet"
+        },
+        "url": "https://shapenet.org",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: Noise or Signal (ICLR 2021)",
+          "ko": "참고 논문: Noise or Signal (ICLR 2021)"
+        },
+        "url": "https://arxiv.org/abs/2006.09994",
+        "ref": true
+      },
+      {
+        "type": "other",
+        "label": {
+          "en": "Reference: COCO annotation tutorial (Immersive Limit)",
+          "ko": "참고: COCO annotation 튜토리얼 (Immersive Limit)"
+        },
+        "url": "https://www.immersivelimit.com/tutorials/create-coco-annotations-from-scratch",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: DetectoRS (CVPR 2021)",
+          "ko": "참고 논문: DetectoRS (CVPR 2021)"
+        },
+        "url": "https://arxiv.org/abs/2006.02334",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: HOG (Dalal & Triggs, CVPR 2005)",
+          "ko": "참고 논문: HOG (Dalal & Triggs, CVPR 2005)"
+        },
+        "url": "https://doi.org/10.1109/CVPR.2005.177",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: KAZE Features (ECCV 2012)",
+          "ko": "참고 논문: KAZE Features (ECCV 2012)"
+        },
+        "url": "https://doi.org/10.1007/978-3-642-33783-3_16",
+        "ref": true
+      }
+    ],
+    "cover": "img/cad-synthetic-data/cover.jpg",
+    "images": [
+      {
+        "src": "img/cad-synthetic-data/01-pipeline-overview.png",
+        "thumb": "img/cad-synthetic-data/thumbs/01-pipeline-overview.jpg",
+        "caption": {
+          "en": "Pipeline overview, redrawn from Fig. 1 of the KRoC 2022 paper with details from the public code. Each ShapeNet render from the Unity viewer (360 per model) is thresholded into a binary image, which gives the segmentation mask, bounding box and polygon. The same binary mask is used to merge the object onto a random crop of one of about 200 background photos, and the results are saved as a COCO dataset split 70/20/10 into train, val and test.",
+          "ko": "KRoC 2022 논문 Fig. 1을 공개 코드의 세부 내용을 반영해 다시 그린 파이프라인 개요입니다. Unity 뷰어로 모델당 360장씩 캡처한 ShapeNet 렌더링 이미지를 threshold로 이진화해 segmentation mask, bounding box, polygon을 얻습니다. 같은 이진 mask로 약 200장의 배경 사진 중 하나에서 무작위로 잘라낸 영역에 물체를 합성하고, 결과를 70/20/10 비율의 train·val·test로 나눈 COCO 데이터셋으로 저장합니다."
+        }
+      },
+      {
+        "src": "img/cad-synthetic-data/02-viewpoint-sampling.png",
+        "thumb": "img/cad-synthetic-data/thumbs/02-viewpoint-sampling.jpg",
+        "caption": {
+          "en": "Viewpoint sampling per ShapeNet model: five elevations (0°, 20°, 30°, 45°, 60°; left) times 72 azimuths at 5° steps (right) gives 5 × 72 = 360 rendered images per model.",
+          "ko": "ShapeNet 모델별 시점 샘플링: 위도 5단계(0°, 20°, 30°, 45°, 60°; 왼쪽 측면도)와 경도 5° 간격(오른쪽 평면도)으로 물체를 촬영해 모델당 5 × 72 = 360장의 이미지를 얻습니다."
+        }
+      },
+      {
+        "src": "img/cad-synthetic-data/03-auto-labeling-example.png",
+        "thumb": "img/cad-synthetic-data/thumbs/03-auto-labeling-example.jpg",
+        "caption": {
+          "en": "The auto-labeling steps re-run on the sofa render from Fig. 2 of the KRoC 2022 paper: the white-background render is thresholded (gray ≤ 245 on this downscaled copy; the original code used 254 on full-resolution renders) into a binary mask, whose extent and outline give the bounding box and segmentation for the COCO JSON. The last panel is the paper's own composite of the same render on a background photo.",
+          "ko": "KRoC 2022 논문 Fig. 2의 소파 렌더링에 자동 라벨링 과정을 다시 적용한 예시입니다. 흰 배경 렌더링에 threshold(이 축소본에서는 245, 원래 코드는 원본 해상도에서 254)를 적용해 이진 mask를 만들고, mask의 범위에서 bounding box를, 외곽선에서 segmentation을 얻어 COCO JSON에 기록합니다. 마지막 패널은 논문에 실린 배경 합성 결과입니다."
+        }
+      },
+      {
+        "src": "img/cad-synthetic-data/04-real-image-results.png",
+        "thumb": "img/cad-synthetic-data/thumbs/04-real-image-results.jpg",
+        "caption": {
+          "en": "Fig. 3 of the KRoC 2022 paper: results on real photos from the network trained on the generated data. Each detection shows a box, class label, confidence score and instance mask: a desk lamp (lamp), two beer bottles (beer, 1.00 each), a bowl (bowl, 1.00) and a football helmet (football_helmet, 1.00). A small object at the lower-left edge of the bowl photo is also labeled bowl (0.79).",
+          "ko": "KRoC 2022 논문 Fig. 3: 생성한 데이터로 학습한 네트워크의 실제 사진 테스트 결과입니다. 각 검출에는 box, 클래스 이름, 신뢰도, instance mask가 표시되어 있습니다. 탁상 램프(lamp), 맥주병 두 개(beer, 각 1.00), 그릇(bowl, 1.00), 미식축구 헬멧(football_helmet, 1.00)이 검출되었고, 그릇 사진 왼쪽 아래 가장자리의 작은 물체도 bowl(0.79)로 검출되었습니다."
+        }
+      },
+      {
+        "src": "img/cad-synthetic-data/05-pose-pipeline.png",
+        "thumb": "img/cad-synthetic-data/thumbs/05-pose-pipeline.jpg",
+        "caption": {
+          "en": "Pose-estimation steps of the co-authored IEIE 2022 study: a real image crawled from Google is segmented with DetectoRS, CAD renders taken every 3° of azimuth and 10° of elevation are ranked by HOG similarity, and of the top 9 the view with the most KAZE matches is taken as the estimated pose. The selected view and its depth give 3D points, PnP gives R and t, and projecting the points onto the real image shows how well they line up with the object.",
+          "ko": "공저로 참여한 IEIE 2022 연구의 자세 추정 과정: 구글에서 크롤링한 실제 이미지를 DetectoRS로 분할하고, 방위각 3°·고각 10° 간격으로 렌더링한 CAD 이미지 중 HOG 유사도 순으로 상위 9장을 고른 뒤, KAZE 매칭점이 가장 많은 뷰를 추정 자세로 선택합니다. 선택한 뷰와 깊이로 3D 점군을 만들고 PnP로 R, t를 구한 뒤, 실제 이미지에 투영해 물체와 잘 겹치는지 확인합니다."
+        }
+      },
+      {
+        "src": "img/cad-synthetic-data/06-pose-hog-candidates.png",
+        "thumb": "img/cad-synthetic-data/thumbs/06-pose-hog-candidates.jpg",
+        "caption": {
+          "en": "Fig. 1 of the IEIE 2022 paper. Left: real photos of a car and an upright piano, each above its instance-segmentation result with the background removed. Right: for each object, the nine synthetic renders whose HOG descriptors are most similar to the segmented photo.",
+          "ko": "IEIE 2022 논문 그림 1. 왼쪽: 자동차와 업라이트 피아노의 실제 사진과, 그 아래 배경을 제거한 instance segmentation 결과. 오른쪽: 물체마다 분할된 사진과 HOG 디스크립터가 가장 비슷한 합성 렌더링 9장."
+        }
+      },
+      {
+        "src": "img/cad-synthetic-data/07-pose-kaze-projection.png",
+        "thumb": "img/cad-synthetic-data/thumbs/07-pose-kaze-projection.jpg",
+        "caption": {
+          "en": "Fig. 2 of the IEIE 2022 paper. Left: KAZE feature matches between the selected synthetic view and the segmented real object. Right: 3D points built from the selected render and its depth, projected onto the real image (red) with the pose estimated by PnP, to check how well the poses agree.",
+          "ko": "IEIE 2022 논문 그림 2. 왼쪽: 선택된 합성 이미지와 분할된 실제 물체 사이의 KAZE 특징점 매칭. 오른쪽: 선택된 렌더링과 깊이 정보로 만든 3차원 점을 PnP로 추정한 자세로 실제 이미지에 투영한 결과(빨간 점)로, 두 자세가 얼마나 일치하는지 확인하는 용도입니다."
+        }
+      }
+    ]
+  },
+  {
     "slug": "kaggle-great-barrier-reef",
     "year": "2022",
     "period": {
