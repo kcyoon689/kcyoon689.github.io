@@ -793,10 +793,6 @@ window.PROJECTS = [
       {
         "en": "Wrote data loaders for MNIST, MNIST-M, SVHN, Office-31 and Office-Home; the README also lists DomainNet-126, USPS and VisDA-2017 as further datasets.",
         "ko": "MNIST, MNIST-M, SVHN, Office-31, Office-Home 데이터 로더를 구현했고, README에는 DomainNet-126, USPS, VisDA-2017도 추가 데이터셋으로 정리했습니다."
-      },
-      {
-        "en": "The repo keeps one t-SNE plot (2024) in which the ten classes form clearly separated clusters; the plot does not say which domain, backbone or method produced it.",
-        "ko": "저장소에 남은 t-SNE 결과 한 장(2024년)에서는 10개 클래스가 뚜렷하게 분리된 군집을 이루지만, 어떤 도메인·backbone·기법의 결과인지는 표시되어 있지 않습니다."
       }
     ],
     "contributions": [
