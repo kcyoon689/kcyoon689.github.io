@@ -107,7 +107,7 @@
     "Epipolar Geometry": "에피폴라 기하", "Fundamental Matrix": "기본 행렬", "Relative Pose Estimation": "상대 자세 추정",
     "Exploratory Data Analysis": "탐색적 데이터 분석", "Data Visualization": "데이터 시각화",
     "Correlation Analysis": "상관 분석", "Hypothesis Testing": "가설 검정",
-    "Synthetic Data": "합성 데이터", "Auto Annotation": "자동 라벨링", "Instance Segmentation": "인스턴스 분할", "Pose Estimation": "자세 추정"
+    "Adversarial Robustness": "적대적 강건성", "Representation Learning": "표현 학습", "Synthetic Data": "합성 데이터", "Auto Annotation": "자동 라벨링", "Instance Segmentation": "인스턴스 분할", "Pose Estimation": "자세 추정"
   };
 
   /* ---------- helpers ---------- */
@@ -423,9 +423,11 @@
       var lists = (has(t.hypothesis) ? '<div class="tr-col"><h4>' + bi(UI.hypothesis) + "</h4>" + list(t.hypothesis) + "</div>" : "") +
         (has(t.design) ? '<div class="tr-col"><h4>' + bi(UI.design) + "</h4>" + list(t.design) + "</div>" : "");
       var dg = t.diagram && window.DIAGRAMS && window.DIAGRAMS[t.diagram] ? window.DIAGRAMS[t.diagram](bi) : "";
+      var fig = t.figure ? '<figure class="tr-fig"><a href="' + src(t.figure.src) + '" target="_blank" rel="noopener"><img src="' + src(t.figure.src) + '" alt="" loading="lazy"></a>' +
+        (has(t.figure.caption) ? "<figcaption>" + bi(t.figure.caption) + "</figcaption>" : "") + "</figure>" : "";
       return '<article class="block track"><div class="tr-head"><span class="rm-id">' + esc(t.id) + '</span><span class="eyebrow">' + bi(t.group) + "</span>" +
         (t.planned ? '<span class="pill">' + bi(UI.planned) + "</span>" : "") + "</div>" +
-        '<h4 class="tr-title">' + bi(t.title) + "</h4>" + (lists ? '<div class="tr-cols">' + lists + "</div>" : "") + dg + "</article>";
+        '<h4 class="tr-title">' + bi(t.title) + "</h4>" + (lists ? '<div class="tr-cols">' + lists + "</div>" : "") + dg + fig + "</article>";
     }
     function table(t) {
       var best = t.best || {};

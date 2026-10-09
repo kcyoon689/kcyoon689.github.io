@@ -633,3 +633,9 @@ body.lb-open .controls { visibility: hidden; }
 .ref-list { margin: 0; padding-left: 1.1rem; font-size: 0.88rem; }
 .ref-list li { margin-bottom: 0.25rem; }
 .ref-list a { color: var(--muted); }
+
+/* research-track figures */
+.tr-fig { margin: 1rem 0 0; }
+.tr-fig a { display: block; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
+.tr-fig img { display: block; width: 100%; height: auto; }
+.tr-fig figcaption { font-size: 0.84rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.55; }

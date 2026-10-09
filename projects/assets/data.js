@@ -546,6 +546,391 @@ window.PROJECTS = [
     }
   },
   {
+    "slug": "domain-adaptation-research",
+    "year": "2024",
+    "period": {
+      "en": "2024",
+      "ko": "2024"
+    },
+    "category": "ai",
+    "categoryLabel": {
+      "en": "AI · Domain Adaptation",
+      "ko": "AI · 도메인 적응"
+    },
+    "title": {
+      "en": "Domain Adaptation & Generalization Research",
+      "ko": "Domain Adaptation · Generalization 연구"
+    },
+    "team": {
+      "en": "XIILAB · AI Model Research Team",
+      "ko": "씨이랩 · AI 모델 연구팀"
+    },
+    "role": {
+      "en": "AI Researcher",
+      "ko": "연구원"
+    },
+    "tagline": {
+      "en": "Three domain adaptation studies on a PyTorch testbed for DANN, MCD and CDAN: reading the DANN domain classifier, the adversarial robustness of DA and DG models, and efficient DA with curriculum-style pseudo labels.",
+      "ko": "DANN·MCD·CDAN PyTorch 실험 환경에서 진행한 세 가지 Domain Adaptation 연구: DANN domain classifier 해석, DA·DG 모델의 적대적 공격 강건성, Curriculum 방식 pseudo label을 활용한 효율적 DA."
+    },
+    "cardTagline": {
+      "en": "Three domain adaptation studies on a PyTorch testbed for DANN, MCD and CDAN.",
+      "ko": "DANN·MCD·CDAN 실험 환경에서 진행한 세 가지 Domain Adaptation 연구."
+    },
+    "summary": {
+      "en": "Domain adaptation (DA) research in XIILAB's AI Model Research Team (2024), made up of three studies. The first reads a DANN domain classifier's accuracy as a measure of how well source and target features are aligned. The second tests whether DA and domain generalization (DG) models hold up under adversarial attacks. The third makes DA more efficient by training on easy target samples first with pseudo labels, using active learning and curriculum-based sampling. For these studies the hypotheses and experiment designs were written, and a PyTorch testbed, domain-adaptation-torch, was built. It trains source-only, DANN, MCD and CDAN models with CNN, VGG, ResNet or ViT backbones and evaluates them on source and target test data; a PGD attack evaluation for DANN was being added.",
+      "ko": "씨이랩 AI 모델 연구팀에서 진행한 Domain Adaptation(DA) 연구로(2024), 세 가지 연구로 구성됩니다. 첫째, DANN domain classifier의 정확도로 source와 target feature가 얼마나 정렬되었는지 해석합니다. 둘째, DA·Domain Generalization(DG) 모델이 적대적 공격에 얼마나 강건한지 검증합니다. 셋째, Active Learning과 Curriculum 기반 샘플링으로 쉬운 target 데이터부터 pseudo label을 붙여 학습해 DA를 더 효율적으로 만듭니다. 각 연구의 가설과 실험 설계를 정리하고, 이를 위한 PyTorch 실험 환경(domain-adaptation-torch)을 구축했습니다. 이 실험 환경은 CNN·VGG·ResNet·ViT backbone으로 source-only, DANN, MCD, CDAN 모델을 학습해 source·target 테스트 데이터에서 평가하며, DANN에 대한 PGD 공격 평가도 추가하고 있었습니다."
+    },
+    "problem": {
+      "en": "A model trained on one domain (source) often loses accuracy on another (target): digits from MNIST versus SVHN, or Amazon product photos versus DSLR photos in Office-31. Adversarial DA methods such as DANN train the feature extractor to fool a domain classifier, so that source and target features line up. This research set out to answer three questions: how to read the domain classifier's accuracy as a measure of that alignment, whether alignment makes a model easier to attack, and whether training on easy target samples first, with pseudo labels, makes adaptation more efficient.",
+      "ko": "한 도메인(source)에서 학습한 모델은 다른 도메인(target)에서 정확도가 떨어지는 경우가 많습니다. MNIST와 SVHN의 숫자 이미지, Office-31의 Amazon 상품 사진과 DSLR 사진이 그 예입니다. DANN 같은 적대적 DA 기법은 feature extractor가 domain classifier를 속이도록 학습해 source와 target의 feature를 맞춥니다. 이 연구에서는 세 가지 질문에 답하고자 했습니다. domain classifier의 정확도를 정렬 정도의 지표로 어떻게 해석할지, 정렬이 모델을 적대적 공격에 더 취약하게 만드는지, 쉬운 target 데이터부터 pseudo label을 붙여 학습하면 적응이 더 효율적인지입니다."
+    },
+    "solution": {
+      "en": "DANN is the baseline for all three studies. Study 1a relates the domain classifier's accuracy (0%, 50%, 100%) to task performance. Study 1b attacks DA and DG models with adversarial examples and compares how much accuracy each loses. Study 2 ranks target samples by CORAL loss and prediction uncertainty, trains on the easy ones with pseudo labels as extra source data, and repeats this as a curriculum. All three run on one shared testbed, so the method, backbone and datasets can be swapped in one place.",
+      "ko": "세 연구 모두 DANN을 baseline으로 삼습니다. 연구 1a에서는 domain classifier의 정확도(0%, 50%, 100%)와 분류 성능의 관계를 살핍니다. 연구 1b에서는 DA·DG 모델에 적대적 공격을 적용해 모델별로 정확도가 얼마나 떨어지는지 비교합니다. 연구 2에서는 target 데이터를 CORAL loss와 예측 불확실성 기준으로 순위를 매기고, 쉬운 데이터에 pseudo label을 붙여 source 데이터처럼 학습하는 과정을 Curriculum 방식으로 반복합니다. 세 연구는 하나의 공용 실험 환경에서 진행해, 기법·backbone·데이터셋을 한 곳에서 바꿔 실험할 수 있습니다."
+    },
+    "tracks": [
+      {
+        "id": "1a",
+        "group": {
+          "en": "Foundations of DA / DG",
+          "ko": "DA·DG 기초 연구"
+        },
+        "title": {
+          "en": "Standard measurements for the DANN domain classifier",
+          "ko": "DANN domain classifier에 대한 standard measurement 제안"
+        },
+        "hypothesis": [
+          {
+            "en": "Performance differs depending on whether the domain classifier's accuracy is 0%, 50% or 100%.",
+            "ko": "domain classifier의 정확도가 0%, 50%, 100%일 때 성능에 차이가 있을 것입니다."
+          },
+          {
+            "en": "100%: source and target differ widely, which means the feature extractor is not capturing features shared by both domains.",
+            "ko": "100%: source와 target의 차이가 크고, feature extractor가 두 도메인의 공통된 특징을 잘 추출하지 못하고 있다는 뜻입니다."
+          },
+          {
+            "en": "50%: the classifier cannot tell source from target and guesses at random, so the feature extractor ignores the domain gap and extracts shared features.",
+            "ko": "50%: domain classifier가 source와 target을 구분하지 못하고 무작위로 추측하는 상태로, feature extractor가 도메인 차이를 무시하고 공통된 특징을 추출하고 있다는 뜻입니다."
+          },
+          {
+            "en": "0%: the classifier predicts the domains the other way round.",
+            "ko": "0%: domain classifier가 도메인을 반대로 예측하고 있다는 뜻입니다."
+          }
+        ],
+        "design": [
+          {
+            "en": "Implement DANN (Unsupervised Domain Adaptation by Backpropagation) and design the experiments on it.",
+            "ko": "DANN(Unsupervised Domain Adaptation by Backpropagation)을 구현하고, 이를 기준으로 실험을 설계합니다."
+          },
+          {
+            "en": "Compare the settings with t-SNE and accuracy, then analyze the results and look for improvements.",
+            "ko": "t-SNE 시각화와 성능 평가로 비교한 뒤, 결과를 분석하고 개선 방안을 찾습니다."
+          }
+        ],
+        "figure": {
+          "src": "img/domain-adaptation-research/03-domain-classifier-accuracy.png"
+        }
+      },
+      {
+        "id": "1b",
+        "group": {
+          "en": "Foundations of DA / DG",
+          "ko": "DA·DG 기초 연구"
+        },
+        "title": {
+          "en": "Adversarial vulnerability and robustness of DA / DG",
+          "ko": "DA·DG에 대한 공격 취약성·강건성 연구"
+        },
+        "hypothesis": [
+          {
+            "en": "Applying DA lowers the model's robustness.",
+            "ko": "DA를 적용하면 모델의 강건성이 떨어질 것입니다."
+          }
+        ],
+        "design": [
+          {
+            "en": "Apply adversarial attacks after DA, to a model trained on source only and to one trained on source and target.",
+            "ko": "DA를 적용한 모델에 적대적 공격 실험을 진행합니다. source만 학습한 경우와 source·target을 함께 학습한 경우를 비교합니다."
+          },
+          {
+            "en": "Apply the same attacks after DG, to a model trained on source only.",
+            "ko": "DG를 적용한 모델에도 같은 공격 실험을 진행합니다(source만 학습)."
+          },
+          {
+            "en": "Run experiments on the domain distribution gap and compare the results with t-SNE and accuracy.",
+            "ko": "domain distribution gap 실험을 진행하고, t-SNE 시각화와 성능 평가로 결과를 비교합니다."
+          }
+        ],
+        "figure": {
+          "src": "img/domain-adaptation-research/04-robustness-design.png"
+        }
+      },
+      {
+        "id": "2",
+        "group": {
+          "en": "Domain adaptation",
+          "ko": "Domain Adaptation 연구"
+        },
+        "title": {
+          "en": "Efficient DA through active learning and curriculum-based data sampling",
+          "ko": "Active Learning과 Curriculum 기반 데이터 샘플링을 통한 효율적 DA"
+        },
+        "hypothesis": [
+          {
+            "en": "DA requires extracting similar features across domains.",
+            "ko": "DA를 적용하려면 두 도메인에서 비슷한 feature를 뽑아야 합니다."
+          },
+          {
+            "en": "Samples with similar features are easy problems for the model.",
+            "ko": "비슷한 feature를 가진 데이터는 모델 입장에서 쉬운 문제입니다."
+          },
+          {
+            "en": "Using the easy samples as pseudo labels should also raise accuracy on hard data points.",
+            "ko": "쉬운 데이터를 pseudo label로 사용하면 어려운 데이터에 대한 예측 성능도 올라갈 것입니다."
+          }
+        ],
+        "design": [
+          {
+            "en": "Rank target data by a CORAL (covariance) loss.",
+            "ko": "CORAL(공분산) loss를 기준으로 target 데이터의 순위를 매깁니다."
+          },
+          {
+            "en": "Rank data by the robustness (uncertainty) of the predictions.",
+            "ko": "예측의 강건성(불확실성)을 기준으로 데이터의 순위를 매깁니다."
+          },
+          {
+            "en": "Train on the samples filtered by CORAL loss + uncertainty loss as source data, and iterate.",
+            "ko": "CORAL loss + uncertainty loss로 걸러낸 데이터를 source 데이터로 학습하고, 이를 반복합니다."
+          }
+        ],
+        "figure": {
+          "src": "img/domain-adaptation-research/05-efficient-da-loop.png"
+        }
+      }
+    ],
+    "approach": [
+      {
+        "title": {
+          "en": "Data",
+          "ko": "데이터"
+        },
+        "body": {
+          "en": "datasetload() builds loaders for MNIST, MNIST-M, SVHN, Office-31 and Office-Home. Every image is resized to 224×224 and normalized with mean and std 0.5; MNIST's grayscale images are copied to three channels. Source and target each have a train and a test split (MNIST → SVHN by default).",
+          "ko": "datasetload()가 MNIST, MNIST-M, SVHN, Office-31, Office-Home 로더를 만듭니다. 모든 이미지는 224×224로 resize하고 평균·표준편차 0.5로 정규화하며, MNIST의 흑백 이미지는 3채널로 복제합니다. source와 target은 각각 train·test split을 가지며, 기본 설정은 MNIST → SVHN입니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Backbones",
+          "ko": "Backbone"
+        },
+        "body": {
+          "en": "The feature extractor is a small three-block CNN, or an ImageNet-pretrained ResNet-18/34/50/101/152, VGG-11/13/16/19 or ViT-B/16. The classification head is removed so it returns a feature vector: 512-d for ResNet-18/34 and VGG (after global average pooling), 2,048-d for the deeper ResNets and 768-d for ViT.",
+          "ko": "Feature extractor로 3단 CNN, 또는 ImageNet 사전학습 가중치를 쓰는 ResNet-18/34/50/101/152, VGG-11/13/16/19, ViT-B/16 중 하나를 고릅니다. 분류 head를 떼어 feature vector를 출력하며, 차원은 ResNet-18/34와 VGG(global average pooling 후)가 512, 더 깊은 ResNet이 2,048, ViT가 768입니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Source-only baseline",
+          "ko": "Source-only baseline"
+        },
+        "body": {
+          "en": "With the method set to None, a full classifier is trained on source data only (cross-entropy, Adam, lr 0.001), keeping the epoch with the best training accuracy. It is then tested on the source and target test sets; t-SNE plotting for each set was still being wired up in the last commit.",
+          "ko": "기법을 None으로 두면 source 데이터만으로 분류기 전체를 학습합니다(cross-entropy, Adam, lr 0.001). 학습 정확도가 가장 높은 epoch의 가중치를 저장하고, source·target 테스트셋에서 평가하며, 각 세트의 t-SNE 시각화는 마지막 커밋 시점에 아직 연결 작업 중이었습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "DANN training",
+          "ko": "DANN 학습"
+        },
+        "body": {
+          "en": "Each step passes a source batch and a target batch through the feature extractor. A discriminator (MLP 256–128–1) learns to tell source (1) from target (0) on detached features with BCE; then the feature extractor and label classifier are updated on L_cls − λ·L_d, where λ = 0.1 · (2 / (1 + e^(−10p)) − 1) and p = current epoch / total epochs, so λ grows each epoch. Every 500 steps both test sets are evaluated, and the model with the best source accuracy is saved.",
+          "ko": "매 step마다 source batch와 target batch를 feature extractor에 함께 넣습니다. Discriminator(MLP 256–128–1)는 detach한 feature로 source(1)와 target(0)을 구분하도록 BCE로 학습하고, 이어서 feature extractor와 label classifier를 L_cls − λ·L_d로 갱신합니다. λ = 0.1 · (2 / (1 + e^(−10p)) − 1)이고 p = 현재 epoch / 전체 epoch이므로, λ는 epoch마다 커집니다. 500 step마다 두 테스트셋을 평가하고, source 정확도가 가장 높은 모델을 저장합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "MCD and CDAN",
+          "ko": "MCD와 CDAN"
+        },
+        "body": {
+          "en": "MCD puts two linear classifiers on one feature extractor: both learn the source labels, and the L1 discrepancy between their predictions on target images is the adaptation loss. CDAN conditions the domain discriminator (MLP 1024–1024–1) on the outer product of the features and the class predictions, and adds its loss to the classification loss.",
+          "ko": "MCD는 하나의 feature extractor 위에 linear classifier 두 개를 둡니다. 두 classifier는 source 라벨로 학습하고, target 이미지에 대한 두 예측의 L1 차이(discrepancy)를 적응용 loss로 씁니다. CDAN은 feature와 class 예측의 outer product를 domain discriminator(MLP 1024–1024–1)의 입력으로 써서 판별을 class에 조건화하고, 그 loss를 분류 loss에 더해 학습합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Adversarial evaluation",
+          "ko": "적대적 공격 평가"
+        },
+        "body": {
+          "en": "With --test_adv, the DANN feature extractor and classifier are wrapped as one model and attacked with PGD from the Adversarial Robustness Toolbox (ε = 0.04, step 2/255, 40 iterations). The attacked source and target test images then go through the model for accuracy and t-SNE; this path was still in progress in the last commit.",
+          "ko": "--test_adv 옵션을 주면 DANN의 feature extractor와 classifier를 하나의 모델로 묶고, Adversarial Robustness Toolbox의 PGD(ε = 0.04, step 2/255, 40 iteration)로 공격합니다. 공격한 source·target 테스트 이미지로 정확도와 t-SNE를 구하도록 작성 중이었습니다(마지막 커밋 기준 미완성)."
+        }
+      },
+      {
+        "title": {
+          "en": "Runner and logging",
+          "ko": "실행 및 로깅"
+        },
+        "body": {
+          "en": "main.py holds the method (None, DANN, MCD or CDAN), the backbone and its depth, and the source and target datasets with their splits as argument defaults, plus --train and --test_adv flags (defaults: 3 epochs, batch size 64, 10 classes, seed 42). Loss, accuracy and t-SNE images are logged to Weights & Biases.",
+          "ko": "main.py의 인자 기본값으로 기법(None, DANN, MCD, CDAN), backbone과 깊이, source·target 데이터셋과 split을 지정하고, --train·--test_adv 옵션을 둡니다(기본값: 3 epoch, batch size 64, 10 class, seed 42). Loss, 정확도, t-SNE 이미지는 Weights & Biases에 기록합니다."
+        }
+      }
+    ],
+    "results": [
+      {
+        "en": "Built domain-adaptation-torch, one PyTorch codebase in which the DA method (source-only, DANN, MCD, CDAN), the backbone (CNN, VGG, ResNet, ViT) and the source/target datasets are set in one place, the argument defaults in main.py.",
+        "ko": "DA 기법(source-only, DANN, MCD, CDAN), backbone(CNN, VGG, ResNet, ViT), source·target 데이터셋을 main.py의 인자 기본값 한 곳에서 바꿔 실험하는 PyTorch 실험 환경(domain-adaptation-torch)을 구축했습니다."
+      },
+      {
+        "en": "Wrote the evaluation path for study 1b, which attacks a DANN model's source and target test images with PGD (ε = 0.04, 40 iterations) before measuring accuracy; it was still being finished at the last commit.",
+        "ko": "연구 1b를 위해 DANN 모델의 source·target 테스트 이미지에 PGD 공격(ε = 0.04, 40 iteration)을 적용한 뒤 정확도를 측정하는 평가 코드를 작성했습니다(마지막 커밋 기준 마무리 전)."
+      },
+      {
+        "en": "Wrote data loaders for MNIST, MNIST-M, SVHN, Office-31 and Office-Home; the README also lists DomainNet-126, USPS and VisDA-2017 as further datasets.",
+        "ko": "MNIST, MNIST-M, SVHN, Office-31, Office-Home 데이터 로더를 구현했고, README에는 DomainNet-126, USPS, VisDA-2017도 추가 데이터셋으로 정리했습니다."
+      },
+      {
+        "en": "The repo stores no accuracy figures; the code sends accuracy to Weights & Biases. It keeps one t-SNE plot (2024) in which the ten classes form clearly separated clusters; the plot does not say which domain, backbone or method produced it.",
+        "ko": "저장소에는 정확도 수치가 없으며, 코드는 정확도를 Weights & Biases에 기록합니다. 저장소에 남은 t-SNE 결과 한 장(2024년)에서는 10개 클래스가 뚜렷하게 분리된 군집을 이루지만, 어떤 도메인·backbone·기법의 결과인지는 표시되어 있지 않습니다."
+      }
+    ],
+    "contributions": [
+      {
+        "en": "Wrote the hypotheses and experiment designs for the three studies (1a, 1b and 2).",
+        "ko": "세 연구(1a, 1b, 2)의 가설과 실험 설계를 작성했습니다."
+      },
+      {
+        "en": "Implemented domain-adaptation-torch (2024): data loaders, backbones, source-only/DANN/MCD/CDAN training, PGD evaluation, t-SNE and W&B logging.",
+        "ko": "domain-adaptation-torch를 구현했습니다(2024). 데이터 로더, backbone, source-only·DANN·MCD·CDAN 학습, PGD 평가, t-SNE와 W&B 로깅을 포함합니다."
+      }
+    ],
+    "tech": [
+      "PyTorch",
+      "Python",
+      "torchvision",
+      "DANN",
+      "MCD",
+      "CDAN",
+      "ResNet",
+      "VGG",
+      "ViT-B/16",
+      "Hugging Face Transformers",
+      "Adversarial Robustness Toolbox",
+      "scikit-learn (t-SNE)",
+      "Weights & Biases"
+    ],
+    "topics": [
+      "Domain Adaptation",
+      "Domain Generalization",
+      "Adversarial Robustness",
+      "Active Learning",
+      "Curriculum Learning",
+      "Representation Learning"
+    ],
+    "links": [
+      {
+        "type": "github",
+        "label": {
+          "en": "GitHub",
+          "ko": "GitHub"
+        },
+        "url": "https://github.com/kcyoon689/domain-adaptation-torch"
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: DANN — Unsupervised Domain Adaptation by Backpropagation (ICML 2015)",
+          "ko": "참고 논문: DANN — Unsupervised Domain Adaptation by Backpropagation (ICML 2015)"
+        },
+        "url": "https://arxiv.org/abs/1409.7495",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: MCD — Maximum Classifier Discrepancy (CVPR 2018)",
+          "ko": "참고 논문: MCD — Maximum Classifier Discrepancy (CVPR 2018)"
+        },
+        "url": "https://arxiv.org/abs/1712.02560",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: CDAN — Conditional Adversarial Domain Adaptation (NeurIPS 2018)",
+          "ko": "참고 논문: CDAN — Conditional Adversarial Domain Adaptation (NeurIPS 2018)"
+        },
+        "url": "https://arxiv.org/abs/1705.10667",
+        "ref": true
+      },
+      {
+        "type": "paper",
+        "label": {
+          "en": "Reference: Deep CORAL (ECCV 2016 Workshops)",
+          "ko": "참고 논문: Deep CORAL (ECCV 2016 Workshops)"
+        },
+        "url": "https://arxiv.org/abs/1607.01719",
+        "ref": true
+      }
+    ],
+    "cover": "img/domain-adaptation-research/cover.jpg",
+    "images": [
+      {
+        "src": "img/domain-adaptation-research/01-domain-shift.png",
+        "thumb": "img/domain-adaptation-research/thumbs/01-domain-shift.jpg",
+        "caption": {
+          "en": "Domain shift and feature alignment (concept): before adaptation, the unlabeled target features (hollow) sit apart from the labeled source features (filled), so the decision boundary fitted on source cuts through target class A. DANN, MCD and CDAN, the adversarial methods in the testbed, aim to align the two feature distributions; the resulting domain-invariant features let the same boundary separate class A from class B in both domains.",
+          "ko": "Domain shift와 feature 정렬 개념도: 적응 전에는 라벨 없는 target feature(빈 마커)가 라벨 있는 source feature(채운 마커)에서 벗어나 있어, source로 학습한 결정 경계가 target 클래스 A를 가로지릅니다. 실험 환경에 구현한 적대적 DA 기법(DANN, MCD, CDAN)은 두 feature 분포를 정렬하는 것을 목표로 하며, 정렬되어 domain invariant해진 feature에서는 같은 경계가 두 도메인 모두에서 클래스 A와 B를 나눕니다."
+        }
+      },
+      {
+        "src": "img/domain-adaptation-research/02-dann-architecture.png",
+        "thumb": "img/domain-adaptation-research/thumbs/02-dann-architecture.jpg",
+        "caption": {
+          "en": "DANN as implemented in the repo's DANN_train(): one batch of labeled source and unlabeled target images goes through the feature extractor; the label predictor (FC 256 → 10) sees only the source half, and the domain classifier (FC 256 → 128 → 1) is trained on detached features to output 1 for source and 0 for target. The extractor and label predictor then minimize L_y − λ·L_d with λ = 0.1·(2/(1+exp(−10p)) − 1), p = epoch / max_epoch; the code has no separate gradient reversal layer (GRL), but this minus sign has the same effect on the extractor.",
+          "ko": "저장소의 DANN_train()에 구현된 DANN 구조: 라벨이 있는 source와 라벨이 없는 target을 한 batch로 feature extractor에 넣고, label predictor(FC 256 → 10)는 source 절반만 받으며, domain classifier(FC 256 → 128 → 1)는 detach된 feature로 source는 1, target은 0으로 구분하도록 학습합니다. 이어서 feature extractor와 label predictor는 L_y − λ·L_d(λ = 0.1·(2/(1+exp(−10p)) − 1), p = epoch / max_epoch)를 최소화합니다. 코드에는 별도의 gradient reversal layer(GRL)가 없지만, 이 마이너스 부호가 feature extractor에 같은 효과를 냅니다."
+        }
+      },
+      {
+        "src": "img/domain-adaptation-research/03-domain-classifier-accuracy.png",
+        "thumb": "img/domain-adaptation-research/thumbs/03-domain-classifier-accuracy.jpg",
+        "caption": {
+          "en": "Schematic of the Study 1a hypothesis: what the domain classifier's accuracy says about the features. From left: at 0% it predicts the domains the wrong way round, yet the two domains are still separable (flipping every prediction would give 100%); at 50% it guesses at chance level, so the features are shared by both domains (the goal); at 100% the domains are easy to tell apart and the features are domain-specific.",
+          "ko": "연구 1a 가설의 모식도: domain classifier 정확도가 feature에 대해 말해 주는 것. 왼쪽부터 0%는 도메인을 정반대로 예측하는 상태로, 예측만 뒤집혔을 뿐 두 도메인은 여전히 구분됩니다. 50%는 무작위 추측 수준으로, 두 도메인이 공유하는 feature를 추출하고 있다는 뜻이며 이것이 목표 상태입니다. 100%는 두 도메인이 쉽게 구분되어 feature가 도메인마다 다르다는 뜻입니다."
+        }
+      },
+      {
+        "src": "img/domain-adaptation-research/04-robustness-design.png",
+        "thumb": "img/domain-adaptation-research/thumbs/04-robustness-design.jpg",
+        "caption": {
+          "en": "Experiment design for the robustness study: two DA models (trained on source only, and on source + target) and a DG model trained on source only are each tested on the source and target test sets, with clean images and with images perturbed by a white-box PGD attack from the Adversarial Robustness Toolbox (eps = 0.04, step 2/255, 40 iterations). Comparing how much accuracy each model loses under attack tests the hypothesis that applying DA lowers robustness.",
+          "ko": "강건성 연구의 실험 설계: Source만 학습한 DA 모델, Source·Target을 함께 학습한 DA 모델, Source만 학습한 DG 모델을 Source·Target 테스트셋에서 각각 평가하며, 원본(clean) 이미지와 Adversarial Robustness Toolbox의 white-box PGD 공격(eps = 0.04, step 2/255, 40회 반복)으로 만든 적대적 이미지에서 정확도를 측정합니다. 공격 후 정확도가 모델별로 얼마나 떨어지는지 비교해 ‘DA를 적용하면 강건성이 떨어진다’는 가설을 검증합니다."
+        }
+      },
+      {
+        "src": "img/domain-adaptation-research/05-efficient-da-loop.png",
+        "thumb": "img/domain-adaptation-research/thumbs/05-efficient-da-loop.jpg",
+        "caption": {
+          "en": "Study 2 loop: the DA model, a shared feature extractor plus a classifier trained with L_class + λ·L_CORAL, scores each target sample by its CORAL loss (source vs target covariance) plus an uncertainty loss on its prediction, then sorts the samples from easy to hard. Low-scoring, easy samples get pseudo labels and join the source set, while hard ones stay in the target set for the next round of retraining. Circles 1–3 mark where each hypothesis applies.",
+          "ko": "연구 2의 반복 학습 구조: 두 도메인이 함께 쓰는 feature extractor에 classifier를 더한 DA 모델을 L_class + λ·L_CORAL로 학습한 뒤, 각 target 데이터를 CORAL loss(source와 target의 공분산 차이)와 예측의 uncertainty loss를 더한 점수로 평가해 쉬운 데이터부터 어려운 데이터 순으로 정렬합니다. 점수가 낮은 쉬운 데이터는 pseudo label을 붙여 source 데이터에 추가하고, 어려운 데이터는 target에 남겨 둔 채 모델을 다시 학습하는 과정을 반복합니다. 원 안의 숫자 1–3은 각 가설이 적용되는 위치를 나타냅니다."
+        }
+      },
+      {
+        "src": "img/domain-adaptation-research/06-tsne-results.jpg",
+        "thumb": "img/domain-adaptation-research/thumbs/06-tsne-results.jpg",
+        "caption": {
+          "en": "t-SNE plot kept in the repo's results/ folder (committed in 2024): features of 10 classes, labeled 0–9, form ten separate clusters, with a few points of other classes at the cluster edges. The plot does not state which domain, backbone or method produced it.",
+          "ko": "저장소 results/ 폴더에 있는 t-SNE 결과(2024년 커밋): 0–9로 표시된 10개 클래스의 feature가 10개의 분리된 군집을 이루며, 군집 경계에 다른 클래스의 점이 일부 섞여 있습니다. 그림에는 어떤 도메인, backbone, 기법의 결과인지 표시되어 있지 않습니다."
+        }
+      }
+    ]
+  },
+  {
     "slug": "pcb-defect-detection",
     "year": "2024",
     "category": "ai",
