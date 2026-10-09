@@ -1,4 +1,5 @@
-/* Projects archive – renders the lists (/projects/, /researchs/) and detail pages (/projects/<slug>/) from data.js.
+/* Projects archive – renders the lists (/projects/, /research/) and the detail pages from data.js.
+   A detail page lives at /projects/<slug>/, or at /research/<slug>/ when the entry has path: "research".
    Theme and language use the same localStorage keys as /cv/, so the choice carries over between pages. */
 (function () {
   "use strict";
@@ -6,9 +7,12 @@
   // hidden: not published at all; draft: has a page but is not listed in the archive yet
   var ALL = (window.PROJECTS || []).filter(function (p) { return !p.hidden; });
   var PROJECTS = ALL.filter(function (p) { return !p.draft; });
+  // BASE points at /projects/ (assets and images live there); ROOT is the site root
   var BASE = document.body.getAttribute("data-base") || "";
-  // /researchs/ reuses this archive: same data and detail pages, filtered to entries marked research: true
+  var ROOT = /projects\/$/.test(BASE) ? BASE.replace(/projects\/$/, "") : BASE + "../";
+  // /research/ reuses this archive: same data, filtered to entries marked research: true
   var SECTION = document.body.getAttribute("data-section") || "projects";
+  var RESEARCH = PROJECTS.filter(function (p) { return p.research; });
 
   var CATEGORIES = [
     { id: "ai", label: { en: "AI / ML", ko: "AI / ML" } },
@@ -50,7 +54,9 @@
     details: { en: "Details", ko: "자세히" },
     all: { en: "All", ko: "전체" },
     allProjects: { en: "All projects", ko: "전체 프로젝트" },
+    allResearch: { en: "All research", ko: "전체 연구" },
     projects: { en: "Projects", ko: "프로젝트" },
+    research: { en: "Research", ko: "연구" },
     cv: { en: "CV", ko: "CV" },
     year: { en: "Year", ko: "연도" },
     period: { en: "Period", ko: "기간" },
@@ -133,6 +139,7 @@
   }
   function plain(v, lang) { return typeof v === "string" ? v : (v && (v[lang] || v.en || v.ko)) || ""; }
   function src(p) { return /^(https?:)?\/\//.test(p) ? p : BASE + p; }
+  function pageHref(p) { return ROOT + (p.path || "projects") + "/" + p.slug + "/"; }
   function cat(id) { for (var i = 0; i < CATEGORIES.length; i++) if (CATEGORIES[i].id === id) return CATEGORIES[i]; return null; }
   function catLabel(p) { return p.categoryLabel || (cat(p.category) || { label: { en: p.category, ko: p.category } }).label; }
   function cover(p) {
@@ -200,7 +207,7 @@
     var tabs = document.getElementById("filterTabs");
     if (!grid || !tabs) return;
     var research = SECTION === "research";
-    var list = research ? PROJECTS.filter(function (p) { return p.research; }) : PROJECTS;
+    var list = research ? RESEARCH : PROJECTS;
     window.__titleFor = function (lang) {
       if (research) return lang === "ko" ? "연구 – 김채윤" : "Research – Chaeyoon Kim";
       return lang === "ko" ? "프로젝트 – 김채윤" : "Projects – Chaeyoon Kim";
@@ -218,7 +225,7 @@
     }).join("");
 
     grid.innerHTML = list.map(function (p) {
-      var href = BASE + p.slug + "/";
+      var href = pageHref(p);
       var c = cover(p);
       var media = c
         ? '<img src="' + src(c) + '" alt="" loading="lazy" decoding="async">'
@@ -271,10 +278,14 @@
   function renderDetail(slug) {
     var root = document.getElementById("detail");
     if (!root) return;
+    // pages under /research/ point back to the research list; their prev/next stay within research
+    var inResearch = SECTION === "research";
+    var home = ROOT + (inResearch ? "research/" : "projects/");
+    var homeLabel = inResearch ? UI.research : UI.projects, allLabel = inResearch ? UI.allResearch : UI.allProjects;
     var idx = -1;
     for (var i = 0; i < ALL.length; i++) if (ALL[i].slug === slug) idx = i;
     if (idx < 0) {
-      root.innerHTML = '<p class="empty">' + bi(UI.notFound) + ' <a href="' + BASE + '">' + bi(UI.allProjects) + "</a></p>";
+      root.innerHTML = '<p class="empty">' + bi(UI.notFound) + ' <a href="' + home + '">' + bi(allLabel) + "</a></p>";
       return;
     }
     var p = ALL[idx];
@@ -291,12 +302,12 @@
 
     var html = "";
     if (p.draft) html += '<p class="draft-note">' + bi(UI.draft) + "</p>";
-    html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + BASE + '../cv/">' + bi(UI.cv) + '</a><span>/</span><a href="' + BASE + '">' + bi(UI.projects) +
+    html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + ROOT + 'cv/">' + bi(UI.cv) + '</a><span>/</span><a href="' + home + '">' + bi(homeLabel) +
       '</a><span class="current-sep">/</span><span class="current">' + bi(p.title) + "</span></nav>";
     html += '<header class="hero"><span class="eyebrow">' + bi(catLabel(p)) + (p.year ? " · " + esc(p.year) : "") + "</span>" +
       '<h1 class="hero-title">' + bi(p.title) + "</h1>" +
       (has(p.tagline) ? '<p class="hero-tagline">' + bi(p.tagline) + "</p>" : "") +
-      '<div class="cta-row">' + linkBtns + '<a class="btn" href="' + BASE + '">← ' + bi(UI.allProjects) + "</a></div></header>";
+      '<div class="cta-row">' + linkBtns + '<a class="btn" href="' + home + '">← ' + bi(allLabel) + "</a></div></header>";
 
     // gallery + info card
     var info = '<aside class="info-card"><h3>' + bi(UI.info) + "</h3>";
@@ -366,11 +377,12 @@
     }
 
     // prev / next
-    var li = PROJECTS.indexOf(p);
-    var prev = li > 0 ? PROJECTS[li - 1] : null, next = li >= 0 ? PROJECTS[li + 1] : null;
+    var seq = inResearch ? RESEARCH : PROJECTS;
+    var li = seq.indexOf(p);
+    var prev = li > 0 ? seq[li - 1] : null, next = li >= 0 ? seq[li + 1] : null;
     html += '<nav class="pager" aria-label="More projects">' +
-      (prev ? '<a class="prev" href="' + BASE + prev.slug + '/"><span class="dir">← ' + bi(UI.prev) + "</span>" + bi(prev.title) + "</a>" : "") +
-      (next ? '<a class="next" href="' + BASE + next.slug + '/"><span class="dir">' + bi(UI.next) + " →</span>" + bi(next.title) + "</a>" : "") +
+      (prev ? '<a class="prev" href="' + pageHref(prev) + '"><span class="dir">← ' + bi(UI.prev) + "</span>" + bi(prev.title) + "</a>" : "") +
+      (next ? '<a class="next" href="' + pageHref(next) + '"><span class="dir">' + bi(UI.next) + " →</span>" + bi(next.title) + "</a>" : "") +
       "</nav>";
 
     root.innerHTML = html;

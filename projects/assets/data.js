@@ -1,7 +1,7 @@
 /* Project data for /projects/ – generated from the research notes, then edited by hand.
    Order = display order. Text fields are { en, ko }. Image paths are relative to /projects/.
    hidden: true keeps an entry out of the archive (these two are also hidden in the CV).
-   research: true also lists an entry on /researchs/. */
+   research: true also lists an entry on /research/; path: "research" puts its page at /research/<slug>/ instead of /projects/<slug>/. */
 window.PROJECTS = [
   {
     "slug": "scholarlensai",
@@ -550,6 +550,7 @@ window.PROJECTS = [
     "slug": "domain-adaptation-research",
     "year": "2024",
     "research": true,
+    "path": "research",
     "period": {
       "en": "2024",
       "ko": "2024"
@@ -1467,6 +1468,7 @@ window.PROJECTS = [
     "slug": "wsi-3d-registration",
     "year": "2023",
     "research": true,
+    "path": "research",
     "period": {
       "en": "2023 · M.S. research (follow-up manuscript in preparation)",
       "ko": "2023 · 석사 연구 (후속 논문 준비 중)"
@@ -1855,6 +1857,7 @@ window.PROJECTS = [
     "slug": "active-learning-pseudo-labeling",
     "year": "2023",
     "research": true,
+    "path": "research",
     "period": {
       "en": "Sep 2023 – Mar 2024 · M.S. research",
       "ko": "2023.09 – 2024.03 · 석사 연구"
@@ -2091,6 +2094,7 @@ window.PROJECTS = [
     "slug": "cad-synthetic-data",
     "year": "2022",
     "research": true,
+    "path": "research",
     "period": {
       "en": "2022 · M.S. research (KNU)",
       "ko": "2022 · 석사 연구 (경북대)"
