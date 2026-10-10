@@ -114,7 +114,8 @@
     "Epipolar Geometry": "에피폴라 기하", "Fundamental Matrix": "기본 행렬", "Relative Pose Estimation": "상대 자세 추정",
     "Exploratory Data Analysis": "탐색적 데이터 분석", "Data Visualization": "데이터 시각화",
     "Correlation Analysis": "상관 분석", "Hypothesis Testing": "가설 검정",
-    "Adversarial Robustness": "적대적 강건성", "Representation Learning": "표현 학습", "Synthetic Data": "합성 데이터", "Auto Annotation": "자동 라벨링", "Instance Segmentation": "인스턴스 분할", "Pose Estimation": "자세 추정"
+    "Adversarial Robustness": "적대적 강건성", "Representation Learning": "표현 학습", "Synthetic Data": "합성 데이터", "Auto Annotation": "자동 레이블링", "Instance Segmentation": "인스턴스 분할", "Pose Estimation": "자세 추정",
+    "Edge AI": "엣지 AI", "NPU": "NPU", "Systolic Array": "시스톨릭 어레이", "Quantization": "양자화", "Performance Analysis": "성능 분석", "RTL Design": "RTL 설계"
   };
 
   /* ---------- helpers ---------- */

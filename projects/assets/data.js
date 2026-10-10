@@ -4,6 +4,455 @@
    research: true also lists an entry on /research/; path: "research" puts its page at /research/<slug>/ instead of /projects/<slug>/. */
 window.PROJECTS = [
   {
+    "slug": "edge-npu-lab",
+    "year": "2026",
+    "period": {
+      "en": "Oct 2026",
+      "ko": "2026.10"
+    },
+    "category": "ai",
+    "categoryLabel": {
+      "en": "AI Systems · Edge NPU / Accelerator Architecture",
+      "ko": "AI 시스템 · 엣지 NPU / 가속기 구조"
+    },
+    "title": {
+      "en": "Edge NPU Lab – Raspberry Pi 5 + Hailo-10H",
+      "ko": "Edge NPU Lab – Raspberry Pi 5 + Hailo-10H 실험"
+    },
+    "team": {
+      "en": "Individual",
+      "ko": "개인"
+    },
+    "role": {
+      "en": "Sole researcher (experiment design, measurement, simulation, RTL)",
+      "ko": "단독 수행 (실험 설계 · 측정 · 시뮬레이션 · RTL)"
+    },
+    "tagline": {
+      "en": "An edge-NPU study on a Raspberry Pi 5 with a Hailo-10H (AI HAT+ 2) that follows one question through on-device measurement, systolic-array simulation and a Verilog GEMM engine: why did operation count not predict NPU latency?",
+      "ko": "Raspberry Pi 5 + Hailo-10H(AI HAT+ 2)에서 '연산량은 왜 NPU 지연을 예측하지 못했는가'라는 질문을 실측, systolic array 시뮬레이션, Verilog GEMM 엔진의 세 단계로 추적한 엣지 NPU 실험."
+    },
+    "cardTagline": {
+      "en": "Measures CNNs on a Hailo-10H NPU, forms a hypothesis for the gaps with systolic-array simulation, and checks the simulator's cycle model with a Verilog GEMM engine.",
+      "ko": "Hailo-10H NPU에서 CNN을 실측하고, systolic array 시뮬레이션으로 그 차이에 대한 가설을 세운 뒤 Verilog GEMM 엔진으로 시뮬레이터의 cycle 모델을 검증한 실험."
+    },
+    "summary": {
+      "en": "Edge NPU Lab measures how a model's performance changes with the runtime, the numerical precision and the host–device link on a Raspberry Pi 5 with an AI HAT+ 2 (Hailo-10H NPU, HailoRT 5.1.1, PCIe Gen3 ×1), and uses simulation to study how it depends on the hardware structure. Three Model Zoo networks (MobileNetV2, MobileNetV3 EdgeTPU, ResNet18) and 60 CNNs of my own design were measured on the device. A systolic-array cycle model matched to SCALE-Sim's stall-free results (with depthwise layers assumed to map as per-channel GEMMs) then gave a hypothesis for one observed effect, ResNet18's shorter NPU hardware latency than MobileNetV2 despite more operations: depthwise layers use a 2D array poorly. An output-stationary GEMM engine written in Verilog checked the cycle model behind it; this is not evidence about Hailo's internal design. Every number is recomputed from the raw data in the reports, and unsupported measurements such as power are left empty rather than estimated.",
+      "ko": "Raspberry Pi 5에 AI HAT+ 2(Hailo-10H NPU, HailoRT 5.1.1, PCIe Gen3 ×1)를 연결해, 같은 모델이라도 실행 방식·정밀도·호스트–장치 전송에 따라 성능이 어떻게 달라지는지 측정하고, 하드웨어 구조에 따른 차이는 시뮬레이션으로 살펴본 실험입니다. Model Zoo의 MobileNetV2, MobileNetV3 EdgeTPU, ResNet18과 직접 설계한 CNN 60개를 실제 장치에서 측정했습니다. 이후 SCALE-Sim의 stall 없는 결과와 일치하는 systolic array cycle 모델(depthwise는 채널별 GEMM으로 근사)로, 연산량이 더 많은 ResNet18의 NPU 하드웨어 지연이 MobileNetV2보다 짧았던 현상에 대해 'depthwise layer가 2D array를 잘 활용하지 못한다'는 가설을 세웠습니다. 직접 작성한 Verilog output-stationary GEMM 엔진으로는 그 가설이 기대는 cycle 모델을 검증했습니다. 이는 Hailo 내부 구조에 대한 증거는 아닙니다. 모든 수치는 원자료에서 다시 계산한 보고서로 남겼고, 지원되지 않는 측정(전력 등)은 추정하지 않고 비워 두었습니다."
+    },
+    "problem": {
+      "en": "The assumption that a model with fewer operations runs faster on an NPU broke on the device. ResNet18 has 5.87× the official operation count of MobileNetV2 (3.64 vs 0.62 G ops), yet its hardware latency on the Hailo-10H was shorter (1.24 vs 1.44 ms). End-to-end latency on an edge device is also set by host preprocessing, the runtime and the PCIe transfer, not by NPU compute alone. The bottleneck differed between models (host-bound for MobileNetV2 and ResNet18, NPU-bound for MobileNetV3), so the same optimization had a different effect on each; without locating the bottleneck, the effect of an optimization cannot be predicted.",
+      "ko": "연산량이 적은 모델이 NPU에서 더 빠를 것이라는 가정은 실측에서 깨졌습니다. ResNet18은 공식 연산량이 MobileNetV2의 5.87배(3.64 vs 0.62 G ops)인데도 Hailo-10H의 하드웨어 지연은 더 짧았습니다(1.24 vs 1.44 ms). 또 엣지 장치의 전체 지연은 NPU 연산만이 아니라 호스트 전처리, 런타임, PCIe 전송이 함께 결정합니다. 병목 위치가 모델에 따라 달랐기 때문에(MobileNetV2·ResNet18은 호스트, MobileNetV3는 NPU) 같은 최적화도 모델마다 다른 효과를 냈으며, 병목을 찾지 않으면 최적화의 효과를 예측할 수 없습니다."
+    },
+    "solution": {
+      "en": "The cause was narrowed down in three steps. (1) On the device, runtime settings were compared in a full factorial grid and the PCIe link speed was switched on its own (Gen3 → Gen2 → Gen3) to locate the bottleneck; float32 originals and INT8 HEFs were compared image by image to measure the accuracy cost of the whole INT8 HEF path (quantization, compiler mapping and 8-bit output, not separated). (2) In SCALE-Sim, array shape, dataflow and SRAM split were compared on six dense GEMM/conv workloads under a fixed 1,024-PE, 24 KiB budget. The Conv, depthwise and FC layers of the three networks were then mapped onto the array with a closed-form cycle model that exactly matches all 216 stall-free SCALE-Sim rows (depthwise mapped as per-channel GEMMs, an unverified assumption). (3) An output-stationary systolic GEMM engine was written in Verilog to check the cycle model the simulator assumes. Finally, 60 custom CNNs were compiled with the Hailo DFC 5.1.0 on an x86 host and measured on the device. For the comparisons that needed a verdict (PCIe A–B–A, float32 vs INT8, the custom-CNN analysis and the training budget), the decision rule was fixed before the data were collected.",
+      "ko": "세 단계로 원인을 좁혔습니다. (1) 실제 장치에서 런타임 설정은 전체 조합(factorial)으로 비교하고 PCIe 링크 속도만 따로 바꿔(Gen3 → Gen2 → Gen3) 병목 위치를 판정했습니다. 정밀도는 같은 이미지에서 float32 원본과 INT8 HEF 예측을 짝지어 비교해, INT8 HEF 경로 전체(양자화·컴파일러 매핑·8-bit 출력, 서로 분리하지 않음)의 정확도 비용을 측정했습니다. (2) SCALE-Sim으로 1,024 PE · 24 KiB SRAM 예산에서 6개 dense GEMM/conv workload의 array 형태, dataflow, SRAM 분할을 비교했습니다. 이어서 SCALE-Sim의 stall 없는 결과 216행과 정확히 일치하는 닫힌식 cycle 모델로 세 네트워크의 Conv·depthwise·FC layer를 systolic array에 매핑했습니다(depthwise는 채널별 GEMM으로 근사했으며, 이는 검증되지 않은 가정입니다). (3) output-stationary systolic GEMM 엔진을 Verilog로 직접 구현해 시뮬레이터가 가정하는 cycle 모델을 검증했습니다. 마지막으로 직접 설계한 CNN 60개를 x86 호스트에서 Hailo DFC 5.1.0으로 컴파일해 장치에서 측정했습니다. 판정이 필요한 비교(PCIe A–B–A, float32 vs INT8, 직접 설계한 CNN 분석, 학습 budget)는 데이터를 모으기 전에 판정 규칙을 고정했습니다."
+    },
+    "approach": [
+      {
+        "title": {
+          "en": "Measurement toolkit",
+          "ko": "측정 도구 구축"
+        },
+        "body": {
+          "en": "Built the npu_lab CLI (doctor, bench, sweep, profile, inspect-hef, train, compile, evaluate). It runs sequential, bounded-async, double-buffered and fixed-arrival-rate (30 FPS, drop when full) pipelines and records per-frame arrival, preprocessing, submit and completion times, p50/p95/p99, CPU time and RSS. HEFs are pinned to Model Zoo v5.1.0 and checked by SHA-256.",
+          "ko": "npu_lab CLI(doctor, bench, sweep, profile, inspect-hef, train, compile, evaluate)를 구현했습니다. 순차, bounded async, double buffering, 고정 입력률(30 FPS, 가득 차면 drop) 실행 방식을 지원하고, frame별 도착·전처리·submit·completion 시각과 p50/p95/p99, CPU 시간, RSS를 기록합니다. HEF는 Model Zoo v5.1.0으로 고정하고 SHA-256을 검사합니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Real-image runtime study",
+          "ko": "실제 이미지 런타임 실험"
+        },
+        "body": {
+          "en": "Evaluated the three pretrained HEFs on all 3,925 Imagenette v2 validation images, then ran 500 real images through 10 runtime variants per model (sequential, or in-flight 2/4 × worker 1/2, each with buffer reuse on/off), plus decode, deadline and arrival-rate studies and an output check: 249 runs, each in its own process, with run order shuffled within each timed study (the 9 output-check runs used a fixed order); 4.23 M frames, all in one session rather than on separate days.",
+          "ko": "사전학습 HEF 3종을 Imagenette v2 검증 이미지 3,925장 전체로 평가했습니다. 이후 실제 이미지 500장으로 모델별 10개 런타임 조합(순차, 또는 동시 처리 2·4 × worker 1·2, 각각 버퍼 재사용 on/off)과 decode·deadline·입력률 실험, 출력 일치 검사를 진행했습니다. run마다 별도 프로세스로 실행했고 시간을 측정하는 실험 단계마다 순서를 무작위로 섞었습니다(출력 일치 검사 9 run은 고정 순서). 총 249 run, 423만 frame이며, 날짜를 바꾼 반복이 아니라 한 세션 안의 반복입니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Link and precision",
+          "ko": "전송과 정밀도"
+        },
+        "body": {
+          "en": "Ran a PCIe Gen3 → Gen2 → Gen3 (A–B–A) experiment with the same HEF, inputs and code, each block right after a reboot and the link state read from sysfs. Compared the float32 originals (CPU) with the Hailo INT8 HEFs that share their weights, image by image on the same 3,925 images (McNemar exact).",
+          "ko": "같은 HEF·입력·코드로 PCIe Gen3 → Gen2 → Gen3(A–B–A)를 각각 재부팅 직후 측정하고, 링크 상태는 측정 직전 sysfs로 확인했습니다. HEF와 같은 가중치의 float32 원본(CPU)과 Hailo INT8 HEF를 같은 3,925장에서 이미지 쌍으로 비교했습니다(McNemar exact)."
+        }
+      },
+      {
+        "title": {
+          "en": "Systolic-array simulation",
+          "ko": "Systolic array 시뮬레이션"
+        },
+        "body": {
+          "en": "Ran SCALE-Sim v2.0.2 at a pinned commit on six synthetic dense GEMM/Conv shapes (no depthwise) across 144 configurations of a 1,024-PE, 24 KiB-SRAM budget: 16×64 / 32×32 / 64×16 arrays, OS / WS / IS dataflows, four SRAM splits, and three per-port bandwidths plus a stall-free mode (864 layer runs in total). Separately, the Conv, depthwise and FC layers of the three networks were converted to GEMM shapes and mapped onto the same 1,024 PEs with a closed-form cycle model that matches all 216 stall-free SCALE-Sim rows. SCALE-Sim does not support depthwise, so those layers were mapped as one GEMM per channel, an unverified assumption.",
+          "ko": "고정 commit의 SCALE-Sim v2.0.2로 합성 dense GEMM/Conv shape 6개(depthwise 제외)를 1,024 PE · SRAM 24 KiB 예산의 144개 설정에서 시뮬레이션했습니다. 16×64 / 32×32 / 64×16 array, OS / WS / IS dataflow, SRAM 분할 4종, 포트별 대역폭 3수준과 stall 없는 계산 모드를 조합했습니다(총 864개 layer 실행). 이와 별도로 세 네트워크의 Conv·depthwise·FC layer를 GEMM shape로 변환해 같은 1,024 PE에 매핑했고, cycle은 SCALE-Sim의 stall 없는 결과 216행과 모두 일치하는 닫힌식 모델로 계산했습니다. SCALE-Sim이 지원하지 않는 depthwise는 채널별 독립 GEMM으로 근사했으며, 이는 검증되지 않은 가정입니다."
+        }
+      },
+      {
+        "title": {
+          "en": "RTL implementation",
+          "ko": "RTL 구현"
+        },
+        "body": {
+          "en": "Wrote an R×C output-stationary GEMM engine in Verilog (INT8 × INT8 → INT32 PEs, input skew lines, fold controller) and verified it in Icarus Verilog. Output double buffering (OVERLAP = 1 / 0) was compared as a design choice.",
+          "ko": "INT8 × INT8 → INT32 PE, 입력 skew 지연선, fold controller로 구성된 R×C output-stationary GEMM 엔진을 Verilog로 작성하고 Icarus Verilog로 검증했습니다. 출력 double buffering 유무(OVERLAP = 1 / 0)를 설계 선택으로 비교했습니다."
+        }
+      },
+      {
+        "title": {
+          "en": "Custom models on the NPU",
+          "ko": "직접 설계한 모델의 NPU 실측"
+        },
+        "body": {
+          "en": "Generated 48 controlled ONNX graphs with random weights (Conv / DW+PW / residual × width × depth × downsampling position) and trained 12 models on Imagenette (2 architectures × 3 seeds × 5/30 epochs). All 60 were compiled with DFC 5.1.0 on an x86 Ubuntu 24.04 host and measured on the Pi for latency; INT8 accuracy was measured for the 12 trained models.",
+          "ko": "Conv / DW+PW / residual × width × depth × downsampling 위치를 조합한 무작위 가중치의 통제 ONNX 48개를 생성하고, Imagenette로 모델 12개(구조 2종 × seed 3개 × 5/30 epoch)를 학습했습니다. 60개 모두 x86 Ubuntu 24.04 호스트의 DFC 5.1.0으로 컴파일해 Pi에서 지연을 측정했고, INT8 정확도는 학습한 모델 12개에서 측정했습니다."
+        }
+      }
+    ],
+    "results": [
+      {
+        "en": "On predecoded input, raised Python-pipeline throughput to 2.78–3.60× of sequential execution without buffer reuse, while keeping the mean run p95 at or below 9.4 ms (MobileNetV2: 178.6 → 643.7 FPS).",
+        "ko": "미리 decode한 입력에서 Python 파이프라인 처리량을 버퍼 재사용 없는 순차 실행 대비 2.78–3.60배로 높이면서 run별 p95 평균을 9.4 ms 이하로 유지했습니다(MobileNetV2: 178.6 → 643.7 FPS)."
+      },
+      {
+        "en": "The bottleneck differed by model: at batch 1, the best Python FPS reached 100% of the vendor C++ FPS for MobileNetV3 (NPU-bound) but 37% for MobileNetV2 and 33% for ResNet18 (host-bound). With four requests in flight, a second worker therefore gave +0.5%, +18% and +34% respectively; with two in flight it did not help. With JPEG decode included, all three converged to 340–366 FPS.",
+        "ko": "병목 위치가 모델마다 달랐습니다. batch 1 기준으로 Python 최고 FPS가 vendor C++ FPS의 MobileNetV3 100%(NPU 병목), MobileNetV2 37%, ResNet18 33%(호스트 병목)였습니다. 그래서 4개 동시 처리에서 worker 1→2의 효과도 +0.5% / +18% / +34%로 달랐고, 2개 동시 처리에서는 효과가 없었습니다. JPEG decode를 포함하면 세 모델이 340–366 FPS로 수렴했습니다."
+      },
+      {
+        "en": "On PCIe Gen2 the vendor C++ path for MobileNetV2 and ResNet18 dropped to 0.75–0.80× of Gen3, so at that throughput the link becomes the limit; the Python pipeline slowed by 2–4%. For the NPU-bound MobileNetV3, the vendor path at batch 1–8 changed by at most 0.5%, and the async Python pipeline showed no detected change.",
+        "ko": "PCIe Gen2에서 MobileNetV2·ResNet18의 vendor C++ 처리량은 Gen3의 0.75–0.80배로 떨어져, 이 처리량에서는 링크가 한계가 됩니다. Python 파이프라인은 2–4% 느려졌습니다. NPU가 병목인 MobileNetV3는 vendor 경로(batch 1–8)에서 변화가 0.5% 이하였고, async Python 파이프라인에서는 변화가 검출되지 않았습니다."
+      },
+      {
+        "en": "INT8 HEFs lost 0.38 / 0.76 / 0.64 pp of Top-1 against float32 (MobileNetV2 / MobileNetV3 / ResNet18). Only the MobileNetV3 and ResNet18 losses were significant (McNemar p = 0.0026 / 0.036); for MobileNetV2 no difference was detected. Disagreements concentrated on images where the float top-1 and top-2 probabilities were close.",
+        "ko": "INT8 HEF의 Top-1은 float32 대비 −0.38 / −0.76 / −0.64pp(MobileNetV2 / MobileNetV3 / ResNet18)였습니다. MobileNetV3와 ResNet18의 손실만 유의했고(McNemar p = 0.0026 / 0.036), MobileNetV2에서는 차이가 검출되지 않았습니다. 예측 불일치는 float의 top-1과 top-2 확률 차가 작은 이미지에 몰렸습니다."
+      },
+      {
+        "en": "In the systolic-array cycle model (depthwise mapped as per-channel GEMMs, an unverified assumption), MobileNetV2's depthwise layers take 7% of the MACs but 89% of the cycles (32×32 OS). This agrees in direction with ResNet18's shorter NPU hardware latency than MobileNetV2 (1.24 vs 1.44 ms), but it is a hypothesis, not evidence about Hailo's internal design.",
+        "ko": "Systolic array cycle 모델(depthwise를 채널별 GEMM으로 매핑한 검증되지 않은 가정)에서 MobileNetV2의 depthwise layer는 MAC의 7%로 cycle의 89%를 차지했습니다(32×32 OS). 실측에서 ResNet18의 NPU 하드웨어 지연이 MobileNetV2보다 짧았던 방향(1.24 vs 1.44 ms)과 일치하지만, Hailo 내부 구조에 대한 증거가 아니라 가설입니다."
+      },
+      {
+        "en": "The RTL matched numpy on 22 random INT8 GEMMs (1,882 outputs, 0 mismatches) and SCALE-Sim's compute-cycle count (MAC window) in 18 of 18 cases; without output double buffering it needed up to 53% more cycles.",
+        "ko": "RTL은 무작위 INT8 GEMM 22건(출력 1,882개)에서 numpy와 불일치 0개였고, MAC window cycle이 SCALE-Sim과 18/18건 일치했습니다. 출력 double buffering이 없으면 cycle이 최대 53% 늘었습니다."
+      },
+      {
+        "en": "All 60 custom models compiled and ran. On the Hailo-10H the slope of latency against MACs for the depthwise-separable family was 2.3× that of conv (0.00144 vs 0.00062 ms per million MACs). In the trained Conv vs DW+PW pairs whose MACs differ by 2.78%, DW+PW's hardware latency was 9–20% higher in all six pairs (3 seeds × 5/30 epochs), although in two 5-epoch pairs the gap stayed within the repeat range.",
+        "ko": "직접 설계한 60개 모델이 모두 컴파일·실행되었습니다. Hailo-10H에서 depthwise-separable 가족의 MAC 대비 지연 기울기는 conv의 2.3배였습니다(0.00144 vs 0.00062 ms/백만 MAC). MAC 차이 2.78%인 학습 모델 Conv vs DW+PW 쌍에서는 6개 쌍(seed 3개 × 5/30 epoch) 모두 DW+PW의 하드웨어 지연이 9–20% 길었습니다. 다만 5 epoch의 두 쌍은 차이가 반복 측정 범위 안이었습니다."
+      }
+    ],
+    "contributions": [
+      {
+        "en": "Defined the research questions and, for the main device experiments (precision, PCIe A–B–A, custom models, long training), fixed the decision rules before measurement.",
+        "ko": "연구 질문을 정하고, 주요 장치 실험(정밀도, PCIe A–B–A, 직접 설계 모델, 장기 학습)의 판정 규칙을 측정 전에 고정했습니다."
+      },
+      {
+        "en": "Implemented the npu_lab toolkit, the experiment and report scripts, and the automated tests.",
+        "ko": "npu_lab 측정 도구, 실험·보고서 스크립트, 자동 테스트를 구현했습니다."
+      },
+      {
+        "en": "Wrote the Verilog systolic GEMM engine and testbench, and set up the x86 DFC host that compiled the 60 custom models.",
+        "ko": "Verilog systolic GEMM 엔진과 testbench를 작성하고, 직접 설계한 모델 60개를 컴파일한 x86 DFC 환경을 구축했습니다."
+      }
+    ],
+    "tables": [
+      {
+        "title": {
+          "en": "Same weights, different targets",
+          "ko": "같은 가중치, 다른 실행 환경"
+        },
+        "note": {
+          "en": "Throughput in FPS. The CPU and Hailo columns use the same 500 Imagenette images, pre-decoded (JPEG decode not timed): CPU = float32 on the Pi 5; Hailo = INT8 HEF through the Python pipeline (sequential with buffer reuse, and the fastest of the 10 tested settings). Vendor = hailortcli run2 alone at batch 1 on internally generated input (no Python, no preprocessing).",
+          "ko": "처리량(FPS)입니다. CPU와 Hailo 열은 같은 Imagenette 이미지 500장을 미리 디코딩해 사용했습니다(JPEG 디코딩은 측정 구간 밖). CPU는 Pi 5의 float32, Hailo는 Python 파이프라인으로 실행한 INT8 HEF(버퍼 재사용 순차 실행, 그리고 시험한 10개 설정 중 가장 빠른 설정)입니다. vendor는 hailortcli run2 단독 실행(batch 1, 내부 생성 입력, Python·전처리 없음)입니다."
+        },
+        "columns": [
+          {
+            "en": "Model",
+            "ko": "모델"
+          },
+          {
+            "en": "CPU 1 / 4 threads",
+            "ko": "CPU 1 / 4 스레드"
+          },
+          {
+            "en": "Hailo sequential",
+            "ko": "Hailo 순차"
+          },
+          {
+            "en": "Hailo best of 10 tested",
+            "ko": "Hailo 시험 설정 중 최고"
+          },
+          {
+            "en": "Vendor C++",
+            "ko": "Vendor C++"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              "MobileNetV2",
+              "36.8 / 62.2",
+              "182",
+              "644",
+              "1,749"
+            ]
+          },
+          {
+            "cells": [
+              "MobileNetV3 EdgeTPU",
+              "15.5 / 44.5",
+              "164",
+              "451",
+              "452"
+            ]
+          },
+          {
+            "cells": [
+              "ResNet18",
+              "7.1 / 17.1",
+              "181",
+              "577",
+              "1,725"
+            ]
+          }
+        ]
+      },
+      {
+        "title": {
+          "en": "PCIe Gen2 vs Gen3 (A–B–A)",
+          "ko": "PCIe Gen2 vs Gen3 (A–B–A)"
+        },
+        "note": {
+          "en": "Gen2 throughput divided by the mean of the two Gen3 blocks; the drift column is the Gen3 before → after difference.",
+          "ko": "Gen2 처리량을 두 Gen3 블록 평균으로 나눈 값이며, 재현 오차는 Gen3 전 → 후 차이입니다."
+        },
+        "columns": [
+          {
+            "en": "Path",
+            "ko": "경로"
+          },
+          {
+            "en": "Gen2 / Gen3",
+            "ko": "Gen2 / Gen3"
+          },
+          {
+            "en": "Gen3 drift",
+            "ko": "Gen3 재현 오차"
+          },
+          {
+            "en": "Reading",
+            "ko": "해석"
+          }
+        ],
+        "rows": [
+          {
+            "cells": [
+              {
+                "en": "Vendor C++, MobileNetV2 · ResNet18",
+                "ko": "Vendor C++, MobileNetV2 · ResNet18"
+              },
+              "0.75–0.80",
+              "±4%",
+              {
+                "en": "Link-limited at Gen2",
+                "ko": "Gen2에서 링크가 한계"
+              }
+            ],
+            "highlight": true
+          },
+          {
+            "cells": [
+              {
+                "en": "Vendor C++, MobileNetV3 (batch 1–8)",
+                "ko": "Vendor C++, MobileNetV3 (batch 1–8)"
+              },
+              "0.99–1.00",
+              "±0.2%",
+              {
+                "en": "NPU-bound, negligible (≤0.5%)",
+                "ko": "NPU 병목, 영향 미미(0.5% 이하)"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "en": "Python pipeline: sequential (all three models), async MobileNetV2 · ResNet18",
+                "ko": "Python 파이프라인: 순차(세 모델 모두), async MobileNetV2 · ResNet18"
+              },
+              "0.96–0.98",
+              "±0.7%",
+              {
+                "en": "Small but detected",
+                "ko": "작지만 검출됨"
+              }
+            ]
+          },
+          {
+            "cells": [
+              {
+                "en": "Python pipeline, MobileNetV3 async",
+                "ko": "Python 파이프라인, MobileNetV3 async"
+              },
+              "1.000",
+              "0.0%",
+              {
+                "en": "No detectable effect",
+                "ko": "검출된 영향 없음"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "tech": [
+      "Python",
+      "HailoRT",
+      "Hailo DFC",
+      "PyTorch",
+      "ONNX",
+      "ONNX Runtime",
+      "SCALE-Sim",
+      "Verilog",
+      "Icarus Verilog",
+      "Raspberry Pi 5"
+    ],
+    "topics": [
+      "Edge AI",
+      "NPU",
+      "Systolic Array",
+      "Quantization",
+      "Performance Analysis",
+      "RTL Design"
+    ],
+    "links": [
+      {
+        "type": "other",
+        "label": {
+          "en": "Reference: SCALE-Sim v2.0.2 (systolic-array simulator)",
+          "ko": "참고 자료: SCALE-Sim v2.0.2 (systolic array 시뮬레이터)"
+        },
+        "url": "https://github.com/scalesim-project/SCALE-Sim/tree/v2.0.2",
+        "ref": true
+      },
+      {
+        "type": "other",
+        "label": {
+          "en": "Reference: Hailo Model Zoo v5.1.0",
+          "ko": "참고 자료: Hailo Model Zoo v5.1.0"
+        },
+        "url": "https://github.com/hailo-ai/hailo_model_zoo/tree/v5.1.0",
+        "ref": true
+      },
+      {
+        "type": "other",
+        "label": {
+          "en": "Reference: Imagenette dataset (fastai)",
+          "ko": "참고 자료: Imagenette 데이터셋 (fastai)"
+        },
+        "url": "https://github.com/fastai/imagenette",
+        "ref": true
+      }
+    ],
+    "cover": "img/edge-npu-lab/cover.jpg",
+    "images": [
+      {
+        "src": "img/edge-npu-lab/01-overview.png",
+        "caption": {
+          "en": "Overview: on-device measurement, systolic-array simulation and RTL around one question, and the custom-model measurements on the Hailo-10H that follow up the depthwise hypothesis.",
+          "ko": "개요: 하나의 질문을 둘러싼 세 활동(실측 · systolic array 시뮬레이션 · RTL)과, 이어서 depthwise 가설을 Hailo-10H에서 검토한 직접 설계 모델 실측."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/01-overview.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/02-latency-breakdown.png",
+        "caption": {
+          "en": "Sequential host pipeline by stage (left) and vendor hardware latency against official operation count (right): ResNet18 has the most operations but the shortest hardware latency.",
+          "ko": "순차 호스트 파이프라인의 단계별 지연(왼쪽)과 공식 연산량 대비 vendor 하드웨어 지연(오른쪽). 연산량이 가장 많은 ResNet18의 하드웨어 지연이 가장 짧습니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/02-latency-breakdown.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/03-decode-breakdown.png",
+        "caption": {
+          "en": "With JPEG decode and file I/O in the timed pipeline, the three models converge to 340–366 FPS: the host CPU becomes the common bottleneck.",
+          "ko": "JPEG decode와 파일 I/O를 측정 범위에 넣으면 세 모델이 340–366 FPS로 수렴합니다. 호스트 CPU가 공통 병목이 됩니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/03-decode-breakdown.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/04-pcie-ab.png",
+        "caption": {
+          "en": "PCIe Gen2 vs Gen3 (A–B–A): on MobileNetV2 and ResNet18 the vendor C++ runtime loses 20–25% and the Python pipeline 2–4%. The NPU-bound MobileNetV3 shows no detected change in the async pipeline and changes by at most 0.5% at vendor batch 1–8.",
+          "ko": "PCIe Gen2 vs Gen3(A–B–A): MobileNetV2·ResNet18에서 vendor C++ 런타임은 20–25%, Python 파이프라인은 2–4% 느려집니다. NPU 병목인 MobileNetV3는 async 파이프라인에서 변화가 검출되지 않았고, vendor batch 1–8에서는 차이가 0.5% 이내입니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/04-pcie-ab.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/05-vendor-runtime.png",
+        "caption": {
+          "en": "Vendor C++ runtime: only the 3-context MobileNetV3 HEF scales with batch size (3.08× at batch 16); the single-context models stay near 1,720 FPS.",
+          "ko": "Vendor C++ 런타임: 3-context로 컴파일된 MobileNetV3 HEF만 batch 크기에 따라 처리량이 늘고(batch 16에서 3.08배), single-context 모델은 약 1,720 FPS에 머뭅니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/05-vendor-runtime.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/06-target-runtime.png",
+        "caption": {
+          "en": "Same weights and preprocessing, CPU float32 (1 / 4 threads) vs Hailo-10H INT8: sequential Hailo execution is 2.9–10.6× faster than four CPU threads. Precision also differs, so the gap is not due to hardware alone.",
+          "ko": "같은 가중치·전처리로 CPU float32(1 / 4 스레드)와 Hailo-10H INT8을 비교했습니다. Hailo 순차 실행이 CPU 4스레드보다 2.9–10.6배 빠르며, 정밀도도 다르므로 하드웨어만의 차이로 볼 수는 없습니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/06-target-runtime.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/07-precision.png",
+        "caption": {
+          "en": "Float32 vs INT8: disagreements concentrate where the float top-1/top-2 margin is small (left). ONNX Runtime post-training INT8 on the CPU changes the custom models' mean test accuracy by at most ±0.25 pp (right; this is not the Hailo quantizer).",
+          "ko": "Float32 vs INT8: 예측 불일치는 float top-1/top-2 확률 차가 작은 이미지에 몰리고(왼쪽), 직접 학습한 모델에 ONNX Runtime(CPU) INT8 PTQ를 적용하면 평균 test 정확도 변화가 ±0.25pp 이내입니다(오른쪽, Hailo 양자화기 결과가 아닙니다)."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/07-precision.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/08-cycles-heatmap.png",
+        "caption": {
+          "en": "SCALE-Sim: total cycles over six workloads for each array shape and dataflow at three per-operand port bandwidths (1,024 PEs, 24 KiB SRAM; best of four SRAM splits per cell; negative-stall configurations excluded).",
+          "ko": "SCALE-Sim: operand별 포트 대역폭 세 가지에서 array 형태·dataflow별 6개 workload의 cycle 합계(1,024 PE, 24 KiB SRAM, 칸마다 SRAM 분할 4종 중 최솟값, 음수 stall 설정은 제외)."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/08-cycles-heatmap.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/09-workload-mapping.png",
+        "caption": {
+          "en": "Real layers mapped onto a 32×32 output-stationary array in an analytic cycle model: with depthwise layers assumed to run as one GEMM per channel, they are a small share of MACs but most of the modeled cycles in MobileNetV2 and V3.",
+          "ko": "실제 layer를 32×32 output-stationary array의 해석적 cycle 모델에 매핑한 결과: depthwise layer를 채널별 GEMM으로 가정하면 MobileNetV2·V3에서 MAC 비중은 작지만 모델 cycle의 대부분을 차지합니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/09-workload-mapping.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/10-rtl-overlap.png",
+        "caption": {
+          "en": "RTL: extra cycles without output double buffering, up to 53% for workloads with many folds and a short reduction dimension.",
+          "ko": "RTL: 출력 double buffering이 없을 때 늘어나는 cycle. fold 수가 많고 K가 작은 workload일수록 커져 최대 53%입니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/10-rtl-overlap.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/11-custom-hef.png",
+        "caption": {
+          "en": "Custom models on the Hailo-10H: latency against MACs for the 48 controlled graphs (left), and INT8 accuracy against latency for the trained models (right).",
+          "ko": "직접 설계한 모델의 Hailo-10H 실측: 통제 그래프 48개의 MAC 대비 지연(왼쪽)과 학습 모델의 지연 대비 INT8 정확도(오른쪽)."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/11-custom-hef.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/12-compiler-profile.png",
+        "caption": {
+          "en": "Hailo compiler profile: the summed per-layer latency estimate is rank-correlated with measured latency (Spearman ρ = 0.74, 48 micro-models), and depthwise layers report lower MAC utilization than conv (median 0.42 vs 0.57).",
+          "ko": "Hailo 컴파일러 profile: layer 지연 추정치의 합이 실측 지연과 순위 상관을 보이고(Spearman ρ = 0.74, micro-model 48개), depthwise layer의 MAC 이용률이 conv보다 낮게 보고됩니다(중앙값 0.42 vs 0.57)."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/12-compiler-profile.jpg"
+      }
+    ]
+  },
+  {
     "slug": "scholarlensai",
     "year": "2025",
     "period": {
