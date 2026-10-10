@@ -1,6 +1,7 @@
 /* Project data for /projects/ – generated from the research notes, then edited by hand.
    Order = display order. Text fields are { en, ko }. Image paths are relative to /projects/.
    hidden: true keeps an entry out of the archive (these two are also hidden in the CV).
+   alsoIn: ["embedded"] also shows an entry under that filter tab (All counts it once).
    research: true also lists an entry on /research/; path: "research" puts its page at /research/<slug>/ instead of /projects/<slug>/. */
 window.PROJECTS = [
   {
@@ -11,6 +12,9 @@ window.PROJECTS = [
       "ko": "2026"
     },
     "category": "ai",
+    "alsoIn": [
+      "embedded"
+    ],
     "categoryLabel": {
       "en": "AI Systems · Edge NPU / Accelerator Architecture",
       "ko": "AI 시스템 · 엣지 NPU / 가속기 구조"
