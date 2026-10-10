@@ -408,8 +408,6 @@ body.dark-mode .ico.mono { filter: invert(1); }
 .ico.li { filter: invert(15%) sepia(81%) saturate(622%) hue-rotate(179deg) brightness(94%) contrast(90%); }
 body.dark-mode .ico.li { filter: invert(64%) sepia(40%) saturate(600%) hue-rotate(180deg) brightness(105%); }
 
-/* detail pages use the narrower column; keep the bar and footer aligned with it */
-body[data-slug] .topbar .wrap, body[data-slug] .site-footer .wrap { max-width: 960px; }
 
 /* letter-spaced caps look wrong on Hangul */
 .lang-ko .eyebrow, .lang-ko .card-cat, .lang-ko .info-label, .lang-ko .pager .dir, .lang-ko .ph-cat { letter-spacing: 0.02em; }
