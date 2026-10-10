@@ -139,6 +139,11 @@
     .lang-ko h2[data-lang="en"] {
       display: none;
     }
+
+    /* hide the theme / language / version buttons when printing */
+    @media print {
+      .controls { display: none !important; }
+    }
   </style>
 </head>
 <body class="lang-en">

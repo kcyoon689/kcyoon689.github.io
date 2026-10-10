@@ -638,3 +638,8 @@ body.lb-open .controls { visibility: hidden; }
 .tr-fig a { display: block; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: #fff; }
 .tr-fig img { display: block; width: 100%; height: auto; }
 .tr-fig figcaption { font-size: 0.84rem; color: var(--muted); margin-top: 0.5rem; line-height: 1.55; }
+
+/* hide the theme / language buttons when printing */
+@media print {
+  .controls { display: none !important; }
+}

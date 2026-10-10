@@ -57,7 +57,6 @@
     allResearch: { en: "All research", ko: "전체 연구" },
     projects: { en: "Projects", ko: "프로젝트" },
     research: { en: "Research", ko: "연구" },
-    cv: { en: "CV", ko: "CV" },
     year: { en: "Year", ko: "연도" },
     period: { en: "Period", ko: "기간" },
     team: { en: "Team", ko: "팀" },
@@ -302,7 +301,7 @@
 
     var html = "";
     if (p.draft) html += '<p class="draft-note">' + bi(UI.draft) + "</p>";
-    html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + ROOT + 'cv/">' + bi(UI.cv) + '</a><span>/</span><a href="' + home + '">' + bi(homeLabel) +
+    html += '<nav class="breadcrumb" aria-label="Breadcrumb"><a href="' + home + '">' + bi(homeLabel) +
       '</a><span class="current-sep">/</span><span class="current">' + bi(p.title) + "</span></nav>";
     html += '<header class="hero"><span class="eyebrow">' + bi(catLabel(p)) + (p.year ? " · " + esc(p.year) : "") + "</span>" +
       '<h1 class="hero-title">' + bi(p.title) + "</h1>" +
