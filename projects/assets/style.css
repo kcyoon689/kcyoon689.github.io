@@ -67,7 +67,8 @@ img { max-width: 100%; display: block; }
   justify-content: space-between;
   gap: 1rem;
   min-height: 60px;
-  padding-right: 16.5rem; /* room for the fixed controls (three buttons on /cv/) */
+  /* room for the fixed controls (three buttons on /cv/); on wide screens the tabs line up with the content edge */
+  padding-right: clamp(1.5rem, calc(16.5rem + 560px - 50vw), 16.5rem);
 }
 .brand { font-size: 1.15rem; font-weight: bold; color: var(--text); text-decoration: none; white-space: nowrap; }
 .topnav { display: flex; gap: 1.1rem; font-size: 0.95rem; }
