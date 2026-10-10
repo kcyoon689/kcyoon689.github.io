@@ -569,5 +569,5 @@
   setTheme(store("theme") || "light");
   setLanguage(store("language") || "en");
   var slug = document.body.getAttribute("data-slug");
-  if (slug) renderDetail(slug); else renderArchive();
+  if (slug) renderDetail(slug); else if (document.getElementById("projectsGrid")) renderArchive();
 })();

@@ -140,9 +140,32 @@
       display: none;
     }
 
-    /* hide the theme / language / version buttons when printing */
+    /* top bar shared with /projects/, /research/ and /archive/ (same size and position) */
+    body { margin: 0; padding: 0 0 2rem; max-width: none; }
+    body > header:not(.site-topbar), body > section {
+      box-sizing: border-box; width: calc(100% - 4rem); max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+    body > header:not(.site-topbar) { padding-top: 2rem; }
+    .site-topbar { text-align: left; margin: 0; border-bottom: 1px solid #dcdcdc; background: var(--bg-color); line-height: 1.55; }
+    body.dark-mode .site-topbar { border-bottom-color: #3a3a3a; }
+    .site-topbar .wrap {
+      box-sizing: border-box; max-width: 1120px; margin: 0 auto; padding: 0 16.5rem 0 1.5rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px;
+    }
+    .site-topbar .brand { font-size: 1.15rem; font-weight: bold; color: var(--text-color); text-decoration: none; white-space: nowrap; }
+    .site-topbar .topnav { display: flex; gap: 1.1rem; font-size: 0.95rem; }
+    body .site-topbar .topnav a { color: #5c5c5c; text-decoration: none; }
+    body.dark-mode .site-topbar .topnav a { color: #a3a3a3; }
+    body .site-topbar .topnav a.active { color: var(--text-color); border-bottom: 1px solid var(--text-color); }
+    .lang-en .site-topbar [data-lang="en"], .lang-ko .site-topbar [data-lang="ko"] { display: inline; }
+    @media (min-width: 641px) { .site-topbar { position: sticky; top: 0; z-index: 998; } }
+    @media (max-width: 640px) {
+      .site-topbar .wrap { padding: 0.75rem 1rem; flex-wrap: wrap; min-height: 0; }
+      .controls { position: static; justify-content: flex-end; padding: 0.6rem 1rem 0; }
+    }
+    /* hide the buttons and the top bar when printing */
     @media print {
-      .controls { display: none !important; }
+      .controls, .site-topbar { display: none !important; }
     }
   </style>
 </head>
@@ -152,6 +175,18 @@
     <button id="langButton" onclick="toggleLanguage()">🇰🇷 KO</button>
     <button id="versionButton" onclick="toggleVersion()">📄 CV1</button>
   </div>
+
+  <header class="site-topbar">
+    <div class="wrap">
+      <a class="brand" href="./"><span data-lang="en">Chaeyoon Kim</span><span data-lang="ko">김채윤</span></a>
+      <nav class="topnav" aria-label="Primary">
+        <a class="active" href="./" aria-current="page">CV</a>
+        <a href="../projects/"><span data-lang="en">Projects</span><span data-lang="ko">프로젝트</span></a>
+        <a href="../research/"><span data-lang="en">Research</span><span data-lang="ko">연구</span></a>
+        <a href="../archive/"><span data-lang="en">Archive</span><span data-lang="ko">아카이브</span></a>
+      </nav>
+    </div>
+  </header>
 
   <header>
     <h1 data-lang="en">Chaeyoon Kim</h1>
