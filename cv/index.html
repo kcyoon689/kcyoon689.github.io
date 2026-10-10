@@ -149,7 +149,7 @@
     .site-topbar { text-align: left; margin: 0; border-bottom: 1px solid #dcdcdc; background: var(--bg-color); line-height: 1.55; }
     body.dark-mode .site-topbar { border-bottom-color: #3a3a3a; }
     .site-topbar .wrap {
-      box-sizing: border-box; max-width: 1120px; margin: 0 auto; padding: 0 16.5rem 0 1.5rem;
+      box-sizing: border-box; max-width: 1120px; margin: 0 auto; padding: 0 clamp(1.5rem, calc(16.5rem + 560px - 50vw), 16.5rem) 0 1.5rem;
       display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 60px;
     }
     .site-topbar .brand { font-size: 1.15rem; font-weight: bold; color: var(--text-color); text-decoration: none; white-space: nowrap; }
