@@ -214,8 +214,10 @@
     };
     document.title = window.__titleFor(document.body.classList.contains("lang-ko") ? "ko" : "en");
 
+    // alsoIn: extra filter tabs an entry is listed under (All still counts it once)
+    function cats(p) { return [p.category].concat(p.alsoIn || []); }
     var counts = { all: list.length };
-    list.forEach(function (p) { counts[p.category] = (counts[p.category] || 0) + 1; });
+    list.forEach(function (p) { cats(p).forEach(function (c) { counts[c] = (counts[c] || 0) + 1; }); });
     // a single category needs no filter row
     tabs.hidden = CATEGORIES.filter(function (c) { return counts[c.id]; }).length < 2;
 
@@ -234,7 +236,7 @@
       var links = (p.links || []).filter(function (l) { var k = l.type; if (l.ref || seen[k]) return false; seen[k] = 1; return true; }).slice(0, 3).map(function (l) {
         return '<a class="icon-link" href="' + esc(l.url) + '"' + extAttrs() + ' title="' + esc(plain(linkLabel(l), "en")) + '" aria-label="' + esc(plain(linkLabel(l), "en")) + '">' + icon(l.type) + "</a>";
       }).join("");
-      return '<article class="card" data-cat="' + esc(p.category) + '">' +
+      return '<article class="card" data-cat="' + esc(cats(p).join(" ")) + '">' +
         '<a class="media" href="' + href + '" tabindex="-1" aria-hidden="true">' + media +
         (p.year ? '<span class="year-badge">' + esc(p.year) + "</span>" : "") +
         (p.youtube && p.youtube.length ? '<span class="play"></span>' : "") + "</a>" +
@@ -256,7 +258,7 @@
         b.setAttribute("aria-selected", on ? "true" : "false");
       });
       [].forEach.call(grid.children, function (card) {
-        var on = filter === "all" || card.getAttribute("data-cat") === filter;
+        var on = filter === "all" || (" " + card.getAttribute("data-cat") + " ").indexOf(" " + filter + " ") >= 0;
         card.hidden = !on;
         if (on) shown++;
       });
