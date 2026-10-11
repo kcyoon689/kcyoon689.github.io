@@ -88,8 +88,8 @@ window.PROJECTS = [
           "ko": "Systolic array 시뮬레이션"
         },
         "body": {
-          "en": "Ran SCALE-Sim v2.0.2 at a pinned commit on six synthetic dense GEMM/Conv shapes (no depthwise) across 144 configurations of a 1,024-PE, 24 KiB-SRAM budget: 16×64 / 32×32 / 64×16 arrays, OS / WS / IS dataflows, four SRAM splits, and three per-port bandwidths plus a stall-free mode (864 layer runs in total). Separately, the Conv, depthwise and FC layers of the three networks were converted to GEMM shapes and mapped onto the same 1,024 PEs with a closed-form cycle model that matches all 216 stall-free SCALE-Sim rows. SCALE-Sim does not support depthwise, so those layers were mapped as one GEMM per channel, an unverified assumption.",
-          "ko": "고정 commit의 SCALE-Sim v2.0.2로 합성 dense GEMM/Conv shape 6개(depthwise 제외)를 1,024 PE · SRAM 24 KiB 예산의 144개 설정에서 시뮬레이션했습니다. 16×64 / 32×32 / 64×16 array, OS / WS / IS dataflow, SRAM 분할 4종, 포트별 대역폭 3수준과 stall 없는 계산 모드를 조합했습니다(총 864개 layer 실행). 이와 별도로 세 네트워크의 Conv·depthwise·FC layer를 GEMM shape로 변환해 같은 1,024 PE에 매핑했고, cycle은 SCALE-Sim의 stall 없는 결과 216행과 모두 일치하는 닫힌식 모델로 계산했습니다. SCALE-Sim이 지원하지 않는 depthwise는 채널별 독립 GEMM으로 근사했으며, 이는 검증되지 않은 가정입니다."
+          "en": "Ran SCALE-Sim v2.0.2 at a pinned commit on six synthetic dense GEMM/Conv shapes (no depthwise) across 144 configurations of a 1,024-PE, 24 KiB-SRAM budget: 16×64 / 32×32 / 64×16 arrays, OS / WS / IS dataflows, four SRAM splits, and three per-port bandwidths plus a stall-free mode (864 layer runs in total). Separately, the Conv, depthwise and FC layers of the three networks were converted to GEMM shapes and mapped onto the same 1,024 PEs with a closed-form cycle model that matches all 216 stall-free SCALE-Sim rows. SCALE-Sim does not support depthwise, so those layers were mapped as one GEMM per channel, an unverified assumption. Timing defects found in SCALE-Sim during validation (negative stalls, OFMAP counter mismatches) were later fixed in a local patch, and all 864 runs were repeated.",
+          "ko": "고정 commit의 SCALE-Sim v2.0.2로 합성 dense GEMM/Conv shape 6개(depthwise 제외)를 1,024 PE · SRAM 24 KiB 예산의 144개 설정에서 시뮬레이션했습니다. 16×64 / 32×32 / 64×16 array, OS / WS / IS dataflow, SRAM 분할 4종, 포트별 대역폭 3수준과 stall 없는 계산 모드를 조합했습니다(총 864개 layer 실행). 이와 별도로 세 네트워크의 Conv·depthwise·FC layer를 GEMM shape로 변환해 같은 1,024 PE에 매핑했고, cycle은 SCALE-Sim의 stall 없는 결과 216행과 모두 일치하는 닫힌식 모델로 계산했습니다. SCALE-Sim이 지원하지 않는 depthwise는 채널별 독립 GEMM으로 근사했으며, 이는 검증되지 않은 가정입니다. 검증 중 SCALE-Sim에서 발견한 timing 결함(음수 stall, OFMAP 카운터 불일치)은 이후 로컬 수정본으로 고치고 864개 실행을 모두 다시 수행했습니다."
         }
       },
       {
@@ -129,6 +129,10 @@ window.PROJECTS = [
       {
         "en": "INT8 HEFs lost 0.38 / 0.76 / 0.64 pp of Top-1 against float32 (MobileNetV2 / MobileNetV3 / ResNet18). Only the MobileNetV3 and ResNet18 losses were significant (McNemar p = 0.0026 / 0.036); for MobileNetV2 no difference was detected. Disagreements concentrated on images where the float top-1 and top-2 probabilities were close.",
         "ko": "INT8 HEF의 Top-1은 float32 대비 −0.38 / −0.76 / −0.64pp(MobileNetV2 / MobileNetV3 / ResNet18)였습니다. MobileNetV3와 ResNet18의 손실만 유의했고(McNemar p = 0.0026 / 0.036), MobileNetV2에서는 차이가 검출되지 않았습니다. 예측 불일치는 float의 top-1과 top-2 확률 차가 작은 이미지에 몰렸습니다."
+      },
+      {
+        "en": "SCALE-Sim v2.0.2 reported negative stalls in 11 layer runs and OFMAP counter mismatches in 288. After a local fix, all 864 runs were repeated with no negative stalls or counter mismatches and with unchanged stall-free cycles. With the previously excluded 32×32 settings back in, the lowest six-workload total moved from 8,261 cycles (64×16, input-heavy SRAM split) to 6,975 cycles (32×32 OS, balanced split). This fixes the simulator's bookkeeping on this grid; it does not validate the whole memory model.",
+        "ko": "SCALE-Sim v2.0.2는 layer 실행 11건에서 음수 stall을, 288건에서 OFMAP 카운터 불일치를 보고했습니다. 로컬 수정본으로 864개 실행을 모두 다시 수행한 결과 음수 stall과 카운터 불일치는 0건이 되었고, stall 없는 결과의 cycle은 그대로였습니다. 그동안 제외했던 32×32 설정이 다시 포함되면서 6개 workload 합계 최소 cycle은 8,261(64×16, input 위주 SRAM 분할)에서 6,975(32×32 OS, balanced 분할)로 바뀌었습니다. 이는 이 설정 범위에서 시뮬레이터의 계산 오류를 바로잡은 것이며, 전체 메모리 모델의 타당성까지 검증한 것은 아닙니다."
       },
       {
         "en": "In the systolic-array cycle model (depthwise mapped as per-channel GEMMs, an unverified assumption), MobileNetV2's depthwise layers take 7% of the MACs but 89% of the cycles (32×32 OS). This agrees in direction with ResNet18's shorter NPU hardware latency than MobileNetV2 (1.24 vs 1.44 ms), but it is a hypothesis, not evidence about Hailo's internal design.",
@@ -417,10 +421,18 @@ window.PROJECTS = [
       {
         "src": "img/edge-npu-lab/08-cycles-heatmap.png",
         "caption": {
-          "en": "SCALE-Sim: total cycles over six workloads for each array shape and dataflow at three per-operand port bandwidths (1,024 PEs, 24 KiB SRAM; best of four SRAM splits per cell; negative-stall configurations excluded).",
-          "ko": "SCALE-Sim: operand별 포트 대역폭 세 가지에서 array 형태·dataflow별 6개 workload의 cycle 합계(1,024 PE, 24 KiB SRAM, 칸마다 SRAM 분할 4종 중 최솟값, 음수 stall 설정은 제외)."
+          "en": "SCALE-Sim v2.0.2 as released: total cycles over six workloads for each array shape and dataflow at three per-operand port bandwidths (1,024 PEs, 24 KiB SRAM; best of four SRAM splits per cell; negative-stall configurations excluded).",
+          "ko": "SCALE-Sim v2.0.2 원본 결과: operand별 포트 대역폭 세 가지에서 array 형태·dataflow별 6개 workload의 cycle 합계(1,024 PE, 24 KiB SRAM, 칸마다 SRAM 분할 4종 중 최솟값, 음수 stall 설정은 제외)."
         },
         "thumb": "img/edge-npu-lab/thumbs/08-cycles-heatmap.jpg"
+      },
+      {
+        "src": "img/edge-npu-lab/08b-corrected-ranking.png",
+        "caption": {
+          "en": "SCALE-Sim with the local timing fixes: the 32×32 settings excluded before for negative stalls return, and the lowest six-workload total becomes 6,975 cycles (32×32, balanced SRAM) instead of 8,261 (64×16, input split). All rows: OS, 1,024 PEs, 24 KiB SRAM, 64 words/cycle per operand.",
+          "ko": "로컬 timing 수정 후 SCALE-Sim: 음수 stall로 제외했던 32×32 설정이 다시 포함되어, 6개 workload 합계 최소 cycle이 8,261(64×16, input 분할)에서 6,975(32×32, balanced SRAM)로 바뀝니다. 모든 행은 OS, 1,024 PE, 24 KiB SRAM, operand별 64 words/cycle 조건입니다."
+        },
+        "thumb": "img/edge-npu-lab/thumbs/08b-corrected-ranking.jpg"
       },
       {
         "src": "img/edge-npu-lab/09-workload-mapping.png",
