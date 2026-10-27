@@ -4693,6 +4693,32 @@ window.PROJECTS = [
           "ko": "상장 (PDF)"
         },
         "url": "https://chaeyoonkim.notion.site/signed/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F04e0e5a5-2243-4aef-a76b-f6e70fa31aa8%2F2017_%EC%BA%94%EC%9C%84%EC%84%B1%EA%B2%BD%EC%97%B0%EB%8C%80%ED%9A%8C.pdf?table=block&id=20e85a41-7def-80ac-968d-c23dc61df12c&spaceId=3b7bc2fe-53ff-43ca-a1d7-3a75f677c2d7"
+      },
+      {
+        "type": "youtube",
+        "label": {
+          "en": "Video playlist",
+          "ko": "영상 재생목록"
+        },
+        "url": "https://www.youtube.com/playlist?list=PLYfsBWh8SAO8"
+      }
+    ],
+    "youtube": [
+      {
+        "id": "Ve_5BF2-Ye8",
+        "vertical": true,
+        "caption": {
+          "en": "2017 CanSat Competition: the launch seen from the spectator area",
+          "ko": "2017 캔위성 경연대회: 관람 구역에서 본 발사 장면"
+        }
+      },
+      {
+        "id": "NgH0hH7d6_Y",
+        "vertical": true,
+        "caption": {
+          "en": "2017 CanSat Competition: the launch pad, filmed beside the launch rail",
+          "ko": "2017 캔위성 경연대회: 발사 레일 옆에서 촬영한 발사장"
+        }
       }
     ],
     "cover": "img/cansat/cover.jpg",
@@ -4744,6 +4770,14 @@ window.PROJECTS = [
           "ko": "KAIST 총장 명의로 UniSat 팀에 수여된 2017 캔위성 경연대회 우수상(창작부문) 상장."
         },
         "thumb": "img/cansat/thumbs/06-image.jpg"
+      },
+      {
+        "src": "img/cansat/07-award-prizes.jpg",
+        "caption": {
+          "en": "Prizes from the 2017 CanSat Competition: the Excellence Award (Creative Division) trophy and certificate, the team UniSat poster and the ₩2,000,000 prize board.",
+          "ko": "2017 캔위성 경연대회 수상품: 우수상(창작부) 트로피와 상장, UniSat 팀 포스터, 상금 200만 원 보드."
+        },
+        "thumb": "img/cansat/thumbs/07-award-prizes.jpg"
       }
     ],
     "cardTagline": {
